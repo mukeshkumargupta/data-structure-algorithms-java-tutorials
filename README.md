@@ -2,7 +2,7 @@
 <h2>Please visit my wiki link for full list of questions</h2>
 <h3>https://github.com/mukeshkumargupta/data-structure-algorithms-java-tutorials/wiki</h3>
 
-<h2> Like my facebook page for latest updates on my youtube channel</h2>
+<h2> Like my facebook page for latest updates</h2>
 <h3>//www.facebook.com/BeingMukeshKumarGupta</h3>
 
 <h2> Contribution </h2>
