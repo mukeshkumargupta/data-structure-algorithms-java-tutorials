@@ -21,6 +21,9 @@ package com.interview.sort;
  * 2 element array
  * sorted array
  * reverse sorted array
+ * 
+ * Reference: https://www.geeksforgeeks.org/heap-sort/
+ * Saurabh School: https://www.youtube.com/watch?v=5GrJwDggoas
  */
 public class HeapSort {
 
@@ -41,16 +44,20 @@ public class HeapSort {
         int rightIndex;
         while(i <= end){
             leftIndex = 2*i + 1;
+            //Check condition
             if(leftIndex > end){
                 break;
             }
             rightIndex = 2*i + 2;
+            //Check condition
             if(rightIndex > end){
                 rightIndex = leftIndex;
             }
             if(arr[i]  >= Math.max(arr[leftIndex], arr[rightIndex])){
                 break;
             }
+            //Why we are putting two times swap why can we not swap with max element
+            //See saurabh video
             if(arr[leftIndex] >= arr[rightIndex]){
                 swap(arr, i, leftIndex);
                 i = leftIndex;
@@ -59,6 +66,11 @@ public class HeapSort {
                 i = rightIndex;
             }
         }
+    }
+    
+    //From saurabh school video
+    private void heapify1(int arr[], int end){
+
     }
     
     private void swap(int arr[], int x, int y){

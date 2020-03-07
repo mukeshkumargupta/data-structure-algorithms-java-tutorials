@@ -8,6 +8,7 @@ package com.interview.sort;
  * negative numbers
  * already sorted
  * reverse sorted
+ * Reference: https://www.youtube.com/watch?v=jeaxzxErLKk&list=PLTZbNwgO5ebpTHdT7ylOTO2dX00QoDh4q&index=2
  */
 public class MergeSort {
 
@@ -23,9 +24,9 @@ public class MergeSort {
         int middle = (low + high)/2;
         sort(input, low, middle);
         sort(input, middle+1, high);
-        sortedMerge(input,low,high);
+        sortedMerge(input,low, high);
    }
-    
+    //Practice with this code
     private void sortedMerge(int input[], int low, int high){
         int middle = (low+high)/2;
         int temp[] = new int[high-low+1];
@@ -47,9 +48,35 @@ public class MergeSort {
             temp[r++] = input[j++];
         }
         i = low;
+        //Imp make it in given array
         for(int k=0; k < temp.length;){
             input[i++] = temp[k++];
         }
+    }
+    
+    //From saurabh school
+    //Not working code
+    private void sortedMerge1(int A[], int p, int q, int r){
+        int l1 = q-p+1;
+        int l2 = r-q; //(r-(q+1)) + 1
+        int[] left = new int[l1];
+        int[] right = new int[l2];
+        for (int i = 0; i < l1; i++ ) {
+        	left[i] = A[p+i];
+        }
+        
+        for (int j = 0; j < l2; j++ ) {
+        	right[j] = A[q+1+j];
+        }
+        int i =0, j=0;
+        for (int k =p; k <= r; k++) {
+        	if(left[i] <= right[j]) {
+        		A[k] = left[i]; i++;
+        	} else {
+        		A[k] = right[j]; j++;
+        	}
+        }
+
     }
     
     public void printArray(int input[]){

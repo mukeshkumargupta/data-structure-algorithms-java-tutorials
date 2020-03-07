@@ -9,6 +9,7 @@ class Height{
  * Test cases
  * All left nodes
  * All right nodes
+ * Must know
  */
 public class DiameterOfTree {
 
@@ -28,7 +29,9 @@ public class DiameterOfTree {
         int dial = diameter(root.left,leftHeight);
         int diar = diameter(root.right,rightHeight);
         height.height = Math.max(leftHeight.height, rightHeight.height) + 1;
-        return Math.max(Math.max(dial, diar),(1 + leftHeight.height + rightHeight.height));
+        //I think this condition should be like
+        return Math.max(Math.max(dial, diar),height.height);//Mukesh
+        //return Math.max(Math.max(dial, diar),(1 + leftHeight.height + rightHeight.height));//Origional
     }
     
     public static void main(String args[]){

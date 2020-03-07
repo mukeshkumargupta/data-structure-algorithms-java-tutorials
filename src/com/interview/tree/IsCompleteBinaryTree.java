@@ -9,6 +9,7 @@ import java.util.Queue;
  * A node with only right child
  * A node with only left child
  * A node with both left and right child
+ * Category: VImp
  */
 public class IsCompleteBinaryTree {
 

@@ -3,6 +3,8 @@ package com.interview.tree;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import com.interview.analyse.Performance;
+
 /**
  * Date 04/11/2017
  * @author Mukesh Kumar Gupta
@@ -23,6 +25,8 @@ import java.util.LinkedList;
  * 1 or 2 nodes tree
  * Binary tree which is actually BST
  * Binary tree which is not a BST
+ * Category: Must Do Imp
+ * Derived Question: how to convert tree in bst, My approach could be read tree and add that node in BST creation.
  */
 public class IsBST {
 
@@ -81,7 +85,20 @@ public class IsBST {
         root = bt.addNode(0, root);
         
         IsBST isBST = new IsBST();
-        assert isBST.isBST(root);
-        assert isBST.isBSTIterative(root);
+        Performance pf = new Performance();
+        pf.startTime();
+        System.out.println("Given string is BST: " + isBST.isBST(root));
+        System.out.println("Total time: " + pf.totalTimeInMillis());
+        pf.startTime();
+        System.out.println("Given string is BST: " + isBST.isBSTIterative(root));
+        System.out.println("Total time: " + pf.totalTimeInMillis());
+        
+        int inorder[] = {4,13,1,7,6,3,19};
+        int preorder[] = {13,4,6,7,1,3,19};
+        ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
+        root = ctf.createTree(inorder, preorder);
+        System.out.println("Given string is BST: " + isBST.isBST(root));
+        //assert isBST.isBST(root);
+        //assert isBST.isBSTIterative(root);
     }
 }

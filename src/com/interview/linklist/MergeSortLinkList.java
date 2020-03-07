@@ -9,6 +9,8 @@ package com.interview.linklist;
  * 3 nodes
  * fully sorted
  * reverse sorted
+ * Category: Must Know
+ * Note: Application of this program is in TripletToSumInLinkList.java
  */
 public class MergeSortLinkList {
 

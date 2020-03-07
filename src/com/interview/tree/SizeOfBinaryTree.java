@@ -4,7 +4,7 @@ package com.interview.tree;
  * Date 03/05/2017
  * @author Mukesh Kumar Gupta
  * 
- * Given a root of binary tree, return size of binar tree
+ * Given a root of binary tree, return size of binary tree
  * 
  * Solution:
  * Recursively find size of left side, right side and add one to them and return that to calling function.

@@ -1,5 +1,7 @@
 package com.interview.sort;
-
+/*
+ * Reference: https://www.youtube.com/watch?v=8a17hSIUpQQ
+ */
 public class QuickSort {
 
     private void swap(int A[],int i,int j)
@@ -58,16 +60,40 @@ public class QuickSort {
         return pivot;
         
     }
+    
+    private int partition(int A[],int p,int r)
+    {
+    	int pivot = A[r];
+    	int i = p-1;
+    	for ( int j = p ; j <= r-1; j++) {
+    		if (A[j] <= pivot) {
+    			i++;
+    			swap (A, i, j);
+    		}
+    	}
+    	swap(A, i+1, r); return i+1;
+    	
+    }
+
 
     public void sort(int A[],int low,int high)
     {
-        if(low>=high)
+        /*if(low>=high)
         {
             return;
         }
         int pos = split1(A,low,high);
         sort(A,low,pos-1);
-        sort(A,pos+1,high);
+        sort(A,pos+1,high);*/
+    	
+    	if(low<high)
+        {
+            //int pos = split1(A,low,high);
+    		int pivot = partition(A,low,high);
+            sort(A,low,pivot-1);
+            sort(A,pivot+1,high);
+        }
+
     }   
     
     private void printArray(int arr[]){
@@ -78,7 +104,7 @@ public class QuickSort {
     public static void main(String args[]){
         QuickSort qs = new QuickSort();
         int A[] = {11,19,0,-1,5,6,16,-3,6,0,14,18,7,21,18,-6,-8};
-//      int A[] = {11,9,0,4,6,-1,13};
+        //int A[] = {11,9,0,4,6,-1,13};
         qs.sort(A, 0, A.length-1);
         qs.printArray(A);
         

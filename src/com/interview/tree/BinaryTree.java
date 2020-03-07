@@ -7,7 +7,8 @@ package com.interview.tree;
  * Youtube link - https://youtu.be/bmaeYtlO2OE
  * Youtube link - https://youtu.be/_SiwrPXG9-g
  * Youtube link - https://youtu.be/NA8B84DZYSA
- *
+ * Must Know
+ * Got it
  */
 class NodeRef{
     Node node;
@@ -50,6 +51,8 @@ public class BinaryTree {
             return head;
         }
         Node prev = null;
+        //Find accurate place where you need to insert new node
+        //Always return root node.
         while(head != null){
             prev = head;
             if(head.data < data){

@@ -79,6 +79,6 @@ public class CutRodToMinimizeCost {
         int markings[] = {2,3,6,7};
         CutRodToMinimizeCost cr = new CutRodToMinimizeCost();
         int cost = cr.cutRodToMinimizeCost(markings, 8);
-        System.out.println(cost);       
+        System.out.println(cost);  
     }
 }

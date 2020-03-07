@@ -1,8 +1,11 @@
 package com.interview.dynamic;
 
 /**
- * http://www.geeksforgeeks.org/program-nth-catalan-number/
+ * http://www.geeksforgeeks.org/program-nth-catalan-number/ i.e. number of valid paranthesis for given n. same logic as below
+ * Derived question: Print all valid paranthesis, Saurabh school explain beautifully.
  * Count number of binary search tree created for array of size n
+ * Reference: https://www.youtube.com/watch?v=YDf982Lb84o
+ * Must Know
  */
 public class CountNumberOfTreesInBST {
 
@@ -26,6 +29,8 @@ public class CountNumberOfTreesInBST {
         int T[] = new int[n+1];
         T[0] = 1;
         T[1] = 1;
+        //See how formula is constructed in given reference video
+        //Start calculating from 2 onwards, 
         for(int i=2; i <= n; i++){
             for(int j=0; j <i; j++){
                 T[i] += T[j]*T[i-j-1];

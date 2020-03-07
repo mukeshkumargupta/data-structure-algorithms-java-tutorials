@@ -6,11 +6,12 @@ package com.interview.number;
  * k is 0
  * k or n are negative
  * k greater than n
+ * Category: Easy
  */
 public class BinomialCoefficient {
 
     public int calculate(int n, int k){
-        if(k > n-k){
+        if(k > n-k){  // This is two reduce loop count
             k = n-k;
         }
         int result = 1;

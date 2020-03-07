@@ -13,6 +13,7 @@ package com.interview.tree;
  * Keep comparing root of both data and then recursively check left and right.
  * 
  * Time complexity is O(n)
+ * Must Know
  */
 public class SameTree {
 

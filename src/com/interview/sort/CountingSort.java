@@ -1,5 +1,11 @@
 package com.interview.sort;
 
+/*
+ * Count sort
+ * Reference: https://www.youtube.com/watch?v=w9njRpeuVew
+ * Must Do
+ */
+
 public class CountingSort {
 
     private static int TOTAL = 10;
@@ -43,9 +49,10 @@ public class CountingSort {
     }
 
     public static void main(String args[]) {
-        int arr[] = { 6, 1, 6, 7, 3, 1 };
+    	//This is only number varies between 0 and 10 where 0 is included
+        int arr[] = { 6, 1, 6, 7, 3, 1, 3, 3, 2, 1, 5, 1, 1, 0, 0, 1 };
         CountingSort cs = new CountingSort();
-        cs.sort1(arr);
+        cs.sort(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }

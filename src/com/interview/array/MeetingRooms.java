@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei),
  * find the minimum number of conference rooms required.
  *
- * Both methods have time comlexity of nlogn
+ * Both methods have time complexity of nlogn
  * Method 1 has space complexity of O(1)
  * 
  * https://leetcode.com/problems/meeting-rooms-ii/

@@ -10,6 +10,7 @@ package com.interview.tree;
  * Space complexity O(h)
  *
  * https://leetcode.com/problems/inorder-successor-in-bst/
+ * Must know
  */
 public class InorderSuccessor {
     public Node inorderSuccessor(Node root, Node p) {

@@ -5,8 +5,28 @@ package com.interview.tree;
  * Test cases
  * All left children
  * All right children
- * Full tree
- * Complete tree
+ * Full tree: A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every node other than the leaves has two children. 
+ * Complete tree: A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. 
+ * ## Reference: https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html
+ * Must Know
+ * Example:                  1
+ *                           /\
+ *                          2  3
+ *                         /    \
+ *                         4     7
+ *                          \    /\
+ *                           5  9  8
+ *                            \
+ *                             6
+ * 
+ * Top view: 4, 2, 1, 3, 7, 8
+ * Bottom view:  4, 5, 6, 9, 11, 8
+ * Left View: 1, 2, 4, 5, 6, 11
+ * Right View: 1, 3, 7, 8, 11
+ * Print boundary: 1, 2, 4, 5, 6, 11, 8, 7, 3  (I have taken anti-clock wise)
+ * 
+ * 
+ * 
  */
 public class BoundaryTraversal {
 
@@ -63,14 +83,25 @@ public class BoundaryTraversal {
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         Node head = null;
-        head = bt.addNode(100, head);
+        /*head = bt.addNode(100, head);
         head = bt.addNode(90, head);
         head = bt.addNode(10, head);
         head = bt.addNode(15, head);
         head = bt.addNode(25, head);
         head = bt.addNode(5, head);
         head = bt.addNode(7, head);
-        head = bt.addNode(-7, head);
+        head = bt.addNode(-7, head);*/
+        //Other test cases taken from geeksforgeeks website
+        //By looking this existing code, output is like clock wise starting from first right child
+        //But in geeks for geeksforgeeks, it is starting anti clock wise including root.
+        head = bt.addNode(20, head);
+        head = bt.addNode(8, head);
+        head = bt.addNode(4, head);
+        head = bt.addNode(12, head);
+        head = bt.addNode(10, head);
+        head = bt.addNode(14, head);
+        head = bt.addNode(22, head);
+        head = bt.addNode(25, head);
         BoundaryTraversal bd = new BoundaryTraversal();
         bd.traversal(head);
     }

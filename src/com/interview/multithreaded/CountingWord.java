@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Test cases
  * One word updated by many threads
  * Many words updated by many threads
+ * VVImp
  *
  *@Threadsafe
  */
@@ -84,6 +85,9 @@ public class CountingWord {
         long count1 = cw.getCount("word1");
         long count2 = cw.getCount("word2");
         long count3 = cw.getCount("word3");
+        System.out.println("Current count1: " + count1 + " Actual: " + total);
+        System.out.println("Current count2: " + count2 + " Actual: " + total);
+        System.out.println("Current count3: " + count2 + " Actual: " + total);
         assert count1 == total;
         assert count2 == total;
         assert count3 == total;

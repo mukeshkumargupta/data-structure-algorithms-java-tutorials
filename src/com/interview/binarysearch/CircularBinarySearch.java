@@ -10,6 +10,7 @@ package com.interview.binarysearch;
  * 3) largest element at center
  * 4) smallest element at left side
  * 5) smallest element at right side
+ * Category: Tricky
  */
 public class CircularBinarySearch {
 

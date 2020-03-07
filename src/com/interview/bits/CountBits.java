@@ -1,7 +1,11 @@
 package com.interview.bits;
 
+import java.util.Scanner;
+
 /**
  * http://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+ * Practice: https://practice.geeksforgeeks.org/problems/count-total-set-bits/0
+ * Category: Must Do
  */
 public class CountBits {
 
@@ -49,11 +53,33 @@ public class CountBits {
         // add all four 8-bit chunks
         return (x * 0x01010101) >> 24;
     }
+    //Reference: https://practice.geeksforgeeks.org/problems/count-total-set-bits/0
+    //Category: Must Do
+	public void countSetBits_p() {
+		// code
+		Scanner sc = new Scanner(System.in);
+		int testCaseCount = sc.nextInt();
+		for (int testCaseCountIndex = 1; testCaseCountIndex <= testCaseCount; testCaseCountIndex++) {
+			int input = sc.nextInt();
+			int totalCount = 0;
+			for (int startIndex = 1; startIndex <= input; startIndex++) {
+				int number = startIndex;
+				while (number != 0) {
+					number = number & number - 1;
+					totalCount++;
+				}
+			}
+			System.out.println(totalCount);
+		}
+	}
 
     public static void main(String args[]){
         CountBits cb = new CountBits();
-        System.out.println(cb.countBits(3636363));
+        /*System.out.println(cb.countBits(3636363));
         System.out.println(cb.countBitsFaster(3636363));
-        System.out.println(cb.countBitsEvenFaster(3636363));
+        System.out.println(cb.countBitsEvenFaster(3636363));*/
+        
+        cb.countSetBits_p();
+        
     }
 }

@@ -4,6 +4,7 @@ package com.interview.tree;
  * Given inorder and postorder traversal of a tree, construct the binary tree.
  *
  * https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+ * Must Know
  */
 public class ContructTreeFromInorderPostOrder {
     public Node buildTree(int[] inorder, int[] postorder) {

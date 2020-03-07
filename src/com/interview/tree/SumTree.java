@@ -35,8 +35,10 @@ public class SumTree {
     
     public static void main(String args[]){
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        int inorder[] = {4,10,6,46,11,13,2};
-        int preorder[] = {46,10,4,6,13,11,2};
+        //int inorder[] = {4,10,6,46,11,13,2};
+        //int preorder[] = {46,10,4,6,13,11,2};
+		int inorder[] = { 4,4};
+		int preorder[] = { 4,4};
         Node root = ctf.createTree(inorder, preorder);
         SumTree st = new SumTree();
         System.out.println(st.isSumTree(root));

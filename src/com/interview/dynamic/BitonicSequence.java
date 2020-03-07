@@ -2,6 +2,10 @@ package com.interview.dynamic;
 
 /**
  * http://www.geeksforgeeks.org/dynamic-programming-set-15-longest-bitonic-subsequence/
+ * Reference: https://www.youtube.com/watch?v=TWHytKnOPaQ
+ * Derived question: Find what the elements rather finding only max count, i think take one extra array and keep that index info 
+ * for which max is updated.
+ * Must Know
  */
 public class BitonicSequence {
 
@@ -12,6 +16,7 @@ public class BitonicSequence {
             lis[i] = 1;
             lds[i] = 1;
         }
+        //Try from left
         for(int i=1 ; i < arr.length; i++){
             for(int j=0; j < i ; j++){
                 if(arr[i] > arr[j]){
@@ -19,7 +24,7 @@ public class BitonicSequence {
                 }
             }
         }
-        
+        //Try from right
         for(int i = arr.length-2; i >=0 ; i--){
             for(int j = arr.length-1; j > i; j--){
                 if(arr[i] > arr[j]){
@@ -28,6 +33,7 @@ public class BitonicSequence {
             }
         }
         int max = 0;
+        //Make sum of two array and reduce by one from each sum, and also find max
         for(int i=0; i < arr.length; i++){
             if(max < lis[i] + lds[i]-1){
                 max = lis[i] + lds[i] -1;

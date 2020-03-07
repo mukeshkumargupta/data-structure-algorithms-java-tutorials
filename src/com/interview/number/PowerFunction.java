@@ -11,6 +11,7 @@ package com.interview.number;
  *
  * https://leetcode.com/problems/powx-n/
  * http://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+ * Category: Easy
  */
 public class PowerFunction {
 

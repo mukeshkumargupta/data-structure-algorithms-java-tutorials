@@ -12,6 +12,7 @@ import java.util.LinkedList;
  * http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
  * http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
  * http://www.geeksforgeeks.org/iterative-preorder-traversal/
+ * Category: Must Know
  */
 public class TreeTraversals {
 
@@ -94,7 +95,7 @@ public class TreeTraversals {
             System.out.print(stack2.pollFirst().data + " ");
         }
     }
-    
+    //VVImp
     public void postOrderItrOneStack(Node root){
         Node current = root;
         Deque<Node> stack = new LinkedList<>();

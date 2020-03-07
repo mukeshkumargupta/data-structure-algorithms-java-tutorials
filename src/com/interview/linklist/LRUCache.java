@@ -1,7 +1,9 @@
 package com.interview.linklist;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Deque; 
+import java.util.HashSet; 
+import java.util.LinkedList; 
+import java.util.Iterator; 
 
 /**
  * http://www.geeksforgeeks.org/implement-lru-cache/
@@ -12,120 +14,88 @@ import java.util.Map;
  * Enter data more than max
  * Delete till cache is empty
  */
-public class LRUCache {
+/* We can use Java inbuilt Deque as a double  
+ended queue to store the cache keys, with  
+the descending time of reference from front  
+to back and a set container to check presence  
+of a key. But remove a key from the Deque using 
+remove() , it takes O(N) time. This can be  
+optimized by storing a reference (iterator) to  
+each key in a hash map. 
+Category: Must Know
+*/
 
-    private Node head;
-    private Node tail;
-    private Map<Integer,Node> map = new HashMap<Integer,Node>();
-    private int MAX_SIZE = 5;
-    private int size = 0;
-    public LRUCache(int size){
-        MAX_SIZE = size;
-    }
-    
-    public void used(int data){
-        if(containsInCache(data)){
-            Node node = map.get(data);
-            if(node != head){
-                deleteFromCache(data);
-                node.next = head;
-                head.before = node;
-                head = node;
-                map.put(data, node);
-            }
-        }else{
-            addIntoCache(data);
-        }
-    }
-    
-    public void addIntoCache(int data){
-        size++;
-        if(head == null){
-            head = Node.newNode(data);
-            tail = head;
-            return;
-        }
-        if(size > MAX_SIZE){
-            tail = tail.before;
-            Node next = tail.next;
-            tail.next = null;
-            next.before = null;
-            map.remove(next.data);
-        }
-        Node newNode = Node.newNode(data);
-        newNode.next = head;
-        if(head != null){
-            head.before = newNode;
-        }
-        head = newNode;
-        map.put(data, newNode);
-        return;
-    }
-    
-    public void printCache(){
-        Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data + " ");
-            temp = temp.next;
-        }
-        System.out.println();
-    }
-    
-    public boolean containsInCache(int data)
-    {
-        return map.containsKey(data);
-    }
-    
-    public void deleteFromCache(int data){
-        Node node = map.get(data);
-        if(node == null){
-            return;
-        }
-        map.remove(data);
-        if(size == 1){
-            head = null;
-            tail = null;
-        }
-        else if(node == head){
-            head = head.next;
-            if(head != null){
-                head.before = null;
-            }
-            node.next = null;
-        }else if(node == tail){
-            tail = tail.before;
-            tail.next = null;
-        }else{
-            Node before = node.before;
-            Node next = node.next;
-            before.next = next;
-            next.before = before;
-        }
-    }
-
-    public static void main(String args[]){
-        LRUCache lruCache = new LRUCache(5);
-        lruCache.used(4);
-        
-        lruCache.used(5);
-        lruCache.printCache();
-        lruCache.used(6);
-        lruCache.printCache();
-        lruCache.used(5);
-        lruCache.printCache();
-        lruCache.used(9);
-        lruCache.printCache();
-        lruCache.used(10);
-        lruCache.printCache();
-        lruCache.used(11);
-        lruCache.printCache();
-        lruCache.used(16);
-        lruCache.printCache();
-        lruCache.used(10);
-        lruCache.printCache();
-        lruCache.deleteFromCache(10);
-        lruCache.printCache();
-        lruCache.deleteFromCache(9);
-        lruCache.printCache();
-    }
-}
+public class LRUCache { 
+ // store keys of cache 
+ static Deque<Integer> dq;   
+ // store references of key in cache  
+ static HashSet<Integer> map; 
+ //maximum capacity of cache  
+ static int csize; 
+   
+ LRUCache(int n) 
+ { 
+     dq=new LinkedList<>(); 
+     map=new HashSet<>(); 
+     csize=n; 
+ } 
+   
+ /* Refers key x with in the LRU cache */
+ public void refer(int x) 
+ { 
+	 //Note: When you add element, then it can be found or not found, if not found then check
+	 //whether list is full if full then remove from last so you can add new element from front.
+	 //if element found then find on which index that element is there then remove from that place 
+	 // because found element should be on top. 
+     if(!map.contains(x)) 
+     { 
+         if(dq.size()==csize) 
+         { 
+             int last=dq.removeLast(); 
+             map.remove(last); 
+         } 
+     } 
+     else
+     { 
+         /* The found page may not be always the last element, even if it's an  
+            intermediate element that needs to be removed and added to the start  
+            of the Queue */
+         int index =0 , i=0; 
+         Iterator<Integer> itr = dq.iterator();  
+         while(itr.hasNext())  
+         {  
+             if(itr.next()==x) 
+             { 
+                 index = i; 
+                 break; 
+             } 
+             i++; 
+         }  
+         dq.remove(index); 
+     } 
+     dq.push(x); 
+     map.add(x); 
+ } 
+   
+ // display contents of cache  
+ public void display() 
+ { 
+     Iterator<Integer> itr = dq.iterator(); 
+     while(itr.hasNext()) 
+     { 
+         System.out.print(itr.next()+" "); 
+     } 
+ } 
+   
+   
+ public static void main(String[] args) { 
+     LRUCache ca=new LRUCache(4); 
+     ca.refer(1);  
+     ca.refer(2);  
+     ca.refer(3);  
+     ca.refer(1);  
+     ca.refer(4);  
+     ca.refer(5);  
+     ca.display();      
+ } 
+} 

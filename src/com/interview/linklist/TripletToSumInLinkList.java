@@ -8,58 +8,104 @@ package com.interview.linklist;
  * negative sum
  * 0 sum
  * positive sum
+ * Category: Imp
  */
-public class TripletToSumInLinkList {
+//Java program to find a triplet from three linked lists with 
+//sum equal to a given number 
+class LinkedList 
+{ 
+ Node head;  // head of list 
 
-    public void printTriplet(Node head1, Node head2, Node head3,int sum){
-        if(head1 == null || head2 == null || head3 == null){
-            return;
-        }
-        
-        MergeSortLinkList msll = new MergeSortLinkList();
-        head2 = msll.sort(head2, true);
-        head3 = msll.sort(head3, false);
-        
-        while(head1 != null){
-            int newSum = sum - head1.data;
-            Node tempHead2 = head2;
-            Node tempHead3 = head3;
-            while(tempHead2 != null && tempHead3 != null){
-                if(tempHead2.data + tempHead3.data == newSum){
-                    System.out.println(head1.data + " " + tempHead2.data + " " + tempHead3.data);
-                    break;
-                }
-                else if(tempHead2.data + tempHead3.data < newSum){
-                    tempHead2 = tempHead2.next;
-                }else{
-                    tempHead3 = tempHead3.next;
-                }
-            }
-            head1 = head1.next;
-        }
-    }
-    
-    public static void main(String args[]){
-        LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(8, head);
-        head = ll.addNode(-3, head);
-        head = ll.addNode(14, head);
-        
-        Node head1 = null;
-        head1 = ll.addNode(-1, head1);
-        head1 = ll.addNode(22, head1);
-        head1 = ll.addNode(31, head1);
-        head1 = ll.addNode(11, head1);
-        
-        Node head2 = null;
-        head2 = ll.addNode(5, head2);
-        head2 = ll.addNode(7, head2);
-        head2 = ll.addNode(3, head2);
-        head2 = ll.addNode(1, head2);
-        
-        TripletToSumInLinkList tts  = new TripletToSumInLinkList();
-        tts.printTriplet(head, head1, head2, 20);
-    }
+ /* Linked list Node*/
+ class Node 
+ { 
+     int data; 
+     Node next; 
+     Node(int d) {data = d; next = null; } 
+ } 
+
+ /* A function to check if there are three elements in a, b 
+   and c whose sum is equal to givenNumber.  The function 
+   assumes that the list b is sorted in ascending order and 
+   c is sorted in descending order. */
+boolean isSumSorted(LinkedList la, LinkedList lb, LinkedList lc, 
+                    int givenNumber) 
+{ 
+   Node a = la.head; 
+
+   // Traverse all nodes of la 
+   while (a != null) 
+   { 
+       Node b = lb.head; 
+       Node c = lc.head; 
+
+       // for every node in la pick 2 nodes from lb and lc 
+       while (b != null && c!=null) 
+       { 
+           int sum = a.data + b.data + c.data; 
+           if (sum == givenNumber) 
+           { 
+              System.out.println("Triplet found " + a.data + 
+                                  " " + b.data + " " + c.data); 
+              return true; 
+           } 
+
+           // If sum is smaller then look for greater value of b 
+           else if (sum < givenNumber) 
+             b = b.next; 
+
+           else
+             c = c.next; 
+       } 
+       a = a.next; 
+   } 
+   System.out.println("No Triplet found"); 
+   return false; 
+} 
+
+
+ /*  Given a reference (pointer to pointer) to the head 
+    of a list and an int, push a new node on the front 
+    of the list. */
+ void push(int new_data) 
+ { 
+     /* 1 & 2: Allocate the Node & 
+               Put in the data*/
+     Node new_node = new Node(new_data); 
+
+     /* 3. Make next of new Node as head */
+     new_node.next = head; 
+
+     /* 4. Move the head to point to new Node */
+     head = new_node; 
+ } 
+
+  /* Drier program to test above functions */
+ public static void main(String args[]) 
+ { 
+     LinkedList llist1 = new LinkedList(); 
+     LinkedList llist2 = new LinkedList(); 
+     LinkedList llist3 = new LinkedList(); 
+
+     /* Create Linked List llist1 100->15->5->20 */
+     llist1.push(20); 
+     llist1.push(5); 
+     llist1.push(15); 
+     llist1.push(100); 
+
+     /*create a sorted linked list 'b' 2->4->9->10 */
+     llist2.push(10); 
+     llist2.push(9); 
+     llist2.push(4); 
+     llist2.push(2); 
+
+     /*create another sorted linked list 'c' 8->4->2->1 */
+     llist3.push(1); 
+     llist3.push(2); 
+     llist3.push(4); 
+     llist3.push(8); 
+
+     int givenNumber = 25; 
+     llist1.isSumSorted(llist1,llist2,llist3,givenNumber); 
+ } 
 }

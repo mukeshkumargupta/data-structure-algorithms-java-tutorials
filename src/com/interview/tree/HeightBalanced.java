@@ -10,6 +10,7 @@ package com.interview.tree;
  *
  * Reference
  * https://leetcode.com/problems/balanced-binary-tree/
+ * Must Know
  */
 public class HeightBalanced {
     public boolean isBalanced(Node root) {
@@ -21,14 +22,18 @@ public class HeightBalanced {
             return 0;
         }
         int left = isBalancedUtil(root.left);
-        if (left < 0) {
+        if (left < 0) {  //Not clear
             return -1;
         }
         int right = isBalancedUtil(root.right);
-        if (right < 0) {
+        if (right < 0) {  //Not clear
             return -1;
         }
         int diff = Math.abs(left - right);
         return diff <= 1 ? (Math.max(left, right) + 1) : -1;
+    }
+    public static void main(String[] args ) {
+    	//Create tree
+    	
     }
 }
