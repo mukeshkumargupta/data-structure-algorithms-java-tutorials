@@ -1,7 +1,9 @@
 package com.interview.dynamic;
 
 /**
+ * https://leetcode.com/problems/unique-paths/
  * http://www.geeksforgeeks.org/count-possible-paths-top-left-bottom-right-nxm-matrix/
+ * Category: Medium
  */
 public class NumberOfPathsInMxNMatrix {
 
@@ -12,21 +14,21 @@ public class NumberOfPathsInMxNMatrix {
         return countPathsRecursive(n-1, m) + countPathsRecursive(n, m-1);
     }
     
-    public int countPaths(int n,int m){
-        int T[][] = new int[n][m];
-        for(int i=0; i < n; i++){
+    public int countPaths(int m,int n){
+        int[][] T = new int[m][n];
+        for(int i=0; i < m; i++){ //fill first row
             T[i][0] = 1;
         }
         
-        for(int i=0; i < m; i++){
+        for(int i=0; i < n; i++){//fill first column
             T[0][i] = 1;
         }
-        for(int i=1; i < n; i++){
-            for(int j=1; j < m; j++){
+        for(int i=1; i < m; i++){
+            for(int j=1; j < n; j++){
                 T[i][j] = T[i-1][j] + T[i][j-1];
             }
         }
-        return T[n-1][m-1];
+        return T[m-1][n-1];
     }
     
     public static void main(String args[]){

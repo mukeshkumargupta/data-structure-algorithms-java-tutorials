@@ -70,7 +70,12 @@ public class Combination {
     public static void main(String args[]){
         Combination c = new Combination();
         c.combination("aabbc".toCharArray());
+        System.out.println("------------------------------------------\n");
         c.combinationEasy("aabbc".toCharArray());
+        System.out.println("------------------------------------------\n");
+        c.combination("abc".toCharArray());
+        System.out.println("------------------------------------------\n");
+        c.combination("aaa".toCharArray());
 
     }
     

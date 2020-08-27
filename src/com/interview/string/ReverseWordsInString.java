@@ -44,7 +44,7 @@ public class ReverseWordsInString {
 				}
 
 			}
-			char[] ouput = sb.toString().toCharArray();
+			char[] ouput = sb.toString().toCharArray(); //Important API
 			rws.reverseString(ouput, 0, sb.length() - 1);
 			// Dont print toString otherwise it will print reference so pass array
 			System.out.println(ouput);

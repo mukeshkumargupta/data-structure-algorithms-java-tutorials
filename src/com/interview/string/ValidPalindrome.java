@@ -35,4 +35,49 @@ public class ValidPalindrome {
         }
         return false;
     }
+    
+    public boolean isPalindrome_M1(String s) {
+        int len = s.length();
+        int i = 0;
+        int j = len -1;
+        while( i < j) {
+            //if (!isAlphaNumeric(s.charAt(i))) {
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                i++;
+                continue;
+            }
+            //if (!isAlphaNumeric(s.charAt(j))) { //Note both API working
+            if (!Character.isLetterOrDigit(s.charAt(j))) {
+                j--;
+                continue;
+            }
+            
+            if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+                return false;
+            } else {
+                i++;
+                j--;
+            }
+        }
+        return true;
+    }
+    
+    boolean isAlphaNumeric(char ch) {
+        if ((ch >= 'a' && ch <= 'z') ||  (ch >= 'A' && ch <= 'Z')  ||  (ch >= '0' && ch <= '9') ) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+        
+    
+    public static void main(String[] args) {
+        ValidPalindrome vp = new ValidPalindrome();
+        //System.out.println(vp.isPalindrome_M1("1ABc2, ;2CBa1"));
+        System.out.println(vp.isPalindrome_M1("A man, a plan, a canal: Panama"));
+        
+        
+        
+    }
 }

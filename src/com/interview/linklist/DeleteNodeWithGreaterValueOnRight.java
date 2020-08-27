@@ -26,19 +26,35 @@ public class DeleteNodeWithGreaterValueOnRight {
         return head;
     }
     
+    public Node deleteNodes_M1(Node head){
+        Node currentNode = head;
+        while (currentNode != null) {
+            if (currentNode.next != null && currentNode.data < currentNode.next.data) {
+                //Delete current node
+                head = currentNode.next;
+                currentNode = currentNode.next;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        
+        return head;
+    }
+    
     public static void main(String args[]){
         DeleteNodeWithGreaterValueOnRight dng = new DeleteNodeWithGreaterValueOnRight();
         LinkList ll = new LinkList();
         Node head = null;
         head = ll.addNode(12, head);
         head = ll.addNode(15, head);
-        head = ll.addNode(10, head);
+        /*head = ll.addNode(10, head);
         head = ll.addNode(11, head);
         head = ll.addNode(5, head);
         head = ll.addNode(6, head);
         head = ll.addNode(2, head);
-        head = ll.addNode(3, head);
-        head = dng.deleteNodes(head);
+        head = ll.addNode(3, head);*/
+       // head = dng.deleteNodes(head);
+        head = dng.deleteNodes_M1(head);
         ll.printList(head);
     }
 }

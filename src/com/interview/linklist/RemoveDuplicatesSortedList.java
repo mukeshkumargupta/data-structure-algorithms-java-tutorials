@@ -25,6 +25,20 @@ public class RemoveDuplicatesSortedList {
         }
     }
     
+    public Node removeDuplicates_M1(Node head){
+        Node current = head;
+        while(current != null && current.next != null){
+            if(current.data == current.next.data){
+                current.next = current.next.next;
+            }else{
+                current = current.next;
+            }
+        }
+        
+        return head;
+    }
+    
+    
     public static void main(String args[]){
         LinkList ll = new LinkList();
         Node head = null;
@@ -38,7 +52,8 @@ public class RemoveDuplicatesSortedList {
         head = ll.addNode(6, head);
         head = ll.addNode(6, head);
         RemoveDuplicatesSortedList rds = new RemoveDuplicatesSortedList();
-        rds.removeDuplicates(head);
+        //rds.removeDuplicates(head);
+        head = rds.removeDuplicates_M1(head);
         ll.printList(head);
     }
 }

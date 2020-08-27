@@ -5,10 +5,11 @@ package com.interview.dynamic;
  * Derived question: Print all valid paranthesis, Saurabh school explain beautifully.
  * Count number of binary search tree created for array of size n
  * Reference: https://www.youtube.com/watch?v=YDf982Lb84o
- * Must Know
+ * Category: Medium
  */
 public class CountNumberOfTreesInBST {
 
+    //Leave this solution
     int countTreesRec(int numKeys) {
         if (numKeys <=1) {
             return(1);
@@ -25,6 +26,7 @@ public class CountNumberOfTreesInBST {
         }
     }
     
+    //More effective
     public int countTrees(int n){
         int T[] = new int[n+1];
         T[0] = 1;

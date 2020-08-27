@@ -19,15 +19,7 @@ public class SubstringSearch {
         int j=0;
         int k = 0;
         while(i < text.length && j < pattern.length){
-            if(text[i] == pattern[j]){
-                i++;
-                j++;
-            }else{
-                j=0;
-                k++;
-                i = k;
-            }
-        }
+}
         if(j == pattern.length){
             return true;
         }
@@ -90,7 +82,7 @@ public class SubstringSearch {
         String subString = "abcdabcy";
         SubstringSearch ss = new SubstringSearch();
         boolean result = ss.KMP(str.toCharArray(), subString.toCharArray());
-        System.out.print(result);
+        System.out.println(str.contains(subString));//Mukesh
         
     }
 }
