@@ -5,7 +5,9 @@ package com.interview.dynamic;
  * Reference: https://www.youtube.com/watch?v=TWHytKnOPaQ
  * Derived question: Find what the elements rather finding only max count, i think take one extra array and keep that index info 
  * for which max is updated.
- * Must Know
+ * Company: 
+ * Category: 
+ * Status: Done
  */
 public class BitonicSequence {
 

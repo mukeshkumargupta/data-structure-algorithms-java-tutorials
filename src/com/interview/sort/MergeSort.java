@@ -8,76 +8,49 @@ package com.interview.sort;
  * negative numbers
  * already sorted
  * reverse sorted
- * Reference: https://www.youtube.com/watch?v=jeaxzxErLKk&list=PLTZbNwgO5ebpTHdT7ylOTO2dX00QoDh4q&index=2
+ * Reference: https://www.youtube.com/watch?v=TzeBrDU-JaY
+ * Status: done
  */
 public class MergeSort {
+ // Function to Merge Arrays L and R into A. 
+ // lefCount = number of elements in L
+ // rightCount = number of elements in R. 
+ void Merge(int[]A,int[] L,int leftCount,int[]R,int rightCount) {
+     int i,j,k;
 
-    public void sort(int input[]){
-        sort(input, 0, input.length-1);
-    }
-    
-    private void sort(int input[], int low, int high){
-        if(low >= high){
-            return;
-        }
-        
-        int middle = (low + high)/2;
-        sort(input, low, middle);
-        sort(input, middle+1, high);
-        sortedMerge(input,low, high);
-   }
-    //Practice with this code
-    private void sortedMerge(int input[], int low, int high){
-        int middle = (low+high)/2;
-        int temp[] = new int[high-low+1];
-        int i = low;
-        int j = middle+1;
-        int r = 0;
-        while(i <= middle && j <= high){
-            if(input[i] <= input[j]){
-                temp[r++] = input[i++];
-            }else{
-                temp[r++] = input[j++];
-            }
-        }
-        while(i <= middle){
-            temp[r++] = input[i++];
-        }
-        
-        while(j <= high){
-            temp[r++] = input[j++];
-        }
-        i = low;
-        //Imp make it in given array
-        for(int k=0; k < temp.length;){
-            input[i++] = temp[k++];
-        }
-    }
-    
-    //From saurabh school
-    //Not working code
-    private void sortedMerge1(int A[], int p, int q, int r){
-        int l1 = q-p+1;
-        int l2 = r-q; //(r-(q+1)) + 1
-        int[] left = new int[l1];
-        int[] right = new int[l2];
-        for (int i = 0; i < l1; i++ ) {
-        	left[i] = A[p+i];
-        }
-        
-        for (int j = 0; j < l2; j++ ) {
-        	right[j] = A[q+1+j];
-        }
-        int i =0, j=0;
-        for (int k =p; k <= r; k++) {
-        	if(left[i] <= right[j]) {
-        		A[k] = left[i]; i++;
-        	} else {
-        		A[k] = right[j]; j++;
-        	}
-        }
+     // i - to mark the index of left aubarray (L)
+     // j - to mark the index of right sub-raay (R)
+     // k - to mark the index of merged subarray (A)
+     i = 0; j = 0; k =0;
 
-    }
+     while(i<leftCount && j< rightCount) {
+         if(L[i]  < R[j]) A[k++] = L[i++];
+         else A[k++] = R[j++];
+     }
+     while(i < leftCount) A[k++] = L[i++];
+     while(j < rightCount) A[k++] = R[j++];
+ }
+
+ // Recursive function to sort an array of integers. 
+ private void sort(int[] A,int n) {
+     int mid,i;
+     if(n < 2) return; // base condition. If the array has less than two element, do nothing. 
+
+     mid = n/2;  // find the mid index. 
+
+     // create left and right subarrays
+     // mid elements (from index 0 till mid-1) should be part of left sub-array 
+     // and (n-mid) elements (from mid to n-1) will be part of right sub-array 
+     int[] L = new int[mid];
+     int[] R = new int[n- mid];
+     
+     for(i = 0;i<mid;i++) L[i] = A[i]; // creating left subarray
+     for(i = mid;i<n;i++) R[i-mid] = A[i]; // creating right subarray
+
+     sort(L,mid);  // sorting the left subarray
+     sort(R,n-mid);  // sorting the right subarray
+     Merge(A,L,mid,R,n-mid);  // Merging L and R into A as sorted list.
+ }
     
     public void printArray(int input[]){
         for(int i : input){
@@ -91,15 +64,20 @@ public class MergeSort {
         int input2[] = {4,2};
         int input3[] = {6,2,9};
         int input4[] = {6,-1,10,4,11,14,19,12,18};
+        int input5[] = {6,-1,10,10,4,11,14,10,19,12,18};//duplicate
         MergeSort ms = new MergeSort();
-        ms.sort(input1);
-        ms.sort(input2);
-        ms.sort(input3);
-        ms.sort(input4);
+        ms.sort(input1, input1.length);
+        ms.sort(input2,input2.length);
+        ms.sort(input3,input3.length);
+        ms.sort(input4, input4.length);
+        ms.sort(input5, input4.length);
+        
+        
         
         ms.printArray(input1);
         ms.printArray(input2);
         ms.printArray(input3);
         ms.printArray(input4);
+        ms.printArray(input5);
     }
 }

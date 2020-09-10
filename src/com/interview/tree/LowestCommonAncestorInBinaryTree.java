@@ -9,7 +9,10 @@ package com.interview.tree;
  * Time complexity O(n)
  * Space complexity O(h)
  * Reference: https://www.youtube.com/watch?v=13m9ZCB8gjw
- * Must Know
+ * Leetcode: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+ * Difficulty: Medium
+ * Company: Groupon
+ * Status: Done
  */
 public class LowestCommonAncestorInBinaryTree {
 
@@ -26,6 +29,9 @@ public class LowestCommonAncestorInBinaryTree {
 
         if(left != null && right != null){
             return root;
+        }
+        if(left == null && right == null){
+            return null;
         }
         return left != null ? left : right;
     }

@@ -4,12 +4,13 @@ package com.interview.sort;
  * Count sort
  * Reference: https://www.youtube.com/watch?v=w9njRpeuVew
  * Must Do
+ * Status: Done
  */
 
 public class CountingSort {
 
     private static int TOTAL = 10;
-
+    //Preferred method
     public void sort(int arr[]) {
 
         int count[] = new int[TOTAL];

@@ -33,6 +33,7 @@ import java.util.Queue;
  * count is 0 print a new line.
  * 
  * Time space complexity for all above algorithm is O(n).
+ * Dervied question: Left view and right view https://leetcode.com/problems/binary-tree-right-side-view/ and https://leetcode.com/problems/find-bottom-left-tree-value/
  */
 public class TreeTraversalLevelByLevel {
 
@@ -46,7 +47,7 @@ public class TreeTraversalLevelByLevel {
         Queue<Node> q1 = new LinkedList<>();
         Queue<Node> q2 = new LinkedList<>();
         q1.add(root);
-        while (!q1.isEmpty() || !q2.isEmpty()) {
+        while (!q1.isEmpty() || !q2.isEmpty()) { // Other check you can add ass well like while true and then you break if both empty like below
             while (!q1.isEmpty()) {
                 root = q1.poll();
                 System.out.print(root.data + " ");
@@ -69,6 +70,47 @@ public class TreeTraversalLevelByLevel {
                 }
             }
             System.out.println();
+        }
+    }
+    
+    /**
+     * Use two queue to print level by level
+     * Reference: https://leetcode.com/problems/binary-tree-level-order-traversal/
+     * Status: done
+     */
+    public void levelByLevelTwoQueue_V1(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> q1 = new LinkedList<>();
+        Queue<Node> q2 = new LinkedList<>();
+        q1.add(root);
+        while (true) { // Other check you can add ass well like while 1 and then you break if both empty like below
+            while (!q1.isEmpty()) {
+                root = q1.poll();
+                System.out.print(root.data + " ");
+                if (root.left != null) {
+                    q2.offer(root.left);
+                }
+                if (root.right != null) {
+                    q2.offer(root.right);
+                }
+            }
+            System.out.println();
+            while (!q2.isEmpty()) {
+                root = q2.poll();
+                System.out.print(root.data + " ");
+                if (root.left != null) {
+                    q1.offer(root.left);
+                }
+                if (root.right != null) {
+                    q1.offer(root.right);
+                }
+            }
+            System.out.println();
+            if(q1.isEmpty() && q2.isEmpty()) {
+                break;
+            }
         }
     }
 
@@ -149,6 +191,7 @@ public class TreeTraversalLevelByLevel {
         root = bt.addNode(35, root);
         System.out.println("1. Two queue technique");
         tt.levelByLevelTwoQueue(root);
+        //tt.levelByLevelTwoQueue_V1(root);
         System.out.println("\n2. One queue and delimiter");
         tt.levelByLevelOneQueueUsingDelimiter(root);
         System.out.println("\n\n3. One queue and count");

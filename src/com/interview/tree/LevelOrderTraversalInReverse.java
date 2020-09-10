@@ -26,6 +26,8 @@ import java.util.Stack;
  * 
  * References : http://www.geeksforgeeks.org/reverse-level-order-traversal/
  * Must Know
+ * Status: done
+ * Similar question but output format is little different need to submit: https://leetcode.com/problems/binary-tree-level-order-traversal/
  */
 public class LevelOrderTraversalInReverse {
 
@@ -37,15 +39,16 @@ public class LevelOrderTraversalInReverse {
         Stack<Node> s = new Stack<>();
         
         q.offer(root);
-        while(!q.isEmpty()){
+        while(!q.isEmpty()){//Size or isEmpty you can both use isEmpty return boolean while size return number
             root = q.poll();
+            s.push(root);
             if(root.right != null){
                 q.offer(root.right);
             }
             if(root.left != null){
                 q.offer(root.left);
             }
-            s.push(root);
+
         }
         while(!s.isEmpty()){
             System.out.print(s.pop().data + " ");

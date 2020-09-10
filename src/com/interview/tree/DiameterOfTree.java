@@ -5,6 +5,8 @@ class Height{
 }
 
 /**
+ * Reference: https://leetcode.com/problems/diameter-of-binary-tree/
+ * Reference: https://www.youtube.com/watch?v=9bCqmaIY2as
  * http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
  * Test cases
  * All left nodes

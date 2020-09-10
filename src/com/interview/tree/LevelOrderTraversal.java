@@ -5,6 +5,7 @@ import java.util.Queue;
 
 /**
  * Youtube link - https://youtu.be/9PHkM0Jri_4
+ * Status: Done
  * 
  * http://www.geeksforgeeks.org/level-order-tree-traversal/ 
  * Test cases
@@ -30,10 +31,10 @@ public class LevelOrderTraversal {
             root = queue.poll();
             System.out.print(root.data + " ");
             if(root.left != null){
-                queue.add(root.left);
+                queue.offer(root.left);
             }
             if(root.right != null){
-                queue.add(root.right);
+                queue.offer(root.right); //offer is almost same as add
             }
         }
     }

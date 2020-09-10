@@ -5,6 +5,7 @@ import java.util.*;
 //Reference: https://practice.geeksforgeeks.org/problems/kadanes-algorithm/0
 //Category: Must Do
 //Note code is not passing here but on leet code it is passed
+//Company: Groupon
 public class KadanesAlgorithm {
 	public static void main(String[] args) {
 		// code

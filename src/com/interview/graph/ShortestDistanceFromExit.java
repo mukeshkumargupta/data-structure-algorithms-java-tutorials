@@ -12,10 +12,17 @@ enum Cell{
 class Point{
 	int x;
 	int y;
+	int distance;
 	Point(int x, int y){
 		this.x = x;
 		this.y = y;
+		this.distance = 0;
 	}
+   Point(int x, int y, int distance){
+        this.x = x;
+        this.y = y;
+        this.distance = distance;
+    }
 }
 
 /**
