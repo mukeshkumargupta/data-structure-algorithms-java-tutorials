@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * One word updated by many threads
  * Many words updated by many threads
  * VVImp
+ * Status: Done
  *
  *@Threadsafe
  */
@@ -35,14 +36,16 @@ public class CountingWord {
         AtomicLong l = map.get(word);
         if(l == null){
             l = new AtomicLong(1);
-            l = map.putIfAbsent(word, l);
-            if(l != null){
+            l = map.putIfAbsent(word, l);// If two thread come on same time only one will enter so second check is important
+            if(l != null){//This check is important
                 l.incrementAndGet();
             }
         }else{
             l.incrementAndGet();
         }
     }
+    
+    
     
     public long getCount(String word){
         AtomicLong l = map.get(word);
