@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 //Reference: https://www.youtube.com/watch?v=ZdE9x-qE8_c&list=PLIA-9QRQ0RqG0KnmB8MHTaRBkT0zt8byZ&index=9&t=10s
 interface Dress {

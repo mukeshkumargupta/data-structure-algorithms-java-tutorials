@@ -7,7 +7,7 @@ package com.interview.systemdesign;
  * Reference: https://www.geeksforgeeks.org/design-a-data-structure-for-lru-cache/?ref=rp
  * Difficulty: Hard
  * Company: Google, Amazon, Facebook
- * Status: Not Done
+ * Status: Done
  */
 
 import java.util.Deque; 
@@ -106,7 +106,7 @@ public class LRUCacheDesign {
      ca.refer(1);  
      ca.refer(4);  
      ca.refer(5);  
-     ca.display();      
+     ca.display();
  } 
 } 
 

@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 /*
  * Reference: https://www.youtube.com/watch?v=97AmoYlWxrI  (Good example so read some design pattern from here)

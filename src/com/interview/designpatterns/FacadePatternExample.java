@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 import java.sql.Driver;
 

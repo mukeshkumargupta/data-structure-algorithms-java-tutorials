@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 //Reference: https://www.youtube.com/watch?v=VGLjQuEQgkI&list=PLIA-9QRQ0RqG0KnmB8MHTaRBkT0zt8byZ&index=2&t=242s
 //It is also good example: https://www.geeksforgeeks.org/prevent-singleton-pattern-reflection-serialization-cloning/?ref=lbp

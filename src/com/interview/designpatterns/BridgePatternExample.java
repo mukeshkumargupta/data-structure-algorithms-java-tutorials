@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 //Reference: https://www.youtube.com/watch?v=1HL0V7vz5mA&list=PLIA-9QRQ0RqG0KnmB8MHTaRBkT0zt8byZ&index=12&t=7s
 

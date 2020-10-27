@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 
 //Reference: https://www.youtube.com/watch?v=AB0gaAg9jwI&list=PLIA-9QRQ0RqG0KnmB8MHTaRBkT0zt8byZ&index=6&t=8s
 interface DatabaseExecuter {

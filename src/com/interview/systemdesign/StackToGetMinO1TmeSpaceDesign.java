@@ -79,7 +79,6 @@ class Node {
 public class StackToGetMinO1TmeSpaceDesign {
     
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         MinStack mStack = new MinStack();
         mStack.push(7);
         mStack.push(8);

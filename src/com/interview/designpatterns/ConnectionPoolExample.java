@@ -1,4 +1,4 @@
-package com.companies.designpatterns;
+package com.interview.designpatterns;
 /*
  * Reference: https://www.youtube.com/watch?v=_tS0CzMN9P8&list=PLmCsXDGbJHdhULIoYzIIIeFFJSo1NlMbN&index=4
  * Reference: https://www.baeldung.com/java-connection-pooling
