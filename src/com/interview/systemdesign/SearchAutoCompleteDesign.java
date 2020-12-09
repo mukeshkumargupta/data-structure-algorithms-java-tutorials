@@ -57,7 +57,6 @@ public class SearchAutoCompleteDesign {
     }
     
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         SearchAutoCompleteDesign sac = new SearchAutoCompleteDesign();
         sac.runSearchAutoCompleteDesign();
         

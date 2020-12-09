@@ -12,7 +12,7 @@ public class SumNode {
         }
         int leftSum = sum(root.left);
         int rightSum = sum(root.right);
-        return root.data + leftSum + rightSum; //Kind of post order
+        return root.data + leftSum + rightSum; //Kind of post order  VVImp This is also good way to visualize tree. Using this concept many problems are solved.
     }
     
     private void sumPostOrder(Node root, int[]sum){

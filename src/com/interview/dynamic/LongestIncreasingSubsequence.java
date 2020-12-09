@@ -5,6 +5,7 @@ package com.interview.dynamic;
  * @author Mukesh Kumar Gupta
  * 
  * Youtube link - https://youtu.be/CE2b_-XfVDk
+ * Leetcode: https://leetcode.com/problems/longest-increasing-subsequence/
  * 
  * Find a subsequence in given array in which the subsequence's elements are 
  * in sorted order, lowest to highest, and in which the subsequence is as long as possible
@@ -19,6 +20,8 @@ package com.interview.dynamic;
  * Reference 
  * http://en.wikipedia.org/wiki/Longest_increasing_subsequence
  * http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
+ * Category: Must Know, Medium
+ * Status: Done
  */
 public class LongestIncreasingSubsequence {
 

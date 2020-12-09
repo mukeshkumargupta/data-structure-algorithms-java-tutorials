@@ -1,39 +1,33 @@
 package com.interview.tree;
 
-class Height{
-    int height;
-}
-
 /**
- * Reference: https://leetcode.com/problems/diameter-of-binary-tree/
- * Reference: https://www.youtube.com/watch?v=9bCqmaIY2as
+ * Reference: https://leetcode.com/problems/diameter-of-binary-tree/ Leed code test case is not passing Need to look.
+ * Reference: https://www.youtube.com/watch?v=ey7DYc9OANo
  * http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
  * Test cases
  * All left nodes
  * All right nodes
- * Must know
+ * Category: Easy, Must know
+ * Note: Tech dose solution is little confusing
  */
 public class DiameterOfTree {
-
-    public int diameter(Node root){
-        Height height = new Height();
-        return diameter(root,height);
-    }
     
-    private int diameter(Node root, Height height){
-    
-        if(root == null){
+    int height(Node root) {
+        if (root  == null) {
             return 0;
         }
-        
-        Height leftHeight = new Height();
-        Height rightHeight = new Height();
-        int dial = diameter(root.left,leftHeight);
-        int diar = diameter(root.right,rightHeight);
-        height.height = Math.max(leftHeight.height, rightHeight.height) + 1;
-        //I think this condition should be like
-        return Math.max(Math.max(dial, diar),height.height);//Mukesh
-        //return Math.max(Math.max(dial, diar),(1 + leftHeight.height + rightHeight.height));//Origional
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+
+    public int diameterOfBinaryTree(Node root){
+
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        int fd = Math.max(Math.max(diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right)), (1+ leftHeight + rightHeight) );
+        return fd;
     }
     
     public static void main(String args[]){
@@ -52,6 +46,6 @@ public class DiameterOfTree {
         head = bt.addNode(13, head);
         head = bt.addNode(14, head);
         DiameterOfTree dt = new DiameterOfTree();
-        System.out.println(dt.diameter(head));
+        System.out.println(dt.diameterOfBinaryTree(head));
     }
 }

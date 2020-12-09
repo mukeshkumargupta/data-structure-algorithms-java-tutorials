@@ -2,7 +2,7 @@ package com.interview.graph;
 
 import java.util.*;
 
-//Sttaus: done
+//Status: done
 public class KnightTour {
     // Class for storing a cell's data 
     static class cell { 
@@ -50,7 +50,7 @@ public class KnightTour {
         // visited starting state 
         visited[knightPos[0]][knightPos[1]] = true; 
   
-        // loop untill we have one element in queue 
+        // loop until we have one element in queue 
         while (!q.isEmpty()) { 
             t = q.poll(); 
   

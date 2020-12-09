@@ -10,7 +10,8 @@ import java.util.*;
  * Reference: https://www.geeksforgeeks.org/design-a-hit-counter/?ref=rp
  * Difficulty: Hard
  * Company: Google, Amazon, Facebook
- * Status: Not Done
+ * Category: VImp
+ * Status: Done
  */
 
 public class HitCounterDesign {
@@ -36,7 +37,22 @@ public class HitCounterDesign {
     }
     
     void runHitCounterDesign() {
-        
+        HitCounter hc = new HitCounter();
+        for (int i=1 ; i <=  3 ; i++) {
+            hc.hit(i);
+        }
+
+        hc.hit(300);
+        System.out.println(hc.getHits(300)); //4
+        System.out.println(hc.getHits(301)); //3
+        System.out.println(hc.getHits(302)); //2
+        System.out.println(hc.getHits(303)); //1
+        System.out.println(hc.getHits(599)); //1
+        System.out.println(hc.getHits(600)); //0
+        //Calculation
+        //Just write queue then do calculation u will find it out easily
+        //300-1 =299
+        //301-2=300
     }
 
 

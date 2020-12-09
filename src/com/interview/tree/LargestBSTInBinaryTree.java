@@ -17,10 +17,11 @@ package com.interview.tree;
  * right size + 1 and new min will be min of left side and new max will be max of
  * right side.
  * 
- * References:
+ * References: https://www.youtube.com/watch?v=4fiDs7CCxkc&list=PLIA-9QRQ0RqG6CNfSJSzT0h5Pc_HvwZG5&index=72
  * http://www.geeksforgeeks.org/find-the-largest-subtree-in-a-tree-that-is-also-a-bst/
  * https://leetcode.com/problems/largest-bst-subtree/
- * Must Know
+ * Category: Must Know
+ * Status: Not done
  */
 public class LargestBSTInBinaryTree {
 

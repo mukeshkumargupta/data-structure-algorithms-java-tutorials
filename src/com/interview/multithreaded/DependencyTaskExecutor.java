@@ -1,6 +1,6 @@
 package com.interview.multithreaded;
-/*  Mukesh commented out  Need to fix it
-import com.google.common.collect.Lists;
+//  Mukesh commented out  Need to fix it
+//import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,13 +10,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-*/
+
 
 /**
  * Given a Task with list of its dependencies and execute method. Run the task such that dependencies are executed first.
  * You are given x number of threads. Increase parallelism as much as possible.
  */
-/*public class DependencyTaskExecutor {
+public class DependencyTaskExecutor {
 
     Map<String, CompletableFuture<Void>> taskTracker = new HashMap<>();
     void scheduleTask(List<Task> tasks, int threads) {
@@ -107,4 +107,4 @@ class SimpleSleepTask implements Task {
             e.printStackTrace();
         }
     }
-}*/
+}

@@ -1,6 +1,5 @@
 package com.interview.dynamic;
 
-import java.text.Format;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +16,8 @@ import java.util.Map;
  * Youtube video -
  * Topdown DP - https://youtu.be/Kf_M7RdHr1M
  * Bottom up DP - https://youtu.be/Y0ZqKpToTic
+ * Category: Medium, Must Do
+ * Status: Done on paper but code here is not matching with explanation in video need to write and verify on leetcode.
  */
 public class CoinChangingMinimumCoin {
 

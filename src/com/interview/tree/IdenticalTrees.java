@@ -9,7 +9,7 @@ import java.util.Set;
  * http://www.geeksforgeeks.org/check-for-identical-bsts-without-building-the-trees/
  * Test cases
  * Both array should be same size and have exact same elements and first element should be same
- * Must Know
+ * Category: Must Know
  * Derived question: exactly same tree, only structure same but data might differ, 
  * print mirror tree, check mirror tree of given tree.
  */

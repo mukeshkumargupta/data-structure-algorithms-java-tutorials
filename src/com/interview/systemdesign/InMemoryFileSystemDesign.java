@@ -7,6 +7,7 @@ import java.util.*;
  *
  * Reference: https://www.geeksforgeeks.org/design-data-structures-algorithms-memory-file-system/
  * Difficulty: Hard
+ * Category: Recursion, Design
  * Company: Google, Amazon, Facebook
  * Status: Done
  */
@@ -117,7 +118,7 @@ public class InMemoryFileSystemDesign {
                 { 
                     count++; // Directory counts as a file 
                     Directory d = (Directory) e; 
-                    count += d. numberOfFiles (); 
+                    count += d.numberOfFiles (); 
                 } 
                 else if (e instanceof File)             
                     count++;             

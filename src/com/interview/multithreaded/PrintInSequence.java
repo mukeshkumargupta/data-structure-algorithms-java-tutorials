@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * A class that has 5 threads - two to increment the myVar variable, two to decrement the myVar variable and one to print the value of myVar.
  * Implement increment(), decrement() and printVar() methods such that the following series is printed:
  * 0 1 2 3 4 5 4 3 2 1 0 1 2 3 4 5 4 3 2 1 ... (repeating)
+ * Status: Done
  */
 public class PrintInSequence {
 
@@ -45,20 +46,6 @@ public class PrintInSequence {
         }
     }
 
-    public static void main(String args[]) {
-        PrintInSequence printInSequence = new PrintInSequence();
-        Thread t1 = new Thread(printInSequence::runIncrement);
-        t1.start();
-        Thread t2 = new Thread(printInSequence::runIncrement);
-        t2.start();
-        Thread t3 = new Thread(printInSequence::runPrint);
-        t3.start();
-        Thread t4 = new Thread(printInSequence::runDecrement);
-        t4.start();
-        Thread t5 = new Thread(printInSequence::runDecrement);
-        t5.start();
-    }
-
     private void runIncrement() {
         while(true) {
             this.increment();
@@ -75,5 +62,20 @@ public class PrintInSequence {
         while (true) {
             this.decrement();
         }
+    }
+    
+
+    public static void main(String args[]) {
+        PrintInSequence printInSequence = new PrintInSequence();
+        Thread t1 = new Thread(printInSequence::runIncrement);
+        t1.start();
+        Thread t2 = new Thread(printInSequence::runIncrement);
+        t2.start();
+        Thread t3 = new Thread(printInSequence::runPrint);
+        t3.start();
+        Thread t4 = new Thread(printInSequence::runDecrement);
+        t4.start();
+        Thread t5 = new Thread(printInSequence::runDecrement);
+        t5.start();
     }
 }

@@ -1,10 +1,12 @@
 package com.interview.string;
 import java.io.*;
 import java.util.*;
-
-//Reference: 
-//Category: Must Do
-//Geeksforggeeks
+/*
+ * Reference: https://www.youtube.com/watch?v=9_zh42lp3lk
+ * Geeksforggeeks
+ * Derivied question: It is having string or character array, u can solve for both
+ * Status Done
+ */
 
 public class RemovedDuplicatesWithoutOrder {
 	public static void main(String[] args)  throws IOException {

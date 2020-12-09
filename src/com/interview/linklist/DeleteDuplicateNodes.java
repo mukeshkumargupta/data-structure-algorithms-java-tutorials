@@ -12,6 +12,7 @@ package com.interview.linklist;
  * Given 1->1->1->2->3, return 2->3.
  *
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+ * Status: Tried, VImp, Medium
  */
 public class DeleteDuplicateNodes {
     public Node deleteDuplicates(Node head) {
@@ -31,5 +32,12 @@ public class DeleteDuplicateNodes {
             current = current.next;
         }
         return dummyNode.next;
+    }
+    
+    public Node deleteDuplicates_V1(Node head) {
+        //Take previous and change previous only when curent and current next is not same  otherwise
+        //previous next point to current netx
+        return null;
+
     }
 }

@@ -15,7 +15,7 @@ import java.util.Queue;
  * Mixed size tree
  * Full tree
  * complete tree
- * Must know
+ * Category: Easy, Must Know
  */
 public class LevelOrderTraversal {
 

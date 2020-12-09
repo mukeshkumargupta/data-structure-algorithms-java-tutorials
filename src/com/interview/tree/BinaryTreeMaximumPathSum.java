@@ -9,8 +9,11 @@ package com.interview.tree;
  * 
  * Time complexity O(n)
  * Space complexity depends on depth of tree.
+ * Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
  *
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/
+ * Category: Hard, 
+ * Status: Not solved
  */
 public class BinaryTreeMaximumPathSum {
     int max = 0;

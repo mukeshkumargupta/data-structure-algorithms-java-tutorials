@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Test cases
  * One word updated by many threads
  * Many words updated by many threads
- * VVImp
+ * Category: VVImp
  * Status: Done
  *
  *@Threadsafe
@@ -64,6 +64,7 @@ public class CountingWord {
         CountDownLatch countDownLatch = new CountDownLatch(3*total);
         CountingWord cw = new CountingWord();
         for(int i= 0; i < total; i++){
+            //executor1.execute(() -> cw.addWord("word1"));
             executor1.execute(() -> cw.addWord("word1"));
             countDownLatch.countDown();
         }

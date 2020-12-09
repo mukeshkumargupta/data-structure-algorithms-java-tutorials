@@ -1,11 +1,10 @@
 package com.interview.graph;
 
 import java.util.*;
-import java.io.*;
 
 //Reference: https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 //Category: Must DO
-//In this question not asking to print all node while asking print only grom starting index so trying all node is note mandatory
+//In this question not asking to print all node while asking print only grom starting index so trying all node is not mandatory
 
 public class BFS {
 	static void bfsUtil(int s, ArrayList<ArrayList<Integer>> list, boolean vis[], int nov) {

@@ -3,7 +3,7 @@ package com.interview.dynamic;
 /**
  * http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
  * Reference: https://www.youtube.com/watch?v=IRwVmTmN6go
- * Must Know
+ * Category: Must Know
  */
 public class CuttingRod {
 

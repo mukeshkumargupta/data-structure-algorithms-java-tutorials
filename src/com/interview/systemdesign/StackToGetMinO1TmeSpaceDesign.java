@@ -7,7 +7,7 @@ package com.interview.systemdesign;
  * Reference2: https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/?ref=rp
  * Difficulty: Hard
  * Company: Google, Amazon, Facebook
- * Status: one
+ * Status: Done
  */
 class MinStack {
     

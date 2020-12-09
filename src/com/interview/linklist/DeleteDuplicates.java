@@ -1,6 +1,10 @@
 package com.interview.linklist;
 
 
+/*
+ * Reference: https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ * STtaus: Done
+ */
 public class DeleteDuplicates {
 
     public Node deleteDuplicates(Node head) {
@@ -17,7 +21,7 @@ public class DeleteDuplicates {
         return head;
     }
     
-    public Node removeDuplicates_M1(Node head){
+    public Node removeDuplicates_M1(Node head){ //Accepted solution on leetcode  https://leetcode.com/problems/remove-duplicates-from-sorted-list/
         Node current = head;
         while(current != null && current.next != null){
             if(current.data == current.next.data){

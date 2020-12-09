@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 
  * Solution
  * Use compareAndSet method of AtomicInteger to update min and max
- *
+ * Status: Not understood
  * @ThreadSafe
  */
 public class MinMaxKeeper {

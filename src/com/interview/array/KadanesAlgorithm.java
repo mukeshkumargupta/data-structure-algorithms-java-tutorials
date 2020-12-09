@@ -1,11 +1,14 @@
 package com.interview.array;
 
 import java.util.*;
-
-//Reference: https://practice.geeksforgeeks.org/problems/kadanes-algorithm/0
-//Category: Must Do
-//Note code is not passing here but on leet code it is passed
-//Company: Groupon
+/*
+ *  Reference: https://www.youtube.com/watch?v=kekmCQXYwQ0&list=PLIA-9QRQ0RqGP4zrm09iyiVSXU-3e6CfP&index=25&t=853s
+ *  Derived question must found the starting and ending index
+ * //Reference: https://practice.geeksforgeeks.org/problems/kadanes-algorithm/0
+ * //Category: Must Do
+ * //Note code is not passing here but on leet code it is passed
+ * //Company: Groupon
+ */
 public class KadanesAlgorithm {
 	public static void main(String[] args) {
 		// code

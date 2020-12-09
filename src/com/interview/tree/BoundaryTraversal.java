@@ -8,7 +8,7 @@ package com.interview.tree;
  * Full tree: A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every node other than the leaves has two children. 
  * Complete tree: A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. 
  * ## Reference: https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html
- * Must Know
+ * 
  * Example:                  1
  *                           /\
  *                          2  3
@@ -24,8 +24,8 @@ package com.interview.tree;
  * Left View: 1, 2, 4, 5, 6, 11
  * Right View: 1, 3, 7, 8, 11
  * Print boundary: 1, 2, 4, 5, 6, 11, 8, 7, 3  (I have taken anti-clock wise)
- * 
- * 
+ *  
+ * Category: Easy, Must Know, VVImp
  * 
  */
 public class BoundaryTraversal {

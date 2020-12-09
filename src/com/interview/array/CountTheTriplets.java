@@ -3,7 +3,7 @@ package com.interview.array;
 import java.util.*;
 
 //Reference: https://practice.geeksforgeeks.org/problems/count-the-triplets/0
-//Category: Must Do
+//Category: Must Do, VImp
 public class CountTheTriplets {
 	public static void main(String[] args) {
 		// code

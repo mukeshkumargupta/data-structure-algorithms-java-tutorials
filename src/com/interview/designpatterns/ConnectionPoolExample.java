@@ -65,14 +65,14 @@ public class ConnectionPoolExample {
       // standard getters
   }
     
-    public void runStatePatternExample() {
+    public void runConnectionPoolExample() {
         
     }
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         ConnectionPoolExample cpe = new ConnectionPoolExample();
-        cpe.runStatePatternExample();
+        cpe.runConnectionPoolExample();
         
     }
     

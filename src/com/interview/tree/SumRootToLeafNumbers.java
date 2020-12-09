@@ -66,7 +66,7 @@ public long maximumnSumOfPath(Node root) {
 
 //Derived question: Return path which has minimum path sum of all node in path
 //It can be solved using find answer in integer then convert in staring then compute output but again parsing required
-//Other method is not working so make as other one
+//Other method is not working so make as other one. To work it we need to remove from two places. Try next day.
 //----------------------------------------------------------------
 void pathWithMinimumSumUtil(Node root,long val, long min, StringBuilder path, StringBuilder ans)
 {
@@ -177,6 +177,31 @@ public long sumOfPathGivenNumber(Node root, long givenNumber) {
       return -1;
   }
   
+}
+//Reference: VVImp: https://leetcode.com/problems/path-sum-ii/ This problem is solved by two way
+private void pathSumUtil(Node root, int number, int sum, List<List<Integer>> result, List<Integer> currentPath) {
+    if (root == null) {
+        return;
+    }
+    number +=root.data;
+    currentPath.add(root.data);
+    if (root.left == null && root.right == null) {
+        if (number == sum) {
+            result.add(new ArrayList<>(currentPath));
+        }
+        currentPath.remove(currentPath.size()-1);
+        return;
+    }
+
+    pathSumUtil(root.left, number, sum, result, currentPath);
+    pathSumUtil(root.right, number, sum , result, currentPath);
+    currentPath.remove(currentPath.size()-1);
+}
+public List<List<Integer>> pathSum(Node root, int sum) {
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> current = new ArrayList<>();
+    pathSumUtil(root, 0, sum, result, current);
+    return result;
 }
 //----------------------------------------------------------------
 

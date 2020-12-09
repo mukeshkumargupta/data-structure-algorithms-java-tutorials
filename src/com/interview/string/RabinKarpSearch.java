@@ -9,8 +9,10 @@ package com.interview.string;
  * Time complexity in worst case O(n^2)(depends on hash function)
  * Space complexity O(1)
  *
- * References
+ * References: https://www.youtube.com/watch?v=H4VrKHVG5qI
  * https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
+ * Derived question: https://leetcode.com/problems/repeated-string-match/
+ * Status: Done
  */
 public class RabinKarpSearch {
 
@@ -22,7 +24,7 @@ public class RabinKarpSearch {
         long patternHash = createHash(pattern, m - 1);
         long textHash = createHash(text, m - 1);
         for (int i = 1; i <= n - m + 1; i++) {
-            if(patternHash == textHash && checkEqual(text, i - 1, i + m - 2, pattern, 0, m - 1)) {
+            if(patternHash == textHash && checkEqual(text, i - 1, i + m - 2, pattern, 0, m - 1)) {//i + m - 2 just write on pen and paper u will now
                 return i - 1;
             }
             if(i < n - m + 1) {

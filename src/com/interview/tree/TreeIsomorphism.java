@@ -6,6 +6,10 @@ package com.interview.tree;
  * Same tree
  * Exact mirror
  * Some nodes flipped
+ * Reference: https://www.youtube.com/watch?v=9Eo42meRcrY
+ * Reference: Check two tree is mirror of each other: https://www.youtube.com/watch?v=9jH2L2Ysxko
+ * Make same tree to mirror of own tree(I think we need to swap the pointer), or print mirror of given tree(I think just reverse left and right call
+ * Category: Must Do
  */
 public class TreeIsomorphism {
 

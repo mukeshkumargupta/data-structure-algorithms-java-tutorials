@@ -9,7 +9,7 @@ package com.interview.systemdesign;
  * Reference 3: https://dzone.com/articles/custom-hashmap-implementation-in-java
  * Difficulty: Hard
  * Company: 
- * Status: Not Done
+ * Status: Done
  */
 
 public class CustomHashMapDesign {
@@ -109,12 +109,12 @@ public class CustomHashMapDesign {
             Entry entry = table[index];
             while (entry != null){
                 if(entry.getKey().equals(key)){
-                    if(previous == null){
+                    if(previous == null){//Whenever, the previous node is null means it is the first element of the list.
                         entry = entry.getNext();
                         table[index] = entry;
                         return;
                     } else {
-                        previous.setNext(entry.getNext());
+                        previous.setNext(entry.getNext());//assign the next node of the current node to the next node of previous node and hence the current matched node will be removed.
                         return;
                     }
                 }
@@ -143,7 +143,7 @@ public class CustomHashMapDesign {
         }
     }
     
-    public void use() {
+    public void runCustomHashMapDesign() {
         CustomHashMap<Integer, String> map = new CustomHashMap<Integer, String>();
         System.out.println("Going to add entries in map");
         map.put(null, "Nothing");
@@ -166,7 +166,7 @@ public class CustomHashMapDesign {
     
     public static void main(String[] args) {
         CustomHashMapDesign chm = new CustomHashMapDesign();
-        chm.use();
+        chm.runCustomHashMapDesign();
     }
     
 }

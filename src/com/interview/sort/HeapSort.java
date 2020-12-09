@@ -24,79 +24,76 @@ package com.interview.sort;
  * 
  * Reference: https://www.geeksforgeeks.org/heap-sort/
  * Saurabh School: https://www.youtube.com/watch?v=5GrJwDggoas
+ * Leetcode: https://leetcode.com/problems/sort-an-array
+ * Status: Done code taken from geeksfromgeeks
  */
 public class HeapSort {
-
-    public void sort(int arr[]){
-        for(int i=1; i < arr.length; i++){
-            heapAdd(arr, i);
-        }
-        
-        for(int i = arr.length-1; i > 0 ; i--){
-            swap(arr, 0, i);
-            heapify(arr, i-1);
-        }
-    }
     
-    private void heapify(int arr[], int end){
-        int i = 0;
-        int leftIndex;
-        int rightIndex;
-        while(i <= end){
-            leftIndex = 2*i + 1;
-            //Check condition
-            if(leftIndex > end){
-                break;
-            }
-            rightIndex = 2*i + 2;
-            //Check condition
-            if(rightIndex > end){
-                rightIndex = leftIndex;
-            }
-            if(arr[i]  >= Math.max(arr[leftIndex], arr[rightIndex])){
-                break;
-            }
-            //Why we are putting two times swap why can we not swap with max element
-            //See saurabh video
-            if(arr[leftIndex] >= arr[rightIndex]){
-                swap(arr, i, leftIndex);
-                i = leftIndex;
-            }else{
-                swap(arr, i, rightIndex);
-                i = rightIndex;
-            }
+    public void sort(int arr[])
+    {
+        int n = arr.length; 
+        // Build heap (rearrange array)
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+ 
+        // One by one extract an element from heap
+        for (int i = n - 1; i > 0; i--) {
+            // Move current root to end
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+ 
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
         }
     }
-    
-    //From saurabh school video
-    private void heapify1(int arr[], int end){
-
-    }
-    
-    private void swap(int arr[], int x, int y){
-        int temp = arr[x];
-        arr[x] = arr[y];
-        arr[y] = temp;
-    }
-    
-    private void heapAdd(int arr[], int end){
-        int i = end;
-        while(i > 0){
-            if(arr[i] > arr[(i-1)/2]){
-                swap(arr, i, (i-1)/2);
-                i = (i - 1)/2;
-            }else{
-                break;
-            }
+ 
+    // To heapify a subtree rooted with node i which is
+    // an index in arr[]. n is size of heap
+    void heapify(int arr[], int n, int i)
+    {
+        int largest = i; // Initialize largest as root
+        int l = 2 * i + 1; // left = 2*i + 1
+        int r = 2 * i + 2; // right = 2*i + 2
+ 
+        // If left child is larger than root
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+ 
+        // If right child is larger than largest so far
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+ 
+        // If largest is not root
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+ 
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
         }
     }
-    
-    public static void main(String args[]){
-        HeapSort hs = new HeapSort();
+ 
+    /* A utility function to print array of size n */
+    static void printArray(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+ 
+    // Driver code
+    public static void main(String args[])
+    {
+        //int arr[] = { 12, 11, 13, 5, 6, 7 };
         int arr[] = {-1,5,8,2,-6,-8,11,5};
-        hs.sort(arr);
-        for(int a : arr){
-            System.out.println(a);
-        }
+ 
+        HeapSort ob = new HeapSort();
+        ob.sort(arr);
+ 
+        System.out.println("Sorted array is");
+        printArray(arr);
     }
 }

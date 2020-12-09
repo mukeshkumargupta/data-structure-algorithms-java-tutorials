@@ -1,6 +1,7 @@
 package com.interview.graph;
 
 import java.util.Set;
+import java.util.Stack;
 import java.util.HashSet;
 import java.util.Deque;
 import java.util.ArrayDeque;
@@ -10,6 +11,7 @@ import java.util.ArrayDeque;
  * @author Mukesh Kumar Gupta
  *
  * Given a directed acyclic graph, do a topological sort on this graph.
+ * Reference: https://www.youtube.com/watch?v=ddTC4Zovtbc
  *
  * Do DFS by keeping visited. Put the vertex which are completely explored into a stack.
  * Pop from stack to get sorted order.
@@ -45,6 +47,33 @@ public class TopologicalSort<T> {
         stack.offerFirst(vertex);
     }
     
+    /**
+     * Main method to be invoked to do topological sorting.
+     */
+    public Stack<Vertex<T>> topSort_V1(Graph<T> graph) {
+        Stack<Vertex<T>> stack = new Stack<>();
+        Set<Vertex<T>> visited = new HashSet<>();
+        for (Vertex<T> vertex : graph.getAllVertex()) {
+            if (visited.contains(vertex)) {
+                continue;
+            }
+            topSortUtil_V1(vertex,stack,visited);
+        }
+        return stack;
+    }
+
+    private void topSortUtil_V1(Vertex<T> vertex, Stack<Vertex<T>> stack,
+            Set<Vertex<T>> visited) {
+        visited.add(vertex);
+        for(Vertex<T> childVertex : vertex.getAdjacentVertexes()){
+            if(visited.contains(childVertex)){
+                continue;
+            }
+            topSortUtil_V1(childVertex,stack,visited);
+        }
+        stack.push(vertex);
+    }
+    
     public static void main(String args[]){
         Graph<Integer> graph = new Graph<>(true);
         graph.addEdge(1, 3);
@@ -59,6 +88,12 @@ public class TopologicalSort<T> {
         Deque<Vertex<Integer>> result = sort.topSort(graph);
         while(!result.isEmpty()){
             System.out.println(result.poll());
+        }
+        System.out.println("\n");
+        //V1 version
+        Stack<Vertex<Integer>> result1 = sort.topSort_V1(graph);
+        while(!result1.isEmpty()){
+            System.out.println(result1.pop());
         }
     }
 }

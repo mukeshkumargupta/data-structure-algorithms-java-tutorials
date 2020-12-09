@@ -3,6 +3,13 @@ package com.interview.dynamic;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/*
+ * Reference: https://www.youtube.com/watch?v=cr6Ip0J9izc
+ * Category: Medium, VVImp
+ * https://leetcode.com/problems/maximum-profit-in-job-scheduling/
+ * Status: Done
+ */
+
 class Job{
     int start;
     int end;
@@ -12,19 +19,6 @@ class Job{
         this.end = end;
         this.profit= profit;
     }
-}
-
-class FinishTimeComparator implements Comparator<Job>{
-
-    @Override
-    public int compare(Job arg0, Job arg1) {
-        if(arg0.end <= arg1.end){
-            return -1;
-        }else{
-            return 1;
-        }
-    }
-    
 }
 
 /**
@@ -44,26 +38,38 @@ public class WeightedJobSchedulingMaximumProfit {
      */
     public int maximum(Job[] jobs){
         int T[] = new int[jobs.length];
-        FinishTimeComparator comparator = new FinishTimeComparator();
-        Arrays.sort(jobs, comparator);
+        Arrays.sort(jobs, (a,b) -> a.end - b.end);
         
         T[0] = jobs[0].profit;
         for(int i=1; i < jobs.length; i++){
-            T[i] = Math.max(jobs[i].profit, T[i-1]);
-            for(int j=i-1; j >=0; j--){
+            T[i] = Math.max(jobs[i].profit, T[i-1]); //VVImp point: Tricky Need to find why? Important condition I dont know why it is done i added below one to just fill individual. 
+            for(int j=i-1; j >=0; j--){ //Start from right  good optimization
                 if(jobs[j].end <= jobs[i].start){
-                    T[i] = Math.max(T[i], jobs[i].profit + T[j]);
+                    T[i] = Math.max(T[i], jobs[i].profit + T[j]); // This is very good optimization start from right then break in first case
                     break;
                 }
             }
         }
-        int maxVal = Integer.MIN_VALUE;
+        int maxVal = Integer.MIN_VALUE;  //This thing can not be done in same loop because there may be case inner loop may not trigger so max will come negative
         for (int val : T) {
             if (maxVal < val) {
                 maxVal = val;
             }
         }
         return maxVal;
+    }
+    
+    //https://leetcode.com/problems/maximum-profit-in-job-scheduling/
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        int T[] = new int[startTime.length];
+        Job jobs[] = new Job[startTime.length];
+        for (int nJob = 0 ; nJob < startTime.length; nJob++) {
+            jobs[nJob] = new Job(startTime[nJob],endTime[nJob],profit[nJob]);
+            
+        }
+        return maximum(jobs);
+
+        
     }
     
     public static void main(String args[]){

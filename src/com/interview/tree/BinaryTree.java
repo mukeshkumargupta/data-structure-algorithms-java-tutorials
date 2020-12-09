@@ -7,8 +7,7 @@ package com.interview.tree;
  * Youtube link - https://youtu.be/bmaeYtlO2OE
  * Youtube link - https://youtu.be/_SiwrPXG9-g
  * Youtube link - https://youtu.be/NA8B84DZYSA
- * Must Know
- * Got it
+ * Category: Easy, Must Know
  */
 class NodeRef{
     Node node;

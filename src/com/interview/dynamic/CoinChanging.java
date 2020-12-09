@@ -9,16 +9,19 @@ import java.util.List;
  *
  * Given a total and coins of certain denominations find number of ways total
  * can be formed from coins assuming infinity supply of coins
+ * Leetcode: https://leetcode.com/problems/coin-change/
  *
  * References:
  * http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/
+ * Category: Must Do, Medium
+ * Status: Tried but not working
  */
 public class CoinChanging {
-
+    //Not working on leetcode
     public int numberOfSolutions(int total, int coins[]){
         int temp[][] = new int[coins.length+1][total+1];
         for(int i=0; i <= coins.length; i++){
-            temp[i][0] = 1;
+            temp[i][0] = 1; //Tricky
         }
         for(int i=1; i <= coins.length; i++){
             for(int j=1; j <= total ; j++){

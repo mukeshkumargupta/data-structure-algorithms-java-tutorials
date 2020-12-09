@@ -71,7 +71,7 @@ public class TripletInArray {
                     while(end >= 0 && nums[end] == nums[end+1]) {
                         end--;
                     }
-                } else if (nums[i] + nums[start] + nums[end] < 0) {
+                } else if (nums[i] + nums[start] + nums[end] < 0) { //This is important condition id u write like  nums[i] > nums[start] + nums[end] then it will not work 
                     start++;
                 } else {
                     end--;

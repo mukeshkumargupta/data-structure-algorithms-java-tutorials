@@ -7,7 +7,7 @@ import java.util.*;
  */
 //Explanation: https://www.youtube.com/watch?v=CGMNePwovA0&list=PLIA-9QRQ0RqHYFNJc6zVT1_sJz0qCU9b0&index=2&t=265s
 //Done:
-//Category:Medium
+//Category:Medium, VVImp
 //Derived Question: Matrix based approach: try to solve using dfs and bfs to make it clear, Count all region, find maximum region size, find minimum region size, find two region with having maximum distance 
 //Make knight tour problem that is derived of this problem
 public class NumberOfIsland {

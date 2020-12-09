@@ -23,6 +23,7 @@ import java.util.Iterator;
  * Delete when full
  * Enter data more than max
  * Delete till cache is empty
+ * Status: Done
  */
 /* We can use Java inbuilt Deque as a double  
 ended queue to store the cache keys, with  

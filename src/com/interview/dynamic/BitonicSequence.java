@@ -6,7 +6,7 @@ package com.interview.dynamic;
  * Derived question: Find what the elements rather finding only max count, i think take one extra array and keep that index info 
  * for which max is updated.
  * Company: 
- * Category: 
+ * Category: Easy
  * Status: Done
  */
 public class BitonicSequence {
