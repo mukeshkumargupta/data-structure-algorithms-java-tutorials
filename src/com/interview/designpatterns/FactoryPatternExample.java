@@ -67,6 +67,11 @@ public class FactoryPatternExample {
           Vehicle bike = factory.getInstance("bike", 2);
           System.out.println(bike);
           
+          
+          //Without factory if we try to access and how to stop it, Need to think
+          //Vehicle bike1 = new Bike(2);
+          //System.out.println(bike1);
+          
       }
 
   public static void main(String[] args) {

@@ -14,6 +14,8 @@ import java.util.PriorityQueue;
  * Method 1 has space complexity of O(1)
  * 
  * https://leetcode.com/problems/meeting-rooms-ii/
+ * Reference: https://www.youtube.com/watch?v=xLbXbG6uK-A
+ * Status: Done
  */
 public class MeetingRooms {
 
@@ -48,7 +50,7 @@ public class MeetingRooms {
         return rooms;
     }
 
-    public int minMeetingRooms(Interval[] intervals) {
+    public int minMeetingRooms_old(Interval[] intervals) {
         if (intervals.length == 0) {
             return 0;
         }
@@ -65,6 +67,21 @@ public class MeetingRooms {
                 pq.offer(intervals[i]);
             }
             pq.offer(it);
+        }
+        return rooms;
+    }
+    
+    public int minMeetingRooms(Interval[] intervals) {
+        Arrays.sort(intervals, (a, b) ->  a.start - b.start);
+        PriorityQueue<Interval> pq = new PriorityQueue<>((a, b) -> a.end - b.end);
+        int rooms = 0;
+        for (Interval interval : intervals) {
+            if (!pq.isEmpty() && interval.start >= pq.peek().end) {
+                pq.poll();
+            } else {
+                rooms++;
+            }
+            pq.offer(interval);
         }
         return rooms;
     }

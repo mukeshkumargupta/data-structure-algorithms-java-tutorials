@@ -16,6 +16,7 @@ class ParkingSlot {
     long id;
     VehicalType type;
     State state;
+    long floorNo;
 }
 
 enum VehicalType {
@@ -49,12 +50,6 @@ class ParkingService {
 
 
 class PriceService {
-    List<ParkingSlot> slotList = new ArrayList<>();
-    Map<ParkingSlot, Boolean> statusMap = new HashMap<>();
-    public ParkingSlot allocate(VehicalType type) {
-          return null;
-          
-      }
     
     public double calculate(VehicalType type, Date entryTime, Date exitTime ) {
         return 0;
@@ -64,10 +59,10 @@ class PriceService {
 
 //Need to handle concurrency
 class SlotService {
-    List<ParkingSlot> slotList = new ArrayList<>();
     //Better take concurrent hash map to handle concurrency
     //Here Long is index when it was inserted in slotList 
-    Map<ParkingSlot, Long> statusMap = new ConcurrentHashMap<>();
+    //First init map with unoccupied slot and allocate if free in map
+    Map<Long, ParkingSlot> statusMap = new ConcurrentHashMap<>();
     public ParkingSlot allocate(VehicalType type) {
           return null;
           

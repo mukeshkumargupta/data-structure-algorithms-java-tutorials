@@ -13,7 +13,7 @@ public class KnightTour {
         { 
             this.x = x; 
             this.y = y; 
-            //this.dis = dis; 
+            this.dis = dis; 
         } 
     } 
   
@@ -30,7 +30,7 @@ public class KnightTour {
     // to reach target position 
     static int minStepToReachTarget( 
         int knightPos[], int targetPos[], 
-        int N, int [] distance) 
+        int N) 
     { 
         // x and y direction, where a knight can move 
         int dx[] = { -2,-2,2,2,1,1,-1,-1 }; 
@@ -68,9 +68,9 @@ public class KnightTour {
                 // inside board, push that state into queue 
                 if (isInside(x, y, N) && !visited[x][y]) { 
                     visited[x][y] = true; 
-                    distance[0] += distance[0];
-                    //q.offer(new cell(x, y, t.dis + 1)); 
-                    q.offer(new cell(x, y, 0)); 
+                    //distance[0] += distance[0];
+                    q.offer(new cell(x, y, t.dis + 1)); 
+                    //q.offer(new cell(x, y, 0)); 
                 } 
             } 
         } 
@@ -83,10 +83,9 @@ public class KnightTour {
         int N = 30; 
         int knightPos[] = { 0, 0 }; 
         int targetPos[] = { 29, 29 };
-        int [] distance = new int[1];
         System.out.println( 
             minStepToReachTarget( 
-                knightPos, targetPos, N, distance)); 
+                knightPos, targetPos, N)); 
     } 
 } 
 

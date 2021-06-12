@@ -9,66 +9,46 @@ import java.util.List;
  * Date 03/01/2017
  * @author Mukesh Kumar Gupta
  *
- * There are a total of n courses you have to take, labeled from 0 to n - 1.
- * Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
- * Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
- * There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
- *
- * Time complexity O(n)
- * Space complexity O(n)
- *
- * https://leetcode.com/problems/course-schedule-ii/
+ * https://leetcode.com/problems/course-schedule/
+ * Video: https://www.youtube.com/watch?v=kXy0ABd1vwo&t=413s
  */
 public class CourseSchedule {
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        boolean[] used = new boolean[numCourses];
-        Neighbors[] graph = new Neighbors[numCourses];
-
-        for (int i = 0; i < graph.length; i++) {
-            graph[i] = new Neighbors();
-        }
-
-        for (int[] tuple : prerequisites) {
-            graph[tuple[1]].neighbor.add(tuple[0]);
-        }
-        Deque<Integer> stack = new LinkedList<>();
-        boolean[] dfs = new boolean[numCourses];
-
-        for (int i = 0; i < numCourses; i++) {
-            if (topSort(i, graph, used, stack, dfs)) {
-                return new int[0];
+    boolean isCycle(int[] visited, List<Integer>[] adjList, int current) {
+        if (visited[current] ==1) return true;
+        
+        visited[current] = 1;
+        List<Integer> adj = adjList[current];
+        for (Integer elm: adj) {
+            if (visited[elm] != 2 && isCycle(visited, adjList, elm)) {
+                return true;  
             }
         }
-
-        int[] output = new int[numCourses];
-        int index = 0;
-        while (!stack.isEmpty()) {
-            output[index++] = stack.pollFirst();
-        }
-
-        return output;
-    }
-
-    class Neighbors {
-        List<Integer> neighbor = new ArrayList<>();
-    }
-
-    private boolean topSort(int course, Neighbors[] graph, boolean[] used, Deque<Integer> stack, boolean[] dfs) {
-        if (used[course]) {
-            return false;
-        }
-        if (dfs[course]) {
-            return true;
-        }
-        dfs[course] = true;
-        for (int adj : graph[course].neighbor) {
-            if (topSort(adj, graph, used, stack, dfs)) {
-                return true;
-            }
-        }
-        dfs[course] = false;
-        used[course] = true;
-        stack.offerFirst(course);
+        visited[current] = 2;
         return false;
+        
+    }
+
+
+    public boolean canFinish(int numCourses, int[][] prerequisites)  {
+        //Build adjucency list
+       List<Integer>[] adjList = new ArrayList[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            adjList[i] = new ArrayList<>();
+        }
+        for (int[] edge :  prerequisites) {
+            adjList[edge[0]].add(edge[1]);
+        }
+
+        int[] visited = new int[numCourses]; //here value 0 means unvisited, 1 means processing and 2 means processed
+        for (int i = 0; i < numCourses; i++) {
+            if (visited[i] == 0) {
+                if (isCycle(visited, adjList, i)) {//DFS
+                    return false;
+                }
+                
+            }
+            
+        }
+        return true;
     }
 }

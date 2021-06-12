@@ -85,7 +85,7 @@ public class PrintEvenOdd {
         PrintEvenOdd EvenOdd = new PrintEvenOdd(); 
   
         // Create thread t1 
-        Thread t1 = new Thread(new Runnable() { 
+        /*Thread t1 = new Thread(new Runnable() { 
             public void run() 
             { 
                 EvenOdd.printEvenNumber(); 
@@ -98,7 +98,13 @@ public class PrintEvenOdd {
             { 
                 EvenOdd.printOddNumber(); 
             } 
-        }); 
+        }); */
+        
+        // Create thread t1 
+        Thread t1 = new Thread(EvenOdd::printEvenNumber);
+        Thread t2 = new Thread(EvenOdd::printOddNumber);
+  
+
   
         // Start both threads 
         t1.start(); 

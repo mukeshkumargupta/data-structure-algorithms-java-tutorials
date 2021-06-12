@@ -8,6 +8,8 @@ import java.util.*;
  * //Category: Must Do
  * //Note code is not passing here but on leet code it is passed
  * //Company: Groupon
+ * Status: Done
+ * Category: VImp
  */
 public class KadanesAlgorithm {
 	public static void main(String[] args) {

@@ -12,6 +12,7 @@ import java.util.Arrays;
  * Space complexity - O(1)
  *
  * http://www.geeksforgeeks.org/convert-array-into-zig-zag-fashion/
+ * Status: Done
  */
 public class ZigZagArrangement {
 

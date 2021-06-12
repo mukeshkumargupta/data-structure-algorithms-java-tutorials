@@ -14,7 +14,7 @@ package com.interview.systemdesign;
 
 public class CustomHashMapDesign {
     
-    public class Entry<K, V> {
+    class Entry<K, V> {
 
         private K key;
         private V value;
@@ -52,7 +52,7 @@ public class CustomHashMapDesign {
     }
 
     
-    public class CustomHashMap<K, V> {
+    class CustomHashMap<K, V> {
 
         private int capacity = 16; //Initial default capacity
 

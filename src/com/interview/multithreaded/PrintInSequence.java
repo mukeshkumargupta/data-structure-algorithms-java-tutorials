@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * A class that has 5 threads - two to increment the myVar variable, two to decrement the myVar variable and one to print the value of myVar.
  * Implement increment(), decrement() and printVar() methods such that the following series is printed:
  * 0 1 2 3 4 5 4 3 2 1 0 1 2 3 4 5 4 3 2 1 ... (repeating)
+ *Derived question like odd first up to five interval 1 3 5 7 9 then 0 2 4 6 8 then 11 13 and so on
  * Status: Done
  */
 public class PrintInSequence {

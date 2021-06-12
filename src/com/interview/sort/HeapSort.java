@@ -1,5 +1,7 @@
 package com.interview.sort;
 
+import com.companies.facebook.FindBadVersion;
+
 /**
  * Date 04/03/2017
  * @author Mukesh Kumar Gupta
@@ -33,18 +35,18 @@ public class HeapSort {
     {
         int n = arr.length; 
         // Build heap (rearrange array)
-        for (int i = n / 2 - 1; i >= 0; i--)
+        for (int i = n / 2 - 1; i >= 0; i--)//why n/2-1 because after it there is only leaf node
             heapify(arr, n, i);
  
         // One by one extract an element from heap
-        for (int i = n - 1; i > 0; i--) {
+        for (int i = n - 1; i > 0; i--) { 
             // Move current root to end
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
  
             // call max heapify on the reduced heap
-            heapify(arr, i, 0);
+            heapify(arr, i, 0); //I think here it should be i-1, It working after i-1
         }
     }
  
@@ -71,7 +73,7 @@ public class HeapSort {
             arr[largest] = swap;
  
             // Recursively heapify the affected sub-tree
-            heapify(arr, n, largest);
+            heapify(arr, n -1, largest);
         }
     }
  
@@ -83,17 +85,37 @@ public class HeapSort {
             System.out.print(arr[i] + " ");
         System.out.println();
     }
+    
+    public double calculateDistance(double x1, double y1, double x2, double y2, double p) {
+        double distance = 0;
+        double xDiff = x1 - x2;
+        if (xDiff < 0 ) {
+            xDiff = xDiff*-1;
+            
+        }
+        double yDiff = y1 - y2;
+        if (yDiff < 0 ) {
+            yDiff = yDiff*-1;
+            
+        }
+        double ecDist = Math.pow(xDiff, p) + Math.pow(yDiff, p);
+        distance = Math.pow(ecDist, 1/p);
+        return distance;
+    }
  
     // Driver code
     public static void main(String args[])
     {
-        //int arr[] = { 12, 11, 13, 5, 6, 7 };
+        HeapSort tc = new HeapSort();
+        System.out.println(tc.calculateDistance(1, 1, 2, 2, 1));
+        
+        /*//int arr[] = { 12, 11, 13, 5, 6, 7 };
         int arr[] = {-1,5,8,2,-6,-8,11,5};
  
         HeapSort ob = new HeapSort();
         ob.sort(arr);
  
         System.out.println("Sorted array is");
-        printArray(arr);
+        printArray(arr);*/
     }
 }

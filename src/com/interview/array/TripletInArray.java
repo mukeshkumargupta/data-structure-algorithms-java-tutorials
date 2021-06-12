@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * http://www.geeksforgeeks.org/find-a-triplet-that-sum-to-a-given-value/
+ * Status: Done
+ * Category: VImp
  */
 public class TripletInArray {
 

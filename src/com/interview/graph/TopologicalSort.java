@@ -63,7 +63,7 @@ public class TopologicalSort<T> {
     }
 
     private void topSortUtil_V1(Vertex<T> vertex, Stack<Vertex<T>> stack,
-            Set<Vertex<T>> visited) {
+            Set<Vertex<T>> visited) { /Mine version
         visited.add(vertex);
         for(Vertex<T> childVertex : vertex.getAdjacentVertexes()){
             if(visited.contains(childVertex)){

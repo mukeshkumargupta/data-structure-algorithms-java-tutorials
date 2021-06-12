@@ -303,7 +303,6 @@ public class VerticalOrder {
         }
         printRightview(root.right, level + 1, maxLevel); // right child called
         printRightview(root.left, level + 1, maxLevel); // left child called
-        
     }
     
     void rightView(Node root) {
@@ -312,6 +311,18 @@ public class VerticalOrder {
         int[] maxLevel = new int[1];
         printRightview(root, 1, maxLevel);
     }
+    
+    void printLeaf(Node root) {
+        if (root == null)
+            return;
+        
+        if (root.left == null && root.right == null) {//Leaf condition
+            System.out.println(root.data);
+        }
+        printLeaf(root.left); 
+        printLeaf(root.right); 
+    }
+
     
     //////////////////////////////////////////////////////////////////////////////////
     
@@ -374,6 +385,8 @@ public class VerticalOrder {
         // RightView
         System.out.println("RightView");
         vo.rightView(root);
+        System.out.println("Leaf printing");
+        vo.printLeaf(root);
         
         // Just to ensure sorting part
         // vo.buildEmployeeSort();
