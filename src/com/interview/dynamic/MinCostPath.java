@@ -1,66 +1,46 @@
 package com.interview.dynamic;
 
 /**
- * http://www.geeksforgeeks.org/dynamic-programming-set-6-min-cost-path/
- * Company: 
- * Category: 
- * Status: Done
+ * https://leetcode.com/problems/minimum-path-sum/
+ * Category: Medium 
+ * Status: Tricky
  */
 public class MinCostPath {
 
-    public int minCost(int [][]cost,int m,int n){
-        
-        int temp[][] = new int[m+1][n+1];
-        int sum = 0;
-        for(int i=0; i <= n; i++){
-            temp[0][i] = sum + cost[0][i];
-            sum = temp[0][i];
+    /* A utility function that returns minimum of 3 integers */
+    private static int min(int x, int y) 
+    { 
+        if (x <y ) {
+            return x;
+        } else {
+            return y;
         }
-        sum = 0;
-        for(int i=0; i <= m; i++){
-            temp[i][0] = sum + cost[i][0];
-            sum = temp[i][0];
-        }
-        
-        for(int i=1; i <= m; i++){
-            for(int j=1; j <= n; j++){
-                temp[i][j] = cost[i][j] + min(temp[i-1][j-1], temp[i-1][j],temp[i][j-1]);
-            }
-        }
-        return temp[m][n];
-    }
+    } 
+  
     
-    public int minCostRec(int cost[][], int m, int n){
-        return minCostRec(cost, m, n, 0 , 0);
-    }
-    
-    public int minCostRec(int cost[][], int m, int n, int x, int y){
-        if(x > m || y > n){
-            return Integer.MAX_VALUE;
-        }
-        if(x == m && y == n){
-            return cost[m][n];
-        }
+    public int minPathSum(int[][] grid) {
+        int m = grid.length; //Row
+        int n = grid[0].length; //Column
+        int i, j; 
+        int tc[][] = new int[m][n]; 
+        tc[0][0] = grid[0][0]; 
         
-        int t1 = minCostRec(cost, m , n, x+1, y);
-        int t2 = minCostRec(cost, m , n, x+1, y+1);
-        int t3 = minCostRec(cost, m , n, x, y+1);
-        
-        return cost[x][y] + min(t1,t2,t3);
-    }
-    
-    private int min(int a,int b, int c){
-        int l = Math.min(a, b);
-        return Math.min(l, c);
-    }
-    
-    public static void main(String args[]){
-        MinCostPath mcp = new MinCostPath();
-        int cost[][] = {{1,2,3},{4,8,2},{1,5,3},{6,2,9}};
-        int result = mcp.minCost(cost, 3, 2);
-        int result1 = mcp.minCostRec(cost, 3, 2);
-        System.out.println(result);
-        System.out.println(result1);
+        /* Initialize first column of total cost(tc) array */
+        for (i = 1; i < m; i++) 
+            tc[i][0] = tc[i-1][0] + grid[i][0]; 
+  
+        /* Initialize first row of tc array */
+        for (j = 1; j < n; j++) 
+            tc[0][j] = tc[0][j-1] + grid[0][j]; 
+  
+        /* Construct rest of the tc array */
+        for (i = 1; i < m; i++) 
+            for (j = 1; j < n; j++) 
+                tc[i][j] = min(
+                               tc[i-1][j], 
+                               tc[i][j-1]) + grid[i][j]; 
+  
+        return tc[m-1][n-1]; 
     }
 
 }

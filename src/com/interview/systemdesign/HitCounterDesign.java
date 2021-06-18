@@ -8,9 +8,9 @@ import java.util.*;
  *
  * Reference: https://www.youtube.com/watch?v=hsUPfyfPcxE
  * Reference: https://www.geeksforgeeks.org/design-a-hit-counter/?ref=rp
- * Difficulty: Hard
+ * https://leetcode.com/problems/design-hit-counter/
+ * Category: Medium
  * Company: Google, Amazon, Facebook
- * Category: VImp
  * Status: Done
  */
 

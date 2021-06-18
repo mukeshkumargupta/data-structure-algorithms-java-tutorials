@@ -13,16 +13,21 @@ import java.util.List;
  *
  * https://leetcode.com/problems/path-sum/
  * https://leetcode.com/problems/path-sum-ii/ 
- * https://leetcode.com/problems/binary-tree-maximum-path-sum/  Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
+ * https://leetcode.com/problems/binary-tree-maximum-path-sum/ Dificult Category  Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
  * https://leetcode.com/problems/sum-root-to-leaf-numbers/
+ * https://leetcode.com/problems/smallest-string-starting-from-leaf/
  * 
  * This is better explanation: https://www.youtube.com/watch?v=MwLDG-WNOjM
  * Reference: https://www.youtube.com/watch?v=Jg4E4KZstFE
- * Must Know
+ * Derived question: Find max in paht, min in path, avg in path, sum in path, print sum if sum equal, or avg equal, all element in path, in case of number make number and return maximum of it etc
  * Category: VVImp
  * 
  */
 public class PathSum {
+    /*
+     * Reference: https://leetcode.com/problems/path-sum-ii/
+     * Category: Medium
+     */
     public List<List<Integer>> pathSum(Node root, int sum) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
@@ -60,6 +65,11 @@ public class PathSum {
         sumNumbersUtil(root.left, number, sum);
         sumNumbersUtil(root.right, number, sum);
     }
+    //Reference: https://leetcode.com/problems/sum-root-to-leaf-numbers
+    /*
+     * Category: Medium
+     * Derived, Minum sum , maximum sum, average out of all
+     */
     private int sumNumbers(Node root) {
         if (root == null) {
             return 0;
@@ -69,7 +79,10 @@ public class PathSum {
         return sum[0];
  
     }
-
+    /*
+     * Reference: https://leetcode.com/problems/path-sum/
+     * Category; Easy
+     */
     public boolean hasPathSum(Node root, int sum) {
         if (root == null) {
             return false;

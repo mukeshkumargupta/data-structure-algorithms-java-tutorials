@@ -4,6 +4,8 @@ import java.util.*;
 
 /*
  * Reference: https://www.youtube.com/watch?v=a5vcIOaKuuY
+ * https://leetcode.com/problems/logger-rate-limiter/
+ * Category: Easy
  * Status: Done
  */
 public class LoggerRateLimiterDesign {

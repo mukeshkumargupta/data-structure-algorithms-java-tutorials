@@ -6,6 +6,7 @@ package com.interview.array;
  *
  *
  * https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/530/week-3/3300/
+ * Category: Medium
  */
 
 public class ArrayProductExceptSelf {

@@ -4,8 +4,9 @@ package com.interview.binarysearch;
  *
  * https://leetcode.com/problems/sqrtx/
  * Reference Video: https://www.youtube.com/watch?v=H7WymG3gab0
+ * Tricky
  */
-//Working code
+//Working code for https://leetcode.com/problems/sqrtx/ but difivult to understand
 public class SquareRootOfNumber {
     public int mySqrt(int x) {
         if (x == 0)  //Optimization otherwise taking time more
@@ -22,7 +23,7 @@ public class SquareRootOfNumber {
             }
         }
     }
-    
+    //Real code for square root
     private static String findSquareRoot(int number) {
         
         Boolean isNegative = false;
@@ -56,13 +57,14 @@ public class SquareRootOfNumber {
         return mid + (isNegative ? "i" : "");
     }
     
-    //Note this code will not work if 1 is below that 1
-    public int mySqrt_v1(int x) {
-        int start = 0;
-        int end = x;
-        int mid = (start+end)/2;
-        int prevMid = 0;
-        int diff = Math.abs(mid - prevMid);
+    //Note this code will not work for some cases
+    //https://leetcode.com/problems/sqrtx/
+    public static int mySqrt_v1(int x) {
+        double start = 0;
+        double end = x;
+        double mid = (start+end)/2;
+        double prevMid = 0;
+        double diff = Math.abs(mid - prevMid);
         double precision = 0.0005;
  
         while((mid*mid != x) && (diff > precision)) {
@@ -75,13 +77,17 @@ public class SquareRootOfNumber {
             mid = (start+end)/2;
             diff = Math.abs(mid - prevMid);
         }
-         
-        return mid;
+        int result = (int) mid;
+        if (result + 1 - mid < .001)  {
+            return result + 1;
+        } else return result;
     }
     
     public static void main(String[] args) {
-        int number = 2;
+        //int number = 36;
+        int number = 1;
         System.out.println("Square root of " + number + " = " + findSquareRoot(number));
+        System.out.println("Square root of " + number + " = " + mySqrt_v1(number));
     }
     
 }

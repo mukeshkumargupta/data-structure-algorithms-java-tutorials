@@ -12,7 +12,7 @@ package com.interview.tree;
  * Leetcode: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
  * Difficulty: Medium
  * Company: Groupon
- * Status: Done
+ * Status: Tricky
  */
 public class LowestCommonAncestorInBinaryTree {
 

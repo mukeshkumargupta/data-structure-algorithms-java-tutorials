@@ -63,6 +63,7 @@ class SlotService {
     //Here Long is index when it was inserted in slotList 
     //First init map with unoccupied slot and allocate if free in map
     Map<Long, ParkingSlot> statusMap = new ConcurrentHashMap<>();
+    //For fast lookup, take priority queue(heap) which contains only free slot, sort it by first floor no and then by slot no.
     public ParkingSlot allocate(VehicalType type) {
           return null;
           

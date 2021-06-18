@@ -1,54 +1,39 @@
 package com.interview.dynamic;
 
 /**
- http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/
+ * https://leetcode.com/problems/longest-common-subsequence/
+ * Category: medium
  */
 public class LongestCommonSubsequence {
 
-    public int lcs(char str1[],char str2[],int len1, int len2){
-        
-        if(len1 == str1.length || len2 == str2.length){
-            return 0;
+    public int longestCommonSubsequence(String text1, String text2) {
+        int C = text1.length()+1;
+        int R = text2.length()+1;
+        int outputMatrix[][] = new int[R][C];
+        //Fill first row with all zero
+        for (int c1 = 0; c1 < C; c1++ ) {
+            outputMatrix[0][c1] = 0;
         }
-        if(str1[len1] == str2[len2]){
-            return 1 + lcs(str1,str2,len1+1,len2+1);
+        //Fill first column with all zero
+        for (int r1 = 0; r1 < R; r1++ ) {
+            outputMatrix[r1][0] = 0;
         }
-        else{
-            return Math.max(lcs(str1,str2,len1+1,len2),lcs(str1,str2,len1,len2+1));
-        }
-    }
+        int findMax = 0;
+        for (int i = 1; i < R; i++) {
+            for (int j =1 ; j < C; j++) {
+                if (text1.charAt(j-1) == text2.charAt(i-1)) {// If both are same
+                    outputMatrix[i][j] = outputMatrix[i-1][j-1] +1; 
 
-    public int lcsDynamic(char str1[],char str2[]){
-    
-        int temp[][] = new int[str1.length + 1][str2.length + 1];
-        int max = 0;
-        for(int i=1; i < temp.length; i++){
-            for(int j=1; j < temp[i].length; j++){
-                if(str1[i-1] == str2[j-1]) {
-                    temp[i][j] = temp[i - 1][j - 1] + 1;
+                } else {
+                    outputMatrix[i][j] = Math.max(outputMatrix[i-1][j], outputMatrix[i][j-1]);  
                 }
-                else
-                {
-                    temp[i][j] = Math.max(temp[i][j-1],temp[i-1][j]);
-                }
-                if(temp[i][j] > max){
-                    max = temp[i][j];
-                }
+                 if (findMax < outputMatrix[i][j]) {
+                    findMax = outputMatrix[i][j];  
+                 }
+                
             }
         }
-        return max;
-    
-    }
-    
-    public static void main(String args[]){
-        LongestCommonSubsequence lcs = new LongestCommonSubsequence();
-        String str1 = "ABCDGHLQR";
-        String str2 = "AEDPHR";
+        return findMax;
         
-        int result = lcs.lcsDynamic(str1.toCharArray(), str2.toCharArray());
-        System.out.print(result);
     }
-    
-    
-    
 }
