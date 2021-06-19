@@ -1,7 +1,12 @@
 package com.interview.linklist;
 
+import java.awt.List;
+
 /**
  * http://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-linked-list/
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ * Category: Easy, Tricky
+ * Tricky
  * Test cases
  * All duplicates
  * No duplicates
@@ -11,49 +16,17 @@ package com.interview.linklist;
  */
 public class RemoveDuplicatesSortedList {
 
-    public void removeDuplicates(Node head){
-        if(head == null){
-            return;
-        }
-        Node current = head;
-        while(current != null && current.next != null){
-            if(current.data == current.next.data){
-                current.next = current.next.next;
-            }else{
-                current = current.next;
+    public ListNode deleteDuplicates(List head) {
+        ListNode currentNode = head;
+
+        //If duplicate
+        while(currentNode != null) {
+            if(currentNode.next != null && currentNode.val == currentNode.next.val) {
+               currentNode.next =  currentNode.next.next;
+            } else {
+                currentNode = currentNode.next;
             }
         }
-    }
-    
-    public Node removeDuplicates_M1(Node head){
-        Node current = head;
-        while(current != null && current.next != null){
-            if(current.data == current.next.data){
-                current.next = current.next.next;
-            }else{
-                current = current.next;
-            }
-        }
-        
         return head;
-    }
-    
-    
-    public static void main(String args[]){
-        LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(1, head);
-        head = ll.addNode(1, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(6, head);
-        RemoveDuplicatesSortedList rds = new RemoveDuplicatesSortedList();
-        //rds.removeDuplicates(head);
-        head = rds.removeDuplicates_M1(head);
-        ll.printList(head);
     }
 }

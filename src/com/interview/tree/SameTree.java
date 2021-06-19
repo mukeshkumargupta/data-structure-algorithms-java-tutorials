@@ -6,6 +6,8 @@ package com.interview.tree;
  * 
  * Youtube link - https://youtu.be/ySDDslG8wws
  * 
+ * Reference: https://leetcode.com/problems/same-tree/
+ * Category: Easy
  * Given roots of two tree, return true if they have same data and same structure
  * or return false.
  * 

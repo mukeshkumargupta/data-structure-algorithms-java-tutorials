@@ -2,6 +2,7 @@ package com.interview.linklist;
 
 /*
  * Reference: https://leetcode.com/problems/remove-linked-list-elements/
+ * Category: Easy, Tricky
  */
 public class RemoveLinkedListElements {
     public Node removeElements(Node head, int val) {

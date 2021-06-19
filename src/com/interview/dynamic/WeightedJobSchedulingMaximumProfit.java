@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 /*
  * Reference: https://www.youtube.com/watch?v=cr6Ip0J9izc
- * Category: Medium, VVImp
+ * Category: Medium, VVImp, Tricky
  * https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  * Status: Done
  */

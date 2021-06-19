@@ -10,6 +10,7 @@ package com.interview.linklist;
  * Space complexity O(1)
  *
  * https://leetcode.com/problems/linked-list-cycle/ Accepted
+ * Category: Easy, Imp
  * Reference: https://www.youtube.com/watch?v=0b4u72Kymqw&list=PLIA-9QRQ0RqFT2_piDcsNctgTMUam9f0c&index=38&t=0s
  * Status: Done
  */

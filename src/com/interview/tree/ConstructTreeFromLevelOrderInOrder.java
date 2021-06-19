@@ -62,7 +62,7 @@ public class ConstructTreeFromLevelOrderInOrder {
         int levelOrder[] = {20,8,22,4,12,10,14};
         ConstructTreeFromLevelOrderInOrder ctf = new ConstructTreeFromLevelOrderInOrder();
         Node root = ctf.constructTree(inOrder, levelOrder);
-        LevelOrderTraversal lot = new LevelOrderTraversal();
+        BinaryTreeLevelOrderTraversal lot = new BinaryTreeLevelOrderTraversal();
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         lot.levelOrder(root);

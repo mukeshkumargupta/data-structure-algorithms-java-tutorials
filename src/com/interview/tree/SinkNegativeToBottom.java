@@ -50,7 +50,7 @@ public class SinkNegativeToBottom {
         Node root = ctf.createTree(inorder, preorder);
         SinkNegativeToBottom szb = new SinkNegativeToBottom();
         szb.sinkZero(root);
-        LevelOrderTraversal lot = new LevelOrderTraversal();
+        BinaryTreeLevelOrderTraversal lot = new BinaryTreeLevelOrderTraversal();
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         lot.levelOrder(root);

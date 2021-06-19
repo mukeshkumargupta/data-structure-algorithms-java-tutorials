@@ -6,6 +6,7 @@ import java.util.function.IntConsumer;
 /*
  * Reference: https://www.youtube.com/watch?v=XP75KkwHiNw
  * https://leetcode.com/problems/print-zero-even-odd/
+ * Category: Medium, Tricky
  */
 public class PrintZeroEvenOdd {
     private int n;

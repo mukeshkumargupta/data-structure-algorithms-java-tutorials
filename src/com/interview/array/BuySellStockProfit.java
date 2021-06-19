@@ -12,22 +12,24 @@ package com.interview.array;
  * Space complexity O(1)
  *
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ * Category: Easy
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
  */
 public class BuySellStockProfit {
 
-    public int oneProfit(int arr[]){
-        int minPrice = arr[0];
+    public int maxProfit(int[] prices) {
+        int minBuyingPrice = prices[0];
         int maxProfit = 0;
-        for(int i=1; i < arr.length; i++){
-            if(arr[i] - minPrice > maxProfit){
-                maxProfit = arr[i] - minPrice;
+        for(int i=1; i < prices.length; i++){
+            if(prices[i] - minBuyingPrice > maxProfit){
+                maxProfit = prices[i] - minBuyingPrice;
             }
-            if(arr[i] < minPrice){
-                minPrice = arr[i];
+            if(prices[i] < minBuyingPrice){
+                minBuyingPrice = prices[i];
             }
         }
         return maxProfit;
+        
     }
     
     public int allTimeProfit(int arr[]){

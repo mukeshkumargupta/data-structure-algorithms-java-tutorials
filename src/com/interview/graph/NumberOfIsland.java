@@ -4,10 +4,11 @@ import java.util.*;
 
 /**
  https://leetcode.com/problems/number-of-islands/
+ https://leetcode.com/problems/max-area-of-island/
  */
 //Explanation: https://www.youtube.com/watch?v=CGMNePwovA0&list=PLIA-9QRQ0RqHYFNJc6zVT1_sJz0qCU9b0&index=2&t=265s
 //Done:
-//Category:Medium, VVImp
+//Category:Medium, Must Know
 //Derived Question: Matrix based approach: try to solve using dfs and bfs to make it clear, Count all region, find maximum region size, find minimum region size, find two region with having maximum distance 
 //Make knight tour problem that is derived of this problem
 public class NumberOfIsland {
@@ -58,19 +59,7 @@ public class NumberOfIsland {
         
         visitedGrid[i][j] = true;
         
-        for(int rowOffsets = 0; rowOffsets< offsets.length; rowOffsets++) {
-            for(int columnOffsets = 0; columnOffsets< offsets.length; columnOffsets++) {
-                if( rowOffsets ==0 && columnOffsets ==0) continue;
-                int row = offsets[rowOffsets];
-                int column = offsets[columnOffsets];
-                if(isNotVisited(grid, i+row, j+column, visitedGrid)) {
-                    DFS(grid, i+row, j+column, visitedGrid);
-                }
-            }
-        }
-        
-        //Bulky code
-        /*if(isNotVisited(grid, i, j+1, visitedGrid)) {
+        if(isNotVisited(grid, i, j+1, visitedGrid)) {
             DFS(grid, i, j+1, visitedGrid);//right
         }
         
@@ -85,22 +74,6 @@ public class NumberOfIsland {
         if(isNotVisited(grid, i, j-1, visitedGrid)) {
             DFS(grid, i, j-1, visitedGrid);//up
         }
-        
-        if(isNotVisited(grid, i-1, j-1, visitedGrid)) { //diagonal up
-            DFS(grid, i-1, j-1, visitedGrid);
-        }
-        
-        if(isNotVisited(grid, i+1, j+1, visitedGrid)) { //diagonal down
-            DFS(grid, i+1, j+1, visitedGrid);
-        }
-        if(isNotVisited(grid, i+1, j+1, visitedGrid)) { //reverse diagonal up
-            DFS(grid, i-1, j+1, visitedGrid);
-         }
-        if(isNotVisited(grid, i-1, j+1, visitedGrid)) { //reverse diagonal down
-            DFS(grid, i-1, j+1, visitedGrid);
-         }
-
-         */
     }
     
     public void BFS(char[][] grid, int i, int j, boolean[][] visitedGrid) {

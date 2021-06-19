@@ -17,6 +17,8 @@ public class CountLeaves {
         }
         // Check leave node
         if (root.left == null && root.right == null) {
+            
+            
             result[0] = result[0] + 1;
         }
         countLeavesUtil(root.left, result);
@@ -55,5 +57,57 @@ public class CountLeaves {
         
         sumOfLeftLeavesUtil(root, false);
         return leftSum;
+    }
+    
+    // Reference: https://www.youtube.com/watch?v=gPj3Fhekys8
+    // https://leetcode.com/problems/sum-of-left-leaves/submissions/
+    //Second variant
+    int sum = 0;
+    public void sumOfLeftLeavesUtil_V1(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        if (root.left != null) {
+            if (root.left.left == null && root.left.right == null) {//Leaf node
+                sum += root.left.val;
+            } 
+        }
+        sumOfLeftLeavesUtil(root.left);
+        sumOfLeftLeavesUtil(root.right);
+    }
+    public int sumOfLeftLeaves_V1(TreeNode root) {
+        sumOfLeftLeavesUtil(root);
+        return sum;
+    }
+    
+    //sum all leave whose parent have only one leave either left or right
+    // Need to run on leetcode paltform, not run yet
+    //Second variant
+    int sumofLeftOrRightRootOnly = 0;
+    public void sumOfLeftOrRightLeavesOnlyUtil(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        if (!(root.left != null && root.right != null) ) {
+            //Check which child is leaf node
+            if (root.left != null) {
+                if (root.left.left == null && root.left.right == null) {//Leaf node
+                    sum += root.left.val;
+                }
+            } else {
+                if (root.right.left == null && root.right.right == null) {//Leaf node
+                    sum += root.right.val;
+                }
+            }
+ 
+        }
+        sumOfLeftLeavesUtil(root.left);
+        sumOfLeftLeavesUtil(root.right);
+    }
+    public int sumOfLeftOrRightOnlyLeaves(TreeNode root) {
+        sumOfLeftOrRightLeavesOnlyUtil_V1(root);
+        return sum;
     }
 }
