@@ -51,6 +51,7 @@ public class MeetingRooms {
     }
 
     public int minMeetingRooms_old(Interval[] intervals) {
+        
         if (intervals.length == 0) {
             return 0;
         }
