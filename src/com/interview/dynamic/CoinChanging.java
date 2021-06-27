@@ -1,7 +1,5 @@
 package com.interview.dynamic;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Date 08/01/2017
@@ -13,77 +11,63 @@ import java.util.List;
  *
  * References:
  * http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/
- * Category: Must Do, Medium
- * Status: Tried but not working
+ * Category: Must Do, Medium, Tricky
+ * You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+ 
+
+Example 1:
+
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+Example 2:
+
+Input: coins = [2], amount = 3
+Output: -1
+Example 3:
+
+Input: coins = [1], amount = 0
+Output: 0
+Example 4:
+
+Input: coins = [1], amount = 1
+Output: 1
+Example 5:
+
+Input: coins = [1], amount = 2
+Output: 2
  */
 public class CoinChanging {
-    //Not working on leetcode
-    public int numberOfSolutions(int total, int coins[]){
-        int temp[][] = new int[coins.length+1][total+1];
-        for(int i=0; i <= coins.length; i++){
-            temp[i][0] = 1; //Tricky
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) {
+            return 0;
         }
-        for(int i=1; i <= coins.length; i++){
-            for(int j=1; j <= total ; j++){
-                if(coins[i-1] > j){
-                    temp[i][j] = temp[i-1][j];
-                }
-                else{
-                    temp[i][j] = temp[i][j-coins[i-1]] + temp[i-1][j];
-                }
-            }
+        
+        int[][]T = new int[coins.length+1][amount+1];
+        T[0][0] = 0;
+        for ( int i =1; i <= amount ; i++) { //fill first row
+            T[0][i] = Integer.MAX_VALUE;
         }
-        return temp[coins.length][total];
-    }
-
-    /**
-     * Space efficient DP solution
-     */
-    public int numberOfSolutionsOnSpace(int total, int arr[]){
-
-        int temp[] = new int[total+1];
-
-        temp[0] = 1;
-        for(int i=0; i < arr.length; i++){
-            for(int j=1; j <= total ; j++){
-                if(j >= arr[i]){
-                    temp[j] += temp[j-arr[i]];
+        
+        for (int i = 1; i <  coins.length; i++) {//fill first column
+            T[i][0] = 0;
+        }
+        
+        for (int i = 0; i < coins.length ; i++) {
+            for (int j = 1; j <= amount; j++ ) {
+                if (coins[i] > j) {
+                    T[i+1][j] = T[i][j];
+                } else {
+                    T[i+1][j] =  (T[i+1][j - coins[i]]) == Integer.MAX_VALUE ?  T[i][j]  : Math.min(1 + T[i+1][j - coins[i]],T[i][j]) ;
                 }
             }
         }
-        return temp[total];
-    }
-
-    /**
-     * This method actually prints all the combination. It takes exponential time.
-     */
-    public void printCoinChangingSolution(int total,int coins[]){
-        List<Integer> result = new ArrayList<>();
-        printActualSolution(result, total, coins, 0);
-    }
-    
-    private void printActualSolution(List<Integer> result,int total,int coins[],int pos){
-        if(total == 0){
-            for(int r : result){
-                System.out.print(r + " ");
-            }
-            System.out.print("\n");
-        }
-        for(int i=pos; i < coins.length; i++){
-            if(total >= coins[i]){
-                result.add(coins[i]);
-                printActualSolution(result,total-coins[i],coins,i);
-                result.remove(result.size()-1);
-            }
-        }
-    }
-
-    public static void main(String args[]){
-        CoinChanging cc = new CoinChanging();
-        int total = 15;
-        int coins[] = {3,4,6,7,9};
-        System.out.println(cc.numberOfSolutions(total, coins));
-        System.out.println(cc.numberOfSolutionsOnSpace(total, coins));
-        cc.printCoinChangingSolution(total, coins);
+        return T[coins.length][amount] == Integer.MAX_VALUE ? -1 : T[coins.length][amount];
+        
     }
 }

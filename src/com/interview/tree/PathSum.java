@@ -67,7 +67,7 @@ public class PathSum {
     }
     //Reference: https://leetcode.com/problems/sum-root-to-leaf-numbers
     /*
-     * Category: Medium
+     * Category: Medium, Must Know
      * Derived, Minum sum , maximum sum, average out of all
      */
     private int sumNumbers(Node root) {

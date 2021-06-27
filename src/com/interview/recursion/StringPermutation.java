@@ -8,66 +8,57 @@ import java.util.TreeMap;
 /**
  * Date 01/29/2017
  * @author Mukesh Kumar Gupta
- *
- * Generate all permutations of string in lexicographically sorted order where repetitions of
- * character is possible in string.
+ * https://leetcode.com/problems/permutations/
+ * Category: Medium, Must Know, Tricky
+ * 
+ * 
+ * Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+Example 2:
+
+Input: nums = [0,1]
+Output: [[0,1],[1,0]]
+Example 3:
+
+Input: nums = [1]
+Output: [[1]]
  */
 public class StringPermutation {
 
-    public List<String> permute(char input[]) {
-        Map<Character, Integer> countMap = new TreeMap<>();
-        for (char ch : input) {
-            countMap.compute(ch, (key, val) -> {
-                if (val == null) {
-                    return 1;
-                } else {
-                    return val + 1;
-                }
-            });
-        }
-        char str[] = new char[countMap.size()];
-        int count[] = new int[countMap.size()];
-        int index = 0;
-        for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
-            str[index] = entry.getKey();
-            count[index] = entry.getValue();
-            index++;
-        }
-        List<String> resultList = new ArrayList<>();
-        char result[] = new char[input.length];
-        permuteUtil(str, count, result, 0, resultList);
-        return resultList;
+    List<List<Integer>> result = new ArrayList<>();
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+        
     }
-
-    public void permuteUtil(char str[], int count[], char result[], int level, List<String> resultList) {
-        if (level == result.length) {
-            resultList.add(new String(result));
+    private void permuteUtil(int[] nums, int l, int r) {
+        if (l == r-1) {
+            List<Integer> list = new ArrayList<>();
+            for (int num : nums) {
+                list.add(num);
+            }
+            result.add(list);
             return;
         }
-
-        for(int i = 0; i < str.length; i++) {
-            if(count[i] == 0) {
-                continue;
-            }
-            result[level] = str[i];
-            count[i]--;
-            permuteUtil(str, count, result, level + 1, resultList);
-            count[i]++;
+        for (int i = l; i < r; i++) {
+            swap(nums, l, i);
+            permuteUtil(nums,l+1, r);
+            swap(nums, l, i);
         }
+        
     }
-
-    private void printArray(char input[]) {
-        for(char ch : input) {
-            System.out.print(ch);
-        }
-        System.out.println();
-    }
-
-    public static void main(String args[]) {
-        StringPermutation sp = new StringPermutation();
-        //Testcase 1
-        //sp.permute("AABC".toCharArray()).forEach(s -> System.out.println(s));
-        //Testcase 2
-        sp.permute("CBAA".toCharArray()).forEach(s -> System.out.println(s));
+    public List<List<Integer>> permute(int[] nums) {
+        int l = nums.length;
+        permuteUtil(nums, 0, l);
+        return result;
+        
+        
     }
 }

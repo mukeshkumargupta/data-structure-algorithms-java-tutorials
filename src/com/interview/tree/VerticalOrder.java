@@ -119,7 +119,13 @@ public class VerticalOrder {
         while (!queue.isEmpty()) {
             Point point = queue.poll();
             root = point.root;
-            map.putIfAbsent(point.x, new PriorityQueue<>(comparator));
+            map.putIfAbsent(point.x, new PriorityQueue<>((p1, p2) -> { // Keep practicing this way
+                if (p1.y == p2.y) { // sort based on data if y is same else sort based on y.
+                    return p1.root.data - p2.root.data;
+                } else {
+                    return p1.y - p2.y;
+                }
+            }));
             map.get(point.x).add(point);
             minIdx = Math.min(minIdx, point.x);
             maxIdx = Math.max(maxIdx, point.x);

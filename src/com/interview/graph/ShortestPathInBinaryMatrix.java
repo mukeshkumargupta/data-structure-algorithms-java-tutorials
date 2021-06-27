@@ -4,7 +4,7 @@ import java.util.*;
 
 /*
  * Reference: https://leetcode.com/problems/shortest-path-in-binary-matrix
- * Category: Medium
+ * Category: Medium, Must Know
  * Video:https://www.youtube.com/watch?v=CABaqOkWbgQ
  */
 

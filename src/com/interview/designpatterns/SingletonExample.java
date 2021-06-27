@@ -56,7 +56,8 @@ class SingletonSynchronized {
     
     public static SingletonSynchronized getInstance() {
         if (instance == null) {
-            synchronized (SingletonSynchronized.class) {
+            //synchronized (SingletonSynchronized.class) {
+            synchronized (instance) {//Both are same
                 if (instance == null) {
                     instance = new SingletonSynchronized();
                 }

@@ -2,7 +2,7 @@ package com.interview.systemdesign;
 
 import java.util.*;
 /*
- * Reference: https://leetcode.com/problems/implement-queue-using-stacks/\
+ * Reference: https://leetcode.com/problems/implement-queue-using-stacks/
  * Category: Easy
  */
 public class ImplementQueueusingStacks {

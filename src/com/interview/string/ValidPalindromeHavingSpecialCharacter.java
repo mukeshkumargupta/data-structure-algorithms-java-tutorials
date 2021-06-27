@@ -2,7 +2,7 @@ package com.interview.string;
 
 /*
  * Reference: https://leetcode.com/problems/valid-palindrome/
- * Tricky
+ * Category: Easy, Tricky
  */
 public class ValidPalindromeHavingSpecialCharacter {
     boolean isLetterOrDigit(Character ch) {

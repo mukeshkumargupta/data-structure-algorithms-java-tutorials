@@ -3,6 +3,7 @@ package com.interview.systemdesign;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/design-hashset/
+ * Category: Easy
  */
 public class DesignHashSet {
     int MAX = 150;

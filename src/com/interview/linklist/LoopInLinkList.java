@@ -10,33 +10,28 @@ package com.interview.linklist;
  * Space complexity O(1)
  *
  * https://leetcode.com/problems/linked-list-cycle/ Accepted
- * Category: Easy, Imp
+ * Category: Easy, Imp, Tricky
  * Reference: https://www.youtube.com/watch?v=0b4u72Kymqw&list=PLIA-9QRQ0RqFT2_piDcsNctgTMUam9f0c&index=38&t=0s
  * Status: Done
  */
 public class LoopInLinkList {
-    public Node hasCycle(Node head){
-        if (head == null) {
-            return null;
-        }
-        Node slow = head;
-        Node fast = head;
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            //if both are same
-            if(slow == fast) {
-                //Assign any one of then to starting and them mobe both with slow speed
-                slow = head;
-                while(slow != fast) {
+            if (slow == fast) {
+                fast = head;
+                while (slow != fast) {
                     slow = slow.next;
                     fast = fast.next;
                 }
                 return slow;
             }
         }
-
-        return null;
+        return null; 
     }
     
     private void printCycle(Node head) {
@@ -70,7 +65,7 @@ public class LoopInLinkList {
         Node node2 = ll.find(head, 4);
         node1.next = node2;
         LoopInLinkList lll = new LoopInLinkList();
-        Node node = lll.hasCycle(head);
+        Node node = lll.detectCycle(head);
         if (node !=null) {
             System.out.println(true);
         } else {

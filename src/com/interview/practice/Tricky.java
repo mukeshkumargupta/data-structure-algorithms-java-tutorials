@@ -1,5 +1,8 @@
 package com.interview.practice;
 
+import java.util.*;
+
+
 public class Tricky {
     
     public static void main(String[] args) {

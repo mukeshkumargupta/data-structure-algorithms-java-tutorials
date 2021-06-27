@@ -1,8 +1,9 @@
 package com.interview.graph;
 
 /*
+ * https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
  * Reference: https://www.youtube.com/watch?v=cZlHLMxIOMI&t=665s
- * Category: Hard
+ * Category: Hard, Tricky
  * Related dfs and dp
  * Video: https://www.youtube.com/watch?v=cZlHLMxIOMI&t=665s
  */

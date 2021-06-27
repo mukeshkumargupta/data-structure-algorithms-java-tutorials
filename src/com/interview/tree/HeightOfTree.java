@@ -1,6 +1,10 @@
 package com.interview.tree;
 
-//Category: https://leetcode.com/problems/maximum-depth-of-binary-tree/
+/*
+ * Category: https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * Category: Easy, Must Know
+ */
+
 public class HeightOfTree {
     public int maxDepth(TreeNode root) {
         if (root == null) { 
