@@ -58,16 +58,6 @@ public class RadixSort {
         input[j] = temp;
     }
     
-    static void selectionSort(int[] input) {
-        int N = input.length;
-        for (int i = 0; i < N - 1; i++) {
-            for (int j = i + 1; j < N; j++) {
-                if (input[i] > input[j]) {
-                    swap(input, i, j);
-                }
-            }
-        }
-    }
     
     static int findMin(int[] input, int start, int end) {
         int min = input[start];

@@ -29,6 +29,10 @@ import com.companies.facebook.FindBadVersion;
  * Leetcode: https://leetcode.com/problems/sort-an-numsay
  * Status: Done code taken from geeksfromgeeks
  * Category: Medium, Must Know, Tricky
+ * Related: https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/254069/quick-sort-partition Medium
+ * https://leetcode.com/problems/k-closest-points-to-origin/ Medium
+ * Related: https://www.youtube.com/watch?v=VORIA407dB4 K Closest Points to Origin | Leetcode take mi  heak of size k and distance is crteria for sorting array sud have x, y and distance
+ * https://leetcode.com/problems/top-k-frequent-elements/ Medium
  */
 public class HeapSort {
     

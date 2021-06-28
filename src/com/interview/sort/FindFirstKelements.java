@@ -3,6 +3,7 @@ import java.util.*;
 /*
  * 
  * Reference: https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
+ * Below code is not mine but using priority queue we can do
  */
 
 public class FindFirstKelements {
