@@ -1,4 +1,4 @@
-package com.interview.multiarray;
+package com.interview.matrix;
 
 /**
  * http://www.geeksforgeeks.org/print-matrix-diagonally/

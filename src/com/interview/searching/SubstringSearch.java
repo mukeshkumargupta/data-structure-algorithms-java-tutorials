@@ -1,4 +1,4 @@
-package com.interview.string;
+package com.interview.searching;
 
 /**
  * Date 09/22/2017
@@ -8,6 +8,8 @@ package com.interview.string;
  * 
  * Runtime complexity - O(m + n) where m is length of text and n is length of pattern
  * Space complexity - O(n)
+ * Building prefix sub array: https://www.youtube.com/watch?v=KG44VoDtsAA&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=4
+ * KMP Search: https://www.youtube.com/watch?v=GTJr8OvyEVQ&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=5
  */
 public class SubstringSearch {
 

@@ -58,6 +58,8 @@ public class FactoryPatternExample {
           //Vehicle car = VehicleFactory.getInstance("car", 4); //We need to call in static fashion
          VehicleFactory factory = new VehicleFactory();
          Vehicle car = factory.getInstance("car", 4);
+         
+         //Vehicle carInstance = new Car(4); //How will you stop to create from here
           
           System.out.println(car);
           Vehicle car1 = new Car(4);//how to stop this kind of creation

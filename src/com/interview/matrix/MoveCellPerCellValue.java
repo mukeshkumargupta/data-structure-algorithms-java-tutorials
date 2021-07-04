@@ -1,4 +1,4 @@
-package com.interview.multiarray;
+package com.interview.matrix;
 
 /**
  * http://www.careercup.com/question?id=6685828805820416

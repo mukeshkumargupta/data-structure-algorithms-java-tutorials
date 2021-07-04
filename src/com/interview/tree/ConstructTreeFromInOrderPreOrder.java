@@ -1,61 +1,38 @@
 package com.interview.tree;
 
 /**
- * http://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
- * Test cases:
- * Empty tree
- * One node tree
- * All left side tree
- * All right side tree
- * Mixed tree
- * Full tree
- * complete tree
- * Must Know
+ * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+ * Category: Medium, Must Know
+ * Related: construct all tree from inorder preorder, inorder post order,   
  */
 public class ConstructTreeFromInOrderPreOrder {
     
-    private int index = 0;
-    public Node createTree(int inorder[],int preorder[]){
-        Node result =  createTree(inorder,preorder,0,inorder.length-1);
-        index = 0;
-        return result;
-    }
-    
-    private Node createTree(int inorder[],int preorder[], int start, int end){
-        if(start > end){
-            return null;
-        }
-        int i;
-        //Search element in inorder
-        for(i=start; i <= end; i++){
-            if(preorder[index] == inorder[i]){
-                break;
+    int index = 0;
+    int search(int[] inorder, int start, int end, int data) {
+        int index;
+        for (index = start; index <= end; index++) {
+            if (data == inorder[index]) {
+               break; 
             }
         }
-        Node node = Node.newNode(preorder[index]);
-        index++;
-        node.left = createTree(inorder,preorder,start,i-1);
-        node.right = createTree(inorder,preorder,i+1,end);
-        return node;
+        return index;
+        
     }
-    
-    public void postOrderTraversal(Node rootNode) {
-    	if (rootNode == null) {
-    		return;
-    	}
-    	postOrderTraversal(rootNode.left);
-    	postOrderTraversal(rootNode.right);
-    	System.out.println(rootNode.data);
-    	
-    }
-    
-    public static void main(String []arg) {
-    	int[] inorder = {8,3,5,2,2,3,11,12,9,4,6,3,8};
-    	int[] preorder = {2, 3, 8, 5, 4,9,2,3,11,12,3,6,8};
-    	ConstructTreeFromInOrderPreOrder oConstructTreeFromInOrderPreOrder = new ConstructTreeFromInOrderPreOrder();
-    	Node rootNode = oConstructTreeFromInOrderPreOrder.createTree(inorder, preorder);
-    	oConstructTreeFromInOrderPreOrder.postOrderTraversal(rootNode);
-    	//Output: 8,5,3, 12, 11, 3, 2, 9, 6, 8, 3, 4, 2
+    public TreeNode buildTreeUtil(int[] preorder, int[] inorder, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int data = preorder[index++];
 
+        //create new node
+        TreeNode root = new TreeNode(data);
+        int position = search(inorder, start, end, data);
+        root.left = buildTreeUtil(preorder, inorder, start, position-1);
+        root.right = buildTreeUtil(preorder, inorder, position+1, end);
+        return root;
+    }
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int l = preorder.length;
+        return buildTreeUtil(preorder, inorder, 0, l-1); 
     }
 }

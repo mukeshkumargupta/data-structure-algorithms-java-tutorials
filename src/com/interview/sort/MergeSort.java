@@ -10,11 +10,14 @@ package com.interview.sort;
  * reverse sorted
  * Reference: https://www.youtube.com/watch?v=TzeBrDU-JaY
  * Related: https://leetcode.com/problems/sort-an-array/ Medium
+ * https://leetcode.com/problems/sort-list/ Medium
  * https://leetcode.com/problems/merge-sorted-array/ Easy
  * https://leetcode.com/problems/merge-two-sorted-lists/ Easy
  * https://leetcode.com/problems/merge-k-sorted-lists/ Hard, Hint, priority q to get min and p pointer take in array list , do inplace
  * https://www.youtube.com/watch?v=kpCesr9VXDA
  * https://leetcode.com/problems/reverse-pairs/ Hard, Bruitforce i know bu need best solution
+ * Merge sort tag:
+ * https://leetcode.com/tag/merge-sort/
  * Status: done
  */
 public class MergeSort {

@@ -1,4 +1,4 @@
-package com.interview.multiarray;
+package com.interview.matrix;
 
 /**
  * Iterate through matrix and get all subsquare and subrectangle matrix and print their sum

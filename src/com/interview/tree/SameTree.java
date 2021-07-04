@@ -12,7 +12,8 @@ package com.interview.tree;
  * or return false.
  * 
  * Solution
- * Keep comparing root of both data and then recursively check left and right.
+ * Keep comparing root of both data and then recursively check left and right
+ * Related: https://leetcode.com/problems/leaf-similar-trees/.
  * 
  * Time complexity is O(n)
  * 

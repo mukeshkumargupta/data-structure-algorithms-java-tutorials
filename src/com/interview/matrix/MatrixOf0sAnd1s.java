@@ -1,4 +1,4 @@
-package com.interview.multiarray;
+package com.interview.matrix;
 
 /**
  * http://www.geeksforgeeks.org/create-a-matrix-with-alternating-rectangles-of-0-and-x/

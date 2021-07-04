@@ -8,9 +8,12 @@ import java.util.Map;
  * @author Mukesh Kumar Gupta
  *
  * Insert/delete/search into trie data structure
+ * https://www.youtube.com/watch?v=AXjmTQ8LEoI
+ * Trie tag: leetcode: https://leetcode.com/tag/trie/
  *
  * Reference
  * https://en.wikipedia.org/wiki/Trie
+ * Category: Medium, Must Know
  */
 public class Trie {
 

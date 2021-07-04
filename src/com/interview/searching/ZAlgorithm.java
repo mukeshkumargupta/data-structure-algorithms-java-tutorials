@@ -1,4 +1,4 @@
-package com.interview.string;
+package com.interview.searching;
 
 import java.util.ArrayList;
 import java.util.List;

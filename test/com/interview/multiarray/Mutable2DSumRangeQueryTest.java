@@ -3,6 +3,8 @@ package com.interview.multiarray;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.interview.matrix.Mutable2DSumRangeQuery;
+
 public class Mutable2DSumRangeQueryTest {
 
     @Test
