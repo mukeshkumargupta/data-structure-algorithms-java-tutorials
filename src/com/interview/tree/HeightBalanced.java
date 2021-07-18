@@ -10,39 +10,18 @@ package com.interview.tree;
  *
  * Reference
  * https://leetcode.com/problems/balanced-binary-tree/
- * Must Know
+ * Note: Runtime is 51% because each node computing height again and again why can we not reuse already calculated height
+ * Refer: https://leetcode.com/problems/diameter-of-binary-tree/ 
+ * Must Do
  */
 public class HeightBalanced {
-    public boolean isBalanced(Node root) {
-        return isBalancedUtil(root) >= 0;
-    }
 
-    private int isBalancedUtil(Node root) {
-        if (root == null) {
-            return 0;
-        }
-        int left = isBalancedUtil(root.left);
-        if (left < 0) {  //Not clear
-            return -1;
-        }
-        int right = isBalancedUtil(root.right);
-        if (right < 0) {  //Not clear
-            return -1;
-        }
-        int diff = Math.abs(left - right);
-        return diff <= 1 ? (Math.max(left, right) + 1) : -1;
-    }
-    
-    
-    ////////////////////////////////////////////////
-    //Implemented
-    //Mine version: Solution submitted https://leetcode.com/problems/balanced-binary-tree/
     private int height(Node root) {
         if (root == null) return 0;
         
         return (1+ Math.max(height(root.left), height(root.right)));
     }
-    public boolean isBalanced_V1(Node root) {
+    public boolean isBalanced(Node root) {
         if (root == null) return true;
         
         int leftHeight = height(root.left);

@@ -18,6 +18,8 @@ import java.util.Map;
  * For m operations and total n elements time complexity is O(m*f(n)) where f(n) is 
  * very slowly growing function. For most cases f(n) <= 4 so effectively
  * total time will be O(m). Proof in Coreman book.
+ * Tag: https://leetcode.com/tag/union-find/
+ * Done
  */
 public class DisjointSet {
 

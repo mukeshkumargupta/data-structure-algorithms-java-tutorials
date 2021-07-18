@@ -4,7 +4,8 @@ import java.util.*;
 
 /*
  * Reference: https://leetcode.com/problems/3sum/
- * Category: Medium, Tricky
+ * Category: Medium, Tricky,
+ * Derived: Find all triplet whose sum is given sum, less than su,. greater than sum or zero 
  */
 public class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {

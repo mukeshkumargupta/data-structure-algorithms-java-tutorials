@@ -24,50 +24,47 @@ import java.util.Stack;
  * 
  * Time and space complexity is O(n)
  * 
- * References : http://www.geeksforgeeks.org/reverse-level-order-traversal/
- * Must Know
+ * References : https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+ * Must Do
  * Status: done
  * Similar question but output format is little different need to submit: https://leetcode.com/problems/binary-tree-level-order-traversal/
  */
 public class LevelOrderTraversalInReverse {
 
-    public void reverseLevelOrderTraversal(Node root){
-        if(root == null){
-            return;
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root == null) {
+            return list;
         }
-        Queue<Node> q = new LinkedList<>();
-        Stack<Node> s = new Stack<>();
+        q.add(root);
         
-        q.offer(root);
-        while(!q.isEmpty()){//Size or isEmpty you can both use isEmpty return boolean while size return number
-            root = q.poll();
-            s.push(root);
-            if(root.right != null){
-                q.offer(root.right);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            List<Integer> rowList = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode currentNode = q.remove();
+                rowList.add(currentNode.val);
+                if (currentNode.left != null) {
+                    q.add(currentNode.left);
+                }
+                
+                if (currentNode.right != null) {
+                    q.add(currentNode.right);
+                } 
             }
-            if(root.left != null){
-                q.offer(root.left);
-            }
+            list.add(rowList);
+            
+        } 
+        
+        int resultListSize = list.size();
+        //Collections.reverse(resultListSize);
+        List<List<Integer>> reverseList = new ArrayList<>();
+        for (int end = resultListSize -1 ; end >=0; end-- ) {
+            List<Integer> rowList = list.get(end);
+            reverseList.add(rowList);
 
         }
-        while(!s.isEmpty()){
-            System.out.print(s.pop().data + " ");
-        }
-    }
-    
-    public static void main(String args[]){
-        BinaryTree bt = new BinaryTree();
-        Node root = null;
-        root = bt.addNode(10, root);
-        root = bt.addNode(30, root);
-        root = bt.addNode(25, root);
-        root = bt.addNode(35, root);
-        root = bt.addNode(-10, root);
-        root = bt.addNode(0, root);
-        root = bt.addNode(-20, root);
-        root = bt.addNode(-15, root);
-        root = bt.addNode(45, root);
-        LevelOrderTraversalInReverse rlo = new LevelOrderTraversalInReverse();
-        rlo.reverseLevelOrderTraversal(root);
+        return reverseList;
     }
 }

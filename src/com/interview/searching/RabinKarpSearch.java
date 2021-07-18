@@ -6,7 +6,7 @@ package com.interview.searching;
  *
  * Rabin Karp algorithms for substring matching.
  * https://www.youtube.com/watch?v=BQ9E-2umSWc
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  * Status: Done
  */
 public class RabinKarpSearch {

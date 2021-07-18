@@ -12,93 +12,26 @@ import com.interview.analyse.Performance;
  * Youtube link - https://youtu.be/MILxfAbIhrE
  * 
  * Given a binary tree, return true if it is binary search tree else return false.
+ * https://leetcode.com/problems/validate-binary-search-tree/submissions/ 100% runtime
+ * Category: Medium, Must Do
+ * Related
+ * https://leetcode.com/problems/find-mode-in-binary-search-tree/ Easy
  * 
- * Solution
- * Keep min, max for every recursion. Initial min and max is very small and very larger
- * number. Check if root.data is in this range. When you go left pass min and root.data and 
- * for right pass root.data and max.
- * 
- * Time complexity is O(n) since we are looking at all nodes.
- * 
- * Test cases:
- * Null tree
- * 1 or 2 nodes tree
- * Binary tree which is actually BST
- * Binary tree which is not a BST
- * Category: Must Do Imp
- * Derived Question: how to convert tree in bst, My approach could be read tree and add that node in BST creation.
  */
 public class IsBST {
 
-    public boolean isBST(Node root){
-        return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-    }
-    
-    private boolean isBST(Node root, int min, int max){
+    private boolean isValidBSTUtil(TreeNode root, long min, long max) {
         if(root == null){
             return true;
         }
-        if(root.data <= min || root.data > max){
+        if(root.val <= min || root.val >= max){
             return false;
         }
-        return isBST(root.left, min, root.data) && isBST(root.right, root.data, max);
-    }
-
-
-    public boolean isBSTIterative(Node root) {
-        if (root == null) {
-            return true;
-        }
-
-        Deque<Node> stack = new LinkedList<>();
-        Node node = root;
-        int prev = Integer.MIN_VALUE;
-        int current;
-        while ( true ) {
-            if (node != null) {
-                stack.addFirst(node);
-                node = node.left;
-            } else {
-                if (stack.isEmpty()) {
-                    break;
-                }
-                node = stack.pollFirst();
-                current = node.data;
-                if (current < prev) {
-                    return false;
-                }
-                prev = current;
-                node = node.right;
-            }
-        }
-        return true;
-    }
-    
-    public static void main(String args[]){
-        BinaryTree bt = new BinaryTree();
-        Node root = null;
-        root = bt.addNode(10, root);
-        root = bt.addNode(15, root);
-        root = bt.addNode(-10, root);
-        root = bt.addNode(17, root);
-        root = bt.addNode(20, root);
-        root = bt.addNode(0, root);
+        return isValidBSTUtil(root.left, min, root.val) && isValidBSTUtil(root.right, root.val, max);
         
-        IsBST isBST = new IsBST();
-        Performance pf = new Performance();
-        pf.startTime();
-        System.out.println("Given string is BST: " + isBST.isBST(root));
-        System.out.println("Total time: " + pf.totalTimeInMillis());
-        pf.startTime();
-        System.out.println("Given string is BST: " + isBST.isBSTIterative(root));
-        System.out.println("Total time: " + pf.totalTimeInMillis());
+    }
+    public boolean isValidBST(TreeNode root) {
+        return isValidBSTUtil(root, Long.MIN_VALUE, Long.MAX_VALUE);
         
-        int inorder[] = {4,13,1,7,6,3,19};
-        int preorder[] = {13,4,6,7,1,3,19};
-        ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        root = ctf.createTree(inorder, preorder);
-        System.out.println("Given string is BST: " + isBST.isBST(root));
-        //assert isBST.isBST(root);
-        //assert isBST.isBSTIterative(root);
     }
 }

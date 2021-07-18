@@ -2,7 +2,7 @@ package com.interview.matrix;
 
 /*
  * https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/
- * Category: Easy, Must Know
+ * Category: Easy, Must Do
  */
 public class DetermineWhetherMatrixCanBeObtainedByRotation {
     void swap(int[][] matrix, int i, int start, int end) {

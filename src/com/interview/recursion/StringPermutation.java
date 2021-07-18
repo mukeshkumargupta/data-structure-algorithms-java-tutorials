@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * Date 01/29/2017
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/permutations/
- * Category: Medium, Must Know, Tricky
+ * Category: Medium, Must Do, Tricky
  * 
  * 
  * Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.

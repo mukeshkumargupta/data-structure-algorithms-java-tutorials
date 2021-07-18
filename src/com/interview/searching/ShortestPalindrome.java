@@ -15,7 +15,7 @@ package com.interview.searching;
  * https://www.youtube.com/watch?v=c4akpqTwE5g&t=240s
  *
  * https://leetcode.com/problems/shortest-palindrome/
- * Category: Hard, kmp, Must Know
+ * Category: Hard, kmp, Must Do
  */
 public class ShortestPalindrome {
     private int computeTemporaryArray(char pattern[]){

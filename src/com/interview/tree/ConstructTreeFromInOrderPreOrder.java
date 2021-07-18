@@ -2,7 +2,7 @@ package com.interview.tree;
 
 /**
  * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  * Related: construct all tree from inorder preorder, inorder post order,   
  */
 public class ConstructTreeFromInOrderPreOrder {

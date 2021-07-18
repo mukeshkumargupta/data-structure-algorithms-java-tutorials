@@ -9,7 +9,9 @@ package com.interview.tree;
  * if inorder and levelorder were represented by string how would you handle multi digits
  * e.g 1234 we don't know if it is 12 34 or 1 2 3 4 or what. Maybe use brackets
  * (12)(3)(4) to differentiate between them.
- * Must Know
+ * Must Do
+ * https://www.youtube.com/watch?v=7eBndROfUnw follow this below ignore implementation
+ * Category: Medium
  */
 public class ConstructTreeFromLevelOrderInOrder {
 

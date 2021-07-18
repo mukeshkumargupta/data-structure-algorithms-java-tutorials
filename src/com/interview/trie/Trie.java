@@ -1,4 +1,4 @@
-package com.interview.suffixprefix;
+package com.interview.trie;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * Reference
  * https://en.wikipedia.org/wiki/Trie
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  */
 public class Trie {
 

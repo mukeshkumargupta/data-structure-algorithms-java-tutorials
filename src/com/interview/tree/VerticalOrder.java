@@ -25,7 +25,7 @@ import java.util.*;
  * keep traversing and update result and keep change the result.
  *
  * https://leetcode.com/problems/binary-tree-vertical-order-traversal/ (Premium
- * question on leetcode) Category: Must Know, VVImp Status: Done
+ * question on leetcode) Category: Must Do, VVImp Status: Done
  */
 public class VerticalOrder {
     public List<List<Integer>> verticalOrder_NotMine(Node root) {

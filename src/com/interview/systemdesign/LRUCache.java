@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/lru-cache/
  * Video: https://www.youtube.com/watch?v=iEmActx7dYc
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  */
 class LRUCache {
     int capacity;

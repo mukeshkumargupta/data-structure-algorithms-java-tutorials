@@ -2,6 +2,8 @@ package com.interview.tree;
 
 /**
  * http://www.geeksforgeeks.org/tree-isomorphism-problem/
+ * https://leetcode.com/problems/flip-equivalent-binary-trees/
+ * Category: Medium
  * Test cases:
  * Same tree
  * Exact mirror

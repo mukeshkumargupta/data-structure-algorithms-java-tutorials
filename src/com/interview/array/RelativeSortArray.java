@@ -5,7 +5,9 @@ import java.util.*;
  * Reference: https://leetcode.com/problems/relative-sort-array/
  * Category: Easy, Tricky
  * Given two arrays arr1 and arr2, the elements of arr2 are distinct, and all elements in arr2 are also in arr1.
-
+   Run time 26 percent , find better solution
+   Better solution is here
+   https://www.youtube.com/watch?v=oHGXHrXxAgo
 Sort the elements of arr1 such that the relative ordering of items in arr1 are the same as in arr2.  Elements that don't appear in arr2 should be placed at the end of arr1 in ascending order.
 
  

@@ -9,7 +9,7 @@ import java.util.*;
  * https://www.youtube.com/watch?v=O6QsZO0tupM
  * Reference: 1. https://www.geeksforgeeks.org/design-a-data-structure-that-supports-insert-delete-getrandom-in-o1-with-duplicates/?ref=rp
  * Reference: 2. https://www.geeksforgeeks.org/design-a-data-structure-that-supports-insert-delete-search-and-getrandom-in-constant-time/?ref=rp
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  * Company: Google, Amazon, Facebook
  */
 

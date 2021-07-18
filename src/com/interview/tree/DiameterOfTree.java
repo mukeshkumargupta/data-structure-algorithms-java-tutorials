@@ -8,7 +8,8 @@ package com.interview.tree;
  * Test cases
  * All left nodes
  * All right nodes
- * Category: Easy, Must know
+ * Category: Easy, Must Do, VVImp
+ * Note: This algo is very fats compare to geeksforgeeks
  */
 public class DiameterOfTree {
     
@@ -30,7 +31,7 @@ public class DiameterOfTree {
         Node rightNode = diameterOfBinaryTreeUtil(root.right);
 
         
-
+        //Note post order traversal is important because left and right is processed
         Node rootNode = new Node();
         rootNode.height = Math.max(leftNode.height, rightNode.height) + 1;
         rootNode.dm = Math.max(Math.max(leftNode.dm, rightNode.dm), (1 + leftNode.height + rightNode.height));

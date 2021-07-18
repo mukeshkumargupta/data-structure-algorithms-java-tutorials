@@ -5,7 +5,7 @@ package com.interview.tree;
  * Reference: https://www.youtube.com/watch?v=0r_cx1c8Z1A
  *
  * https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
- * Category: Medium, Must Know, VImp
+ * Category: Medium, Must Do, VImp
  */
 public class ContructTreeFromInorderPostOrder {
     int search(int[] inorder, int[] postorder, int inorderStart, int inorderEnd, int postOrderStart, int postOrderEnd) {

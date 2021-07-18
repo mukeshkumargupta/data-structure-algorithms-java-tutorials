@@ -9,7 +9,8 @@ package com.interview.binarysearch;
  * Time complexity O(logn)
  * Space complexity O(1)
  * 
- * https://leetcode.com/problems/search-for-a-range/
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ * Category: Medium
  */
 public class SearchForRange {
     public int[] searchRange(int[] nums, int target) {
@@ -22,32 +23,32 @@ public class SearchForRange {
     }
 
     private int firstOccurence(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length - 1;
-        while (low <= high) {
-            int mid = low + (high - low)/2;
-            if (nums[mid] == target && (mid == 0 || nums[mid - 1] < target)) {
+        int start = 0;
+        int end = nums.length - 1;
+        while (start <= end) {
+            int mid = (start + end)/2;
+            if (nums[mid] == target && (mid == 0 || nums[mid - 1] < target)) { //Imp, Tricky
                 return mid;
             } else if (nums[mid] >= target) {
-                high = mid - 1;
+                end = mid - 1;
             } else {
-                low = mid + 1;
+                start = mid + 1;
             }
         }
         return -1;
     }
 
     private int lastOccurence(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length - 1;
-        while (low <= high) {
-            int mid = low + (high - low)/2;
-            if (nums[mid] == target && (mid == nums.length - 1 || nums[mid + 1] > target)) {
+        int start = 0;
+        int end = nums.length - 1;
+        while (start <= end) {
+            int mid = (start + end)/2;
+            if (nums[mid] == target && (mid == nums.length - 1 || nums[mid + 1] > target)) {//Imp, Tricky
                 return mid;
             } else if (nums[mid] <= target) {
-                low = mid + 1;
+                start = mid + 1;
             } else {
-                high = mid - 1;
+                end = mid - 1;
             }
         }
         return -1;

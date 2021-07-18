@@ -15,10 +15,10 @@ package com.interview.sort;
  * https://leetcode.com/problems/merge-two-sorted-lists/ Easy
  * https://leetcode.com/problems/merge-k-sorted-lists/ Hard, Hint, priority q to get min and p pointer take in array list , do inplace
  * https://www.youtube.com/watch?v=kpCesr9VXDA
- * https://leetcode.com/problems/reverse-pairs/ Hard, Bruitforce i know bu need best solution
+ * https://leetcode.com/problems/reverse-pairs/ Hard, Brute force i know but need best solution
  * Merge sort tag:
  * https://leetcode.com/tag/merge-sort/
- * Status: done
+ * Category: Must Do
  */
 public class MergeSort {
  // Function to Merge Arrays L and R into A. 

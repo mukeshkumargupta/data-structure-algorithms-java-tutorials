@@ -2,7 +2,7 @@ package com.interview.tree;
 
 /*
  * Category: https://leetcode.com/problems/maximum-depth-of-binary-tree/
- * Category: Easy, Must Know
+ * Category: Easy, Must Do
  */
 
 public class HeightOfTree {

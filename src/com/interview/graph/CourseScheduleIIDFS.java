@@ -4,9 +4,10 @@ import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/course-schedule-ii/
  * Video: https://www.youtube.com/watch?v=qe_pQCh09yU
+ * Category: Medium, Must Do
  */
 
-public class CourseScheduleII {
+public class CourseScheduleIIDFS {
     Stack<Integer> s = new Stack<>();
     boolean isCycle(int[] visited, List<Integer>[] adjList, int curr) {
         if (visited[curr] == 1) {

@@ -21,6 +21,7 @@ package com.interview.tree;
  * 2) Tree with one node and key is that node
  * 3) Tree with many nodes and key does not exist
  * 4) Tree with many nodes and key exists
+ * Category: Must Do, bst, know both iterative and recursive
  */
 public class BSTSearch {
     

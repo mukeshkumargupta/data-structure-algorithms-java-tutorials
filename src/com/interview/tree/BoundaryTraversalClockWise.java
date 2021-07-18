@@ -2,6 +2,7 @@ package com.interview.tree;
 
 /**
  * http://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
+ * https://leetcode.com/problems/boundary-of-binary-tree/
  * Test cases
  * All left children
  * All right children
@@ -25,20 +26,23 @@ package com.interview.tree;
  * Right View: 1, 3, 7, 8, 11
  * Print boundary: 1, 2, 4, 5, 6, 11, 8, 7, 3  (I have taken anti-clock wise)
  *  
- * Category: Easy, Must Know, VVImp
+ * Category: Easy, Must Do, VVImp
  * 
  */
-public class BoundaryTraversal {
+public class BoundaryTraversalClockWise {
 
     public void traversal(Node root){
         //find starting point for right side
         Node current = root;
-        while(current != null){
+        /*while(current != null){ This code looks bulky so added simple code
             if(current.right != null && current.left != null){
                 current = current.right;
                 break;
             }
             current = current.left != null ? current.left : current.right;
+        }*/
+        if (current.right != null) {
+            current  = current.right;
         }
         printRightSide(current);
         printLeaves(root);
@@ -102,7 +106,7 @@ public class BoundaryTraversal {
         head = bt.addNode(14, head);
         head = bt.addNode(22, head);
         head = bt.addNode(25, head);
-        BoundaryTraversal bd = new BoundaryTraversal();
+        BoundaryTraversalClockWise bd = new BoundaryTraversalClockWise();
         bd.traversal(head);
     }
 }

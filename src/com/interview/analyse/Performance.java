@@ -6,7 +6,7 @@ package com.interview.analyse;
  *
  * Reference
  * https://www.vogella.com/tutorials/JavaPerformance/article.html
- * Category: Must Know
+ * Category: Must Do
  */
 public class Performance {
 	long startTime;

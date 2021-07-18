@@ -2,7 +2,7 @@ package com.interview.graph;
 
 /*
  * Reference: https://leetcode.com/problems/network-delay-time/
- * Category:Medium, Must Know
+ * Category:Medium, Must Do
  * Related: Dijakshtra, shortest distance from single source
  * Video: https://www.youtube.com/watch?v=t2d-XYuPfg0&t=304s
  * https://www.youtube.com/watch?v=Sj5Z-jaE2x0

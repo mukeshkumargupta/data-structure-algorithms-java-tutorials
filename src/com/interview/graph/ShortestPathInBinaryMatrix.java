@@ -4,7 +4,7 @@ import java.util.*;
 
 /*
  * Reference: https://leetcode.com/problems/shortest-path-in-binary-matrix
- * Category: Medium, Must Know
+ * Category: Medium, Must Do
  * Video:https://www.youtube.com/watch?v=CABaqOkWbgQ
  */
 
@@ -30,7 +30,7 @@ public class ShortestPathInBinaryMatrix {
     }
     
 
-    public int shortestPathBinaryMatrix(int[][] grid) {
+    public int shortestPathBinaryMatrixBfs(int[][] grid) {//Working
         int R = grid.length;
         int C = grid[0].length;
         boolean[][] visited = new boolean[R][C];
@@ -78,10 +78,78 @@ public class ShortestPathInBinaryMatrix {
         return -1; 
     }
     
+    public int shortestPathBinaryMatrixDfs(int[][] grid) { //Min will not come also if not reached to end then how to handle not sure
+
+        if (grid[0][0] == 1) {
+            return -1;
+        }
+        int r1 = grid.length;
+        int c1 = grid[0].length;
+        boolean[][] visitedGrid = new boolean[r1][c1];
+        
+        int[] d = new int[1];
+        d[0] = 1;
+        DFS(grid, 0, 0, visitedGrid, r1, c1, d);
+        return d[0];
+    }
+    
+    
+    public void DFS(int[][] grid, int i, int j, boolean[][] visitedGrid, int R, int C, int[] d) {
+        //Base case
+        if (i == R -1 && j == C-1) {
+            return;
+
+        }
+        
+        if (visitedGrid[i][j]) return;
+        
+        visitedGrid[i][j] = true;
+        
+        if(isNotVisited(grid, visitedGrid,i, j+1, R, C)) {
+            d[0] +=1;
+            DFS(grid, i, j+1, visitedGrid, R, C, d);//right
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i+1, j, R, C)) {
+            d[0] +=1;
+            DFS(grid, i+1, j, visitedGrid, R, C, d);//down
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i-1, j, R, C)) {
+            d[0] +=1;
+            DFS(grid, i-1, j, visitedGrid, R, C, d);//up
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i, j-1, R, C)) {
+            d[0] +=1;
+            DFS(grid, i, j-1, visitedGrid, R, C, d);//up
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i-1, j+1, R, C)) { //right up diagonal
+            d[0] +=1;
+            DFS(grid, i-1, j+1, visitedGrid, R, C, d);//
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i-1, j-1, R, C)) { //left up diagonal
+            d[0] +=1;
+            DFS(grid, i-1, j-1, visitedGrid, R, C, d);//
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i+1, j-1, R, C)) { //left bottom diagonal
+            d[0] +=1;
+            DFS(grid, i+1, j-1, visitedGrid, R, C, d);//
+        }
+        
+        if(isNotVisited(grid, visitedGrid, i+1, j+1, R, C)) { //right bottom diagonal
+            d[0] +=1;
+            DFS(grid, i+1, j+1, visitedGrid, R, C, d);//
+        }
+    }
+    
     public static void main(String[] args) {
         int[][] input = {{0, 1}, {1, 0}};
         ShortestPathInBinaryMatrix spbm = new ShortestPathInBinaryMatrix();
-        spbm.shortestPathBinaryMatrix(input);
+        spbm.shortestPathBinaryMatrixBfs(input);
         
     }
     

@@ -10,9 +10,7 @@ package com.interview.tree;
  * Space complexity O(h)
  * Reference: https://www.youtube.com/watch?v=13m9ZCB8gjw
  * Leetcode: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
- * Difficulty: Medium
- * Company: Groupon
- * Status: Tricky
+ * Category: Medium, Tricky, Must Do, VVImp
  */
 public class LowestCommonAncestorInBinaryTree {
 

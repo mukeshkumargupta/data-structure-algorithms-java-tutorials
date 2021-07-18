@@ -3,6 +3,8 @@ package com.interview.suffixprefix;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.interview.trie.Trie;
+
 public class TrieTest {
 
     @Test

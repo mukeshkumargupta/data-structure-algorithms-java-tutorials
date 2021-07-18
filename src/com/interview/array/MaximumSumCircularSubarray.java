@@ -2,7 +2,7 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/maximum-sum-circular-subarray/
- * Category: Medium, Must Know, Tricky
+ * Category: Medium, Must Do, Tricky
  */
 public class MaximumSumCircularSubarray {
     public int maxSubarraySumCircular(int[] nums) {

@@ -12,7 +12,7 @@ package com.interview.tree;
  *
  * https://leetcode.com/problems/inorder-successor-in-bst/
  * 
- * Category: Tricky, Must know
+ * Category: Tricky, Must Do
  * Related Inorder predecessor
  * Status: Done
  */

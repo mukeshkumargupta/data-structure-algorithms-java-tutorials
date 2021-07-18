@@ -4,45 +4,66 @@ import java.util.*;
 
 /**
  * Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+ * https://www.youtube.com/watch?v=f2EfGComRKM&t=622s
  * https://leetcode.com/problems/clone-graph/
+ * Category: Medium
+ * Related: https://leetcode.com/problems/clone-binary-tree-with-random-pointer/ Medium
+ * https://leetcode.com/problems/clone-n-ary-tree/ Medium
  */
 public class CloneGraph {
-
-    class UndirectedGraphNode {
-        int label;
-        List<UndirectedGraphNode> neighbors;
-        UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
-     };
-
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if (node == null) {
-            return null;
+ // Definition for a Node.
+    class Node {
+        public int val;
+        public List<Node> neighbors;
+        public Node() {
+            val = 0;
+            neighbors = new ArrayList<Node>();
         }
-        UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
-        Set<Integer> visited = new HashSet<>();
-        Map<Integer, UndirectedGraphNode> map = new HashMap<>();
-        map.put(clone.label, clone);
-        dfs(node, clone, map, visited);
-        return clone;
+        public Node(int _val) {
+            val = _val;
+            neighbors = new ArrayList<Node>();
+        }
+        public Node(int _val, ArrayList<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
     }
-
-    private void dfs(UndirectedGraphNode current, UndirectedGraphNode clone, Map<Integer, UndirectedGraphNode> map,  Set<Integer> visited) {
-        if (visited.contains(current.label)) {
-            return;
-        }
-        visited.add(current.label);
-        for (UndirectedGraphNode adj : current.neighbors) {
-            if (adj.label != current.label) {
-                UndirectedGraphNode adjClone = map.get(adj.label);
-                if (adjClone == null) {
-                    adjClone = new UndirectedGraphNode(adj.label);
-                    map.put(adjClone.label, adjClone);
-                }
-                clone.neighbors.add(adjClone);
-                dfs(adj, adjClone, map, visited);
-            } else {
-                clone.neighbors.add(clone);
+    private void dfs(Node node,Node  copy, Map<Integer, Node> visited)
+    {
+        visited.put(copy.val, copy);
+        for(Node curr: node.neighbors)
+        {
+            if(!visited.containsKey(curr.val))
+            {
+                Node newnode = new Node(curr.val);
+                copy.neighbors.add(newnode);
+                dfs(curr,newnode,visited);
             }
+            else
+                copy.neighbors.add(visited.get(curr.val));
         }
+    }
+    
+    public Node cloneGraph(Node node) {
+        if(node == null)
+            return null;
+        
+        Map<Integer, Node> visited = new HashMap<>();
+        Node copy = new Node(node.val);
+        visited.put(node.val, copy);
+        //Iterate for all neighbors
+        for(Node curr: node.neighbors)
+        {
+            if(!visited.containsKey(curr.val))
+            {
+                Node newnode = new Node(curr.val);
+                copy.neighbors.add(newnode);
+                dfs(curr,newnode,visited);
+            }
+            else
+                copy.neighbors.add(visited.get(curr.val));
+        }
+        return copy;
+        
     }
 }

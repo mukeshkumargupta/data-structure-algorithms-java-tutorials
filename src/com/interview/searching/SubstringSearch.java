@@ -10,6 +10,7 @@ package com.interview.searching;
  * Space complexity - O(n)
  * Building prefix sub array: https://www.youtube.com/watch?v=KG44VoDtsAA&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=4
  * KMP Search: https://www.youtube.com/watch?v=GTJr8OvyEVQ&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=5
+ * Category: Must Do
  */
 public class SubstringSearch {
 

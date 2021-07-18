@@ -18,7 +18,7 @@ package com.interview.tree;
  * Time complexity is O(n)
  * 
  * Status: Done
- * Category: Easy, Must Know
+ * Category: Easy, Must Do
  */
 public class SameTree {
 

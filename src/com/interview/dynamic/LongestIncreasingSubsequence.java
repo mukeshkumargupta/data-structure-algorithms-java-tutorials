@@ -21,7 +21,7 @@ package com.interview.dynamic;
  * Reference 
  * http://en.wikipedia.org/wiki/Longest_increasing_subsequence
  * http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
- * Category: Must Know, Medium
+ * Category: Must Do, Medium
  * Status: Done
  */
 public class LongestIncreasingSubsequence {

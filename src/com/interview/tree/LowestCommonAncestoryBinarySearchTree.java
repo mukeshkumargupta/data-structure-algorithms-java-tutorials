@@ -11,14 +11,12 @@ package com.interview.tree;
  * 
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * Reference: https://www.youtube.com/watch?v=TIoCCStdiFo
- * Difficulty: Easy
+ * Category: Easy, Must Do
  * Company: Groupon
- * Status: Done
  */
 public class LowestCommonAncestoryBinarySearchTree {
 
     public Node lowestCommonAncestor(Node root, int p, int q) {
-        //I think some case is required like root is null or given two node is not in the bst so run on leetcode 
         if (root.data > Math.max(p, q)) {
             return lowestCommonAncestor(root.left, p, q);
         } else if (root.data < Math.min(p, q)) {

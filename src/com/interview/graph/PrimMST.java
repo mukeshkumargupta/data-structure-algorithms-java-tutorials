@@ -14,6 +14,10 @@ import java.util.*;
  * References
  * https://en.wikipedia.org/wiki/Prim%27s_algorithm
  * CLRS book
+ * Related question
+ * https://leetcode.com/problems/cheapest-flights-within-k-stops/ Medium
+ * https://leetcode.com/problems/min-cost-to-connect-all-points/ Medium
+ * https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/ Hard
  */
 public class PrimMST {
 

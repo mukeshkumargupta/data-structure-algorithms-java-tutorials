@@ -13,14 +13,14 @@ import java.util.List;
  *
  * https://leetcode.com/problems/path-sum/
  * https://leetcode.com/problems/path-sum-ii/ 
- * https://leetcode.com/problems/binary-tree-maximum-path-sum/ Dificult Category  Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
+ * https://leetcode.com/problems/binary-tree-maximum-path-sum/ Difficult Category  Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
  * https://leetcode.com/problems/sum-root-to-leaf-numbers/
  * https://leetcode.com/problems/smallest-string-starting-from-leaf/
  * 
  * This is better explanation: https://www.youtube.com/watch?v=MwLDG-WNOjM
  * Reference: https://www.youtube.com/watch?v=Jg4E4KZstFE
- * Derived question: Find max in paht, min in path, avg in path, sum in path, print sum if sum equal, or avg equal, all element in path, in case of number make number and return maximum of it etc
- * Category: VVImp
+ * Derived question: Find max in path, min in path, avg in path, sum in path, print sum if sum equal, or avg equal, all element in path, in case of number make number and return maximum of it etc
+ * Category: Must Do, VVImp
  * 
  */
 public class PathSum {
@@ -67,7 +67,7 @@ public class PathSum {
     }
     //Reference: https://leetcode.com/problems/sum-root-to-leaf-numbers
     /*
-     * Category: Medium, Must Know
+     * Category: Medium, Must Do
      * Derived, Minum sum , maximum sum, average out of all
      */
     private int sumNumbers(Node root) {

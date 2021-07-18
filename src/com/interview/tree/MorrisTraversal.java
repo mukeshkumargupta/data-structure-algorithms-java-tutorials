@@ -9,7 +9,7 @@ package com.interview.tree;
  * Time complexity O(n)
  * Space complexity O(1)
  * Reference: https://www.youtube.com/watch?v=wGXB9OWhPTg
- * Must Know (VImp)
+ * Must Do (VImp)
  */
 public class MorrisTraversal {
 
