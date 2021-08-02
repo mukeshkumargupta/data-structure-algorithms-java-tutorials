@@ -18,8 +18,8 @@ import java.util.List;
  * S[i+1] then do nothing(resulting in implicit tree)
  * 
  * Suffix Link:
- * For every node with label x@ where x is a single character and @ is possibly empty substring
- * there is another node with label x. This node is suffix link of first node. If @ is
+ * For every TreeNode with label x@ where x is a single character and @ is possibly empty substring
+ * there is another TreeNode with label x. This TreeNode is suffix link of first TreeNode. If @ is
  * empty then suffix link is root.
  * 
  * Trick1
@@ -41,16 +41,16 @@ import java.util.List;
  * Active point always starts from root. Other extension will get active point set up
  * correctly by last extension.
  * 
- * Active node - Node from which active point will start
- * Active Edge - It is used to choose the edge from active node. It has index of character. 
+ * Active TreeNode - TreeNode from which active point will start
+ * Active Edge - It is used to choose the edge from active TreeNode. It has index of character. 
  * Active Length - How far to go on active edge.
  * 
  * Active point rules
  * 1) If rule 3 extension is applied then active length will increment by 1 if active length is not greater then length of path on edge.
- * 2) If rule 3 extension is applied and if active length gets greater than length path of edge then change active node, active edge and active length
+ * 2) If rule 3 extension is applied and if active length gets greater than length path of edge then change active TreeNode, active edge and active length
  * 3) If active length is 0 then always start looking for the character from root.
- * 4) If rule 2 extension is applied and if active node is root then active edge is active edge + 1 and active length is active lenght -1
- * 5) If rule 2 extension is applied and if active node is not root then follow suffix link and make active node as suffix link and do no change 
+ * 4) If rule 2 extension is applied and if active TreeNode is root then active edge is active edge + 1 and active length is active lenght -1
+ * 5) If rule 2 extension is applied and if active TreeNode is not root then follow suffix link and make active TreeNode as suffix link and do no change 
  * anything.
  * 
  * Test cases 
@@ -79,7 +79,7 @@ public class SuffixTree {
         System.out.println(st.validate());
     }
     
-    private SuffixNode root;
+    private SuffixTreeNode root;
     private Active active;
     private int remainingSuffixCount;
     private End end;
@@ -95,7 +95,7 @@ public class SuffixTree {
     }
     
     public void build(){
-        root = SuffixNode.createNode(1, new End(0));
+        root = SuffixTreeNode.createTreeNode(1, new End(0));
         root.index = -1;
         active = new Active(root);
         this.end = new End(-1);
@@ -112,8 +112,8 @@ public class SuffixTree {
     }
     
     private void startPhase(int i){
-        //set lastCreatedInternalNode to null before start of every phase.
-        SuffixNode lastCreatedInternalNode = null;
+        //set lastCreatedInternalTreeNode to null before start of every phase.
+        SuffixTreeNode lastCreatedInternalTreeNode = null;
         //global end for leaf. Does rule 1 extension as per trick 3 by incrementing end.
         end.end++;
         
@@ -124,13 +124,13 @@ public class SuffixTree {
             if(active.activeLength == 0){
                 //if current character from root is not null then increase active length by 1 
                 //and break out of while loop. This is rule 3 extension and trick 2 (show stopper)
-                if(selectNode(i) != null){
-                    active.activeEdge = selectNode(i).start;
+                if(selectTreeNode(i) != null){
+                    active.activeEdge = selectTreeNode(i).start;
                     active.activeLength++;
                     break;
-                } //create a new leaf node with current character from leaf. This is rule 2 extension.
+                } //create a new leaf TreeNode with current character from leaf. This is rule 2 extension.
                 else {
-                    root.child[input[i]] = SuffixNode.createNode(i, end);
+                    root.child[input[i]] = SuffixTreeNode.createTreeNode(i, end);
                     remainingSuffixCount--;
                 }
             } else{
@@ -141,49 +141,49 @@ public class SuffixTree {
                     //if next character is same as current character then do a walk down. This is again a rule 3 extension and
                     //trick 2 (show stopper).
                     if(ch == input[i]){
-                        //if lastCreatedInternalNode is not null means rule 2 extension happened before this. Point suffix link of that node
-                        //to selected node using active point.
-                        //TODO - Could be wrong here. Do we only do this if when walk down goes past a node or we do it every time.
-                        if(lastCreatedInternalNode != null){
-                            lastCreatedInternalNode.suffixLink = selectNode();
+                        //if lastCreatedInternalTreeNode is not null means rule 2 extension happened before this. Point suffix link of that TreeNode
+                        //to selected TreeNode using active point.
+                        //TODO - Could be wrong here. Do we only do this if when walk down goes past a TreeNode or we do it every time.
+                        if(lastCreatedInternalTreeNode != null){
+                            lastCreatedInternalTreeNode.suffixLink = selectTreeNode();
                         }
-                        //walk down and update active node if required as per rules of active node update for rule 3 extension.
+                        //walk down and update active TreeNode if required as per rules of active TreeNode update for rule 3 extension.
                         walkDown(i);
                         break;
                     }
                     else {
-                        //next character is not same as current character so create a new internal node as per 
+                        //next character is not same as current character so create a new internal TreeNode as per 
                         //rule 2 extension.
-                        SuffixNode node = selectNode();
-                        int oldStart = node.start;
-                        node.start = node.start + active.activeLength;
-                        //create new internal node
-                        SuffixNode newInternalNode = SuffixNode.createNode(oldStart, new End(oldStart + active.activeLength - 1));
+                        SuffixTreeNode TreeNode = selectTreeNode();
+                        int oldStart = TreeNode.start;
+                        TreeNode.start = TreeNode.start + active.activeLength;
+                        //create new internal TreeNode
+                        SuffixTreeNode newInternalTreeNode = SuffixTreeNode.createTreeNode(oldStart, new End(oldStart + active.activeLength - 1));
 
-                        //create new leaf node
-                        SuffixNode newLeafNode = SuffixNode.createNode(i, this.end);
+                        //create new leaf TreeNode
+                        SuffixTreeNode newLeafTreeNode = SuffixTreeNode.createTreeNode(i, this.end);
 
-                        //set internal nodes child as old node and new leaf node.
-                        newInternalNode.child[input[newInternalNode.start + active.activeLength]] = node;
-                        newInternalNode.child[input[i]] = newLeafNode;
-                        newInternalNode.index = -1;
-                        active.activeNode.child[input[newInternalNode.start]] = newInternalNode;
+                        //set internal TreeNodes child as old TreeNode and new leaf TreeNode.
+                        newInternalTreeNode.child[input[newInternalTreeNode.start + active.activeLength]] = TreeNode;
+                        newInternalTreeNode.child[input[i]] = newLeafTreeNode;
+                        newInternalTreeNode.index = -1;
+                        active.activeTreeNode.child[input[newInternalTreeNode.start]] = newInternalTreeNode;
 
-                        //if another internal node was created in last extension of this phase then suffix link of that
-                        //node will be this node.
-                        if (lastCreatedInternalNode != null) {
-                            lastCreatedInternalNode.suffixLink = newInternalNode;
+                        //if another internal TreeNode was created in last extension of this phase then suffix link of that
+                        //TreeNode will be this TreeNode.
+                        if (lastCreatedInternalTreeNode != null) {
+                            lastCreatedInternalTreeNode.suffixLink = newInternalTreeNode;
                         }
-                        //set this guy as lastCreatedInternalNode and if new internalNode is created in next extension of this phase
-                        //then point suffix of this node to that node. Meanwhile set suffix of this node to root.
-                        lastCreatedInternalNode = newInternalNode;
-                        newInternalNode.suffixLink = root;
+                        //set this guy as lastCreatedInternalTreeNode and if new internalTreeNode is created in next extension of this phase
+                        //then point suffix of this TreeNode to that TreeNode. Meanwhile set suffix of this TreeNode to root.
+                        lastCreatedInternalTreeNode = newInternalTreeNode;
+                        newInternalTreeNode.suffixLink = root;
 
-                        //if active node is not root then follow suffix link
-                        if(active.activeNode != root){
-                            active.activeNode = active.activeNode.suffixLink;
+                        //if active TreeNode is not root then follow suffix link
+                        if(active.activeTreeNode != root){
+                            active.activeTreeNode = active.activeTreeNode.suffixLink;
                         }
-                        //if active node is root then increase active index by one and decrease active length by 1
+                        //if active TreeNode is root then increase active index by one and decrease active length by 1
                         else{
                             active.activeEdge = active.activeEdge  + 1;
                             active.activeLength--;
@@ -193,19 +193,19 @@ public class SuffixTree {
            
                 } catch (EndOfPathException e) {
 
-                    //this happens when we are looking for new character from end of current path edge. Here we already have internal node so
-                    //we don't have to create new internal node. Just create a leaf node from here and move to suffix new link.
-                    SuffixNode node = selectNode();
-                    node.child[input[i]] = SuffixNode.createNode(i, end);
-                    if (lastCreatedInternalNode != null) {
-                        lastCreatedInternalNode.suffixLink = node;
+                    //this happens when we are looking for new character from end of current path edge. Here we already have internal TreeNode so
+                    //we don't have to create new internal TreeNode. Just create a leaf TreeNode from here and move to suffix new link.
+                    SuffixTreeNode TreeNode = selectTreeNode();
+                    TreeNode.child[input[i]] = SuffixTreeNode.createTreeNode(i, end);
+                    if (lastCreatedInternalTreeNode != null) {
+                        lastCreatedInternalTreeNode.suffixLink = TreeNode;
                     }
-                    lastCreatedInternalNode = node;
-                    //if active node is not root then follow suffix link
-                    if(active.activeNode != root){
-                        active.activeNode = active.activeNode.suffixLink;
+                    lastCreatedInternalTreeNode = TreeNode;
+                    //if active TreeNode is not root then follow suffix link
+                    if(active.activeTreeNode != root){
+                        active.activeTreeNode = active.activeTreeNode.suffixLink;
                     }
-                    //if active node is root then increase active index by one and decrease active length by 1
+                    //if active TreeNode is root then increase active index by one and decrease active length by 1
                     else{
                         active.activeEdge = active.activeEdge + 1;
                         active.activeLength--;
@@ -217,14 +217,14 @@ public class SuffixTree {
     }
     
     private void walkDown(int index){
-        SuffixNode node = selectNode();
+        SuffixTreeNode TreeNode = selectTreeNode();
         //active length is greater than path edge length.
-        //walk past current node so change active point.
+        //walk past current TreeNode so change active point.
         //This is as per rules of walk down for rule 3 extension.
-        if(diff(node) < active.activeLength){
-            active.activeNode = node;
-            active.activeLength = active.activeLength - diff(node);
-            active.activeEdge = node.child[input[index]].start;
+        if(diff(TreeNode) < active.activeLength){
+            active.activeTreeNode = TreeNode;
+            active.activeLength = active.activeLength - diff(TreeNode);
+            active.activeEdge = TreeNode.child[input[index]].start;
         }else{
             active.activeLength++;
         }
@@ -232,19 +232,19 @@ public class SuffixTree {
     
     //find next character to be compared to current phase character.
     private char nextChar(int i) throws EndOfPathException{
-        SuffixNode node = selectNode();
-        if(diff(node) >= active.activeLength){
-            return input[active.activeNode.child[input[active.activeEdge]].start + active.activeLength];
+        SuffixTreeNode TreeNode = selectTreeNode();
+        if(diff(TreeNode) >= active.activeLength){
+            return input[active.activeTreeNode.child[input[active.activeEdge]].start + active.activeLength];
         }
-        if(diff(node) + 1 == active.activeLength ){
-            if(node.child[input[i]] != null){
+        if(diff(TreeNode) + 1 == active.activeLength ){
+            if(TreeNode.child[input[i]] != null){
                 return input[i];
             }
         }
         else{
-            active.activeNode = node;
-            active.activeLength = active.activeLength - diff(node) -1;
-            active.activeEdge = active.activeEdge + diff(node)  +1;
+            active.activeTreeNode = TreeNode;
+            active.activeLength = active.activeLength - diff(TreeNode) -1;
+            active.activeEdge = active.activeEdge + diff(TreeNode)  +1;
             return nextChar(i);
         }
         
@@ -255,20 +255,20 @@ public class SuffixTree {
         
     }
     
-    private SuffixNode selectNode(){
-        return active.activeNode.child[input[active.activeEdge]];
+    private SuffixTreeNode selectTreeNode(){
+        return active.activeTreeNode.child[input[active.activeEdge]];
     }
     
-    private SuffixNode selectNode(int index){
-        return active.activeNode.child[input[index]];
+    private SuffixTreeNode selectTreeNode(int index){
+        return active.activeTreeNode.child[input[index]];
     }
     
     
-    private int diff(SuffixNode node){
-        return node.end.end - node.start;
+    private int diff(SuffixTreeNode TreeNode){
+        return TreeNode.end.end - TreeNode.start;
     }
   
-    private void setIndexUsingDfs(SuffixNode root,int val, int size){
+    private void setIndexUsingDfs(SuffixTreeNode root,int val, int size){
         if(root == null){
             return;
         }
@@ -279,8 +279,8 @@ public class SuffixTree {
             return;
         }
         
-        for(SuffixNode node : root.child){
-            setIndexUsingDfs(node, val, size);
+        for(SuffixTreeNode TreeNode : root.child){
+            setIndexUsingDfs(TreeNode, val, size);
         }
     }
     
@@ -289,12 +289,12 @@ public class SuffixTree {
      */
     public void dfsTraversal(){
         List<Character> result = new ArrayList<>();
-        for(SuffixNode node : root.child){
-            dfsTraversal(node, result);
+        for(SuffixTreeNode TreeNode : root.child){
+            dfsTraversal(TreeNode, result);
         }
     }
     
-    private void dfsTraversal(SuffixNode root, List<Character> result){
+    private void dfsTraversal(SuffixTreeNode root, List<Character> result){
         if(root == null){
             return;
         }
@@ -314,8 +314,8 @@ public class SuffixTree {
             result.add(input[i]);
         }
         
-        for(SuffixNode node : root.child){
-            dfsTraversal(node, result);
+        for(SuffixTreeNode TreeNode : root.child){
+            dfsTraversal(TreeNode, result);
         }
         
         for(int i=root.start; i <= root.end.end; i++){
@@ -325,9 +325,9 @@ public class SuffixTree {
     }
     
     /**
-     * Do validation of the tree by comparing all suffixes and their index at leaf node.
+     * Do validation of the tree by comparing all suffixes and their index at leaf TreeNode.
      */
-    private boolean validate(SuffixNode root, char[] input, int index, int curr){
+    private boolean validate(SuffixTreeNode root, char[] input, int index, int curr){
         if(root == null){
             System.out.println("Failed at " + curr + " for index " + index);
             return false;
@@ -346,21 +346,21 @@ public class SuffixTree {
             return false;        
         }
         
-        SuffixNode node = root.child[input[curr]];
-        if(node == null){
+        SuffixTreeNode TreeNode = root.child[input[curr]];
+        if(TreeNode == null){
             System.out.println("Failed at " + curr + " for index " + index);
             return false;
         }
         int j = 0;
-        for(int i=node.start ; i <= node.end.end; i++){
+        for(int i=TreeNode.start ; i <= TreeNode.end.end; i++){
             if(input[curr+j] != input[i] ){
                 System.out.println("Mismatch found " + input[curr+j] + " " + input[i]);
                 return false;
             }
             j++;
         }
-        curr += node.end.end - node.start + 1;
-        return validate(node, input, index, curr);
+        curr += TreeNode.end.end - TreeNode.start + 1;
+        return validate(TreeNode, input, index, curr);
     }
     
     public boolean validate(){
@@ -374,38 +374,38 @@ public class SuffixTree {
     }
 }
 
-class SuffixNode{
+class SuffixTreeNode{
     
-    private SuffixNode(){
+    private SuffixTreeNode(){
     }
     
     private static final int TOTAL = 256;
-    SuffixNode[] child = new SuffixNode[TOTAL];
+    SuffixTreeNode[] child = new SuffixTreeNode[TOTAL];
     
     int start;
     End end;
     int index;
     
-    SuffixNode suffixLink;
+    SuffixTreeNode suffixLink;
     
-    public static SuffixNode createNode(int start, End end){
-        SuffixNode node = new SuffixNode();
-        node.start = start;
-        node.end = end;
-        return node;
+    public static SuffixTreeNode createTreeNode(int start, End end){
+        SuffixTreeNode TreeNode = new SuffixTreeNode();
+        TreeNode.start = start;
+        TreeNode.end = end;
+        return TreeNode;
     }
 
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         int i=0;
-        for(SuffixNode node : child){
-            if(node != null){
+        for(SuffixTreeNode TreeNode : child){
+            if(TreeNode != null){
                 buffer.append((char)i + " ");
             }
             i++;
         }
-        return "SuffixNode [start=" + start + "]" + " " + buffer.toString();
+        return "SuffixTreeNode [start=" + start + "]" + " " + buffer.toString();
     }
  }
 
@@ -417,20 +417,20 @@ class End{
 }
 
 class Active{
-    Active(SuffixNode node){
+    Active(SuffixTreeNode TreeNode){
         activeLength = 0;
-        activeNode = node;
+        activeTreeNode = TreeNode;
         activeEdge = -1;
     }
     
     @Override
     public String toString() {
         
-        return "Active [activeNode=" + activeNode + ", activeIndex="
+        return "Active [activeTreeNode=" + activeTreeNode + ", activeIndex="
                 + activeEdge + ", activeLength=" + activeLength + "]";
     }
 
-    SuffixNode activeNode;
+    SuffixTreeNode activeTreeNode;
     int activeEdge;
     int activeLength;
 }

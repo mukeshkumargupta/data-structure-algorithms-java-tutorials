@@ -7,14 +7,14 @@ package com.interview.tree;
 public class BTree {
     private BTreeNode root = null;
     private static int T = 2;
-    public void insert(int data){
+    public void insert(int val){
         if(root == null){
-            root = BTreeNode.newNode(data);
+            root = BTreeNode.newTreeNode(val);
             return;
         }
-        SplitResult sr = insert(root,data);
+        SplitResult sr = insert(root,val);
         if(sr != null){
-            BTreeNode newRoot = BTreeNode.newNode();
+            BTreeNode newRoot = BTreeNode.newTreeNode();
             newRoot.n = 1;
             newRoot.isLeaf = false;
             newRoot.keys[0] = sr.c;
@@ -24,38 +24,38 @@ public class BTree {
         }
     }
     
-    public boolean search(int data){
-        return search(root,data);
+    public boolean search(int val){
+        return search(root,val);
     }
     
-    public boolean search(BTreeNode root, int data){
+    public boolean search(BTreeNode root, int val){
         int i =0;
-        while(i < root.n && root.keys[i] < data){
+        while(i < root.n && root.keys[i] < val){
             i++;
         }
-        if(i < root.n && root.keys[i] == data){
+        if(i < root.n && root.keys[i] == val){
             return true;
         }
         if(root.isLeaf){
             return false;
         }
-        return search(root.child[i],data);
+        return search(root.child[i],val);
     }
     
-    private SplitResult insert(BTreeNode root,int data){
+    private SplitResult insert(BTreeNode root,int val){
         if(root.isLeaf){
             if(!root.isFull()){
-                root.insertKey(data, null, null);
+                root.insertKey(val, null, null);
                 return null;
             }else{
-                SplitResult sr = splitNode(root,data,null,null);
+                SplitResult sr = splitTreeNode(root,val,null,null);
                 return sr;
             }
         }else{
             int i=0;
             for(; i < root.n; i++){
-                if(data <= root.keys[i]){
-                    SplitResult sr = insert(root.child[i],data);
+                if(val <= root.keys[i]){
+                    SplitResult sr = insert(root.child[i],val);
                     if(sr == null){
                         return null;
                     }else{
@@ -63,14 +63,14 @@ public class BTree {
                             root.insertKey(sr.c, sr.r1, sr.r2);
                             return null;
                         }else{
-                            SplitResult sr1 = splitNode(root,sr.c,sr.r1,sr.r2);
+                            SplitResult sr1 = splitTreeNode(root,sr.c,sr.r1,sr.r2);
                             return sr1;
                         }
                     }
                 }
             }
             if(i == root.n){
-                SplitResult sr = insert(root.child[i],data);
+                SplitResult sr = insert(root.child[i],val);
                 if(sr == null){
                     return null;
                 }else{
@@ -78,7 +78,7 @@ public class BTree {
                         root.insertKey(sr.c, sr.r1, sr.r2);
                         return null;
                     }else{
-                        SplitResult sr1 = splitNode(root,sr.c,sr.r1,sr.r2);
+                        SplitResult sr1 = splitTreeNode(root,sr.c,sr.r1,sr.r2);
                         return sr1;
                     }
                 }
@@ -87,33 +87,33 @@ public class BTree {
         return null;
     }
     
-    private SplitResult splitNode(BTreeNode node,int data, BTreeNode nr1, BTreeNode nr2){
-        int c = node.keys[node.n/2];
-        BTreeNode r1 = BTreeNode.newNode();
-        BTreeNode r2 = BTreeNode.newNode();
-        r1.n = node.n/2;
-        r2.n = node.n - node.n/2-1;
-        if(!node.isLeaf){
+    private SplitResult splitTreeNode(BTreeNode TreeNode,int val, BTreeNode nr1, BTreeNode nr2){
+        int c = TreeNode.keys[TreeNode.n/2];
+        BTreeNode r1 = BTreeNode.newTreeNode();
+        BTreeNode r2 = BTreeNode.newTreeNode();
+        r1.n = TreeNode.n/2;
+        r2.n = TreeNode.n - TreeNode.n/2-1;
+        if(!TreeNode.isLeaf){
             r1.isLeaf = false;
             r2.isLeaf = false;
         }
         int i=0;
-        for(; i < node.n/2; i++){
-            r1.keys[i] = node.keys[i];
-            r1.child[i] = node.child[i];
+        for(; i < TreeNode.n/2; i++){
+            r1.keys[i] = TreeNode.keys[i];
+            r1.child[i] = TreeNode.child[i];
         }
-        r1.child[i] = node.child[i];
-        i = node.n/2 + 1;
+        r1.child[i] = TreeNode.child[i];
+        i = TreeNode.n/2 + 1;
         int j=0;
-        for(;i < node.n; i++,j++){
-            r2.keys[j] = node.keys[i];
-            r2.child[j] = node.child[i];
+        for(;i < TreeNode.n; i++,j++){
+            r2.keys[j] = TreeNode.keys[i];
+            r2.child[j] = TreeNode.child[i];
         }
-        r2.child[j] = node.child[i];
-        if(data < c){
-            r1.insertKey(data, nr1, nr2);
+        r2.child[j] = TreeNode.child[i];
+        if(val < c){
+            r1.insertKey(val, nr1, nr2);
         }else{
-            r2.insertKey(data, nr1, nr2);
+            r2.insertKey(val, nr1, nr2);
         }
         SplitResult sr = new SplitResult();
         sr.c = c;
@@ -150,13 +150,13 @@ public class BTree {
         int keys[] = new int[2*T-1];
         boolean isLeaf;
         
-        public void insertKey(int data,BTreeNode r1,BTreeNode r2){
+        public void insertKey(int val,BTreeNode r1,BTreeNode r2){
             int i = n-1;
-            while(i >=0 && data < keys[i]){
+            while(i >=0 && val < keys[i]){
                 keys[i+1] = keys[i];
                 i--;
             }
-            keys[i+1] = data;
+            keys[i+1] = val;
             int j = n;
             while(j > i+1){
                 child[j+1] = child[j];
@@ -167,19 +167,19 @@ public class BTree {
             n++;
         }
         
-        public static BTreeNode newNode(int data){
-            BTreeNode node = new BTreeNode();
-            node.keys[0] = data;
-            node.isLeaf = true;
-            node.n = 1;
-            return node;
+        public static BTreeNode newTreeNode(int val){
+            BTreeNode TreeNode = new BTreeNode();
+            TreeNode.keys[0] = val;
+            TreeNode.isLeaf = true;
+            TreeNode.n = 1;
+            return TreeNode;
         }
         
-        public static BTreeNode newNode(){
-            BTreeNode node = new BTreeNode();
-            node.isLeaf = true;
-            node.n = 0;
-            return node;
+        public static BTreeNode newTreeNode(){
+            BTreeNode TreeNode = new BTreeNode();
+            TreeNode.isLeaf = true;
+            TreeNode.n = 0;
+            return TreeNode;
         }
         
         public boolean isFull(){

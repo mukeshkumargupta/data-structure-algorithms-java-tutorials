@@ -7,7 +7,7 @@ package com.interview.tree;
  * Video: https://www.youtube.com/watch?v=UyxnGWMvxwc&t=621s
  */
 /**
- * Definition for a binary tree node.
+ * Definition for a binary tree TreeNode.
  * public class TreeNode {
  *     int val;
  *     TreeNode left;

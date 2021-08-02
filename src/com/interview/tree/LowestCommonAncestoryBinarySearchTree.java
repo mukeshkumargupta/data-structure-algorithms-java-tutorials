@@ -16,10 +16,10 @@ package com.interview.tree;
  */
 public class LowestCommonAncestoryBinarySearchTree {
 
-    public Node lowestCommonAncestor(Node root, int p, int q) {
-        if (root.data > Math.max(p, q)) {
+    public TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
+        if (root.val > Math.max(p, q)) {
             return lowestCommonAncestor(root.left, p, q);
-        } else if (root.data < Math.min(p, q)) {
+        } else if (root.val < Math.min(p, q)) {
             return lowestCommonAncestor(root.right, p, q);
         } else {
             return root;

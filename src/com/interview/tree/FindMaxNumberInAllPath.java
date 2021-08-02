@@ -5,14 +5,14 @@ package com.interview.tree;
 public class FindMaxNumberInAllPath {
     
     long ans =0;
-    void dfs(Node root,long val)
+    void dfs(TreeNode root,long val)
     {
         if(root == null)
             return;
         
-        val = 10*val + root.data;
+        val = 10*val + root.val;
 
-        //Leaf node
+        //Leaf TreeNode
         if(root.left == null && root.right == null)
         {
             if (ans < val) {
@@ -24,7 +24,7 @@ public class FindMaxNumberInAllPath {
         dfs(root.left,val);
         dfs(root.right,val);
     }
-public long maximumnSumOfPath(Node root) {
+public long maximumnSumOfPath(TreeNode root) {
         if(root == null)
             return 0;
         
@@ -37,7 +37,7 @@ public long maximumnSumOfPath(Node root) {
         int inorder[] = {4,2,5,1,6,3};
         int preorder[] = {1,2,4,5,3,6};
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         System.out.println();

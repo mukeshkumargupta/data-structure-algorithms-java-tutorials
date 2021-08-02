@@ -12,7 +12,7 @@ public class VerticalOrderTest {
     @Test
     public void testDifferentCases() {
         SerializeDeserializeBinaryTree serializeDeserializeBinaryTree = new SerializeDeserializeBinaryTree();
-        Node root = serializeDeserializeBinaryTree.deserializeLevelOrder("5,1,6,%,3,%,%,2,4");
+        TreeNode root = serializeDeserializeBinaryTree.deserializeLevelOrder("5,1,6,%,3,%,%,2,4");
         VerticalOrder verticalOrder = new VerticalOrder();
         List<List<Integer>> result = verticalOrder.verticalOrder(root);
         List<List<Integer>> expected = new ArrayList<>();

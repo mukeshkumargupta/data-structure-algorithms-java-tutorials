@@ -25,13 +25,13 @@ public class Flatten2DList implements Iterator<Integer> {
         if (!hasNext()) {
             throw new IllegalArgumentException();
         }
-        int data = vector.get(currentList).get(currentPos);
+        int val = vector.get(currentList).get(currentPos);
         currentPos++;
         if (currentPos == vector.get(currentList).size()) {
             currentPos = 0;
             currentList++;
         }
-        return data;
+        return val;
     }
 
     @Override

@@ -28,36 +28,36 @@ public class PathSum {
      * Reference: https://leetcode.com/problems/path-sum-ii/
      * Category: Medium
      */
-    public List<List<Integer>> pathSum(Node root, int sum) {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
         pathSumUtil(root, sum, result, current);
         return result;
     }
 
-    private void pathSumUtil(Node root, int sum, List<List<Integer>> result, List<Integer> currentPath) {
+    private void pathSumUtil(TreeNode root, int sum, List<List<Integer>> result, List<Integer> currentPath) {
         if (root == null) {
             return;
         }
         if (root.left == null && root.right == null) {
-            if (root.data == sum) {
-                currentPath.add(root.data);
+            if (root.val == sum) {
+                currentPath.add(root.val);
                 result.add(new ArrayList<>(currentPath));
                 currentPath.remove(currentPath.size() - 1);
             }
             return;
         }
-        currentPath.add(root.data);
-        pathSumUtil(root.left, sum - root.data, result, currentPath);
-        pathSumUtil(root.right, sum - root.data, result, currentPath);
+        currentPath.add(root.val);
+        pathSumUtil(root.left, sum - root.val, result, currentPath);
+        pathSumUtil(root.right, sum - root.val, result, currentPath);
         currentPath.remove(currentPath.size() - 1);
     }
     
-    private void sumNumbersUtil(Node root, int number, int[] sum) {
+    private void sumNumbersUtil(TreeNode root, int number, int[] sum) {
         if (root == null) {
             return;
         }
-        number = number*10 + root.data;
+        number = number*10 + root.val;
         if (root.left == null && root.right == null) {
             sum[0]+= number; 
             return;
@@ -70,7 +70,7 @@ public class PathSum {
      * Category: Medium, Must Do
      * Derived, Minum sum , maximum sum, average out of all
      */
-    private int sumNumbers(Node root) {
+    private int sumNumbers(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -83,13 +83,13 @@ public class PathSum {
      * Reference: https://leetcode.com/problems/path-sum/
      * Category; Easy
      */
-    public boolean hasPathSum(Node root, int sum) {
+    public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) {
             return false;
         }
         if (root.left == null && root.right == null) {
-            return root.data == sum;
+            return root.val == sum;
         }
-        return hasPathSum(root.left, sum - root.data) || hasPathSum(root.right, sum - root.data);
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 }

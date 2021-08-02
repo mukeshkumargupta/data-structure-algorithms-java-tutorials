@@ -5,64 +5,64 @@ package com.interview.trie;
  */
 public class TernaryTree {
 
-    private Node root = null;
+    private TreeNode root = null;
     
-    class Node{
-        char data;
+    class TreeNode{
+        char val;
         boolean isLeaf;
-        Node left, right, eq;
+        TreeNode left, right, eq;
     }
     
-    public void insert(String data){
-        Node root = insert(this.root,data,0);
+    public void insert(String val){
+        TreeNode root = insert(this.root,val,0);
         this.root = root;
     }
     
-    public boolean search(String data){
-        return search(root,data,0);
+    public boolean search(String val){
+        return search(root,val,0);
     }
     
-    private boolean search(Node root,String data,int pos){
-        if(pos == data.length()){
+    private boolean search(TreeNode root,String val,int pos){
+        if(pos == val.length()){
             return true;
         }
         if(root == null){
             return false;
         }
-        if(root.data == data.charAt(pos)){
-            boolean result = search(root.eq,data,pos+1);
-            if(pos == data.length() -1){
+        if(root.val == val.charAt(pos)){
+            boolean result = search(root.eq,val,pos+1);
+            if(pos == val.length() -1){
                 return result && root.isLeaf;
             }
             return result;
-        }else if(root.data < data.charAt(pos)){
-            return search(root.right,data,pos);
+        }else if(root.val < val.charAt(pos)){
+            return search(root.right,val,pos);
         }else{
-            return search(root.left,data,pos);
+            return search(root.left,val,pos);
         }
     }
-    private Node insert(Node root,String data,int pos){
-        if(pos == data.length()){
+    private TreeNode insert(TreeNode root,String val,int pos){
+        if(pos == val.length()){
             return root;
         }
         if(root == null){
-            root = new Node();
-            root.data = data.charAt(pos);
-            root.eq = insert(root.eq,data,pos+1);
-            if(pos == (data.length()-1)){
+            root = new TreeNode();
+            root.val = val.charAt(pos);
+            root.eq = insert(root.eq,val,pos+1);
+            if(pos == (val.length()-1)){
                 root.isLeaf = true;
             }
         }else{
-            if(root.data == data.charAt(pos)){
-                root.eq = insert(root.eq,data,pos+1);
-                if(pos == (data.length()-1)){
+            if(root.val == val.charAt(pos)){
+                root.eq = insert(root.eq,val,pos+1);
+                if(pos == (val.length()-1)){
                     root.isLeaf = true;
                 }
             }
-            else if(root.data < data.charAt(pos)){
-                root.right = insert(root.right,data,pos);
+            else if(root.val < val.charAt(pos)){
+                root.right = insert(root.right,val,pos);
             }else{
-                root.left = insert(root.left,data,pos);
+                root.left = insert(root.left,val,pos);
             }
         }
         return root;

@@ -2,6 +2,7 @@ package com.interview.dynamic;
 
 /**
  * http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
+ * Related Question: https://leetcode.com/problems/minimum-cost-to-cut-a-stick/ Hard
  * Reference: https://www.youtube.com/watch?v=IRwVmTmN6go
  * Category: Must Do
  */

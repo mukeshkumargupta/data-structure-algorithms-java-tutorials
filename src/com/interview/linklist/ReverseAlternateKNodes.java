@@ -1,15 +1,15 @@
 package com.interview.linklist;
 
 /**
- * http://www.geeksforgeeks.org/reverse-alternate-k-nodes-in-a-singly-linked-list/
+ * http://www.geeksforgeeks.org/reverse-alternate-k-TreeNodes-in-a-singly-linked-list/
  * Test case
  * k is even odd
- * number of nodes are even odd
+ * number of TreeNodes are even odd
  * k is less than or equal to 1.
  */
-public class ReverseAlternateKNodes {
+public class ReverseAlternateKTreeNodes {
 
-    public Node reverse(Node head,int k,boolean reverse){
+    public TreeNode reverse(TreeNode head,int k,boolean reverse){
         if(k <= 1){
             return head;
         }
@@ -18,9 +18,9 @@ public class ReverseAlternateKNodes {
         }
         if(reverse){
             int i =0;
-            Node front = null;
-            Node middle = head;
-            Node end = null;
+            TreeNode front = null;
+            TreeNode middle = head;
+            TreeNode end = null;
             while(middle != null && i < k){
                 end = middle.next;
                 middle.next = front;
@@ -32,7 +32,7 @@ public class ReverseAlternateKNodes {
             head = front;
         }else{
             int i=0;
-            Node temp = head;
+            TreeNode temp = head;
             while(i < k-1 && head != null){
                 head = head.next;
                 i++;
@@ -47,17 +47,17 @@ public class ReverseAlternateKNodes {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(3, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(7, head);
-        head = ll.addNode(8, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(3, head);
+        head = ll.addTreeNode(4, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(6, head);
+        head = ll.addTreeNode(7, head);
+        head = ll.addTreeNode(8, head);
         
-        ReverseAlternateKNodes ra = new ReverseAlternateKNodes();
+        ReverseAlternateKTreeNodes ra = new ReverseAlternateKTreeNodes();
         head = ra.reverse(head, 3, false);
         ll.printList(head);
     }

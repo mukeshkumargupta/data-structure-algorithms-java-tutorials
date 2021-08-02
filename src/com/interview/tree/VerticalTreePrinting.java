@@ -10,50 +10,50 @@ import java.util.TreeMap;
  */
 public class VerticalTreePrinting {
 
-    public void printVertical(Node root){
-        Map<Integer,List<Node>> map = new TreeMap<Integer,List<Node>>();
+    public void printVertical(TreeNode root){
+        Map<Integer,List<TreeNode>> map = new TreeMap<Integer,List<TreeNode>>();
         populateMap(root,map,0);
         printLevel(map);
     }
     
-    private void printLevel(Map<Integer,List<Node>> map){
+    private void printLevel(Map<Integer,List<TreeNode>> map){
         for(Integer key : map.keySet()){
-            List<Node> listNodes = map.get(key);
-            for(Node n : listNodes){
-                System.out.print(n.data + " ");
+            List<TreeNode> listTreeNodes = map.get(key);
+            for(TreeNode n : listTreeNodes){
+                System.out.print(n.val + " ");
             }
             System.out.println();
         }
     }
     
-    private void populateMap(Node root, Map<Integer,List<Node>> map,int level){
+    private void populateMap(TreeNode root, Map<Integer,List<TreeNode>> map,int level){
         if(root == null){
             return;
         }
-        List<Node> listNodes = null;
+        List<TreeNode> listTreeNodes = null;
         if(map.containsKey(level)){
-            listNodes = map.get(level);
+            listTreeNodes = map.get(level);
         }else{
-            listNodes = new ArrayList<Node>();
-            map.put(level, listNodes);
+            listTreeNodes = new ArrayList<TreeNode>();
+            map.put(level, listTreeNodes);
         }
-        listNodes.add(root);
+        listTreeNodes.add(root);
         populateMap(root.left,map,level-1);
         populateMap(root.right,map,level+1);
     }
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(3, head);
-        head = bt.addNode(-6, head);
-        head = bt.addNode(-7, head);
-        head = bt.addNode(2, head);
-        head = bt.addNode(9, head);
-        head = bt.addNode(6, head);
-        head = bt.addNode(11, head);
-        head = bt.addNode(13, head);
-        head = bt.addNode(12, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(3, head);
+        head = bt.addTreeNode(-6, head);
+        head = bt.addTreeNode(-7, head);
+        head = bt.addTreeNode(2, head);
+        head = bt.addTreeNode(9, head);
+        head = bt.addTreeNode(6, head);
+        head = bt.addTreeNode(11, head);
+        head = bt.addTreeNode(13, head);
+        head = bt.addTreeNode(12, head);
         VerticalTreePrinting vtp = new VerticalTreePrinting();
         vtp.printVertical(head);
     }

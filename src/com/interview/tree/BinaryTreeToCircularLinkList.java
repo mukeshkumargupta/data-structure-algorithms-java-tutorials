@@ -8,7 +8,7 @@ package com.interview.tree;
  */
 public class BinaryTreeToCircularLinkList {
 
-    public Node convert(Node root){
+    public TreeNode convert(TreeNode root){
         if(root == null){
             return null;
         }
@@ -19,8 +19,8 @@ public class BinaryTreeToCircularLinkList {
             return root;
         }
         
-        Node left = convert(root.left);
-        Node right = convert(root.right);
+        TreeNode left = convert(root.left);
+        TreeNode right = convert(root.right);
     
         root.left = root;
         root.right = root;
@@ -30,7 +30,7 @@ public class BinaryTreeToCircularLinkList {
         return left;
     }
     
-    private Node join(Node r1, Node r2){
+    private TreeNode join(TreeNode r1, TreeNode r2){
 
         if(r1 == null){
             return r2;
@@ -38,7 +38,7 @@ public class BinaryTreeToCircularLinkList {
         if(r2 == null){
             return r1;
         }
-        Node t1 = r2.left;
+        TreeNode t1 = r2.left;
         
         r1.left.right = r2;
         r2.left = r1.left;
@@ -47,16 +47,16 @@ public class BinaryTreeToCircularLinkList {
         return r1;
     }
     
-    private void print(Node root){
-        Node temp = root;
+    private void print(TreeNode root){
+        TreeNode temp = root;
         do{
-            System.out.println(temp.data);
+            System.out.println(temp.val);
             temp = temp.right;
         }while(temp != root);
 
         System.out.println();
         do{
-            System.out.println(temp.data);
+            System.out.println(temp.val);
             temp = temp.left;
         }while(temp != root);
     }
@@ -64,13 +64,13 @@ public class BinaryTreeToCircularLinkList {
     public static void main(String args[]){
         BinaryTreeToCircularLinkList btc = new BinaryTreeToCircularLinkList();
         BinaryTree bt = new BinaryTree();
-        Node root = null;
-        root = bt.addNode(10, root);
-        root = bt.addNode(3, root);
-        root = bt.addNode(-1, root);
-        root = bt.addNode(8, root);
-        root = bt.addNode(-6, root);
-        root = bt.addNode(13, root);
+        TreeNode root = null;
+        root = bt.addTreeNode(10, root);
+        root = bt.addTreeNode(3, root);
+        root = bt.addTreeNode(-1, root);
+        root = bt.addTreeNode(8, root);
+        root = bt.addTreeNode(-6, root);
+        root = bt.addTreeNode(13, root);
         root = btc.convert(root);
         btc.print(root);
     }

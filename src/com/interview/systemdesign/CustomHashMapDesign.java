@@ -73,18 +73,18 @@ public class CustomHashMapDesign {
             if(table[index] == null){
                 table[index] = newEntry;
             } else {
-                Entry<K, V> previousNode = null;
-                Entry<K, V> currentNode = table[index];
-                while(currentNode != null){
-                    if(currentNode.getKey().equals(key)){
-                        currentNode.setValue(value);
+                Entry<K, V> previousTreeNode = null;
+                Entry<K, V> currentTreeNode = table[index];
+                while(currentTreeNode != null){
+                    if(currentTreeNode.getKey().equals(key)){
+                        currentTreeNode.setValue(value);
                         break;
                     }
-                    previousNode = currentNode;
-                    currentNode = currentNode.getNext();
+                    previousTreeNode = currentTreeNode;
+                    currentTreeNode = currentTreeNode.getNext();
                 }
-                if(previousNode != null)
-                    previousNode.setNext(newEntry);
+                if(previousTreeNode != null)
+                    previousTreeNode.setNext(newEntry);
                 
             }
         }
@@ -109,12 +109,12 @@ public class CustomHashMapDesign {
             Entry entry = table[index];
             while (entry != null){
                 if(entry.getKey().equals(key)){
-                    if(previous == null){//Whenever, the previous node is null means it is the first element of the list.
+                    if(previous == null){//Whenever, the previous TreeNode is null means it is the first element of the list.
                         entry = entry.getNext();
                         table[index] = entry;
                         return;
                     } else {
-                        previous.setNext(entry.getNext());//assign the next node of the current node to the next node of previous node and hence the current matched node will be removed.
+                        previous.setNext(entry.getNext());//assign the next TreeNode of the current TreeNode to the next TreeNode of previous TreeNode and hence the current matched TreeNode will be removed.
                         return;
                     }
                 }
@@ -126,10 +126,10 @@ public class CustomHashMapDesign {
         public void display(){
             for(int i = 0; i < capacity; i++){
                 if(table[i] != null){
-                    Entry<K, V> currentNode = table[i];
-                    while (currentNode != null){
-                        System.out.println(String.format("Key is %s and value is %s", currentNode.getKey(), currentNode.getValue()));
-                        currentNode = currentNode.getNext();
+                    Entry<K, V> currentTreeNode = table[i];
+                    while (currentTreeNode != null){
+                        System.out.println(String.format("Key is %s and value is %s", currentTreeNode.getKey(), currentTreeNode.getValue()));
+                        currentTreeNode = currentTreeNode.getNext();
                     }
                 }
             }

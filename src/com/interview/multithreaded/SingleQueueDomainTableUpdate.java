@@ -7,13 +7,13 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Given a queue which gets millions of messages. Message is of form <Domain,Update>.
  * You have 10000 domain tables. Also you have 50 worker threads. You can only get 
- * data from front of the queue. Threads get data from the front and then update the 
+ * val from front of the queue. Threads get val from the front and then update the 
  * domain table. If work is being done on domain table you cannot apply another update.
  * Update should also be applied sequentially. So an update coming later on should not
  * be applied before an update coming sooner.
  */
 
-class Data{
+class val{
     private String domain;
     private String update;
     public String getUpdate() {
@@ -31,52 +31,52 @@ interface DomainLock{
 }
 
 class ThreadPoolManager{
-    private ConcurrentMap<String, Queue<Data>> domainQueueMap = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, Queue<val>> domainQueueMap = new ConcurrentHashMap<>();
     public ThreadPoolManager(int numOfThreads){
         //initialize numOfThreads of type ThreadWorker;
     }
 }
 
-interface DatabaseLayer{
+interface valbaseLayer{
     public void applyUpdates(String domain,String update);
 }
 
 class ThreadWorker implements Runnable{
 
     private QueueManager mgr;
-    private ConcurrentMap<String,Queue<Data>> domainQueueMap;
+    private ConcurrentMap<String,Queue<val>> domainQueueMap;
     private DomainLock domainLock;
-    private DatabaseLayer databaseLayer;
+    private valbaseLayer valbaseLayer;
     public ThreadWorker(QueueManager mgr){
         this.mgr = mgr;
     }
     @Override
     public void run() {
         while(true){
-            Pair p = mgr.getDataFromFrontOfQueue(domainLock);
+            Pair p = mgr.getvalFromFrontOfQueue(domainLock);
             if(p.yourLock){
-                Queue<Data> queue = domainQueueMap.get(p.data.getDomain());
+                Queue<val> queue = domainQueueMap.get(p.val.getDomain());
                 if(queue != null){
                     while(queue.size() > 0){
-                        Data data = queue.poll();
-                        databaseLayer.applyUpdates(data.getDomain(), data.getUpdate());
+                        val val = queue.poll();
+                        valbaseLayer.applyUpdates(val.getDomain(), val.getUpdate());
                     }
                 }
-                databaseLayer.applyUpdates(p.data.getDomain(), p.data.getUpdate());
-                queue = domainQueueMap.get(p.data.getDomain());
+                valbaseLayer.applyUpdates(p.val.getDomain(), p.val.getUpdate());
+                queue = domainQueueMap.get(p.val.getDomain());
                 if(queue != null){
                     while(queue.size() > 0){
-                        Data data = queue.poll();
-                        databaseLayer.applyUpdates(data.getDomain(), data.getUpdate());
+                        val val = queue.poll();
+                        valbaseLayer.applyUpdates(val.getDomain(), val.getUpdate());
                     }
                 }
-                domainLock.releaseLock(p.data.getDomain());
+                domainLock.releaseLock(p.val.getDomain());
                 //check if queue is not empty
                 //if queue is not empty try to acquire lock again
             }else{
-                if(domainQueueMap.containsKey(p.data.getDomain())){
-                    Queue<Data> queue = domainQueueMap.get(p.data.getDomain());
-                    queue.offer(p.data);
+                if(domainQueueMap.containsKey(p.val.getDomain())){
+                    Queue<val> queue = domainQueueMap.get(p.val.getDomain());
+                    queue.offer(p.val);
                 }
             }
         }
@@ -85,12 +85,12 @@ class ThreadWorker implements Runnable{
 }
 
 interface QueueHandle{
-    //this is a blocking call. If there is no data in the queue it just waits for data to be available
-    public Data getNextData();
+    //this is a blocking call. If there is no val in the queue it just waits for val to be available
+    public val getNextval();
 }
 
 class Pair{
-    Data data;
+    val val;
     boolean yourLock;
 }
 
@@ -100,16 +100,16 @@ class QueueManager{
         this.queueHandle = queueHandle;
     }
     
-    public synchronized Pair getDataFromFrontOfQueue(DomainLock domainLock){
-        Data data = queueHandle.getNextData();
+    public synchronized Pair getvalFromFrontOfQueue(DomainLock domainLock){
+        val val = queueHandle.getNextval();
         boolean yourLock = false;
         //if lock for table does not exists or if it is false lock the table
-        if(!domainLock.isLocked(data.getDomain())){
-            domainLock.acquireLock(data.getDomain());
+        if(!domainLock.isLocked(val.getDomain())){
+            domainLock.acquireLock(val.getDomain());
             yourLock = true;
         }
         Pair p = new Pair();
-        p.data = data;
+        p.val = val;
         p.yourLock = yourLock;
         return p;
     }

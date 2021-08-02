@@ -15,9 +15,9 @@ import java.util.LinkedList;
  */
 public class PrintTwoBSTInSortedForm {
 
-    public void print(Node root1, Node root2){
-        Deque<Node> s1 = new LinkedList<Node>();
-        Deque<Node> s2 = new LinkedList<Node>();
+    public void print(TreeNode root1, TreeNode root2){
+        Deque<TreeNode> s1 = new LinkedList<TreeNode>();
+        Deque<TreeNode> s2 = new LinkedList<TreeNode>();
         
         while(true){
             if(root1 != null){
@@ -37,25 +37,25 @@ public class PrintTwoBSTInSortedForm {
                 root2 = s2.peekFirst();
             }
             if(root1 != null && root2 != null){
-                if(root1.data <= root2.data){
-                    System.out.println(root1.data);
+                if(root1.val <= root2.val){
+                    System.out.println(root1.val);
                     root1 = s1.pollFirst();
                     root1 = root1.right;
                     root2 = null;
                 }else{
-                    System.out.println(root2.data);
+                    System.out.println(root2.val);
                     root2 = s2.pollFirst();
                     root2 = root2.right;
                     root1 = null;
                 }
             }
             else if(root1 != null){
-                System.out.println(root1.data);
+                System.out.println(root1.val);
                 root1 = s1.pollFirst();
                 root1 = root1.right;
             
             }else if(root2 != null){
-                System.out.println(root2.data);
+                System.out.println(root2.val);
                 root2 = s2.pollFirst();
                 root2 = root2.right;
             }
@@ -68,22 +68,22 @@ public class PrintTwoBSTInSortedForm {
     public static void main(String args[]){
         PrintTwoBSTInSortedForm ptb = new PrintTwoBSTInSortedForm();
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(20, head);
-        head = bt.addNode(-1, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(-1, head);
     
-        Node head1 = null;
-        head1 = bt.addNode(-4, head1);
-        head1 = bt.addNode(-3, head1);
-        head1 = bt.addNode(6, head1);
-        head1 = bt.addNode(11, head1);
-        head1 = bt.addNode(22, head1);
-        head1 = bt.addNode(26, head1);
+        TreeNode head1 = null;
+        head1 = bt.addTreeNode(-4, head1);
+        head1 = bt.addTreeNode(-3, head1);
+        head1 = bt.addTreeNode(6, head1);
+        head1 = bt.addTreeNode(11, head1);
+        head1 = bt.addTreeNode(22, head1);
+        head1 = bt.addTreeNode(26, head1);
         
         ptb.print(head, head1);
     }

@@ -6,8 +6,8 @@ package com.interview.tree;
  * Test cases
  * All left children
  * All right children
- * Full tree: A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every node other than the leaves has two children. 
- * Complete tree: A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. 
+ * Full tree: A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every TreeNode other than the leaves has two children. 
+ * Complete tree: A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all TreeNodes are as far left as possible. 
  * ## Reference: https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html
  * 
  * Example:                  1
@@ -31,9 +31,9 @@ package com.interview.tree;
  */
 public class BoundaryTraversalClockWise {
 
-    public void traversal(Node root){
+    public void traversal(TreeNode root){
         //find starting point for right side
-        Node current = root;
+        TreeNode current = root;
         /*while(current != null){ This code looks bulky so added simple code
             if(current.right != null && current.left != null){
                 current = current.right;
@@ -49,11 +49,11 @@ public class BoundaryTraversalClockWise {
         printLeftSide(root);
     }
     
-    private void printRightSide(Node root){
+    private void printRightSide(TreeNode root){
         if(root == null || (root.left == null && root.right == null)){
             return;
         }
-        System.out.println(root.data);
+        System.out.println(root.val);
         if(root.right != null){
             printRightSide(root.right);
         }else{
@@ -61,7 +61,7 @@ public class BoundaryTraversalClockWise {
         }
     }
     
-    private void printLeftSide(Node root){
+    private void printLeftSide(TreeNode root){
         if(root == null || (root.left == null && root.right == null)){
             return;
         }
@@ -70,15 +70,15 @@ public class BoundaryTraversalClockWise {
         }else{
             printRightSide(root.right);
         }
-        System.out.println(root.data);
+        System.out.println(root.val);
     }
 
-    private void printLeaves(Node root){
+    private void printLeaves(TreeNode root){
         if(root == null){
             return;
         }
         if(root.left == null && root.right == null){
-            System.out.println(root.data);
+            System.out.println(root.val);
         }
         printLeaves(root.right);
         printLeaves(root.left);
@@ -86,26 +86,26 @@ public class BoundaryTraversalClockWise {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        /*head = bt.addNode(100, head);
-        head = bt.addNode(90, head);
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(25, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(-7, head);*/
+        TreeNode head = null;
+        /*head = bt.addTreeNode(100, head);
+        head = bt.addTreeNode(90, head);
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(25, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(-7, head);*/
         //Other test cases taken from geeksforgeeks website
         //By looking this existing code, output is like clock wise starting from first right child
         //But in geeks for geeksforgeeks, it is starting anti clock wise including root.
-        head = bt.addNode(20, head);
-        head = bt.addNode(8, head);
-        head = bt.addNode(4, head);
-        head = bt.addNode(12, head);
-        head = bt.addNode(10, head);
-        head = bt.addNode(14, head);
-        head = bt.addNode(22, head);
-        head = bt.addNode(25, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(8, head);
+        head = bt.addTreeNode(4, head);
+        head = bt.addTreeNode(12, head);
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(14, head);
+        head = bt.addTreeNode(22, head);
+        head = bt.addTreeNode(25, head);
         BoundaryTraversalClockWise bd = new BoundaryTraversalClockWise();
         bd.traversal(head);
     }

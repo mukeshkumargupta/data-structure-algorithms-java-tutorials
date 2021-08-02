@@ -8,21 +8,21 @@ package com.interview.linklist;
  */
 public class MultiplyTwoNumbersLinkList {
 
-    public Node multiply(Node head1, Node head2){
+    public TreeNode multiply(TreeNode head1, TreeNode head2){
         LinkList ll = new LinkList();
         head1 = ll.reverse(head1);
         head2 = ll.reverse(head2);
         DoubleLinkList dll = new DoubleLinkList();
-        Node result = null;
-        Node resultStart = null;
-        Node currentResult = null;
-        Node currentTail = null;
+        TreeNode result = null;
+        TreeNode resultStart = null;
+        TreeNode currentResult = null;
+        TreeNode currentTail = null;
         
         while(head2 != null){
-            Node current = head1;
+            TreeNode current = head1;
             int carry = 0;
             while(current != null){
-                int r = current.data * head2.data;
+                int r = current.val * head2.val;
                 r += carry;
                 carry = r/10;
                 r = r%10;
@@ -55,7 +55,7 @@ public class MultiplyTwoNumbersLinkList {
         return result;
     }
     
-    private Node add(Node result, Node currentResult){
+    private TreeNode add(TreeNode result, TreeNode currentResult){
         if(currentResult == null){
             return result;
         }
@@ -63,17 +63,17 @@ public class MultiplyTwoNumbersLinkList {
             return currentResult;
         }
         
-        Node r1 = result.before;
-        Node addResult = null;
+        TreeNode r1 = result.before;
+        TreeNode addResult = null;
         int carry = 0;
         while(r1 != null && currentResult != null){
-            int r = r1.data + currentResult.data + carry;
-            Node newNode = Node.newNode(r%10);
+            int r = r1.val + currentResult.val + carry;
+            TreeNode newTreeNode = TreeNode.newTreeNode(r%10);
             if(addResult == null){
-                addResult = newNode;
+                addResult = newTreeNode;
             }else{
-                addResult.before = newNode;
-                newNode.next = addResult;
+                addResult.before = newTreeNode;
+                newTreeNode.next = addResult;
                 addResult = addResult.before;
             }
             carry = r/10;
@@ -81,35 +81,35 @@ public class MultiplyTwoNumbersLinkList {
             currentResult = currentResult.before;
         }
         while(r1 != null){
-            int r = r1.data + carry;
-            Node newNode = Node.newNode(r%10);
+            int r = r1.val + carry;
+            TreeNode newTreeNode = TreeNode.newTreeNode(r%10);
             if(addResult == null){
-                addResult = newNode;
+                addResult = newTreeNode;
             }else{
-                addResult.before = newNode;
-                newNode.next = addResult;
+                addResult.before = newTreeNode;
+                newTreeNode.next = addResult;
                 addResult = addResult.before;
             }
             carry = r/10;
             r1 = r1.before;
         }
         while(currentResult != null){
-            int r = currentResult.data + carry;
-            Node newNode = Node.newNode(r%10);
+            int r = currentResult.val + carry;
+            TreeNode newTreeNode = TreeNode.newTreeNode(r%10);
             if(addResult == null){
-                addResult = newNode;
+                addResult = newTreeNode;
             }else{
-                addResult.before = newNode;
-                newNode.next = addResult;
+                addResult.before = newTreeNode;
+                newTreeNode.next = addResult;
                 addResult = addResult.before;
             }
             carry = r/10;
             currentResult = currentResult.before;
         }
         if(carry != 0){
-            Node newNode = Node.newNode(carry);
-            addResult.before = newNode;
-            newNode.next = addResult;
+            TreeNode newTreeNode = TreeNode.newTreeNode(carry);
+            addResult.before = newTreeNode;
+            newTreeNode.next = addResult;
             addResult = addResult.before;
         }
         
@@ -124,19 +124,19 @@ public class MultiplyTwoNumbersLinkList {
     public static void main(String args[]){
         MultiplyTwoNumbersLinkList mtn = new MultiplyTwoNumbersLinkList();
         LinkList ll = new LinkList();
-        Node head1 = null;
-        head1 = ll.addNode(2, head1);
-        head1 = ll.addNode(3, head1);
-        head1 = ll.addNode(5, head1);
-        head1 = ll.addNode(0, head1);
-        head1 = ll.addNode(1, head1);
+        TreeNode head1 = null;
+        head1 = ll.addTreeNode(2, head1);
+        head1 = ll.addTreeNode(3, head1);
+        head1 = ll.addTreeNode(5, head1);
+        head1 = ll.addTreeNode(0, head1);
+        head1 = ll.addTreeNode(1, head1);
             
-        Node head2 = null;
-        head2 = ll.addNode(5, head2);
-        head2 = ll.addNode(7, head2);
-        head2 = ll.addNode(8, head2);
+        TreeNode head2 = null;
+        head2 = ll.addTreeNode(5, head2);
+        head2 = ll.addTreeNode(7, head2);
+        head2 = ll.addTreeNode(8, head2);
             
-        Node result = mtn.multiply(head1, head2);
+        TreeNode result = mtn.multiply(head1, head2);
         ll.printList(result);
     }
 }

@@ -41,18 +41,18 @@ public class TreeTraversalInSpiralOrder {
     /**
      * Two stack to print in spiral way
      */
-    public void spiralWithTwoStack(Node root) {
+    public void spiralWithTwoStack(TreeNode root) {
         if (root == null) {
             return;
         }
-        Stack<Node> s1 = new Stack<>();
-        Stack<Node> s2 = new Stack<>();
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
         s1.push(root);
 
         while (!s1.isEmpty() || !s2.isEmpty()) {
             while (!s1.isEmpty()) {
                 root = s1.pop();
-                System.out.print(root.data + " ");
+                System.out.print(root.val + " ");
                 if (root.left != null) {
                     s2.push(root.left);
                 }
@@ -62,7 +62,7 @@ public class TreeTraversalInSpiralOrder {
             }
             while (!s2.isEmpty()) {
                 root = s2.pop();
-                System.out.print(root.data + " ");
+                System.out.print(root.val + " ");
                 if (root.right != null) {
                     s1.push(root.right);
                 }
@@ -76,11 +76,11 @@ public class TreeTraversalInSpiralOrder {
     /**
      * One deque with count method to print tree in spiral order
      */
-    public void spiralWithOneDeque(Node root) {
+    public void spiralWithOneDeque(TreeNode root) {
         if (root == null) {
             return;
         }
-        Deque<Node> deque = new LinkedList<Node>();
+        Deque<TreeNode> deque = new LinkedList<TreeNode>();
         deque.offerFirst(root);
         int count = 1;
         boolean flip = true;
@@ -89,7 +89,7 @@ public class TreeTraversalInSpiralOrder {
             while (count > 0) {
                 if (flip) {
                     root = deque.pollFirst();
-                    System.out.print(root.data + " ");
+                    System.out.print(root.val + " ");
                     if (root.left != null) {
                         deque.offerLast(root.left);
                         currentCount++;
@@ -100,7 +100,7 @@ public class TreeTraversalInSpiralOrder {
                     }
                 } else {
                     root = deque.pollLast();
-                    System.out.print(root.data + " ");
+                    System.out.print(root.val + " ");
                     if (root.right != null) {
                         deque.offerFirst(root.right);
                         currentCount++;
@@ -120,12 +120,12 @@ public class TreeTraversalInSpiralOrder {
     /**
      * One deque with delimiter to print tree in spiral order
      */
-    public void spiralWithOneDequeDelimiter(Node root)
+    public void spiralWithOneDequeDelimiter(TreeNode root)
     {
         if(root == null){
             return;
         }
-        Deque<Node> q = new LinkedList<>();
+        Deque<TreeNode> q = new LinkedList<>();
         q.offer(null);
         q.offerFirst(root);
         //if only delimiter(in this case null) is left in queue then break
@@ -133,7 +133,7 @@ public class TreeTraversalInSpiralOrder {
             root = q.peekFirst();
             while(root != null){
                 root = q.pollFirst();
-                System.out.print(root.data + " ");
+                System.out.print(root.val + " ");
                 if(root.left != null){
                     q.offerLast(root.left);
                 }
@@ -144,7 +144,7 @@ public class TreeTraversalInSpiralOrder {
             }
             root = q.peekLast();
             while(root != null){
-                System.out.print(root.data + " ");
+                System.out.print(root.val + " ");
                 root = q.pollLast();
                 if(root.right != null){
                     q.offerFirst(root.right);
@@ -158,16 +158,16 @@ public class TreeTraversalInSpiralOrder {
     }
     public static void main(String args[]) {
         BinaryTree bt = new BinaryTree();
-        Node root = null;
-        root = bt.addNode(10, root);
-        root = bt.addNode(30, root);
-        root = bt.addNode(25, root);
-        root = bt.addNode(35, root);
-        root = bt.addNode(-10, root);
-        root = bt.addNode(0, root);
-        root = bt.addNode(-20, root);
-        root = bt.addNode(-15, root);
-        root = bt.addNode(45, root);
+        TreeNode root = null;
+        root = bt.addTreeNode(10, root);
+        root = bt.addTreeNode(30, root);
+        root = bt.addTreeNode(25, root);
+        root = bt.addTreeNode(35, root);
+        root = bt.addTreeNode(-10, root);
+        root = bt.addTreeNode(0, root);
+        root = bt.addTreeNode(-20, root);
+        root = bt.addTreeNode(-15, root);
+        root = bt.addTreeNode(45, root);
 
         TreeTraversalInSpiralOrder tt = new TreeTraversalInSpiralOrder();
         System.out.println("Two stack method");

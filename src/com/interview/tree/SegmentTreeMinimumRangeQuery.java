@@ -6,7 +6,7 @@ import com.interview.bits.NextPowerOf2;
  * Date 08/22/2017
  * @author Mukesh Kumar Gupta
  * 
- * A segment tree is a tree data structure for storing intervals, or segments. It allows 
+ * A segment tree is a tree val structure for storing intervals, or segments. It allows 
  * for faster querying (e.g sum or min) in these intervals. Lazy propagation is useful
  * when there are high number of updates in the input array.
 
@@ -27,7 +27,7 @@ import com.interview.bits.NextPowerOf2;
  * References
  * http://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/
  * http://www.geeksforgeeks.org/segment-tree-set-1-range-minimum-query/
- * https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/
+ * https://www.topcoder.com/community/val-science/val-science-tutorials/range-minimum-query-and-lowest-common-ancestor/
  */
 public class SegmentTreeMinimumRangeQuery {
 
@@ -161,7 +161,7 @@ public class SegmentTreeMinimumRangeQuery {
         //at pos and mark its children for lazy propagation.
         if (lazy[pos] != 0) {
             segmentTree[pos] += lazy[pos];
-            if (low != high) { //not a leaf node
+            if (low != high) { //not a leaf TreeNode
                 lazy[2 * pos + 1] += lazy[pos];
                 lazy[2 * pos + 2] += lazy[pos];
             }
@@ -203,7 +203,7 @@ public class SegmentTreeMinimumRangeQuery {
         //at pos and mark its children for lazy propagation.
         if (lazy[pos] != 0) {
             segmentTree[pos] += lazy[pos];
-            if (low != high) { //not a leaf node
+            if (low != high) { //not a leaf TreeNode
                 lazy[2 * pos + 1] += lazy[pos];
                 lazy[2 * pos + 2] += lazy[pos];
             }

@@ -3,34 +3,34 @@ package com.interview.linklist;
 /**
  * http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
  * Test cases
- * 0 1 or more nodes
- * sorted reverse sorted nodes
+ * 0 1 or more TreeNodes
+ * sorted reverse sorted TreeNodes
  */
 
 //keep head and tail of each result since caller function needs it to 
 //set complete linklist. If we do not keep tail in each recursion we will
 //have to traverse to tail of left side which can be costly operation
 class HeadTail{
-  Node head;
-  Node tail;
+  TreeNode head;
+  TreeNode tail;
 }
 
 public class QuickSortSingleLinkList {
 
-    public Node quickSort(Node head){
+    public TreeNode quickSort(TreeNode head){
         if(head == null || head.next == null){
             return head;
         }
-        Node smaller = null;
-        Node larger = null;
-        Node pivot = head;
-        Node temp = head.next;
+        TreeNode smaller = null;
+        TreeNode larger = null;
+        TreeNode pivot = head;
+        TreeNode temp = head.next;
         pivot.next = null;
         LinkList ll = new LinkList();
         while(temp != null){
-            Node next = temp.next;
+            TreeNode next = temp.next;
             temp.next = null;
-            if(temp.data < pivot.data){
+            if(temp.val < pivot.val){
                 smaller = ll.addAtFront(temp, smaller);
             }else{
                 larger = ll.addAtFront(temp, larger);
@@ -41,7 +41,7 @@ public class QuickSortSingleLinkList {
         smaller = quickSort(smaller);
         larger = quickSort(larger);
         
-        Node tail1 = smaller;
+        TreeNode tail1 = smaller;
         
         //this is costly operation which can be prevented by keeping tail.
         while(tail1 != null && tail1.next != null){
@@ -58,7 +58,7 @@ public class QuickSortSingleLinkList {
         }
     }
     
-    public Node quickSortFaster(Node head){
+    public TreeNode quickSortFaster(TreeNode head){
         HeadTail result = quickSortUtil(head);
         return result.head;
     }
@@ -68,7 +68,7 @@ public class QuickSortSingleLinkList {
      * @param head
      * @return
      */
-    private HeadTail quickSortUtil(Node head){
+    private HeadTail quickSortUtil(TreeNode head){
         if(head == null || head.next == null){
             HeadTail headTail = new HeadTail();
             headTail.head = head;
@@ -76,16 +76,16 @@ public class QuickSortSingleLinkList {
             return headTail;
         }
         LinkList ll = new LinkList();
-        Node leftHead = null;
-        Node rightHead = null;
+        TreeNode leftHead = null;
+        TreeNode rightHead = null;
         
-        Node curr = head.next;
+        TreeNode curr = head.next;
         head.next = null;
-        Node next = null;
+        TreeNode next = null;
         while(curr != null){
             next = curr.next;
             curr.next = null;
-            if(curr.data < head.data){
+            if(curr.val < head.val){
                 leftHead = ll.addAtFront(curr, leftHead);
             }else{
                 rightHead = ll.addAtFront(curr, rightHead);
@@ -113,15 +113,15 @@ public class QuickSortSingleLinkList {
     public static void main(String args[]){
         QuickSortSingleLinkList qss = new QuickSortSingleLinkList();
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(11, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(-1, head);
-        head = ll.addNode(50, head);
-        head = ll.addNode(13, head);
-        head = ll.addNode(-5, head);
-        head = ll.addNode(10, head);
-        head = ll.addNode(8, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(11, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(-1, head);
+        head = ll.addTreeNode(50, head);
+        head = ll.addTreeNode(13, head);
+        head = ll.addTreeNode(-5, head);
+        head = ll.addTreeNode(10, head);
+        head = ll.addTreeNode(8, head);
     
         head = qss.quickSortFaster(head);
         ll.printList(head);

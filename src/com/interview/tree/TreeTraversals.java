@@ -1,7 +1,6 @@
 package com.interview.tree;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Reference:
@@ -14,73 +13,91 @@ import java.util.LinkedList;
  * http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
  * http://www.geeksforgeeks.org/iterative-preorder-traversal/
  * Category: Must Do, VVImp
+ * Related using iteration technics
+ * https://leetcode.com/problems/binary-search-tree-iterator/ Medium
+ * https://leetcode.com/problems/closest-binary-search-tree-value-ii/ Hard
+ * https://leetcode.com/problems/inorder-successor-in-bst/ Medium Solved
+ * https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/ Medium
  */
 public class TreeTraversals {
 
-    public void inOrder(Node root){
+    public void inOrder(TreeNode root){
         if(root == null){
             return;
         }
         inOrder(root.left);
-        System.out.print(root.data + " ");
+        System.out.print(root.val + " ");
         inOrder(root.right);
     }
     
-    public void preOrder(Node root){
+    public void preOrder(TreeNode root){
         if(root == null){
             return;
         }
-        System.out.print(root.data + " ");
+        System.out.print(root.val + " ");
         preOrder(root.left);
         preOrder(root.right);
     }
     
-    public void postOrder(Node root){
+    public void postOrder(TreeNode root){
         if(root == null){
             return;
         }
         postOrder(root.left);
         postOrder(root.right);
-        System.out.print(root.data + " ");
+        System.out.print(root.val + " ");
     }
 
-    public void inorderItr(Node root){
-        Deque<Node> stack = new LinkedList<Node>();
-        Node node = root;
-        while(true){
-            if(node != null){
-                stack.addFirst(node);
-                node = node.left;
+    //Tricky
+    public List<Integer> inorderTraversalIterative(TreeNode root) {
+        Stack<TreeNode> s = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+        
+        
+        TreeNode currentNode = root;
+        
+        while(!s.isEmpty() || currentNode != null) {
+            while (currentNode != null) {
+                s.add(currentNode);
+                currentNode = currentNode.left;
             }
-            else{
-                if(stack.isEmpty()){
-                    break;
-                }
-                node = stack.pollFirst();
-                System.out.println(node.data);
-                node = node.right;
-            }
+            TreeNode top = s.pop();
+            result.add(top.val);
+            currentNode = top.right;
+            
         }
+        return result;
+
+        
     }
     
-    public void preOrderItr(Node root){
-        Deque<Node> stack = new LinkedList<Node>();
-        stack.addFirst(root);
-        while(!stack.isEmpty()){
-            root = stack.pollFirst();
-            System.out.print(root.data + " ");
-            if(root.right != null){
-                stack.addFirst(root.right);
-            }
-            if(root.left!= null){
-                stack.addFirst(root.left);
-            }
+    public List<Integer> preorderTraversalIterative(TreeNode root) {
+        Stack<TreeNode> s = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+        if (root != null) {
+            s.push(root);
         }
+        
+        while (!s.isEmpty()) {
+            TreeNode currentTreeNode = s.pop();
+            result.add(currentTreeNode.val);
+            
+            if (currentTreeNode.right != null) {
+                s.add(currentTreeNode.right);
+            }
+            
+            if (currentTreeNode.left != null) {
+                s.add(currentTreeNode.left);
+            }
+            
+        }
+        return result;
+        
     }
     
-    public void postOrderItr(Node root){
-        Deque<Node> stack1 = new LinkedList<Node>();
-        Deque<Node> stack2 = new LinkedList<Node>();
+    public void postOrderItr(TreeNode root){
+        Deque<TreeNode> stack1 = new LinkedList<TreeNode>();
+        Deque<TreeNode> stack2 = new LinkedList<TreeNode>();
         stack1.addFirst(root);
         while(!stack1.isEmpty()){
             root = stack1.pollFirst();
@@ -93,25 +110,25 @@ public class TreeTraversals {
             stack2.addFirst(root);
         }
         while(!stack2.isEmpty()){
-            System.out.print(stack2.pollFirst().data + " ");
+            System.out.print(stack2.pollFirst().val + " ");
         }
     }
     //VVImp
-    public void postOrderItrOneStack(Node root){
-        Node current = root;
-        Deque<Node> stack = new LinkedList<>();
+    public void postOrderItrOneStack(TreeNode root){
+        TreeNode current = root;
+        Deque<TreeNode> stack = new LinkedList<>();
         while(current != null || !stack.isEmpty()){
             if(current != null){
                 stack.addFirst(current);
                 current = current.left;
             }else{
-                Node temp = stack.peek().right;
+                TreeNode temp = stack.peek().right;
                 if (temp == null) {
                     temp = stack.poll();
-                    System.out.print(temp.data + " ");
+                    System.out.print(temp.val + " ");
                     while (!stack.isEmpty() && temp == stack.peek().right) {
                         temp = stack.poll();
-                        System.out.print(temp.data + " ");
+                        System.out.print(temp.val + " ");
                     }
                 } else {
                     current = temp;
@@ -122,14 +139,14 @@ public class TreeTraversals {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(17, head);
-        head = bt.addNode(11, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(17, head);
+        head = bt.addTreeNode(11, head);
 
-        head = bt.addNode(-11, head);
+        head = bt.addTreeNode(-11, head);
 
 
         TreeTraversals tt = new TreeTraversals();

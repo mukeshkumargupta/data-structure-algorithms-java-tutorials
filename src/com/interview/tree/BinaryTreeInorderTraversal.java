@@ -3,7 +3,7 @@ package com.interview.tree;
 /*
  * Reference: https://leetcode.com/problems/binary-tree-inorder-traversal/
  * Category: Easy
- * Given the root of a binary tree, return the inorder traversal of its nodes' values.
+ * Given the root of a binary tree, return the inorder traversal of its TreeNodes' values.
 
  
 
@@ -34,8 +34,8 @@ Output: [1,2]
 
 Constraints:
 
-The number of nodes in the tree is in the range [0, 100].
--100 <= Node.val <= 100
+The number of TreeNodes in the tree is in the range [0, 100].
+-100 <= TreeNode.val <= 100
  */
 public class BinaryTreeInorderTraversal {
     private void inorderTraversalUtil(TreeNode root, List<Integer> result) {

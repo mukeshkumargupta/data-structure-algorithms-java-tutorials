@@ -4,44 +4,44 @@ package com.interview.tree;
  * Date 03/24/2017
  * @author Mukesh Kumar Gupta
  *
- * Populate next pointer for each node of binary tree.
+ * Populate next pointer for each TreeNode of binary tree.
  *
  * Time complexity O(n)
  * Space complexity O(1)
  *
- * https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
+ * https://leetcode.com/problems/populating-next-right-pointers-in-each-TreeNode-ii/
  */
-public class ConnectNodesAtSameLevel {
+public class ConnectTreeNodesAtSameLevel {
 
-    public void connect(Node root) {
+    public void connect(TreeNode root) {
         if (root == null) {
             return;
         }
 
-        Node firstNode = root;
-        Node prevNode = null;
-        while (firstNode != null) {
-            root = firstNode;
-            firstNode = null;
-            prevNode = null;
+        TreeNode firstTreeNode = root;
+        TreeNode prevTreeNode = null;
+        while (firstTreeNode != null) {
+            root = firstTreeNode;
+            firstTreeNode = null;
+            prevTreeNode = null;
             while (root != null) {
                 if (root.left != null) {
-                    if (firstNode == null) {
-                        firstNode = root.left;
+                    if (firstTreeNode == null) {
+                        firstTreeNode = root.left;
                     }
-                    if (prevNode != null) {
-                        prevNode.next = root.left;
+                    if (prevTreeNode != null) {
+                        prevTreeNode.next = root.left;
                     }
-                    prevNode = root.left;
+                    prevTreeNode = root.left;
                 }
                 if (root.right != null) {
-                    if (firstNode == null) {
-                        firstNode = root.right;
+                    if (firstTreeNode == null) {
+                        firstTreeNode = root.right;
                     }
-                    if (prevNode != null) {
-                        prevNode.next = root.right;
+                    if (prevTreeNode != null) {
+                        prevTreeNode.next = root.right;
                     }
-                    prevNode = root.right;
+                    prevTreeNode = root.right;
                 }
                 root = root.next;
             }
@@ -50,16 +50,16 @@ public class ConnectNodesAtSameLevel {
 
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node root = null;
-        root = bt.addNode(10, root);
-        root = bt.addNode(15, root);
-        root = bt.addNode(5, root);
-        root = bt.addNode(7, root);
-        root = bt.addNode(19, root);
-        root = bt.addNode(20, root);
-        root = bt.addNode(-1, root);
-        root = bt.addNode(21, root);
-        ConnectNodesAtSameLevel cns = new ConnectNodesAtSameLevel();
+        TreeNode root = null;
+        root = bt.addTreeNode(10, root);
+        root = bt.addTreeNode(15, root);
+        root = bt.addTreeNode(5, root);
+        root = bt.addTreeNode(7, root);
+        root = bt.addTreeNode(19, root);
+        root = bt.addTreeNode(20, root);
+        root = bt.addTreeNode(-1, root);
+        root = bt.addTreeNode(21, root);
+        ConnectTreeNodesAtSameLevel cns = new ConnectTreeNodesAtSameLevel();
 
         cns.connect(root);
     }

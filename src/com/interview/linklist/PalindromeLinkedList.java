@@ -4,13 +4,13 @@ package com.interview.linklist;
 
 public class PalindromeLinkedList {
     
-    public boolean isPalindrome(Node head) {
+    public boolean isPalindrome(TreeNode head) {
         if (head == null) {
             return true;
             
         }
-        Node firstPointer = head;
-        Node secondPointer = head;
+        TreeNode firstPointer = head;
+        TreeNode secondPointer = head;
         if (firstPointer.next == null) {
             return true;
             
@@ -27,11 +27,11 @@ public class PalindromeLinkedList {
         }
         
         //Reverse second part
-        Node current = firstPointer;
-        Node previous = null;
+        TreeNode current = firstPointer;
+        TreeNode previous = null;
         
         while (current != null) {
-            Node temp = current.next;
+            TreeNode temp = current.next;
             current.next = previous;
             previous = current;
             current = temp;
@@ -44,7 +44,7 @@ public class PalindromeLinkedList {
         secondPointer = head;
         while (firstPointer != null) {
             //Compare
-            if (firstPointer.data == secondPointer.data) {
+            if (firstPointer.val == secondPointer.val) {
                 firstPointer = firstPointer.next;
                 secondPointer = secondPointer.next;
                 continue;
@@ -62,11 +62,11 @@ public class PalindromeLinkedList {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(1, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(1, head);
         ll.printList(head);
         PalindromeLinkedList pll = new PalindromeLinkedList();
         System.out.println(pll.isPalindrome(head));

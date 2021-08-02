@@ -1,87 +1,87 @@
 package com.interview.linklist;
 
 /**
- * Swap two nodes in double link list. If it swaps first node its callers responsibility to fix the head 
+ * Swap two TreeNodes in double link list. If it swaps first TreeNode its callers responsibility to fix the head 
  * Test cases
  * A right neighbor of B
  * B right neighbor of A
  * A and B not neighbors of each other
- * A or B are start or end nodes
+ * A or B are start or end TreeNodes
  */
-public class SwapTwoNodesInDoubleLL {
+public class SwapTwoTreeNodesInDoubleLL {
 
-    public void swap(Node nodeA, Node nodeB){
-        if(nodeA == null || nodeB == null){
+    public void swap(TreeNode TreeNodeA, TreeNode TreeNodeB){
+        if(TreeNodeA == null || TreeNodeB == null){
             throw new IllegalArgumentException();
         }
         //if B is right neighbor of A
-        if(nodeA.next == nodeB){
-            if(nodeA.before != null){
-                nodeA.before.next = nodeB;
-                nodeB.before = nodeA.before;
+        if(TreeNodeA.next == TreeNodeB){
+            if(TreeNodeA.before != null){
+                TreeNodeA.before.next = TreeNodeB;
+                TreeNodeB.before = TreeNodeA.before;
             }else{
-                nodeB.before = null;
+                TreeNodeB.before = null;
             }
-            if(nodeB.next != null){
-                nodeB.next.before = nodeA;
-                nodeA.next = nodeB.next;
+            if(TreeNodeB.next != null){
+                TreeNodeB.next.before = TreeNodeA;
+                TreeNodeA.next = TreeNodeB.next;
             }else{
-                nodeA.next = null;
+                TreeNodeA.next = null;
             }
-            nodeB.next = nodeA;
-            nodeA.before = nodeB;
+            TreeNodeB.next = TreeNodeA;
+            TreeNodeA.before = TreeNodeB;
         }//else if A is right neighbor of B
-        else if(nodeB.next == nodeA){
-            if(nodeB.before != null){
-                nodeB.before.next = nodeA;
-                nodeA.before = nodeB.before;
+        else if(TreeNodeB.next == TreeNodeA){
+            if(TreeNodeB.before != null){
+                TreeNodeB.before.next = TreeNodeA;
+                TreeNodeA.before = TreeNodeB.before;
             }else{
-                nodeA.before = null;
+                TreeNodeA.before = null;
             }
-            if(nodeA.next != null){
-                nodeA.next.before = nodeB;
-                nodeB.next = nodeA.next;
+            if(TreeNodeA.next != null){
+                TreeNodeA.next.before = TreeNodeB;
+                TreeNodeB.next = TreeNodeA.next;
             }else{
-                nodeB.next = null;
+                TreeNodeB.next = null;
             }
-            nodeA.next = nodeB;
-            nodeB.before = nodeA;
+            TreeNodeA.next = TreeNodeB;
+            TreeNodeB.before = TreeNodeA;
         }//if A and B are not neighbors of each other
         else{
-            if(nodeA.before != null){
-                nodeA.before.next = nodeB;
+            if(TreeNodeA.before != null){
+                TreeNodeA.before.next = TreeNodeB;
             }
-            if(nodeA.next != null){
-                nodeA.next.before = nodeB;
+            if(TreeNodeA.next != null){
+                TreeNodeA.next.before = TreeNodeB;
             }
-            Node next = nodeB.next;
-            Node before = nodeB.before;
-            nodeB.before = nodeA.before;
-            nodeB.next = nodeA.next;
+            TreeNode next = TreeNodeB.next;
+            TreeNode before = TreeNodeB.before;
+            TreeNodeB.before = TreeNodeA.before;
+            TreeNodeB.next = TreeNodeA.next;
             
             if(next != null){
-                next.before = nodeA;
+                next.before = TreeNodeA;
             }
             if(before != null){
-                before.next = nodeA;
+                before.next = TreeNodeA;
             }
-            nodeA.before = before;
-            nodeA.next = next;
+            TreeNodeA.before = before;
+            TreeNodeA.next = next;
         }
     }
     
     public static void main(String args[]){
         DoubleLinkList dll = new DoubleLinkList();
-        Node head = null;
-        head = dll.addNode(head,1);
-        head = dll.addNode(head,2);
-        head = dll.addNode(head,3);
-        head = dll.addNode(head,4);
-        head = dll.addNode(head,5);
-        SwapTwoNodesInDoubleLL snt = new SwapTwoNodesInDoubleLL();
-        Node nodeA = dll.find(head, 3);
-        Node nodeB = dll.find(head, 5);
-        snt.swap(nodeA, nodeB);
+        TreeNode head = null;
+        head = dll.addTreeNode(head,1);
+        head = dll.addTreeNode(head,2);
+        head = dll.addTreeNode(head,3);
+        head = dll.addTreeNode(head,4);
+        head = dll.addTreeNode(head,5);
+        SwapTwoTreeNodesInDoubleLL snt = new SwapTwoTreeNodesInDoubleLL();
+        TreeNode TreeNodeA = dll.find(head, 3);
+        TreeNode TreeNodeB = dll.find(head, 5);
+        snt.swap(TreeNodeA, TreeNodeB);
         dll.printFrontBack(head);
     }
 }

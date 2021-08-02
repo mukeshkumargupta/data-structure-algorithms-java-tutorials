@@ -4,20 +4,20 @@ import java.util.*;
 
 //Reference: https://www.youtube.com/watch?v=Gi0202QawRQ&list=PLIA-9QRQ0RqG6CNfSJSzT0h5Pc_HvwZG5&index=112&t=0s
 //Derived question: find max number in all path(done) during sum make one variable maximum and keep update it. also find min number in all path(almost same as max sum path).
-//Return path which has minimum path sum of all node in path(done), print all path(done), Root to leaf path sum equal to a given number(done) reference: https://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/,
-//,Find all duplicate path, find unique path in tree if node is represented by character like A, B etc, check tree is sum tree where each node is sum of all its children sum Reference: http://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/,
-//find all parent node which are parent of any child, find all cousin node, find all nodes which parent are same, 
+//Return path which has minimum path sum of all TreeNode in path(done), print all path(done), Root to leaf path sum equal to a given number(done) reference: https://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/,
+//,Find all duplicate path, find unique path in tree if TreeNode is represented by character like A, B etc, check tree is sum tree where each TreeNode is sum of all its children sum Reference: http://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/,
+//find all parent TreeNode which are parent of any child, find all cousin TreeNode, find all TreeNodes which parent are same, 
 //find all root-to-leaf paths where each path's sum equals the given sum, 
 public class SumRootToLeafNumbers {
-    void dfs(Node root,long val, long[] ans)
+    void dfs(TreeNode root,long val, long[] ans)
     {
         if(root == null)
             return;
         
-        val = 10*val + root.data;
+        val = 10*val + root.val;
         //Here logic will change
 
-        //Leaf node
+        //Leaf TreeNode
         if(root.left == null && root.right == null)
         {
             ans[0]+=val; //Here logic will change
@@ -26,7 +26,7 @@ public class SumRootToLeafNumbers {
         dfs(root.left,val,ans);
         dfs(root.right,val, ans);
     }
-public long sumNumbers(Node root) {
+public long sumNumbers(TreeNode root) {
         if(root == null)
             return 0;
         
@@ -36,14 +36,14 @@ public long sumNumbers(Node root) {
     }
 //----------------------------------------------------------------
 //Derived FindMaxNumberInAllPath
-void maximumnSumOfPathUtil(Node root,long val, long[] ans)
+void maximumnSumOfPathUtil(TreeNode root,long val, long[] ans)
 {
     if(root == null)
         return;
     
-    val = 10*val + root.data;
+    val = 10*val + root.val;
 
-    //Leaf node
+    //Leaf TreeNode
     if(root.left == null && root.right == null)
     {
         if (ans[0] < val) {
@@ -55,7 +55,7 @@ void maximumnSumOfPathUtil(Node root,long val, long[] ans)
     maximumnSumOfPathUtil(root.left,val, ans);
     maximumnSumOfPathUtil(root.right,val, ans);
 }
-public long maximumnSumOfPath(Node root) {
+public long maximumnSumOfPath(TreeNode root) {
     if(root == null)
         return 0;
     long[] ans = new long[1];
@@ -64,26 +64,26 @@ public long maximumnSumOfPath(Node root) {
 }
 //----------------------------------------------------------------
 
-//Derived question: Return path which has minimum path sum of all node in path
+//Derived question: Return path which has minimum path sum of all TreeNode in path
 //It can be solved using find answer in integer then convert in staring then compute output but again parsing required
 //Other method is not working so make as other one. To work it we need to remove from two places. Try next day.
 //----------------------------------------------------------------
-void pathWithMinimumSumUtil(Node root,long val, long min, StringBuilder path, StringBuilder ans)
+void pathWithMinimumSumUtil(TreeNode root,long val, long min, StringBuilder path, StringBuilder ans)
 {
     if(root == null)
         return;
     
-    val = 10*val + root.data;
+    val = 10*val + root.val;
     //Need to change logic
     //Trace the path
     if(path.toString().isEmpty()) {
-        path.append(root.data);
+        path.append(root.val);
     } else {
-        path.append("->" + root.data);
+        path.append("->" + root.val);
     }
     
 
-    //Leaf node
+    //Leaf TreeNode
     if(root.left == null && root.right == null)
     {
         if (min > val) {
@@ -96,7 +96,7 @@ void pathWithMinimumSumUtil(Node root,long val, long min, StringBuilder path, St
     pathWithMinimumSumUtil(root.left,val, min, path, ans);
     pathWithMinimumSumUtil(root.right,val, min, path, ans);
 }
-public String pathWithMinimumSum(Node root) {
+public String pathWithMinimumSum(TreeNode root) {
     if(root == null)
         return null;
     
@@ -110,19 +110,19 @@ public String pathWithMinimumSum(Node root) {
 
 //----------------------------------------------------------------
 
-//Derived question: Return path which has minimum path sum of all node in path
+//Derived question: Return path which has minimum path sum of all TreeNode in path
 //It can be solved using find answer in integer then convert in staring then compute output but again parsing required
 //Other method is not working so make as other one
 //----------------------------------------------------------------
-void printAllPathUtil(Node root,int val, ArrayList<Integer> ans)
+void printAllPathUtil(TreeNode root,int val, ArrayList<Integer> ans)
 {
   if(root == null)
       return;
   
-  val = 10*val + root.data;
+  val = 10*val + root.val;
   
 
-  //Leaf node
+  //Leaf TreeNode
   if(root.left == null && root.right == null)
   {
       ans.add(val);
@@ -132,7 +132,7 @@ void printAllPathUtil(Node root,int val, ArrayList<Integer> ans)
   printAllPathUtil(root.left,val, ans);
   printAllPathUtil(root.right,val, ans);
 }
-public ArrayList<Integer> printAllPath(Node root) {
+public ArrayList<Integer> printAllPath(TreeNode root) {
   if(root == null)
       return null;
   
@@ -147,14 +147,14 @@ public ArrayList<Integer> printAllPath(Node root) {
 
 //----------------------------------------------------------------
 //Derived FindMaxNumberInAllPath
-void sumOfPathGivenNumberUtil(Node root,long val, long givenNumber, long[] ans)
+void sumOfPathGivenNumberUtil(TreeNode root,long val, long givenNumber, long[] ans)
 {
   if(root == null)
       return;
   
-  val = 10*val + root.data;
+  val = 10*val + root.val;
 
-  //Leaf node
+  //Leaf TreeNode
   if(root.left == null && root.right == null)
   {
       if (givenNumber == val) {
@@ -166,7 +166,7 @@ void sumOfPathGivenNumberUtil(Node root,long val, long givenNumber, long[] ans)
   sumOfPathGivenNumberUtil(root.left,val, givenNumber, ans);
   sumOfPathGivenNumberUtil(root.right,val, givenNumber, ans);
 }
-public long sumOfPathGivenNumber(Node root, long givenNumber) {
+public long sumOfPathGivenNumber(TreeNode root, long givenNumber) {
   if(root == null)
       return 0;
   long[] ans = new long[1];
@@ -179,12 +179,12 @@ public long sumOfPathGivenNumber(Node root, long givenNumber) {
   
 }
 //Reference: VVImp: https://leetcode.com/problems/path-sum-ii/ This problem is solved by two way
-private void pathSumUtil(Node root, int number, int sum, List<List<Integer>> result, List<Integer> currentPath) {
+private void pathSumUtil(TreeNode root, int number, int sum, List<List<Integer>> result, List<Integer> currentPath) {
     if (root == null) {
         return;
     }
-    number +=root.data;
-    currentPath.add(root.data);
+    number +=root.val;
+    currentPath.add(root.val);
     if (root.left == null && root.right == null) {
         if (number == sum) {
             result.add(new ArrayList<>(currentPath));
@@ -197,7 +197,7 @@ private void pathSumUtil(Node root, int number, int sum, List<List<Integer>> res
     pathSumUtil(root.right, number, sum , result, currentPath);
     currentPath.remove(currentPath.size()-1);
 }
-public List<List<Integer>> pathSum(Node root, int sum) {
+public List<List<Integer>> pathSum(TreeNode root, int sum) {
     List<List<Integer>> result = new ArrayList<>();
     List<Integer> current = new ArrayList<>();
     pathSumUtil(root, 0, sum, result, current);
@@ -211,7 +211,7 @@ public List<List<Integer>> pathSum(Node root, int sum) {
         int inorder[] = {4,2,5,1,6,3};
         int preorder[] = {1,2,4,5,3,6};
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         System.out.println();

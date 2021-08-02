@@ -17,41 +17,41 @@ public class SuccinctTree {
 
     public static class Result {
         List<Integer> binaryRep = new ArrayList<>();
-        List<Integer> actualData = new ArrayList<>();
+        List<Integer> actualval = new ArrayList<>();
     }
 
-    public Result encode(Node root) {
+    public Result encode(TreeNode root) {
         Result r = new Result();
         encode(root, r);
         return r;
     }
 
-    private void encode(Node root, Result r) {
+    private void encode(TreeNode root, Result r) {
         if(root == null) {
             r.binaryRep.add(0);
             return;
         }
-        r.actualData.add(root.data);
+        r.actualval.add(root.val);
         r.binaryRep.add(1);
 
         encode(root.left, r);
         encode(root.right, r);
     }
 
-    public Node decode(Result r) {
+    public TreeNode decode(Result r) {
         AtomicInteger x = new AtomicInteger(0);
         AtomicInteger y = new AtomicInteger(0);
         return decode(r, x, y);
     }
 
-    private Node decode(Result r, AtomicInteger x, AtomicInteger y) {
+    private TreeNode decode(Result r, AtomicInteger x, AtomicInteger y) {
         if(r.binaryRep.get(x.get()) == 0) {
             x.getAndIncrement();
             return null;
         }
 
-        Node root = new Node();
-        root.data = r.actualData.get(y.getAndIncrement());
+        TreeNode root = new TreeNode();
+        root.val = r.actualval.get(y.getAndIncrement());
         x.getAndIncrement();
         root.left = decode(r, x, y);
         root.right = decode(r, x, y);
@@ -59,16 +59,16 @@ public class SuccinctTree {
     }
 
     public static void main(String args[]) {
-        Node root = null;
+        TreeNode root = null;
         BinaryTree bt = new BinaryTree();
-        root = bt.addNode(10, root);
-        root = bt.addNode(-10, root);
-        root = bt.addNode(20, root);
-        root = bt.addNode(15, root);
-        root = bt.addNode(-7, root);
-        root = bt.addNode(22, root);
-        root = bt.addNode(-4, root);
-        root = bt.addNode(12, root);
+        root = bt.addTreeNode(10, root);
+        root = bt.addTreeNode(-10, root);
+        root = bt.addTreeNode(20, root);
+        root = bt.addTreeNode(15, root);
+        root = bt.addTreeNode(-7, root);
+        root = bt.addTreeNode(22, root);
+        root = bt.addTreeNode(-4, root);
+        root = bt.addTreeNode(12, root);
         System.out.println("Before decoding");
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);

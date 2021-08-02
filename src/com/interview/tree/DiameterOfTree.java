@@ -6,37 +6,37 @@ package com.interview.tree;
  * http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
  * Category: Easy, Tricky
  * Test cases
- * All left nodes
- * All right nodes
+ * All left TreeNodes
+ * All right TreeNodes
  * Category: Easy, Must Do, VVImp
  * Note: This algo is very fats compare to geeksforgeeks
  */
 public class DiameterOfTree {
     
-    class Node {
+    class TreeNode {
         int height;
         int dm;
-        Node() {
+        TreeNode() {
             height = 0;
             dm = 0;
         }
     }
     
-    public Node diameterOfBinaryTreeUtil(TreeNode root){
+    public TreeNode diameterOfBinaryTreeUtil(TreeNode root){
 
         if (root == null) {
-            return new Node();
+            return new TreeNode();
         }
-        Node leftNode = diameterOfBinaryTreeUtil(root.left);
-        Node rightNode = diameterOfBinaryTreeUtil(root.right);
+        TreeNode leftTreeNode = diameterOfBinaryTreeUtil(root.left);
+        TreeNode rightTreeNode = diameterOfBinaryTreeUtil(root.right);
 
         
         //Note post order traversal is important because left and right is processed
-        Node rootNode = new Node();
-        rootNode.height = Math.max(leftNode.height, rightNode.height) + 1;
-        rootNode.dm = Math.max(Math.max(leftNode.dm, rightNode.dm), (1 + leftNode.height + rightNode.height));
+        TreeNode rootTreeNode = new TreeNode();
+        rootTreeNode.height = Math.max(leftTreeNode.height, rightTreeNode.height) + 1;
+        rootTreeNode.dm = Math.max(Math.max(leftTreeNode.dm, rightTreeNode.dm), (1 + leftTreeNode.height + rightTreeNode.height));
         
-        return rootNode; 
+        return rootTreeNode; 
     }
 
     public int diameterOfBinaryTree(TreeNode root){
@@ -45,7 +45,7 @@ public class DiameterOfTree {
             return 0; 
         }
 
-        Node resultNode = diameterOfBinaryTreeUtil(root);
-        return resultNode.dm -1;//not node but edge count
+        TreeNode resultTreeNode = diameterOfBinaryTreeUtil(root);
+        return resultTreeNode.dm -1;//not TreeNode but edge count
     }
 }

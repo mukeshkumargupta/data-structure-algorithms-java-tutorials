@@ -5,7 +5,7 @@ package com.interview.tree;
  */
 public class LargestIndependentSetInTree {
 
-    public int largestSet(Node root){
+    public int largestSet(TreeNode root){
         if(root == null){
             return 0;
         }
@@ -25,7 +25,7 @@ public class LargestIndependentSetInTree {
             excl += largestSet(root.right);
         }
         
-        int incl = left_excl + right_excl + root.data;
+        int incl = left_excl + right_excl + root.val;
         root.lis = incl;
     
         return incl > excl ? incl : excl; 
@@ -35,7 +35,7 @@ public class LargestIndependentSetInTree {
         int inorder[] = {4,13,1,7,6,3,19};
         int preorder[] = {13,4,6,7,1,3,19};
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         LargestIndependentSetInTree lis = new LargestIndependentSetInTree();
         System.out.println(lis.largestSet(root));
     }

@@ -10,7 +10,7 @@ public class ImplementStackusingQueues {
     private Queue<Integer> q1;
     private Queue<Integer> q2;
 
-    /** Initialize your data structure here. */
+    /** Initialize your val structure here. */
     public ImplementStackusingQueues() {
         q1 = new LinkedList<>();
         q2 = new LinkedList<>();

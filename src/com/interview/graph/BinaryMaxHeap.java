@@ -5,28 +5,28 @@ import java.util.List;
 
 public class BinaryMaxHeap<T> {
 
-    private List<Node> allNodes = new ArrayList<Node>();
+    private List<TreeNode> allTreeNodes = new ArrayList<TreeNode>();
 
-    class Node {
+    class TreeNode {
         int weight;
-        T data;
+        T val;
     }
 
-    public void add(int weight,T data) {
+    public void add(int weight,T val) {
 
-        Node node = new Node();
-        node.weight = weight;
-        node.data = data;
-        allNodes.add(node);
-        int size = allNodes.size();
+        TreeNode TreeNode = new TreeNode();
+        TreeNode.weight = weight;
+        TreeNode.val = val;
+        allTreeNodes.add(TreeNode);
+        int size = allTreeNodes.size();
         int current = size - 1;
         int parentIndex = (current - 1) / 2;
 
         while (parentIndex >= 0) {
-            Node parentNode = allNodes.get(parentIndex);
-            Node currentNode = allNodes.get(current);
-            if (parentNode.weight < currentNode.weight) {
-                swap(parentNode,currentNode);
+            TreeNode parentTreeNode = allTreeNodes.get(parentIndex);
+            TreeNode currentTreeNode = allTreeNodes.get(current);
+            if (parentTreeNode.weight < currentTreeNode.weight) {
+                swap(parentTreeNode,currentTreeNode);
                 current = parentIndex;
                 parentIndex = (parentIndex - 1) / 2;
             } else {
@@ -36,33 +36,33 @@ public class BinaryMaxHeap<T> {
 
     }
 
-    private void swap(Node node1,Node node2){
-        int weight = node1.weight;
-        T data = node1.data;
+    private void swap(TreeNode TreeNode1,TreeNode TreeNode2){
+        int weight = TreeNode1.weight;
+        T val = TreeNode1.val;
         
-        node1.data = node2.data;
-        node1.weight = node2.weight;
+        TreeNode1.val = TreeNode2.val;
+        TreeNode1.weight = TreeNode2.weight;
         
-        node2.data = data;
-        node2.weight = weight;
+        TreeNode2.val = val;
+        TreeNode2.weight = weight;
     }
     
     public T max(){
-        return allNodes.get(0).data;
+        return allTreeNodes.get(0).val;
     }
     
     public boolean empty(){
-        return allNodes.size() == 0;
+        return allTreeNodes.size() == 0;
     }
     
     
     public T extractMap(){
-        int size = allNodes.size() -1;
-        T max = allNodes.get(0).data;
-        int lastNodeWeight = allNodes.get(size).weight;
-        allNodes.get(0).weight = lastNodeWeight;
-        allNodes.get(0).data = allNodes.get(size).data;
-        allNodes.remove(size);
+        int size = allTreeNodes.size() -1;
+        T max = allTreeNodes.get(0).val;
+        int lastTreeNodeWeight = allTreeNodes.get(size).weight;
+        allTreeNodes.get(0).weight = lastTreeNodeWeight;
+        allTreeNodes.get(0).val = allTreeNodes.get(size).val;
+        allTreeNodes.remove(size);
         
         int currentIndex = 0;
         size--;
@@ -75,9 +75,9 @@ public class BinaryMaxHeap<T> {
             if(right > size){
                 right = left;
             }
-            int largerIndex = allNodes.get(left).weight >= allNodes.get(right).weight ? left : right;
-            if(allNodes.get(currentIndex).weight < allNodes.get(largerIndex).weight){
-                swap(allNodes.get(currentIndex),allNodes.get(largerIndex));
+            int largerIndex = allTreeNodes.get(left).weight >= allTreeNodes.get(right).weight ? left : right;
+            if(allTreeNodes.get(currentIndex).weight < allTreeNodes.get(largerIndex).weight){
+                swap(allTreeNodes.get(currentIndex),allTreeNodes.get(largerIndex));
                 currentIndex = largerIndex;
             }else{
                 break;
@@ -87,8 +87,8 @@ public class BinaryMaxHeap<T> {
     }
     
     public void printHeap(){
-        for(Node n : allNodes){
-            System.out.println(n.weight + " " + n.data);
+        for(TreeNode n : allTreeNodes){
+            System.out.println(n.weight + " " + n.val);
         }
     }
     

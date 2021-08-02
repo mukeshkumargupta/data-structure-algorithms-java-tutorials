@@ -17,13 +17,13 @@ public class AverageofLevelsinBinaryTree {
             int size = q.size();
             double avg = 0;
             for (int i = 0; i < size; i++) {
-                TreeNode currentNode = q.remove();
-                avg += currentNode.val;
-                if (currentNode.left != null) {
-                    q.add(currentNode.left);
+                TreeNode currentTreeNode = q.remove();
+                avg += currentTreeNode.val;
+                if (currentTreeNode.left != null) {
+                    q.add(currentTreeNode.left);
                 }
-                if (currentNode.right != null) {
-                    q.add(currentNode.right);
+                if (currentTreeNode.right != null) {
+                    q.add(currentTreeNode.right);
                 }
                 
             }

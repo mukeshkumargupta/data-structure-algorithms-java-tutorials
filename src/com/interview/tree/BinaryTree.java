@@ -9,8 +9,8 @@ package com.interview.tree;
  * Youtube link - https://youtu.be/NA8B84DZYSA
  * Category: Easy, Must Do
  */
-class NodeRef{
-    Node node;
+class TreeNodeRef{
+    TreeNode TreeNode;
 }
 
 enum Color{
@@ -18,21 +18,21 @@ enum Color{
     BLACK
 }
 
-class Node{
-    Node left;
-    Node right;
-    Node next;
-    int data;
+class TreeNode{
+    TreeNode left;
+    TreeNode right;
+    TreeNode next;
+    int val;
     int lis;
     int height;
     int size;
     Color color;
     
-    public static Node newNode(int data){
-        Node n = new Node();
+    public static TreeNode newTreeNode(int val){
+        TreeNode n = new TreeNode();
         n.left = null;
         n.right = null;
-        n.data = data;
+        n.val = val;
         n.lis = -1;
         n.height = 1;
         n.size = 1;
@@ -42,25 +42,25 @@ class Node{
 }
 
 public class BinaryTree {
-    public Node addNode(int data, Node head){
-        Node tempHead = head;
-        Node n = Node.newNode(data);
+    public TreeNode addTreeNode(int val, TreeNode head){
+        TreeNode tempHead = head;
+        TreeNode n = TreeNode.newTreeNode(val);
         if(head == null){
             head = n;
             return head;
         }
-        Node prev = null;
-        //Find accurate place where you need to insert new node
-        //Always return root node.
+        TreeNode prev = null;
+        //Find accurate place where you need to insert new TreeNode
+        //Always return root TreeNode.
         while(head != null){
             prev = head;
-            if(head.data < data){
+            if(head.val < val){
                 head = head.right;
             }else{
                 head = head.left;
             }
         }
-        if(prev.data < data){
+        if(prev.val < val){
             prev.right = n;
         }else{
             prev.left = n;
@@ -72,7 +72,7 @@ public class BinaryTree {
         int height;
     }
     
-    public int height(Node root){
+    public int height(TreeNode root){
         if(root == null){
             return 0;
         }
@@ -83,15 +83,15 @@ public class BinaryTree {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(20, head);
-        head = bt.addNode(-1, head);
-        head = bt.addNode(21, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(-1, head);
+        head = bt.addTreeNode(21, head);
         System.out.println(bt.height(head));
         
     }

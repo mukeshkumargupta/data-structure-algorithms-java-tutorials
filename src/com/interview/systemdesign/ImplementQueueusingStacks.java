@@ -10,7 +10,7 @@ public class ImplementQueueusingStacks {
     Stack<Integer>s2;
     
 
-    /** Initialize your data structure here. */
+    /** Initialize your val structure here. */
     public ImplementQueueusingStacks() {
         s1 = new Stack<>();
         s2 = new Stack<>();

@@ -19,7 +19,7 @@ package com.interview.tree;
  * 
  * Follow rotation rules to keep tree balanced.
  * 
- * At every node we will also keep height of the tree so that we don't
+ * At every TreeNode we will also keep height of the tree so that we don't
  * have to recalculate values again.
  * 
  * Runtime complexity to insert into AVL tree is O(logn).
@@ -31,8 +31,8 @@ package com.interview.tree;
  */
 public class AVLTree {
 
-    private Node leftRotate(Node root){
-        Node newRoot = root.right;
+    private TreeNode leftRotate(TreeNode root){
+        TreeNode newRoot = root.right;
         root.right = root.right.left;
         newRoot.left = root;
         root.height = setHeight(root);
@@ -42,8 +42,8 @@ public class AVLTree {
         return newRoot;
     }
     
-    private Node rightRotate(Node root){
-        Node newRoot = root.left;
+    private TreeNode rightRotate(TreeNode root){
+        TreeNode newRoot = root.left;
         root.left = root.left.right;
         newRoot.right = root;
         root.height = setHeight(root);
@@ -53,14 +53,14 @@ public class AVLTree {
         return newRoot;
     }
 
-    private int setHeight(Node root){
+    private int setHeight(TreeNode root){
         if(root == null){
             return 0;
         }
         return 1 + Math.max((root.left != null ? root.left.height : 0), (root.right != null ? root.right.height : 0));
     }
     
-    private int height(Node root){
+    private int height(TreeNode root){
         if(root == null){
             return 0;
         }else {
@@ -68,22 +68,22 @@ public class AVLTree {
         }
     }
     
-    private int setSize(Node root){
+    private int setSize(TreeNode root){
         if(root == null){
             return 0;
         }
         return 1 + Math.max((root.left != null ? root.left.size : 0), (root.right != null ? root.right.size : 0));
     }
     
-    public Node insert(Node root, int data){
+    public TreeNode insert(TreeNode root, int val){
         if(root == null){
-            return Node.newNode(data);
+            return TreeNode.newTreeNode(val);
         }
-        if(root.data <= data){
-            root.right = insert(root.right,data);
+        if(root.val <= val){
+            root.right = insert(root.right,val);
         }
         else{
-            root.left = insert(root.left,data);
+            root.left = insert(root.left,val);
         }
         int balance = balance(root.left, root.right);
         if(balance > 1){
@@ -108,13 +108,13 @@ public class AVLTree {
         return root;
     }
     
-    private int balance(Node rootLeft, Node rootRight){
+    private int balance(TreeNode rootLeft, TreeNode rootRight){
         return height(rootLeft) - height(rootRight);
     }
     
     public static void main(String args[]){
         AVLTree avlTree = new AVLTree();
-        Node root = null;
+        TreeNode root = null;
         root = avlTree.insert(root, -10);
         root = avlTree.insert(root, 2);
         root = avlTree.insert(root, 13);

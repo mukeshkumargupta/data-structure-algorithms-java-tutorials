@@ -32,8 +32,8 @@ public class KthLargestElementinaStream {
         }
         kthLargest = k;
         //Print
-        /*for (int data : pq) {
-            System.out.println(data);
+        /*for (int val : pq) {
+            System.out.println(val);
             
         }*/
         

@@ -43,7 +43,7 @@ package com.interview.mysql;
  * display count by descendeding order
  * select ename, count(*) from emp group by ename order by count(*) desc
  * 
- * 8. union vs uninonall (Top 5 SQL Interview Questions)| GeeksforGeeks, union same column same data type
+ * 8. union vs uninonall (Top 5 SQL Interview Questions)| GeeksforGeeks, union same column same val type
  * select city, country from sample1
  * union
  * select city, country from sample2
@@ -81,7 +81,7 @@ package com.interview.mysql;
  * dept 
  * on Emp.depptno= Dept.deptno and dame='Sales'
  * 
- * here all left table data will come and right join not matched data will come null
+ * here all left table val will come and right join not matched val will come null
  * 
  * full join means both table matched and unmached all will come
  */

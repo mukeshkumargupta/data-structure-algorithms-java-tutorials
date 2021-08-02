@@ -47,7 +47,7 @@ public class DetermineWhetherMatrixCanBeObtainedByRotation {
         return true;
         
     }
-    public boolean findRotation(int[][] mat, int[][] target) {
+    public boolean findRotation(int[][] mat, int[][] target) {//runtime beats 100%
         int R1 = mat.length;
         int C1 = mat[0].length;
         int R2 = target.length;

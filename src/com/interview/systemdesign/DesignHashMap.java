@@ -4,16 +4,16 @@ import java.util.*;
  * Reference: https://leetcode.com/problems/design-hashmap
  */
 public class DesignHashMap {
-    /*class Node {
+    /*class TreeNode {
         int key;
         int value;
-        Node(int key, int value) {
+        TreeNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
     }
     int MAX = 150;
-    List<Node>[] lookup;
+    List<TreeNode>[] lookup;
 
 
     public DesignHashMap() {
@@ -25,14 +25,14 @@ public class DesignHashMap {
     
     public void put(int key, int value) {
         int index = getHash(key);
-        Node node = new Node(key, value);
+        TreeNode TreeNode = new TreeNode(key, value);
         if (lookup[index] == null) {
-            List<Node> list = new LinkedList<>();
-            list.add(node);
+            List<TreeNode> list = new LinkedList<>();
+            list.add(TreeNode);
             
         } else {
-            if (lookup[index].indexOf(node) == -1) {
-                lookup[index].add(node);
+            if (lookup[index].indexOf(TreeNode) == -1) {
+                lookup[index].add(TreeNode);
             }
         }
     }
@@ -50,7 +50,7 @@ public class DesignHashMap {
     int MAX = 1000001;
     int[] lookup = new int[MAX];
 
-    /** Initialize your data structure here. */
+    /** Initialize your val structure here. */
     public DesignHashMap() {
         for (int i = 0; i < MAX; i++) {
             lookup[i] = -1;

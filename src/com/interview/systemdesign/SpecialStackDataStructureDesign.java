@@ -5,44 +5,44 @@ package com.interview.systemdesign;
  * @author Mukesh Kumar Gupta
  * Reference: 1 https://www.youtube.com/watch?v=gd9xEAnxXzc
  * Reference: 2 Order of 1 time and Space https://www.youtube.com/watch?v=QMlDCR9xyd8&t=156s
- * Reference: https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/?ref=rp
+ * Reference: https://www.geeksforgeeks.org/design-and-implement-special-stack-val-structure/?ref=rp
  * https://leetcode.com/problems/min-stack/
  * Category: Easy
  * Company: Google, Amazon, Facebook
  */
 
-public class SpecialStackDataStructureDesign {
-    class Node {
+public class SpecialStackvalStructureDesign {
+    class TreeNode {
         int value;
         int minValue;
-        Node next;
-        Node( int value, int minValue) {
+        TreeNode next;
+        TreeNode( int value, int minValue) {
             this.value = value;
             this.minValue = minValue;
             this.next = null;
             //System.out.println("val: " + value + " minVal: " + minValue);
         }
     }
-    private Node root;
+    private TreeNode root;
 
 
     
 
-    /** initialize your data structure here. */
-    public SpecialStackDataStructureDesign() {
+    /** initialize your val structure here. */
+    public SpecialStackvalStructureDesign() {
         root = null;
 
     }
     
     public void push(int val) {
         if (root == null) {
-           root = new Node(val , val);
+           root = new TreeNode(val , val);
             
         } else {
             int minValue = root.minValue < val ? root.minValue : val;
-            Node newNode = new Node(val , minValue);
-            newNode.next = root;
-            root = newNode;
+            TreeNode newTreeNode = new TreeNode(val , minValue);
+            newTreeNode.next = root;
+            root = newTreeNode;
             
         }
 

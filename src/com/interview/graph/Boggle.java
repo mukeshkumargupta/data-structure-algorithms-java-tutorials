@@ -65,28 +65,28 @@ public class Boggle {
         visited.remove(val);
     }
 
-    class TrieNode {
-        TrieNode[] child = new TrieNode[26];
+    class TrieTreeNode {
+        TrieTreeNode[] child = new TrieTreeNode[26];
         boolean isWord;
-        public TrieNode() {
+        public TrieTreeNode() {
         }
     }
 
     class Trie {
-        private TrieNode root;
+        private TrieTreeNode root;
 
         public Trie() {
-            root = new TrieNode();
+            root = new TrieTreeNode();
         }
 
         // Inserts a word into the trie.
         public void insert(String word) {
-            TrieNode current = root;
+            TrieTreeNode current = root;
             for (int i = 0; i < word.length(); i++) {
                 char ch = (char)(word.charAt(i) - 'a');
 
                 if (current.child[ch] == null) {
-                    current.child[ch] = new TrieNode();
+                    current.child[ch] = new TrieTreeNode();
                 }
                 current = current.child[ch];
             }
@@ -95,7 +95,7 @@ public class Boggle {
 
         // Returns if the word is in the trie.
         public boolean search(String word) {
-            TrieNode current = root;
+            TrieTreeNode current = root;
             for (int i = 0; i < word.length(); i++) {
                 char ch = (char)(word.charAt(i) - 'a');
                 if (current.child[ch] == null) {
@@ -109,7 +109,7 @@ public class Boggle {
         // Returns if there is any word in the trie
         // that starts with the given prefix.
         public boolean startsWith(String prefix) {
-            TrieNode current = root;
+            TrieTreeNode current = root;
             for (int i = 0; i < prefix.length(); i++) {
                 char ch = (char)(prefix.charAt(i) - 'a');
                 if (current.child[ch] == null) {
@@ -124,7 +124,7 @@ public class Boggle {
             printTrieUtil(root);
         }
 
-        private void printTrieUtil(TrieNode root) {
+        private void printTrieUtil(TrieTreeNode root) {
             if (root == null) {
                 return;
             }

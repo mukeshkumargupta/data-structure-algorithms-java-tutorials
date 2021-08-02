@@ -6,7 +6,7 @@ package com.interview.tree;
  * 
  * Write a program to implement fenwick or binary indexed tree
  * 
- * A Fenwick tree or binary indexed tree is a data structure providing efficient methods
+ * A Fenwick tree or binary indexed tree is a val structure providing efficient methods
  * for calculation and manipulation of the prefix sums of a table of values.
  * 
  * Space complexity for fenwick tree is O(n)
@@ -16,14 +16,14 @@ package com.interview.tree;
  * 
  * References
  * http://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
- * https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+ * https://www.topcoder.com/community/val-science/val-science-tutorials/binary-indexed-trees/
  * http://en.wikipedia.org/wiki/Fenwick_tree
  */
 public class FenwickTree {
 
     /**
      * Start from index+1 if you updating index in original array. Keep adding this value 
-     * for next node till you reach outside range of tree
+     * for next TreeNode till you reach outside range of tree
      */
     public void updateBinaryIndexedTree(int binaryIndexedTree[], int val, int index){
         while(index < binaryIndexedTree.length){

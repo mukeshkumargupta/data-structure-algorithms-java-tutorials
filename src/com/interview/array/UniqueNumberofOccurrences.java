@@ -8,22 +8,22 @@ import java.util.*;
 public class UniqueNumberofOccurrences {
     public boolean uniqueOccurrences(int[] arr) {
         int len = arr.length;
-        Map<Integer, Integer> mapData = new LinkedHashMap<>();
+        Map<Integer, Integer> mapval = new LinkedHashMap<>();
         for (int i = 0; i < len ; i++) {
             Integer key = arr[i];
-            if (mapData.containsKey(key)) {
-               mapData.put(key, mapData.get(key)+1);
+            if (mapval.containsKey(key)) {
+               mapval.put(key, mapval.get(key)+1);
             } else {
-                mapData.put(key, 1);  
+                mapval.put(key, 1);  
             }
         }
-        Map<Integer, Integer> mapDataDuplicateDetails = new LinkedHashMap<>();
-        for (int key : mapData.keySet()) {
-            Integer frq = mapData.get(key);
-            if (mapDataDuplicateDetails.containsKey(frq)) {
+        Map<Integer, Integer> mapvalDuplicateDetails = new LinkedHashMap<>();
+        for (int key : mapval.keySet()) {
+            Integer frq = mapval.get(key);
+            if (mapvalDuplicateDetails.containsKey(frq)) {
                return false;
             } else {
-                mapDataDuplicateDetails.put(frq, 1);  
+                mapvalDuplicateDetails.put(frq, 1);  
             }
         }
         return true;

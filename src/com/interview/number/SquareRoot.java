@@ -3,7 +3,7 @@ package com.interview.number;
 /**
  * Babylonian method for calculating square root
  * Reference: https://www.geeksforgeeks.org/square-root-of-a-perfect-square/
- * Category: Tricky
+ * Category: Leave it
  */
 class GFG { 
 	  

@@ -4,16 +4,16 @@ package com.interview.tree;
  * Date 10/06/2017
  * @author Mukesh Kumar Gupta
  *
- * Given a complete binary tree, count the number of nodes.
+ * Given a complete binary tree, count the number of TreeNodes.
  *
  * Time complexity O(log(n) ^ 2)
  *
  * Reference
- * https://leetcode.com/problems/count-complete-tree-nodes/
+ * https://leetcode.com/problems/count-complete-tree-TreeNodes/
  */
-public class CountNodesCompleteTree {
+public class CountTreeNodesCompleteTree {
 
-    public int countNodes(Node root) {
+    public int countTreeNodes(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -25,14 +25,14 @@ public class CountNodesCompleteTree {
             return (1<<lh + 1) - 1;
         } else {
             if (lh == rh1) {
-                return 1 + countNodes(root.right) + (1<<lh) - 1;
+                return 1 + countTreeNodes(root.right) + (1<<lh) - 1;
             } else {
-                return 1 + countNodes(root.left) + (1<<rh) - 1;
+                return 1 + countTreeNodes(root.left) + (1<<rh) - 1;
             }
         }
     }
 
-    int leftHeight(Node root) {
+    int leftHeight(TreeNode root) {
         int h = 0;
         while (root != null) {
             root = root.left;
@@ -40,7 +40,7 @@ public class CountNodesCompleteTree {
         }
         return h;
     }
-    int rightHeight(Node root) {
+    int rightHeight(TreeNode root) {
         int h = 0;
         while (root != null) {
             root = root.right;

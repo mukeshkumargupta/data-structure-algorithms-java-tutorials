@@ -8,16 +8,16 @@ import java.util.*;
  * https://www.youtube.com/watch?v=kqHNP6NTzME&list=PLIA-9QRQ0RqG6CNfSJSzT0h5Pc_HvwZG5&index=110&t=13s
  * Derived question, print vertical order when row and column same then sorted,
  * if if same column then row first, Given a binary tree, return the vertical
- * order traversal of its nodes' values. (ie, from top to bottom, column by
- * column). If two nodes are in the same row and column, the order should be
+ * order traversal of its TreeNodes' values. (ie, from top to bottom, column by
+ * column). If two TreeNodes are in the same row and column, the order should be
  * from left to right. All derived question Top view, botton view, (left view
  * and right view and all boundry level order will be easy to print, vertical
  * order will not solve problem) https://www.youtube.com/watch?v=AIokcTT0LuE,,
  * https://leetcode.com/problems/find-bottom-left-tree-value/(You can solve this
  * question using bfs only without making hash map) but this method also u can
- * solve, also print bottom right most node print any column like 0th column on
+ * solve, also print bottom right most TreeNode print any column like 0th column on
  * -1 column or any row like 0 or any row then using dfs you can do also no need
- * of any map required. Map only required if you need all column data. try to
+ * of any map required. Map only required if you need all column val. try to
  * solve given row and column print using bfs since we have point so it seems it
  * is possible it. both way try it in future. Hint just add check and print that
  * is required only. https://leetcode.com/problems/find-bottom-left-tree-value/
@@ -28,7 +28,7 @@ import java.util.*;
  * question on leetcode) Category: Must Do, VVImp Status: Done
  */
 public class VerticalOrder {
-    public List<List<Integer>> verticalOrder_NotMine(Node root) {
+    public List<List<Integer>> verticalOrder_NotMine(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
@@ -36,7 +36,7 @@ public class VerticalOrder {
         int maxVal = 0;
         Map<Integer, List<Integer>> map = new HashMap<>();
         
-        Deque<Node> queue = new LinkedList<>();
+        Deque<TreeNode> queue = new LinkedList<>();
         Deque<Integer> verticalQueue = new LinkedList<>();
         
         queue.offerFirst(root);
@@ -53,7 +53,7 @@ public class VerticalOrder {
                 r = new ArrayList<>();
                 map.put(vertical, r);
             }
-            r.add(root.data);
+            r.add(root.val);
             
             if (root.left != null) {
                 queue.offerLast(root.left);
@@ -77,11 +77,11 @@ public class VerticalOrder {
     //////////////////////////////////////////////////////////////////////////////////
     // Using bfs approach
     class Point {
-        Node root;
+        TreeNode root;
         int x;
         int y;
         
-        public Point(Node root, int x, int y) {
+        public Point(TreeNode root, int x, int y) {
             this.root = root;
             this.x = x;
             this.y = y;
@@ -98,7 +98,7 @@ public class VerticalOrder {
         }
     }
     
-    public List<List<Integer>> verticalTraversalBfs(Node root) {
+    public List<List<Integer>> verticalTraversalBfs(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null)
             return ans;
@@ -108,8 +108,8 @@ public class VerticalOrder {
         queue.offer(new Point(root, 0, 0));
         
         Comparator<Point> comparator = (p1, p2) -> { // Keep practicing this way
-            if (p1.y == p2.y) { // sort based on data if y is same else sort based on y.
-                return p1.root.data - p2.root.data;
+            if (p1.y == p2.y) { // sort based on val if y is same else sort based on y.
+                return p1.root.val - p2.root.val;
             } else {
                 return p1.y - p2.y;
             }
@@ -120,8 +120,8 @@ public class VerticalOrder {
             Point point = queue.poll();
             root = point.root;
             map.putIfAbsent(point.x, new PriorityQueue<>((p1, p2) -> { // Keep practicing this way
-                if (p1.y == p2.y) { // sort based on data if y is same else sort based on y.
-                    return p1.root.data - p2.root.data;
+                if (p1.y == p2.y) { // sort based on val if y is same else sort based on y.
+                    return p1.root.val - p2.root.val;
                 } else {
                     return p1.y - p2.y;
                 }
@@ -139,7 +139,7 @@ public class VerticalOrder {
             PriorityQueue<Point> pq = map.get(i);
             List<Integer> list = new ArrayList<>();
             while (!pq.isEmpty()) {
-                list.add(pq.poll().root.data);
+                list.add(pq.poll().root.val);
             }
             ans.add(list);
         }
@@ -172,7 +172,7 @@ public class VerticalOrder {
                 comparator);
     }
     
-    public List<List<Integer>> verticalTraversalDfs(Node root) {
+    public List<List<Integer>> verticalTraversalDfs(TreeNode root) {
         
         List<List<Integer>> ans = new ArrayList<>();
         Map<Integer, PriorityQueue<Point>> map = new HashMap<>();
@@ -181,8 +181,8 @@ public class VerticalOrder {
         int[] maxIdx = new int[1];
         maxIdx[0] = 0;
         Comparator<Point> comparator = (p1, p2) -> { // Keep practicing this way
-            if (p1.y == p2.y) { // sort based on data if y is same else sort based on y.
-                return p1.root.data - p2.root.data;
+            if (p1.y == p2.y) { // sort based on val if y is same else sort based on y.
+                return p1.root.val - p2.root.val;
             } else {
                 return p1.y - p2.y;
             }
@@ -193,7 +193,7 @@ public class VerticalOrder {
             PriorityQueue<Point> pq = map.get(i);
             List<Integer> list = new ArrayList<>();
             while (!pq.isEmpty()) {
-                list.add(pq.poll().root.data);
+                list.add(pq.poll().root.val);
             }
             ans.add(list);
         }
@@ -201,7 +201,7 @@ public class VerticalOrder {
         return ans;
     }
     
-    public List<List<Point>> verticalTraversalWithPointsDfs(Node root) {
+    public List<List<Point>> verticalTraversalWithPointsDfs(TreeNode root) {
         
         List<List<Point>> ans = new ArrayList<>();
         Map<Integer, PriorityQueue<Point>> map = new HashMap<>();
@@ -210,8 +210,8 @@ public class VerticalOrder {
         int[] maxIdx = new int[1];
         maxIdx[0] = 0;
         Comparator<Point> comparator = (p1, p2) -> { // Keep practicing this way
-            if (p1.y == p2.y) { // sort based on data if y is same else sort based on y.
-                return p1.root.data - p2.root.data;
+            if (p1.y == p2.y) { // sort based on val if y is same else sort based on y.
+                return p1.root.val - p2.root.val;
             } else {
                 return p1.y - p2.y;
             }
@@ -274,7 +274,7 @@ public class VerticalOrder {
     }
     
     // Reference: https://www.youtube.com/watch?v=bToZH9pGP5Y
-    void printLeftview(Node root, int level, int[] maxLevel)// here maxLevel we need to take object otherwise it will
+    void printLeftview(TreeNode root, int level, int[] maxLevel)// here maxLevel we need to take object otherwise it will
                                                              // not retain value.
     {
         if (root == null)
@@ -282,14 +282,14 @@ public class VerticalOrder {
         
         if (maxLevel[0] < level) {
             maxLevel[0] = level;
-            System.out.println(root.data);
+            System.out.println(root.val);
         }
         printLeftview(root.left, level + 1, maxLevel); // left child called
         printLeftview(root.right, level + 1, maxLevel); // right child called
         
     }
     
-    void leftView(Node root) {
+    void leftView(TreeNode root) {
         // Max height of tree assumed to be 100
         // Therefore for skew tree, max levels = 100
         int[] maxLevel = new int[1];
@@ -297,7 +297,7 @@ public class VerticalOrder {
     }
     
     // Reference: https://www.youtube.com/watch?v=rnRRlhTflLs
-    void printRightview(Node root, int level, int[] maxLevel)// here maxLevel we need to take object otherwise it will
+    void printRightview(TreeNode root, int level, int[] maxLevel)// here maxLevel we need to take object otherwise it will
                                                              // not retain value.
     {
         if (root == null)
@@ -305,25 +305,25 @@ public class VerticalOrder {
         
         if (maxLevel[0] < level) {
             maxLevel[0] = level;
-            System.out.println(root.data);
+            System.out.println(root.val);
         }
         printRightview(root.right, level + 1, maxLevel); // right child called
         printRightview(root.left, level + 1, maxLevel); // left child called
     }
     
-    void rightView(Node root) {
+    void rightView(TreeNode root) {
         // Max height of tree assumed to be 100
         // Therefore for skew tree, max levels = 100
         int[] maxLevel = new int[1];
         printRightview(root, 1, maxLevel);
     }
     
-    void printLeaf(Node root) {
+    void printLeaf(TreeNode root) {
         if (root == null)
             return;
         
         if (root.left == null && root.right == null) {//Leaf condition
-            System.out.println(root.data);
+            System.out.println(root.val);
         }
         printLeaf(root.left); 
         printLeaf(root.right); 
@@ -336,7 +336,7 @@ public class VerticalOrder {
         int inorder[] = { 2, 4, 7, 8, 5, 1, 3, 6 };
         int preorder[] = { 1, 2, 7, 4, 5, 8, 6, 3 };
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         System.out.println();

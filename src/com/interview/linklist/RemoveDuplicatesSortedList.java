@@ -12,19 +12,19 @@ import java.awt.List;
  * No duplicates
  * Duplicates only in starting
  * Duplicates only at the end
- * 0 1 or more nodes in the list
+ * 0 1 or more TreeNodes in the list
  */
 public class RemoveDuplicatesSortedList {
 
-    public ListNode deleteDuplicates(List head) {
-        ListNode currentNode = head;
+    public ListTreeNode deleteDuplicates(List head) {
+        ListTreeNode currentTreeNode = head;
 
         //If duplicate
-        while(currentNode != null) {
-            if(currentNode.next != null && currentNode.val == currentNode.next.val) {
-               currentNode.next =  currentNode.next.next;
+        while(currentTreeNode != null) {
+            if(currentTreeNode.next != null && currentTreeNode.val == currentTreeNode.next.val) {
+               currentTreeNode.next =  currentTreeNode.next.next;
             } else {
-                currentNode = currentNode.next;
+                currentTreeNode = currentTreeNode.next;
             }
         }
         return head;

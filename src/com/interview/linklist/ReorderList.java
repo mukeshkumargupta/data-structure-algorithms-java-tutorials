@@ -8,16 +8,16 @@ package com.interview.linklist;
  */
 public class ReorderList {
 
-    public void reorderList(Node head) {
-        Node back = frontBackSplit(head);
+    public void reorderList(TreeNode head) {
+        TreeNode back = frontBackSplit(head);
         back = reverse(back);
         alternateMerge(head, back);
 
     }
 
-    private Node alternateMerge(Node head1, Node head2) {
-        Node dummyHead = new Node();
-        Node current = dummyHead;
+    private TreeNode alternateMerge(TreeNode head1, TreeNode head2) {
+        TreeNode dummyHead = new TreeNode();
+        TreeNode current = dummyHead;
         while (head1 != null && head2 != null) {
             current.next= head1;
             head1 = head1.next;
@@ -30,13 +30,13 @@ public class ReorderList {
         return dummyHead.next;
     }
 
-    private Node reverse(Node head) {
+    private TreeNode reverse(TreeNode head) {
         if (head == null) {
             return null;
         }
-        Node front = null;
-        Node mid = head;
-        Node next = null;
+        TreeNode front = null;
+        TreeNode mid = head;
+        TreeNode next = null;
         while (mid != null) {
             next = mid.next;
             mid.next = front;
@@ -46,17 +46,17 @@ public class ReorderList {
         return front;
     }
 
-    private Node frontBackSplit(Node head) {
+    private TreeNode frontBackSplit(TreeNode head) {
         if (head == null) {
             return null;
         }
-        Node slow = head;
+        TreeNode slow = head;
         head = head.next;
         while (head != null && head.next != null) {
             slow = slow.next;
             head = head.next.next;
         }
-        Node next = slow.next;
+        TreeNode next = slow.next;
         slow.next = null;
         return next;
     }

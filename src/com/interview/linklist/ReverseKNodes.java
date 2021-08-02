@@ -4,17 +4,17 @@ package com.interview.linklist;
  * http://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list/
  * Test case
  * odd or even number of k
- * odd or even number of nodes in the list
+ * odd or even number of TreeNodes in the list
  */
-public class ReverseKNodes {
+public class ReverseKTreeNodes {
 
-    public Node reverse(Node head,int k){
+    public TreeNode reverse(TreeNode head,int k){
         if(head == null){
             return null;
         }
-        Node front = null;
-        Node middle = head;
-        Node end = null;
+        TreeNode front = null;
+        TreeNode middle = head;
+        TreeNode end = null;
         int i=0;
         while(middle != null && i < k){
             end = middle.next;
@@ -30,16 +30,16 @@ public class ReverseKNodes {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(3, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(7, head);
-        head = ll.addNode(8, head);
-        ReverseKNodes rn = new ReverseKNodes();
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(3, head);
+        head = ll.addTreeNode(4, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(6, head);
+        head = ll.addTreeNode(7, head);
+        head = ll.addTreeNode(8, head);
+        ReverseKTreeNodes rn = new ReverseKTreeNodes();
         head = rn.reverse(head, 3);
         ll.printList(head);
     }

@@ -15,7 +15,7 @@ package com.interview.tree;
  */
 public class ConstructTreeFromLevelOrderInOrder {
 
-    public Node constructTree(int inOrder[], int levelOrder[]){
+    public TreeNode constructTree(int inOrder[], int levelOrder[]){
         return constructTree(inOrder, levelOrder,0,inOrder.length-1);
     }
     
@@ -31,12 +31,12 @@ public class ConstructTreeFromLevelOrderInOrder {
         return result;
     }
     
-    private Node constructTree(int inOrder[], int levelOrder[], int low, int high){
+    private TreeNode constructTree(int inOrder[], int levelOrder[], int low, int high){
         if(low > high){
             return null;
         }
         int lowElement = levelOrder[0];
-        Node n = Node.newNode(lowElement);
+        TreeNode n = TreeNode.newTreeNode(lowElement);
         int index = search(inOrder,lowElement,low,high);
         int left[] = extractArray(inOrder,levelOrder,low,index-1);
         int right[] = extractArray(inOrder,levelOrder,index+1,high);
@@ -63,7 +63,7 @@ public class ConstructTreeFromLevelOrderInOrder {
         int inOrder[] = {4,8,10,12,14,20,22};
         int levelOrder[] = {20,8,22,4,12,10,14};
         ConstructTreeFromLevelOrderInOrder ctf = new ConstructTreeFromLevelOrderInOrder();
-        Node root = ctf.constructTree(inOrder, levelOrder);
+        TreeNode root = ctf.constructTree(inOrder, levelOrder);
         BinaryTreeLevelOrderTraversal lot = new BinaryTreeLevelOrderTraversal();
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);

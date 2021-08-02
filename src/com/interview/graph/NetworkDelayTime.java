@@ -6,9 +6,9 @@ package com.interview.graph;
  * Related: Dijakshtra, shortest distance from single source
  * Video: https://www.youtube.com/watch?v=t2d-XYuPfg0&t=304s
  * https://www.youtube.com/watch?v=Sj5Z-jaE2x0
- * You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of travel times as directed edges times[i] = (ui, vi, wi), where ui is the source node, vi is the target node, and wi is the time it takes for a signal to travel from source to target.
+ * You are given a network of n TreeNodes, labeled from 1 to n. You are also given times, a list of travel times as directed edges times[i] = (ui, vi, wi), where ui is the source TreeNode, vi is the target TreeNode, and wi is the time it takes for a signal to travel from source to target.
 
-We will send a signal from a given node k. Return the time it takes for all the n nodes to receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
+We will send a signal from a given TreeNode k. Return the time it takes for all the n TreeNodes to receive the signal. If it is impossible for all the n TreeNodes to receive the signal, return -1.
 
  
 
@@ -49,7 +49,7 @@ public class NetworkDelayTime {
         }
         return foundIndex;
     }
-    public int networkDelayTime(int[][] times, int n, int k) {
+    public int networkDelayTime(int[][] times, int n, int k) {//runtime 96.46
         boolean[] visited = new boolean[n];
         int[] d = new int[n];
         
@@ -73,16 +73,16 @@ public class NetworkDelayTime {
         }
         d[k-1] = 0;
         for (int i = 0 ; i < n-1; i++) {
-            //Find node which has min distance
-            int node = minDistanceIndex(d, visited, n);
-            if (node == -1) {
+            //Find TreeNode which has min distance
+            int TreeNode = minDistanceIndex(d, visited, n);
+            if (TreeNode == -1) {
                return -1; 
             }
-            visited[node] = true;
-            //Minimize all connected node
+            visited[TreeNode] = true;
+            //Minimize all connected TreeNode
             for(int j = 0 ; j < n; j++) {
-                if (!visited[j] && input[node][j] != Integer.MAX_VALUE && d[node] + input[node][j] < d[j]) {
-                    d[j] = d[node] + input[node][j];
+                if (!visited[j] && input[TreeNode][j] != Integer.MAX_VALUE && d[TreeNode] + input[TreeNode][j] < d[j]) {
+                    d[j] = d[TreeNode] + input[TreeNode][j];
                 }
             }
         }

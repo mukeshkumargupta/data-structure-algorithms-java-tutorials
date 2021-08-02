@@ -1,7 +1,5 @@
 package com.interview.number;
 
-import com.interview.sort.QuickSort;
-
 /**
  * Date 02/17/2017
  * @author Mukesh Kumar Gupta
@@ -14,6 +12,11 @@ import com.interview.sort.QuickSort;
  * https://leetcode.com/problems/next-permutation/
  * e.g 1 7 9 8 4 will transform to 1 8 4 7 9
  * or  4 2 6 4 3 will transform to 4 3 2 4 6
+ * 
+ * https://leetcode.com/problems/next-permutation/
+ * Category: Medium, Tricky
+ * https://www.youtube.com/watch?v=6qXO72FkqwM&list=PLIA-9QRQ0RqGHCgLmV2kYLSZE_SE-fF3h&index=4
+ * Write your own code
  */
 public class PermutationBiggerThanNumber {
 

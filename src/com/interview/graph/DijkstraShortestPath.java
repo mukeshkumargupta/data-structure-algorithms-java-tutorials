@@ -19,7 +19,7 @@ public class DijkstraShortestPath {
 
     public Map<Vertex<Integer>,Integer> shortestPath(Graph<Integer> graph, Vertex<Integer> sourceVertex){
 
-        //heap + map data structure
+        //heap + map val structure
         BinaryMinHeap<Vertex<Integer>> minHeap = new BinaryMinHeap<>();
 
         //stores shortest distance from root to every vertex
@@ -44,12 +44,12 @@ public class DijkstraShortestPath {
 
         //iterate till heap is not empty
         while(!minHeap.empty()){
-            //get the min value from heap node which has vertex and distance of that vertex from source vertex.
-            BinaryMinHeap<Vertex<Integer>>.Node heapNode = minHeap.extractMinNode();
-            Vertex<Integer> current = heapNode.key;
+            //get the min value from heap TreeNode which has vertex and distance of that vertex from source vertex.
+            BinaryMinHeap<Vertex<Integer>>.TreeNode heapTreeNode = minHeap.extractMinTreeNode();
+            Vertex<Integer> current = heapTreeNode.key;
 
             //update shortest distance of current vertex from source vertex
-            distance.put(current, heapNode.weight);
+            distance.put(current, heapTreeNode.weight);
 
             //iterate through all edges of current vertex
             for(Edge<Integer> edge : current.getEdges()){
@@ -58,7 +58,7 @@ public class DijkstraShortestPath {
                 Vertex<Integer> adjacent = getVertexForEdge(current, edge);
 
                 //if heap does not contain adjacent vertex means adjacent vertex already has shortest distance from source vertex
-                if(!minHeap.containsData(adjacent)){
+                if(!minHeap.containsval(adjacent)){
                     continue;
                 }
 

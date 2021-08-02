@@ -5,7 +5,7 @@ package com.interview.tree;
  */
 public class SinkNegativeToBottom {
 
-    public void sinkZero(Node root) {
+    public void sinkZero(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -13,32 +13,32 @@ public class SinkNegativeToBottom {
         sinkZero(root.left);
         sinkZero(root.right);
 
-        if (root.data < 0) {
+        if (root.val < 0) {
             pushDown(root);
         }
     }
 
-    private void pushDown(Node root) {
+    private void pushDown(TreeNode root) {
         if(root == null){
             return;
         }
-        // find a child with non zero node value
+        // find a child with non zero TreeNode value
         if (root.left == null && root.right == null) {
-            // already leaf node. nothing to do. just return
+            // already leaf TreeNode. nothing to do. just return
             return;
         }
 
-        //if root left is not null and root left data is not 0 pick it to swap
-        if (root.left != null && root.left.data >= 0) {
-            int temp = root.data;
-            root.data = root.left.data;
-            root.left.data = temp;
+        //if root left is not null and root left val is not 0 pick it to swap
+        if (root.left != null && root.left.val >= 0) {
+            int temp = root.val;
+            root.val = root.left.val;
+            root.left.val = temp;
             pushDown(root.left);
         }
-        else if(root.right != null && root.right.data >= 0){
-            int temp = root.data;
-            root.data = root.right.data;
-            root.right.data = temp;
+        else if(root.right != null && root.right.val >= 0){
+            int temp = root.val;
+            root.val = root.right.val;
+            root.right.val = temp;
             pushDown(root.right);
         }
     }
@@ -47,7 +47,7 @@ public class SinkNegativeToBottom {
         int preorder[] = {-1,1,6,-2,11,3,2,-3,31,22,17};
         int inorder[]  = {-2,6,11,1,3,-1,31,-3,22,2,17};
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         SinkNegativeToBottom szb = new SinkNegativeToBottom();
         szb.sinkZero(root);
         BinaryTreeLevelOrderTraversal lot = new BinaryTreeLevelOrderTraversal();

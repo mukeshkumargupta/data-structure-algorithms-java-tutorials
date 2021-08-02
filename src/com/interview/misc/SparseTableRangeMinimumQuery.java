@@ -11,7 +11,7 @@ package com.interview.misc;
  * Space complexity O(nlogn)
  *
  * Reference -
- * https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/
+ * https://www.topcoder.com/community/val-science/val-science-tutorials/range-minimum-query-and-lowest-common-ancestor/
  */
 public class SparseTableRangeMinimumQuery {
 

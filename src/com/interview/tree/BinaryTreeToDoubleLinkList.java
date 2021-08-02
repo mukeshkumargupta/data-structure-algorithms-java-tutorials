@@ -5,37 +5,37 @@ package com.interview.tree;
  */
 public class BinaryTreeToDoubleLinkList {
 
-    public void toDoubleLL(Node root){
-        NodeRef prev = new NodeRef();
+    public void toDoubleLL(TreeNode root){
+        TreeNodeRef prev = new TreeNodeRef();
         toDoubleLL(root,prev);
     }
     
-    private void toDoubleLL(Node root, NodeRef prev){
+    private void toDoubleLL(TreeNode root, TreeNodeRef prev){
         if(root == null){
             return;
         }
         toDoubleLL(root.left,prev);
-        if(prev.node != null){
-            prev.node.right = root;
-            root.left = prev.node;
-            prev.node = root;
+        if(prev.TreeNode != null){
+            prev.TreeNode.right = root;
+            root.left = prev.TreeNode;
+            prev.TreeNode = root;
         }else{
-            prev.node = root;
+            prev.TreeNode = root;
         }
         toDoubleLL(root.right,prev);
     }
     
-    public void print(Node root){
-        Node curr = null;
+    public void print(TreeNode root){
+        TreeNode curr = null;
         while(root != null){
             curr = root;
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             root = root.right;
         }
         System.out.println();
         root = curr;
         while(root != null){
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             root = root.left;
         }
     }
@@ -43,15 +43,15 @@ public class BinaryTreeToDoubleLinkList {
     public static void main(String args[]){
         BinaryTreeToDoubleLinkList btd = new BinaryTreeToDoubleLinkList();  
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(100, head);
-        head = bt.addNode(90, head);
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(25, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(-7, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(100, head);
+        head = bt.addTreeNode(90, head);
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(25, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(-7, head);
         btd.toDoubleLL(head);
         btd.print(head);
     }

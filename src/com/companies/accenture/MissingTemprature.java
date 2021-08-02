@@ -65,20 +65,20 @@ import java.util.*;
             final double wt2 = 1 - wt1;
             for (int row = 0; row < rows; row++) {
                 String rowChars = sc.nextLine().trim();
-                String[] data = rowChars.split("\\s+");
-                MONTH mon =  MONTH.valueOf(data[1]);
-                int maxCheck = data[2].indexOf("Missing_");
-                int minCheck = data[3].indexOf("Missing_");
+                String[] val = rowChars.split("\\s+");
+                MONTH mon =  MONTH.valueOf(val[1]);
+                int maxCheck = val[2].indexOf("Missing_");
+                int minCheck = val[3].indexOf("Missing_");
                 if(maxCheck==0 && minCheck == 0){
                     System.out.println(tmaxMonth[mon.ordinal()]);
                     System.out.println(tminMonth[mon.ordinal()]);
                 } else if (maxCheck==0) {
-                    System.out.println(Double.parseDouble(data[3])+diffMonth[mon.ordinal()]);
+                    System.out.println(Double.parseDouble(val[3])+diffMonth[mon.ordinal()]);
                 } else if (minCheck==0) {
-                    System.out.println(Double.parseDouble(data[2])-diffMonth[mon.ordinal()]);
+                    System.out.println(Double.parseDouble(val[2])-diffMonth[mon.ordinal()]);
                 } else {
-                    double max =  Double.parseDouble(data[2]);
-                    double min = Double.parseDouble(data[3]);
+                    double max =  Double.parseDouble(val[2]);
+                    double min = Double.parseDouble(val[3]);
                     double diff =max-min;
                     diffMonth[mon.ordinal()] = wt1*diffMonth[mon.ordinal()] + wt2*diff;
                 }

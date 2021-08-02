@@ -15,9 +15,9 @@ package com.interview.linklist;
  * Status: Done
  */
 public class LoopInLinkList {
-    public ListNode detectCycle(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
+    public ListTreeNode detectCycle(ListTreeNode head) {
+        ListTreeNode slow = head;
+        ListTreeNode fast = head;
         
         while (fast != null && fast.next != null) {
             slow = slow.next;
@@ -34,10 +34,10 @@ public class LoopInLinkList {
         return null; 
     }
     
-    private void printCycle(Node head) {
-        Node current = head;
+    private void printCycle(TreeNode head) {
+        TreeNode current = head;
         while (current != null) {
-            System.out.println(current.data);
+            System.out.println(current.val);
             current = current.next;
             
             //if current reach to starting point then break
@@ -52,27 +52,27 @@ public class LoopInLinkList {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(3, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(7, head);
-        head = ll.addNode(8, head);
-        Node node1 = ll.find(head, 8);
-        Node node2 = ll.find(head, 4);
-        node1.next = node2;
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(3, head);
+        head = ll.addTreeNode(4, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(6, head);
+        head = ll.addTreeNode(7, head);
+        head = ll.addTreeNode(8, head);
+        TreeNode TreeNode1 = ll.find(head, 8);
+        TreeNode TreeNode2 = ll.find(head, 4);
+        TreeNode1.next = TreeNode2;
         LoopInLinkList lll = new LoopInLinkList();
-        Node node = lll.detectCycle(head);
-        if (node !=null) {
+        TreeNode TreeNode = lll.detectCycle(head);
+        if (TreeNode !=null) {
             System.out.println(true);
         } else {
             System.out.println(false);
         }
-        if (node !=null) {
-            lll.printCycle(node);
+        if (TreeNode !=null) {
+            lll.printCycle(TreeNode);
             
         }
     }

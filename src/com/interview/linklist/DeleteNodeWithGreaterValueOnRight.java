@@ -1,40 +1,40 @@
 package com.interview.linklist;
 
 /**
- * http://www.geeksforgeeks.org/delete-nodes-which-have-a-greater-value-on-right-side/
+ * http://www.geeksforgeeks.org/delete-TreeNodes-which-have-a-greater-value-on-right-side/
  * Test cases
  * Sorted list
  * reverse sorted list
- * 0 1 or more nodes in the list
+ * 0 1 or more TreeNodes in the list
  */
-public class DeleteNodeWithGreaterValueOnRight {
+public class DeleteTreeNodeWithGreaterValueOnRight {
 
     private int maxFound = Integer.MIN_VALUE;
     
-    public Node deleteNodes(Node head){
+    public TreeNode deleteTreeNodes(TreeNode head){
         if(head == null){
             return null;
         }
-        Node nextNode = deleteNodes(head.next);
-        if(head.data > maxFound){
-            maxFound = head.data;
+        TreeNode nextTreeNode = deleteTreeNodes(head.next);
+        if(head.val > maxFound){
+            maxFound = head.val;
         }
-        if(maxFound > head.data){
-            return nextNode;
+        if(maxFound > head.val){
+            return nextTreeNode;
         }
-        head.next = nextNode;
+        head.next = nextTreeNode;
         return head;
     }
     
-    public Node deleteNodes_M1(Node head){
-        Node currentNode = head;
-        while (currentNode != null) {
-            if (currentNode.next != null && currentNode.data < currentNode.next.data) {
-                //Delete current node
-                head = currentNode.next;
-                currentNode = currentNode.next;
+    public TreeNode deleteTreeNodes_M1(TreeNode head){
+        TreeNode currentTreeNode = head;
+        while (currentTreeNode != null) {
+            if (currentTreeNode.next != null && currentTreeNode.val < currentTreeNode.next.val) {
+                //Delete current TreeNode
+                head = currentTreeNode.next;
+                currentTreeNode = currentTreeNode.next;
             } else {
-                currentNode = currentNode.next;
+                currentTreeNode = currentTreeNode.next;
             }
         }
         
@@ -42,19 +42,19 @@ public class DeleteNodeWithGreaterValueOnRight {
     }
     
     public static void main(String args[]){
-        DeleteNodeWithGreaterValueOnRight dng = new DeleteNodeWithGreaterValueOnRight();
+        DeleteTreeNodeWithGreaterValueOnRight dng = new DeleteTreeNodeWithGreaterValueOnRight();
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(12, head);
-        head = ll.addNode(15, head);
-        /*head = ll.addNode(10, head);
-        head = ll.addNode(11, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(3, head);*/
-       // head = dng.deleteNodes(head);
-        head = dng.deleteNodes_M1(head);
+        TreeNode head = null;
+        head = ll.addTreeNode(12, head);
+        head = ll.addTreeNode(15, head);
+        /*head = ll.addTreeNode(10, head);
+        head = ll.addTreeNode(11, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(6, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(3, head);*/
+       // head = dng.deleteTreeNodes(head);
+        head = dng.deleteTreeNodes_M1(head);
         ll.printList(head);
     }
 }

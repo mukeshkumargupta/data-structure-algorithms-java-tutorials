@@ -26,11 +26,11 @@ public class KthLargestInRowiseColumnWiseSorted2DArray {
             }else{
                 rightNeighbor = minRow*c + (minCol + 1);
             }
-            if(downNeighbor < total && !minHeap.containsData(downNeighbor)){
+            if(downNeighbor < total && !minHeap.containsval(downNeighbor)){
                 minHeap.add(input[minRow+1][minCol], downNeighbor);
             }
             
-            if(rightNeighbor < total && !minHeap.containsData(rightNeighbor)){
+            if(rightNeighbor < total && !minHeap.containsval(rightNeighbor)){
                 minHeap.add(input[minRow][minCol+1], rightNeighbor);
             }
         }

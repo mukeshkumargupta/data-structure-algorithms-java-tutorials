@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class RealTimeCounterUsingCircularQueue {
 
-    class Node {
+    class TreeNode {
         long time;
         int count;
     }
@@ -16,10 +16,10 @@ public class RealTimeCounterUsingCircularQueue {
     int count = 0;
     private int currentSize = 0;
 
-    Deque<Node> queue = new LinkedList<Node>();
+    Deque<TreeNode> queue = new LinkedList<TreeNode>();
 
     public void add(long time) {
-        Node last = queue.peekLast();
+        TreeNode last = queue.peekLast();
         if(last != null){
             if (time - last.time < BOUND) {
                 last.count++;
@@ -27,7 +27,7 @@ public class RealTimeCounterUsingCircularQueue {
                 return;
             } else if (time - last.time > MAX_BOUND) {
                 queue.clear();
-                Node n = new Node();
+                TreeNode n = new TreeNode();
                 n.time = time/BOUND * BOUND;
                 n.count = 1;
                 queue.add(n);
@@ -36,7 +36,7 @@ public class RealTimeCounterUsingCircularQueue {
             }
         }
         while(queue.size() > 0){
-            Node t1 = queue.peekFirst();
+            TreeNode t1 = queue.peekFirst();
             if(time - t1.time > MAX_BOUND){
                 count = count - t1.count;
                 queue.pollFirst();
@@ -45,7 +45,7 @@ public class RealTimeCounterUsingCircularQueue {
             }
         }
     
-        Node n = new Node();
+        TreeNode n = new TreeNode();
         n.time = time/BOUND * BOUND;
         n.count = 1;
         queue.add(n);
@@ -54,7 +54,7 @@ public class RealTimeCounterUsingCircularQueue {
 
     public int getCount(int time){
         while(queue.size() > 0){
-            Node t1 = queue.peekFirst();
+            TreeNode t1 = queue.peekFirst();
             if(time - t1.time > MAX_BOUND){
                 count = count - t1.count;
                 queue.pollFirst();

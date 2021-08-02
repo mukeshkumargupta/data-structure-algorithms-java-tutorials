@@ -12,12 +12,12 @@ interface Subject {
 }
 
 //Notification is based on location changed
-class LocationData implements Subject {
+class Locationval implements Subject {
 
   private List<Observer> observers;
   private String location;
   
-  public LocationData() {
+  public Locationval() {
     this.observers = new ArrayList<>();
   }
   
@@ -52,12 +52,12 @@ class LocationData implements Subject {
 
 //Notification is based on price changed
 //Similar way you can add topic or subject as per requirement
-class PriceData implements Subject {
+class Priceval implements Subject {
 
 private List<Observer> observers;
 private String price;
 
-public PriceData() {
+public Priceval() {
   this.observers = new ArrayList<>();
 }
 
@@ -152,7 +152,7 @@ class DeliveryWarehouseCenter implements Observer {
 public class ObserverPatternExample {
     
     public static void main(String[] args) {
-        LocationData locationTopic = new LocationData();
+        Locationval locationTopic = new Locationval();
         
         Observer obj1 = new Seller();
         Observer obj2 = new User();
@@ -170,7 +170,7 @@ public class ObserverPatternExample {
         locationTopic.locationChangedTo("DEF");
         
         //New topic
-        PriceData priceTopic = new PriceData();
+        Priceval priceTopic = new Priceval();
         
         
         priceTopic.register(obj1); //Only two interested in price

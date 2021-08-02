@@ -14,39 +14,39 @@ import java.util.PriorityQueue;
  */
 public class UglyNumbers {
 
-    static class Node implements Comparable<Node> {
+    static class TreeNode implements Comparable<TreeNode> {
         int inputIndex;
         int index;
         int val;
-        Node (int inputIndex, int index, int val) {
+        TreeNode (int inputIndex, int index, int val) {
             this.index = index;
             this.val = val;
             this.inputIndex = inputIndex;
         }
 
         @Override
-        public int compareTo(Node other) {
+        public int compareTo(TreeNode other) {
             return this.val - other.val;
         }
     }
 
     public int nthSuperUglyNumber1(int n, int[] primes) {
 
-        PriorityQueue<Node> pq = new PriorityQueue<>();
+        PriorityQueue<TreeNode> pq = new PriorityQueue<>();
         for (int i = 0; i < primes.length; i++) {
-            pq.offer(new Node(i, 0, primes[i]));
+            pq.offer(new TreeNode(i, 0, primes[i]));
         }
         int[] val = new int[n];
         val[0] = 1;
         for (int i = 1; i < n; ) {
-            Node node = pq.poll();
-            if (val[i-1] != node.val) {
-                val[i] = node.val;
+            TreeNode TreeNode = pq.poll();
+            if (val[i-1] != TreeNode.val) {
+                val[i] = TreeNode.val;
                 i++;
             }
-            node.index = node.index + 1;
-            node.val = primes[node.inputIndex]*val[node.index];
-            pq.offer(node);
+            TreeNode.index = TreeNode.index + 1;
+            TreeNode.val = primes[TreeNode.inputIndex]*val[TreeNode.index];
+            pq.offer(TreeNode);
         }
         return val[n - 1];
     }

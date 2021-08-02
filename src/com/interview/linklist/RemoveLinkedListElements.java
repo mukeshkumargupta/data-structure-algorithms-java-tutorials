@@ -5,23 +5,23 @@ package com.interview.linklist;
  * Category: Easy, Tricky
  */
 public class RemoveLinkedListElements {
-    public Node removeElements(Node head, int val) {
+    public TreeNode removeElements(TreeNode head, int val) {
         
         if(head == null) {
             return null;
             
         }
         //If it is found on first element, then delete it
-        while (head != null && head.data == val) {
+        while (head != null && head.val == val) {
             head = head.next;
         }
         
-        Node current = head;
+        TreeNode current = head;
         
         //If found in between
         while (current != null && current.next != null) {
-            if (current.next.data == val) {
-                //Then skip next node
+            if (current.next.val == val) {
+                //Then skip next TreeNode
                 current.next = current.next.next;
                 
             } else {

@@ -9,7 +9,7 @@ import java.util.*;
  */
 
 /**
- * Definition for a binary tree node.
+ * Definition for a binary tree TreeNode.
  * public class TreeNode {
  *     int val;
  *     TreeNode left;
@@ -37,15 +37,15 @@ public class FindLargestValueinEachTreeRow {
             int max = Integer.MIN_VALUE;
             int size = q.size();
             for (int i = 0 ; i < size; i++) {
-                TreeNode node = q.remove();
-                if (node.val > max) {
-                    max = node.val;
+                TreeNode TreeNode = q.remove();
+                if (TreeNode.val > max) {
+                    max = TreeNode.val;
                 }
-                if (node.left != null) {
-                    q.add(node.left);  
+                if (TreeNode.left != null) {
+                    q.add(TreeNode.left);  
                 }
-                if (node.right != null) {
-                    q.add(node.right);  
+                if (TreeNode.right != null) {
+                    q.add(TreeNode.right);  
                 }
                 
             }

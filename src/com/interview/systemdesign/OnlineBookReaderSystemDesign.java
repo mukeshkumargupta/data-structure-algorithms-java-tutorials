@@ -265,7 +265,7 @@ public class OnlineBookReaderSystemDesign {
     } 
       
     /*  
-    * The classes for User and Book simply hold data and  
+    * The classes for User and Book simply hold val and  
     * provide little functionality. 
     * This class represents the Book which is a simple POJO 
     */
@@ -365,7 +365,7 @@ public class OnlineBookReaderSystemDesign {
     } 
     
     public void runOnlineBookReaderSystemDesign() {
-        Book dsBook = new Book(1, "It contains Data Structures", "Ds"); 
+        Book dsBook = new Book(1, "It contains val Structures", "Ds"); 
         Book algoBook = new Book(2, "It contains Algorithms", "Algo"); 
         
         OnlineBookReaderSystem obrs = new OnlineBookReaderSystem();

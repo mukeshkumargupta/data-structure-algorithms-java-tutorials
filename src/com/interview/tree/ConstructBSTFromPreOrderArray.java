@@ -32,7 +32,7 @@ public class ConstructBSTFromPreOrderArray {
     public static void main(String args[]){
         int preorder[] = {10,5,1,7,40,50};
         ConstructBSTFromPreOrderArray poa = new ConstructBSTFromPreOrderArray();
-        Node root = poa.toBST(preorder);
+        TreeNode root = poa.toBST(preorder);
         TreeTraversals tt = new TreeTraversals();
         tt.preOrder(root);
         System.out.println();

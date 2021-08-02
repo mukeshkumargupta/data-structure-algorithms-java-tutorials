@@ -2,7 +2,12 @@ package com.interview.sort;
 
 /*
  * Reference: https://www.youtube.com/watch?v=COk73cpQbFQ&t=946s
+ * https://leetcode.com/problems/sort-an-array
  * Category: Must Do
+ * Related: https://leetcode.com/problems/sparse-matrix-multiplication/ Medium
+ * https://leetcode.com/problems/dinner-plate-stacks/ Hard
+ * https://leetcode.com/problems/minimum-absolute-sum-difference/ Medium
+ * 
  */
 public class QuickSort {
     
@@ -28,12 +33,18 @@ public class QuickSort {
     }
     
     public void sort(int A[], int start, int end) {
-        if (start < end) {
-            int pivot = partition(A, start, end);
-            sort(A, start, pivot - 1);
-            sort(A, pivot + 1, end);
+        if (start > end) {
+            return;
         }
+        int pivot = partition(A, start, end);
+        sort(A, start, pivot - 1);
+        sort(A, pivot + 1, end);
         
+    }
+    
+    public int[] sortArray(int[] nums) {//runtime 6%
+        sort(nums, 0, nums.length-1);
+        return nums;
     }
     
     private void printArray(int arr[]) {
@@ -51,8 +62,7 @@ public class QuickSort {
         // element
         // int A[] = {10, 7, 8, 15, 20, 10, 10, 5};//working
         
-        qs.sort(A, 0, A.length - 1);
+        qs.sortArray(A);
         qs.printArray(A);
-        
     }
 }

@@ -2,7 +2,7 @@ package com.interview.tree;
 
 /**
  * http://www.geeksforgeeks.org/convert-an-arbitrary-binary-tree-to-a-tree-that-holds-children-sum-property/
- * Only operation you can do is increase data on the node. No decrement of data
+ * Only operation you can do is increase val on the TreeNode. No decrement of val
  * Test case
  * Root greater than children
  * Root less than children
@@ -10,53 +10,53 @@ package com.interview.tree;
  */
 public class ArbitaryTreeToChildSumTree {
 
-    public void childSumTree(Node root){
+    public void childSumTree(TreeNode root){
         toChildSumTree(root);
     }
     
-    private void incrementChild(Node root,int increment){
+    private void incrementChild(TreeNode root,int increment){
         if(root == null || (root.left ==null && root.right == null)){
             return;
         }
         if(root.left != null){
-            root.left.data = root.left.data + increment;
+            root.left.val = root.left.val + increment;
             incrementChild(root.left,increment);
         }else{
-            root.right.data = root.right.data + increment;
+            root.right.val = root.right.val + increment;
             incrementChild(root.right,increment);
         }
     }
     
-    private int toChildSumTree(Node root){
+    private int toChildSumTree(TreeNode root){
         if(root == null){
             return 0;
         }
         
         if(root.left == null && root.right == null){
-            return root.data;
+            return root.val;
         }
         
         int sum1 = toChildSumTree(root.left);
         int sum2 = toChildSumTree(root.right);
-        if(root.data < sum1 + sum2){
-            root.data = sum1 + sum2;
-        }else if(root.data > sum1 + sum2){
-            incrementChild(root,root.data - sum1 - sum2);
+        if(root.val < sum1 + sum2){
+            root.val = sum1 + sum2;
+        }else if(root.val > sum1 + sum2){
+            incrementChild(root,root.val - sum1 - sum2);
         }
-        return root.data;
+        return root.val;
     }
     
     public static void main(String args[]){
         ArbitaryTreeToChildSumTree att = new ArbitaryTreeToChildSumTree();
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(20, head);
-        head = bt.addNode(-1, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(-1, head);
         att.childSumTree(head);
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(head);

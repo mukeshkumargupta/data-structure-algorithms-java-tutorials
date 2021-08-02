@@ -144,12 +144,12 @@ public class ConnectionPoolExample {
                try {
                       // Context ctx = new InitialContext();
                       // Context envContext = (Context) ctx.lookup("java:/comp/env");
-                      // javax.sql.DataSource ds = (javax.sql.DataSource)
+                      // javax.sql.valSource ds = (javax.sql.valSource)
                       // envContext.lookup ("jdbc/connectionPool");
      
-                      // Load database driver if not already loaded
+                      // Load valbase driver if not already loaded
                       Class.forName(driver);
-                      // Establish network connection to database
+                      // Establish network connection to valbase
                       Connection connection = DriverManager.getConnection(url, username,
                                    password);
                       // Connection connection = ds.getConnection();

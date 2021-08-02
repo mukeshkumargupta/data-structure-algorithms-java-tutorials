@@ -4,7 +4,7 @@ import java.util.*;
 
 //Reference: https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 //Category: Must DO
-//In this question not asking to print all node while asking print only grom starting index so trying all node is not mandatory
+//In this question not asking to print all TreeNode while asking print only grom starting index so trying all TreeNode is not mandatory
 
 public class BFS {
 	static void bfsUtil(int s, ArrayList<ArrayList<Integer>> list, boolean vis[], int nov) {
@@ -43,7 +43,7 @@ public class BFS {
 
 		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		//make adjence list like 
-		//5 4 T1 5 node 4 edge
+		//5 4 T1 5 TreeNode 4 edge
 		//0 1 0 2 0 3 2 4
 		//3 2
 		//0 1 0 2

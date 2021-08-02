@@ -18,7 +18,7 @@ package com.interview.tree;
  * 
  * Test cases
  * 1) Null root
- * 2) One node root
+ * 2) One TreeNode root
  * 3) BST 
  * 4) Reverse BST
  * 5) All on left side of root
@@ -29,13 +29,13 @@ package com.interview.tree;
  */
 public class DegenerateBinaryTreeToSortedLL {
    
-    public Node degenerate(Node root){
+    public TreeNode degenerate(TreeNode root){
         if(root == null){
             return null;
         }
         
-        Node left = root.left;
-        Node right = root.right;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
         root.left = null;
         root.right = null;
         left = degenerate(left);
@@ -44,7 +44,7 @@ public class DegenerateBinaryTreeToSortedLL {
         return merge(left, right);
     }
     
-    private Node merge(Node root1, Node root2){
+    private TreeNode merge(TreeNode root1, TreeNode root2){
         if(root1 == null){
             return root2;
         }
@@ -52,7 +52,7 @@ public class DegenerateBinaryTreeToSortedLL {
             return root1;
         }
         
-        if(root1.data <= root2.data){
+        if(root1.val <= root2.val){
             root1.right = merge(root1.right, root2);
             return root1;
         }else{
@@ -61,9 +61,9 @@ public class DegenerateBinaryTreeToSortedLL {
         }
     }
     
-    private void printList(Node root){
+    private void printList(TreeNode root){
         while(root != null){
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             root = root.right;
         }
     }
@@ -72,7 +72,7 @@ public class DegenerateBinaryTreeToSortedLL {
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
         int inorder[] = {8, 11, 9, 10, 16, 15, 13, 7};
         int preorder[] = {10, 11, 8, 9, 15, 16, 13, 7};
-        Node root = ctf.createTree(inorder, preorder);
+        TreeNode root = ctf.createTree(inorder, preorder);
         DegenerateBinaryTreeToSortedLL dbt = new DegenerateBinaryTreeToSortedLL();
         root = dbt.degenerate(root);
         dbt.printList(root);

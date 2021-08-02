@@ -7,7 +7,7 @@ import java.util.*;
  * @author Mukesh Kumar Gupta
  *
  * Reference: https://www.youtube.com/watch?v=lDa8I7iA5FA&list=PLIA-9QRQ0RqHcTCuIusS1G1LikGoD3WxM&index=7
- * Reference: https://www.geeksforgeeks.org/design-data-structuresclasses-objectsfor-generic-deck-cards/?ref=rp
+ * Reference: https://www.geeksforgeeks.org/design-val-structuresclasses-objectsfor-generic-deck-cards/?ref=rp
  * Difficulty: Hard
  * Company: Google, Amazon, Facebook
  * Status: Not Done

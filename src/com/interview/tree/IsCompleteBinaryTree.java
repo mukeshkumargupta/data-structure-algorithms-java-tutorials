@@ -6,15 +6,15 @@ import java.util.Queue;
 /**
  * http://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
  * Test cases:
- * A node with only right child
- * A node with only left child
- * A node with both left and right child
+ * A TreeNode with only right child
+ * A TreeNode with only left child
+ * A TreeNode with both left and right child
  * Category: VImp
  */
 public class IsCompleteBinaryTree {
 
-    public boolean isComplete(Node root){
-        Queue<Node> queue = new LinkedList<Node>();
+    public boolean isComplete(TreeNode root){
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
         boolean foundFirstNonFull = false;
         while(!queue.isEmpty()){
@@ -42,16 +42,16 @@ public class IsCompleteBinaryTree {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(3, head);
-        head = bt.addNode(-6, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(-10, head);
-        head = bt.addNode(-15, head);
-        head = bt.addNode(-4, head);
-        head = bt.addNode(4, head);
-        head = bt.addNode(11, head);
-        head = bt.addNode(-9, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(3, head);
+        head = bt.addTreeNode(-6, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(-10, head);
+        head = bt.addTreeNode(-15, head);
+        head = bt.addTreeNode(-4, head);
+        head = bt.addTreeNode(4, head);
+        head = bt.addTreeNode(11, head);
+        head = bt.addTreeNode(-9, head);
             
         IsCompleteBinaryTree icbt = new IsCompleteBinaryTree();
         System.out.println(icbt.isComplete(head));

@@ -2,56 +2,56 @@ package com.interview.linklist;
 
 public class DoubleLinkList {
 
-    public Node addNode(Node head,int data){
+    public TreeNode addTreeNode(TreeNode head,int val){
         if(head == null){
-            head = Node.newNode(data);
+            head = TreeNode.newTreeNode(val);
             return head;
         }
-        Node newNode = Node.newNode(data);
-        Node current = head;
+        TreeNode newTreeNode = TreeNode.newTreeNode(val);
+        TreeNode current = head;
         while(current.next != null){
             current = current.next;
         }
-        current.next = newNode;
-        newNode.before = current;
+        current.next = newTreeNode;
+        newTreeNode.before = current;
         return head;
     }
     
-    public Node addAtFront(Node head, int data){
-        Node newNode = Node.newNode(data);
+    public TreeNode addAtFront(TreeNode head, int val){
+        TreeNode newTreeNode = TreeNode.newTreeNode(val);
         if(head == null){
-            return newNode;
+            return newTreeNode;
         }
-        newNode.next = head;
-        head.before = newNode;
-        return newNode;
+        newTreeNode.next = head;
+        head.before = newTreeNode;
+        return newTreeNode;
     }
     
-    public void print(Node head){
+    public void print(TreeNode head){
         while(head != null){
-            System.out.print(head.data + " ");
+            System.out.print(head.val + " ");
             head = head.next;
         }
     }
     
 
-    public void printFrontBack(Node head){
-        Node prev = null;
+    public void printFrontBack(TreeNode head){
+        TreeNode prev = null;
         while(head != null){
-            System.out.print(head.data + " ");
+            System.out.print(head.val + " ");
             prev = head;
             head = head.next;
         }
         System.out.println();
         while(prev != null){
-            System.out.print(prev.data + " ");
+            System.out.print(prev.val + " ");
             prev = prev.before;
         }
     }
     
-    public Node find(Node head, int data){
+    public TreeNode find(TreeNode head, int val){
         while(head != null){
-            if(head.data == data){
+            if(head.val == val){
                 return head;
             }
             head = head.next;
@@ -61,12 +61,12 @@ public class DoubleLinkList {
     
     public static void main(String args[]){
         DoubleLinkList dll = new DoubleLinkList();
-        Node head = null;
-        head = dll.addNode(head,1);
-        head = dll.addNode(head,2);
-        head = dll.addNode(head,3);
-        head = dll.addNode(head,4);
-        head = dll.addNode(head,5);
+        TreeNode head = null;
+        head = dll.addTreeNode(head,1);
+        head = dll.addTreeNode(head,2);
+        head = dll.addTreeNode(head,3);
+        head = dll.addTreeNode(head,4);
+        head = dll.addTreeNode(head,5);
         dll.print(head);
     }
 }

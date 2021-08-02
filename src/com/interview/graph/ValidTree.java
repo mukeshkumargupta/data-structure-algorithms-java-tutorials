@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes),
+ * Given n TreeNodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of TreeNodes),
  * write a function to check whether these edges make up a valid tree.
  * https://leetcode.com/problems/graph-valid-tree/
  */

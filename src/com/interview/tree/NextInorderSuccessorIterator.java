@@ -10,23 +10,23 @@ import java.util.Stack;
  */
 public class NextInorderSuccessorIterator {
 
-    private Node root = null;
-    Stack<Node> stack = new Stack<Node>();
-    Set<Node> visited = new HashSet<Node>();
-    NextInorderSuccessorIterator(Node root){
+    private TreeNode root = null;
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    Set<TreeNode> visited = new HashSet<TreeNode>();
+    NextInorderSuccessorIterator(TreeNode root){
         this.root = root;
     }
     
     public int next(){
-        Node node = null;
+        TreeNode TreeNode = null;
         while(root != null){
             stack.push(root);
             root = root.left;
         }
         root = stack.pop();
-        node = root;
+        TreeNode = root;
         root = root.right;
-        return node.data;
+        return TreeNode.val;
     }
     
     public boolean hasNext(){
@@ -38,14 +38,14 @@ public class NextInorderSuccessorIterator {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node node = null;
-        node = bt.addNode(10, node);
-        node = bt.addNode(-5, node);
-        node = bt.addNode(7, node);
-        node = bt.addNode(20, node);
-        node = bt.addNode(3, node);
-        node = bt.addNode(14, node);
-        NextInorderSuccessorIterator nis = new NextInorderSuccessorIterator(node);
+        TreeNode TreeNode = null;
+        TreeNode = bt.addTreeNode(10, TreeNode);
+        TreeNode = bt.addTreeNode(-5, TreeNode);
+        TreeNode = bt.addTreeNode(7, TreeNode);
+        TreeNode = bt.addTreeNode(20, TreeNode);
+        TreeNode = bt.addTreeNode(3, TreeNode);
+        TreeNode = bt.addTreeNode(14, TreeNode);
+        NextInorderSuccessorIterator nis = new NextInorderSuccessorIterator(TreeNode);
         while(nis.hasNext()){
             System.out.println(nis.next());
         }

@@ -3,23 +3,23 @@ package com.interview.stackqueue;
 public class CircularQueue<T> {
 
     private int QUEUE_LENGTH;
-    private T data[] = null;
+    private T val[] = null;
     public CircularQueue(int size){
         this.QUEUE_LENGTH = size;
-        data = (T [])new Object[QUEUE_LENGTH];
+        val = (T [])new Object[QUEUE_LENGTH];
     }
     private int top=-1;
     private int end = -1;
     public void offer(T t){
         if(top == -1){
-            data[0] = t;
+            val[0] = t;
             top =0;
             end = 0;
         }else if(top == (end + 1) % QUEUE_LENGTH){
             throw new IllegalArgumentException();
         }else{
             end = (end + 1) % QUEUE_LENGTH;
-            data[end] = t;
+            val[end] = t;
         }
     }
     
@@ -27,7 +27,7 @@ public class CircularQueue<T> {
         if(top == -1){
             throw new IllegalArgumentException();
         }else{
-            return data[top];
+            return val[top];
         }
     }
     
@@ -35,13 +35,13 @@ public class CircularQueue<T> {
         if(top == -1){
             throw new IllegalArgumentException();
         }else if(top == end){
-            T t =  data[top];
+            T t =  val[top];
             top = -1;
             end = -1;
             return t;
         }
         else{
-            T t =  data[top];
+            T t =  val[top];
             top = (top +1)% QUEUE_LENGTH;
             return t;
         }

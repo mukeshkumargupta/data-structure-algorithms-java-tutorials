@@ -7,24 +7,24 @@ package com.interview.linklist;
  */
 public class DeleteDuplicates {
 
-    public Node deleteDuplicates(Node head) {
-        Node currentNode = head;
+    public TreeNode deleteDuplicates(TreeNode head) {
+        TreeNode currentTreeNode = head;
 
         //If duplicate
-        while(currentNode != null) {
-            if(currentNode.next != null && currentNode.data == currentNode.next.data) {
-               currentNode.next =  currentNode.next.next;
+        while(currentTreeNode != null) {
+            if(currentTreeNode.next != null && currentTreeNode.val == currentTreeNode.next.val) {
+               currentTreeNode.next =  currentTreeNode.next.next;
             } else {
-                currentNode = currentNode.next;
+                currentTreeNode = currentTreeNode.next;
             }
         }
         return head;
     }
     
-    public Node removeDuplicates_M1(Node head){ //Accepted solution on leetcode  https://leetcode.com/problems/remove-duplicates-from-sorted-list/
-        Node current = head;
+    public TreeNode removeDuplicates_M1(TreeNode head){ //Accepted solution on leetcode  https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+        TreeNode current = head;
         while(current != null && current.next != null){
-            if(current.data == current.next.data){
+            if(current.val == current.next.val){
                 current.next = current.next.next;
             } else {
                 current = current.next;
@@ -37,10 +37,10 @@ public class DeleteDuplicates {
     public static void main(String[] args) {
         DeleteDuplicates dd = new DeleteDuplicates();
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
         dd.deleteDuplicates(head);
 
         ll.printList(head);

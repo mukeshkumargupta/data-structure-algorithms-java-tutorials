@@ -10,14 +10,14 @@ package com.interview.linklist;
  * head1 is null and head2 is not
  * head2 is null and head1 is not
  * both are null
- * more nodes in head1 than head2
- * more nodes in head2 than head1
+ * more TreeNodes in head1 than head2
+ * more TreeNodes in head2 than head1
  * @author Mukesh Kumar Gupta
  *
  */
 public class ShuffleMerge {
 
-    public Node shuffleMergeRecursive(Node head1, Node head2){
+    public TreeNode shuffleMergeRecursive(TreeNode head1, TreeNode head2){
         if(head1 == null){
             return head2;
         }
@@ -26,7 +26,7 @@ public class ShuffleMerge {
             return head1;
         }
         
-        Node recur = null;
+        TreeNode recur = null;
         recur = shuffleMergeRecursive(head1.next, head2.next);
         
         head1.next = head2;
@@ -36,16 +36,16 @@ public class ShuffleMerge {
     /**
     Size of list 1 is smaller, equal and larger than list 2
     */
-    public Node shuffleMerge(Node head1, Node head2){
+    public TreeNode shuffleMerge(TreeNode head1, TreeNode head2){
         if(head1 == null || head2 == null){
             return head2;
         }
         
-        Node tempHead = head1;
-        Node prev = null;
+        TreeNode tempHead = head1;
+        TreeNode prev = null;
         while(head1 != null && head2 != null){
-            Node temp = head1.next;
-            Node temp1 = head2.next;
+            TreeNode temp = head1.next;
+            TreeNode temp1 = head2.next;
             head1.next = head2;
             head2.next = temp;
             prev = head2;
@@ -61,22 +61,22 @@ public class ShuffleMerge {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head1 = null;
-        Node head2 = null;
-        head1 = ll.addNode(1, head1);
-        head1 = ll.addNode(3, head1);
-        head1 = ll.addNode(5, head1);
-        head1 = ll.addNode(7, head1);
-        head1 = ll.addNode(9, head1);
-        head2 = ll.addNode(2, head2);
-        head2 = ll.addNode(4, head2);
-        head2 = ll.addNode(6, head2);
-        head2 = ll.addNode(8, head2);
-        head2 = ll.addNode(10, head2);
-        head2 = ll.addNode(12, head2);
-        head2 = ll.addNode(14, head2);
+        TreeNode head1 = null;
+        TreeNode head2 = null;
+        head1 = ll.addTreeNode(1, head1);
+        head1 = ll.addTreeNode(3, head1);
+        head1 = ll.addTreeNode(5, head1);
+        head1 = ll.addTreeNode(7, head1);
+        head1 = ll.addTreeNode(9, head1);
+        head2 = ll.addTreeNode(2, head2);
+        head2 = ll.addTreeNode(4, head2);
+        head2 = ll.addTreeNode(6, head2);
+        head2 = ll.addTreeNode(8, head2);
+        head2 = ll.addTreeNode(10, head2);
+        head2 = ll.addTreeNode(12, head2);
+        head2 = ll.addTreeNode(14, head2);
         ShuffleMerge sm = new ShuffleMerge();
-        Node result = sm.shuffleMerge(head1, head2);
+        TreeNode result = sm.shuffleMerge(head1, head2);
         ll.printList(result);
     }
 }

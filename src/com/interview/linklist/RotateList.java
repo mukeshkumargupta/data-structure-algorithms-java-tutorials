@@ -10,12 +10,12 @@ package com.interview.linklist;
  * https://leetcode.com/problems/rotate-list/
  */
 public class RotateList {
-    public Node rotateRight(Node head, int k) {
+    public TreeNode rotateRight(TreeNode head, int k) {
         if (head == null || k == 0) {
             return head;
         }
-        Node slow = head;
-        Node fast = head;
+        TreeNode slow = head;
+        TreeNode fast = head;
         int i = 0;
         while (i < k && fast != null) {
             fast = fast.next;
@@ -29,7 +29,7 @@ public class RotateList {
             fast = fast.next;
             slow = slow.next;
         }
-        Node next = slow.next;
+        TreeNode next = slow.next;
         slow.next = null;
         fast.next = head;
         return next;

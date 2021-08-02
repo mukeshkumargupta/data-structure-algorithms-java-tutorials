@@ -15,50 +15,50 @@ import java.util.List;
  */
 public class ConstructAllBinaryTreeFromInorderTraversal {
 
-    public List<Node> generateTrees(int n) {
+    public List<TreeNode> generateTrees(int n) {
         if (n == 0) {
             return Collections.emptyList();
         }
         return construct(1, n);
     }
 
-    private List<Node> construct(int start, int end) {
+    private List<TreeNode> construct(int start, int end) {
         if (start > end) {
             return Collections.singletonList(null);
         }
-        List<Node> allTrees = new ArrayList<>();
+        List<TreeNode> allTrees = new ArrayList<>();
         for (int root = start; root <= end; root++) {
             //get all subtrees from left and right side.
-            List<Node> allLeftSubstrees = construct(start, root - 1);
-            List<Node> allRightSubstrees = construct(root + 1, end);
+            List<TreeNode> allLeftSubstrees = construct(start, root - 1);
+            List<TreeNode> allRightSubstrees = construct(root + 1, end);
             //iterate through them in all combination and them connect them to root
             //and add to allTrees.
-            for (Node left : allLeftSubstrees) {
-                for (Node right : allRightSubstrees) {
-                    Node node = Node.newNode(root);
-                    node.left = left;
-                    node.right = right;
-                    allTrees.add(node);
+            for (TreeNode left : allLeftSubstrees) {
+                for (TreeNode right : allRightSubstrees) {
+                    TreeNode TreeNode = TreeNode.newTreeNode(root);
+                    TreeNode.left = left;
+                    TreeNode.right = right;
+                    allTrees.add(TreeNode);
                 }
             }
         }
         return allTrees;
     }
 
-    public void printAllTrees(List<Node> allTrees) {
+    public void printAllTrees(List<TreeNode> allTrees) {
         TreeTraversals tt = new TreeTraversals();
         System.out.println("Total number of trees " + allTrees.size());
-        for(Node node : allTrees) {
-            tt.inOrder(node);
+        for(TreeNode TreeNode : allTrees) {
+            tt.inOrder(TreeNode);
             System.out.println();
-            tt.preOrder(node);
+            tt.preOrder(TreeNode);
             System.out.print("\n\n");
         }
     }
 
     public static void main(String args[]) {
         ConstructAllBinaryTreeFromInorderTraversal ct = new ConstructAllBinaryTreeFromInorderTraversal();
-        List<Node> allTrees = ct.generateTrees(3);
+        List<TreeNode> allTrees = ct.generateTrees(3);
         ct.printAllTrees(allTrees);
     }
 }

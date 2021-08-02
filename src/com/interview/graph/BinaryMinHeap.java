@@ -9,7 +9,7 @@ import java.util.Map;
  * Date 04/06/2017
  * @author Mukesh Kumar Gupta
  *
- * Data structure to support following operations
+ * val structure to support following operations
  * extracMin - O(logn)
  * addToHeap - O(logn)
  * containsKey - O(1)
@@ -21,10 +21,10 @@ import java.util.Map;
  */
 public class BinaryMinHeap<T> {
 
-    private List<Node> allNodes = new ArrayList<>();
-    private Map<T,Integer> nodePosition = new HashMap<>();
+    private List<TreeNode> allTreeNodes = new ArrayList<>();
+    private Map<T,Integer> TreeNodePosition = new HashMap<>();
         
-    public class Node {
+    public class TreeNode {
         int weight;
         T key;
     }
@@ -32,29 +32,29 @@ public class BinaryMinHeap<T> {
     /**
      * Checks where the key exists in heap or not
      */
-    public boolean containsData(T key){
-        return nodePosition.containsKey(key);
+    public boolean containsval(T key){
+        return TreeNodePosition.containsKey(key);
     }
 
     /**
      * Add key and its weight to they heap
      */
     public void add(int weight,T key) {
-        Node node = new Node();
-        node.weight = weight;
-        node.key = key;
-        allNodes.add(node);
-        int size = allNodes.size();
+        TreeNode TreeNode = new TreeNode();
+        TreeNode.weight = weight;
+        TreeNode.key = key;
+        allTreeNodes.add(TreeNode);
+        int size = allTreeNodes.size();
         int current = size - 1;
         int parentIndex = (current - 1) / 2;
-        nodePosition.put(node.key, current);
+        TreeNodePosition.put(TreeNode.key, current);
 
         while (parentIndex >= 0) {
-            Node parentNode = allNodes.get(parentIndex);
-            Node currentNode = allNodes.get(current);
-            if (parentNode.weight > currentNode.weight) {
-                swap(parentNode,currentNode);
-                updatePositionMap(parentNode.key,currentNode.key,parentIndex,current);
+            TreeNode parentTreeNode = allTreeNodes.get(parentIndex);
+            TreeNode currentTreeNode = allTreeNodes.get(current);
+            if (parentTreeNode.weight > currentTreeNode.weight) {
+                swap(parentTreeNode,currentTreeNode);
+                updatePositionMap(parentTreeNode.key,currentTreeNode.key,parentIndex,current);
                 current = parentIndex;
                 parentIndex = (parentIndex - 1) / 2;
             } else {
@@ -67,27 +67,27 @@ public class BinaryMinHeap<T> {
      * Get the heap min without extracting the key
      */
     public T min(){
-        return allNodes.get(0).key;
+        return allTreeNodes.get(0).key;
     }
 
     /**
      * Checks with heap is empty or not
      */
     public boolean empty(){
-        return allNodes.size() == 0;
+        return allTreeNodes.size() == 0;
     }
 
     /**
      * Decreases the weight of given key to newWeight
      */
-    public void decrease(T data, int newWeight){
-        Integer position = nodePosition.get(data);
-        allNodes.get(position).weight = newWeight;
+    public void decrease(T val, int newWeight){
+        Integer position = TreeNodePosition.get(val);
+        allTreeNodes.get(position).weight = newWeight;
         int parent = (position -1 )/2;
         while(parent >= 0){
-            if(allNodes.get(parent).weight > allNodes.get(position).weight){
-                swap(allNodes.get(parent), allNodes.get(position));
-                updatePositionMap(allNodes.get(parent).key,allNodes.get(position).key,parent,position);
+            if(allTreeNodes.get(parent).weight > allTreeNodes.get(position).weight){
+                swap(allTreeNodes.get(parent), allTreeNodes.get(position));
+                updatePositionMap(allTreeNodes.get(parent).key,allTreeNodes.get(position).key,parent,position);
                 position = parent;
                 parent = (parent-1)/2;
             }else{
@@ -100,30 +100,30 @@ public class BinaryMinHeap<T> {
      * Get the weight of given key
      */
     public Integer getWeight(T key) {
-        Integer position = nodePosition.get(key);
+        Integer position = TreeNodePosition.get(key);
         if( position == null ) {
             return null;
         } else {
-            return allNodes.get(position).weight;
+            return allTreeNodes.get(position).weight;
         }
     }
 
     /**
-     * Returns the min node of the heap
+     * Returns the min TreeNode of the heap
      */
-    public Node extractMinNode() {
-        int size = allNodes.size() -1;
-        Node minNode = new Node();
-        minNode.key = allNodes.get(0).key;
-        minNode.weight = allNodes.get(0).weight;
+    public TreeNode extractMinTreeNode() {
+        int size = allTreeNodes.size() -1;
+        TreeNode minTreeNode = new TreeNode();
+        minTreeNode.key = allTreeNodes.get(0).key;
+        minTreeNode.weight = allTreeNodes.get(0).weight;
 
-        int lastNodeWeight = allNodes.get(size).weight;
-        allNodes.get(0).weight = lastNodeWeight;
-        allNodes.get(0).key = allNodes.get(size).key;
-        nodePosition.remove(minNode.key);
-        nodePosition.remove(allNodes.get(0));
-        nodePosition.put(allNodes.get(0).key, 0);
-        allNodes.remove(size);
+        int lastTreeNodeWeight = allTreeNodes.get(size).weight;
+        allTreeNodes.get(0).weight = lastTreeNodeWeight;
+        allTreeNodes.get(0).key = allTreeNodes.get(size).key;
+        TreeNodePosition.remove(minTreeNode.key);
+        TreeNodePosition.remove(allTreeNodes.get(0));
+        TreeNodePosition.put(allTreeNodes.get(0).key, 0);
+        allTreeNodes.remove(size);
 
         int currentIndex = 0;
         size--;
@@ -136,49 +136,49 @@ public class BinaryMinHeap<T> {
             if(right > size){
                 right = left;
             }
-            int smallerIndex = allNodes.get(left).weight <= allNodes.get(right).weight ? left : right;
-            if(allNodes.get(currentIndex).weight > allNodes.get(smallerIndex).weight){
-                swap(allNodes.get(currentIndex), allNodes.get(smallerIndex));
-                updatePositionMap(allNodes.get(currentIndex).key,allNodes.get(smallerIndex).key,currentIndex,smallerIndex);
+            int smallerIndex = allTreeNodes.get(left).weight <= allTreeNodes.get(right).weight ? left : right;
+            if(allTreeNodes.get(currentIndex).weight > allTreeNodes.get(smallerIndex).weight){
+                swap(allTreeNodes.get(currentIndex), allTreeNodes.get(smallerIndex));
+                updatePositionMap(allTreeNodes.get(currentIndex).key,allTreeNodes.get(smallerIndex).key,currentIndex,smallerIndex);
                 currentIndex = smallerIndex;
             }else{
                 break;
             }
         }
-        return minNode;
+        return minTreeNode;
     }
     /**
      * Extract min value key from the heap
      */
     public T extractMin(){
-        Node node = extractMinNode();
-        return node.key;
+        TreeNode TreeNode = extractMinTreeNode();
+        return TreeNode.key;
     }
 
     private void printPositionMap(){
-        System.out.println(nodePosition);
+        System.out.println(TreeNodePosition);
     }
 
-    private void swap(Node node1,Node node2){
-        int weight = node1.weight;
-        T data = node1.key;
+    private void swap(TreeNode TreeNode1,TreeNode TreeNode2){
+        int weight = TreeNode1.weight;
+        T val = TreeNode1.key;
         
-        node1.key = node2.key;
-        node1.weight = node2.weight;
+        TreeNode1.key = TreeNode2.key;
+        TreeNode1.weight = TreeNode2.weight;
         
-        node2.key = data;
-        node2.weight = weight;
+        TreeNode2.key = val;
+        TreeNode2.weight = weight;
     }
 
-    private void updatePositionMap(T data1, T data2, int pos1, int pos2){
-        nodePosition.remove(data1);
-        nodePosition.remove(data2);
-        nodePosition.put(data1, pos1);
-        nodePosition.put(data2, pos2);
+    private void updatePositionMap(T val1, T val2, int pos1, int pos2){
+        TreeNodePosition.remove(val1);
+        TreeNodePosition.remove(val2);
+        TreeNodePosition.put(val1, pos1);
+        TreeNodePosition.put(val2, pos2);
     }
     
     public void printHeap(){
-        for(Node n : allNodes){
+        for(TreeNode n : allTreeNodes){
             System.out.println(n.weight + " " + n.key);
         }
     }

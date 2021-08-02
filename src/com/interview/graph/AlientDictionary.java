@@ -94,17 +94,17 @@ public class AlientDictionary {
         Map<Character, Integer> degree = new HashMap<>();
         Map<Character, Set<Character>> graph = buildGraph(words, degree, new HashSet<>());
 
-        Queue<Character> zeroDegreeNodes = new LinkedList<>();
+        Queue<Character> zeroDegreeTreeNodes = new LinkedList<>();
         for (Map.Entry<Character, Integer> entry : degree.entrySet()) {
             if (entry.getValue() == 0) {
-                zeroDegreeNodes.offer(entry.getKey());
+                zeroDegreeTreeNodes.offer(entry.getKey());
             }
         }
 
         StringBuilder result = new StringBuilder();
 
-        while (!zeroDegreeNodes.isEmpty()) {
-            char vertex = zeroDegreeNodes.poll();
+        while (!zeroDegreeTreeNodes.isEmpty()) {
+            char vertex = zeroDegreeTreeNodes.poll();
             result.append(vertex);
             Set<Character> neighbors = graph.get(vertex);
             if (neighbors != null) {
@@ -112,7 +112,7 @@ public class AlientDictionary {
                     int count = degree.get(neighbor);
                     count--;
                     if (count == 0) {
-                        zeroDegreeNodes.offer(neighbor);
+                        zeroDegreeTreeNodes.offer(neighbor);
                     } else {
                         degree.put(neighbor, count);
                     }

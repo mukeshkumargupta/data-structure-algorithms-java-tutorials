@@ -1,7 +1,7 @@
 package com.interview.linklist;
 
 /**
- * http://www.geeksforgeeks.org/delete-n-nodes-after-m-nodes-of-a-linked-list/
+ * http://www.geeksforgeeks.org/delete-n-TreeNodes-after-m-TreeNodes-of-a-linked-list/
  * Test cases:
  * neg value of m and/or n - not allowed
  * 0 value of n and/or m - not allowed
@@ -10,9 +10,9 @@ package com.interview.linklist;
  * odd size of the list
  * even size of the list
  */
-public class DeleteNAfterMNodes {
+public class DeleteNAfterMTreeNodes {
 
-    public void deleteNAfterMNodes(Node head,int m, int n){
+    public void deleteNAfterMTreeNodes(TreeNode head,int m, int n){
         if(head == null){
             return;
         }
@@ -25,7 +25,7 @@ public class DeleteNAfterMNodes {
             if(head == null){
                 break;
             }
-            Node temp = head.next;
+            TreeNode temp = head.next;
             i=0;
             while(temp != null && i < n){
                 temp = temp.next;
@@ -36,16 +36,16 @@ public class DeleteNAfterMNodes {
         }
     }
     public static void main(String args[]){
-        DeleteNAfterMNodes daf = new DeleteNAfterMNodes();
+        DeleteNAfterMTreeNodes daf = new DeleteNAfterMTreeNodes();
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(1, head);
-        head = ll.addNode(2, head);
-        head = ll.addNode(3, head);
-        head = ll.addNode(4, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(6, head);
-        daf.deleteNAfterMNodes(head, 3, 2);
+        TreeNode head = null;
+        head = ll.addTreeNode(1, head);
+        head = ll.addTreeNode(2, head);
+        head = ll.addTreeNode(3, head);
+        head = ll.addTreeNode(4, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(6, head);
+        daf.deleteNAfterMTreeNodes(head, 3, 2);
         ll.printList(head);
     }
 }

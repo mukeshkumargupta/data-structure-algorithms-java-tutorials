@@ -9,7 +9,7 @@ public class DesignHashSet {
     int MAX = 150;
     List<Integer>[] lookup;
 
-    /** Initialize your data structure here. */
+    /** Initialize your val structure here. */
     public DesignHashSet() {
         lookup = new LinkedList[MAX];
         

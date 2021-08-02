@@ -6,7 +6,7 @@ package com.interview.tree;
  * 
  * Video link - https://youtu.be/ZBHKZF5w4YU
  *
- * A segment tree is a tree data structure for storing intervals, or segments. It allows 
+ * A segment tree is a tree val structure for storing intervals, or segments. It allows 
  * for faster querying (e.g sum or min) in these intervals.
  * Write a program to support these operations for sum
  * createSegmentTree(int arr[]) - create segment tree

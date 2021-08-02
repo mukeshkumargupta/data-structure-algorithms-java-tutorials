@@ -4,8 +4,8 @@ package com.interview.linklist;
  * Date 03/24/2017
  * @author Mukesh Kumar Gupta
  *
- * A linked list is given such that each node contains an additional random pointer which could point
- * to any node in the list or null. Return a deep copy of the list.
+ * A linked list is given such that each TreeNode contains an additional random pointer which could point
+ * to any TreeNode in the list or null. Return a deep copy of the list.
  *
  * Time complexity is O(n)
  * Space complexity is O(1)
@@ -14,29 +14,29 @@ package com.interview.linklist;
  */
 public class CopyLinkListWIthArbitPointer {
 
-    static class RandomListNode {
+    static class RandomListTreeNode {
         int label;
-        RandomListNode next, random;
-        RandomListNode(int x) { this.label = x; }
+        RandomListTreeNode next, random;
+        RandomListTreeNode(int x) { this.label = x; }
     }
 
-    public RandomListNode copyRandomList(RandomListNode head) {
+    public RandomListTreeNode copyRandomList(RandomListTreeNode head) {
         if (head == null) {
             return null;
         }
 
-        RandomListNode current = head;
+        RandomListTreeNode current = head;
         while (current != null) {
-            RandomListNode newNode = new RandomListNode(current.label);
-            newNode.next = current.next;
-            newNode.random = current.random;
-            current.next = newNode;
-            current = newNode.next;
+            RandomListTreeNode newTreeNode = new RandomListTreeNode(current.label);
+            newTreeNode.next = current.next;
+            newTreeNode.random = current.random;
+            current.next = newTreeNode;
+            current = newTreeNode.next;
         }
 
         current = head;
         while (current != null) {
-            RandomListNode next = current.next;
+            RandomListTreeNode next = current.next;
             if (next.random != null) {
                 next.random = next.random.next;
             }
@@ -44,8 +44,8 @@ public class CopyLinkListWIthArbitPointer {
         }
 
         current = head;
-        RandomListNode dummy = new RandomListNode(0);
-        RandomListNode newCurrent = dummy;
+        RandomListTreeNode dummy = new RandomListTreeNode(0);
+        RandomListTreeNode newCurrent = dummy;
         while (current != null) {
             newCurrent.next = current.next;
             newCurrent = newCurrent.next;
@@ -60,19 +60,19 @@ public class CopyLinkListWIthArbitPointer {
 
         CopyLinkListWIthArbitPointer cll = new CopyLinkListWIthArbitPointer();
 
-        RandomListNode randomListNode = new RandomListNode(-1);
-        RandomListNode randomListNode1 = new RandomListNode(4);
-        RandomListNode randomListNode2 = new RandomListNode(8);
-        RandomListNode randomListNode3 = new RandomListNode(-3);
-        RandomListNode randomListNode4 = new RandomListNode(7);
-        randomListNode.next = randomListNode1;
-        randomListNode1.next = randomListNode2;
-        randomListNode2.next = randomListNode3;
-        randomListNode3.next = randomListNode4;
+        RandomListTreeNode randomListTreeNode = new RandomListTreeNode(-1);
+        RandomListTreeNode randomListTreeNode1 = new RandomListTreeNode(4);
+        RandomListTreeNode randomListTreeNode2 = new RandomListTreeNode(8);
+        RandomListTreeNode randomListTreeNode3 = new RandomListTreeNode(-3);
+        RandomListTreeNode randomListTreeNode4 = new RandomListTreeNode(7);
+        randomListTreeNode.next = randomListTreeNode1;
+        randomListTreeNode1.next = randomListTreeNode2;
+        randomListTreeNode2.next = randomListTreeNode3;
+        randomListTreeNode3.next = randomListTreeNode4;
 
-        randomListNode.random = randomListNode1;
-        randomListNode2.random = randomListNode3;
-        randomListNode1.random = randomListNode;
-        cll.copyRandomList(randomListNode);
+        randomListTreeNode.random = randomListTreeNode1;
+        randomListTreeNode2.random = randomListTreeNode3;
+        randomListTreeNode1.random = randomListTreeNode;
+        cll.copyRandomList(randomListTreeNode);
     }
 }

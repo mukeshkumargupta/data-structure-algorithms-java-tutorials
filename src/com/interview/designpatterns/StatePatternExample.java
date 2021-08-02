@@ -16,7 +16,7 @@ public class StatePatternExample {
         public void enterPinAndWithdrawMoney();
     }
     
-    class NoDebitCardState implements AtmMachineState {
+    class TreeNodebitCardState implements AtmMachineState {
         
         @Override
         public void insertDebitCard() {
@@ -64,7 +64,7 @@ public class StatePatternExample {
         private AtmMachineState atmMachineState;
         
         public AtmMachine() {
-            atmMachineState = new NoDebitCardState();
+            atmMachineState = new TreeNodebitCardState();
         }
         
         public AtmMachineState getAtmMachineState() {
@@ -78,14 +78,14 @@ public class StatePatternExample {
         @Override
         public void insertDebitCard() {
             // atmMachineState.insertDebitCard();//I think it should be inside
-            // NoDebitCardState check
+            // TreeNodebitCardState check
             
             /*
              * Debit Card has been inserted so internal state of ATM Machine has been
              * changed to 'hasDebitCardState'
              */
             
-            if (atmMachineState instanceof NoDebitCardState) {
+            if (atmMachineState instanceof TreeNodebitCardState) {
                 atmMachineState.insertDebitCard();
                 AtmMachineState hasDebitCardState = new HasDebitCardState();
                 setAtmMachineState(hasDebitCardState);
@@ -102,13 +102,13 @@ public class StatePatternExample {
             
             /*
              * Debit Card has been ejected so internal state of ATM Machine has been changed
-             * to 'noDebitCardState'
+             * to 'TreeNodebitCardState'
              */
             if (atmMachineState instanceof HasDebitCardState) {
                 atmMachineState.ejectDebitCard();
                 
-                AtmMachineState noDebitCardState = new NoDebitCardState();
-                setAtmMachineState(noDebitCardState);
+                AtmMachineState TreeNodebitCardState = new TreeNodebitCardState();
+                setAtmMachineState(TreeNodebitCardState);
                 System.out.println(
                         "ATM Machine internal state has been moved to : " + atmMachineState.getClass().getName());
             }
@@ -125,7 +125,7 @@ public class StatePatternExample {
     
     public void runStatePatternExample() {
         /*
-         * Initially ATM Machine in 'noDebitCardState'
+         * Initially ATM Machine in 'TreeNodebitCardState'
          */
         AtmMachine atmMachine = new AtmMachine();
         
@@ -152,7 +152,7 @@ public class StatePatternExample {
         
         /*
          * Debit Card has been ejected so internal state of ATM Machine has been changed
-         * to 'noDebitCardState'
+         * to 'TreeNodebitCardState'
          */
         
         System.out.println("\nATM Machine Current state : " + atmMachine.getAtmMachineState().getClass().getName());

@@ -4,7 +4,7 @@ package com.interview.linklist;
  * Date 04/17/2017
  * @author Mukesh Kumar Gupta
  * 
- * Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct
+ * Given a sorted linked list, delete all TreeNodes that have duplicate numbers, leaving only distinct
  * numbers from the original list.
  *
  * For example,
@@ -14,14 +14,14 @@ package com.interview.linklist;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  * Status: Tried, VImp, Medium
  */
-public class DeleteDuplicateNodes {
-    public Node deleteDuplicates(Node head) {
-        Node dummyNode = new Node();
-        dummyNode.next = head;
-        Node current = head;
-        Node prev = dummyNode;
+public class DeleteDuplicateTreeNodes {
+    public TreeNode deleteDuplicates(TreeNode head) {
+        TreeNode dummyTreeNode = new TreeNode();
+        dummyTreeNode.next = head;
+        TreeNode current = head;
+        TreeNode prev = dummyTreeNode;
         while (current != null) {
-            while(current.next != null && current.data == current.next.data) {
+            while(current.next != null && current.val == current.next.val) {
                 current = current.next;
             }
             if (prev.next == current) {
@@ -31,10 +31,10 @@ public class DeleteDuplicateNodes {
             }
             current = current.next;
         }
-        return dummyNode.next;
+        return dummyTreeNode.next;
     }
     
-    public Node deleteDuplicates_V1(Node head) {
+    public TreeNode deleteDuplicates_V1(TreeNode head) {
         //Take previous and change previous only when curent and current next is not same  otherwise
         //previous next point to current netx
         return null;

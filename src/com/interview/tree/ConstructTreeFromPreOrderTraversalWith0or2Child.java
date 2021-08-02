@@ -11,17 +11,17 @@ class PreIndex{
 }
 public class ConstructTreeFromPreOrderTraversalWith0or2Child {
 
-    public Node createTree(int pre[],char val[]){
+    public TreeNode createTree(int pre[],char val[]){
         PreIndex pi = new PreIndex();
         pi.index = 0;
         return createTree(pre, val,pi);
     }
     
-    private Node createTree(int pre[],char val[], PreIndex ind){
+    private TreeNode createTree(int pre[],char val[], PreIndex ind){
         if(ind.index >= pre.length){
             return null;
         }
-        Node root = Node.newNode(pre[ind.index]);
+        TreeNode root = TreeNode.newTreeNode(pre[ind.index]);
         
         if(val[ind.index] == 'L'){
             ind.index++;
@@ -37,7 +37,7 @@ public class ConstructTreeFromPreOrderTraversalWith0or2Child {
         int pre[] = {10,20,30,40,50,60,70,80,90};
         char val[] = {'N','N','N','L','L','L','N','L','L'};
         ConstructTreeFromPreOrderTraversalWith0or2Child tfp = new ConstructTreeFromPreOrderTraversalWith0or2Child();
-        Node root = tfp.createTree(pre, val);
+        TreeNode root = tfp.createTree(pre, val);
         TreeTraversals tt = new TreeTraversals();
         tt.preOrder(root);
         System.out.println();

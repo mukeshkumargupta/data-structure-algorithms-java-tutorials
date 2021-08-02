@@ -10,7 +10,7 @@ import java.util.Set;
  * Test cases
  * Both array should be same size and have exact same elements and first element should be same
  * Category: Must Do
- * Derived question: exactly same tree, only structure same but data might differ, 
+ * Derived question: exactly same tree, only structure same but val might differ, 
  * print mirror tree, check mirror tree of given tree.
  */
 public class IdenticalTrees {

@@ -2,16 +2,16 @@ package com.interview.linklist;
 
 import org.junit.Test;
 
-public class DeleteDuplicateNodesTest {
+public class DeleteDuplicateTreeNodesTest {
 
     @Test
     public void testDifferentCases() {
-        DeleteDuplicateNodes deleteDuplicateNodes = new DeleteDuplicateNodes();
+        DeleteDuplicateTreeNodes deleteDuplicateTreeNodes = new DeleteDuplicateTreeNodes();
         LinkList linkList = new LinkList();
-        Node node = null;
-        node = linkList.addNode(1, node);
-        node = linkList.addNode(2, node);
-        node = linkList.addNode(2, node);
-        deleteDuplicateNodes.deleteDuplicates(node);
+        TreeNode TreeNode = null;
+        TreeNode = linkList.addTreeNode(1, TreeNode);
+        TreeNode = linkList.addTreeNode(2, TreeNode);
+        TreeNode = linkList.addTreeNode(2, TreeNode);
+        deleteDuplicateTreeNodes.deleteDuplicates(TreeNode);
     }
 }

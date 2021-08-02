@@ -6,20 +6,20 @@ import java.util.Queue;
 /**
  * http://www.geeksforgeeks.org/given-linked-list-representation-of-complete-tree-convert-it-to-linked-representation/
  * Test cases
- * Zero, One or more nodes in link list
+ * Zero, One or more TreeNodes in link list
  */
 public class LinkListToCompleteBinaryTree {
 
-    public void convert(Node head){
+    public void convert(TreeNode head){
         if(head == null){
             return;
         }
         
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(head);
         head = head.next;
         while(head != null){
-            Node top = queue.poll();
+            TreeNode top = queue.poll();
             top.before = head;
             head = head.next;
             if(head != null){
@@ -36,26 +36,26 @@ public class LinkListToCompleteBinaryTree {
         }
      }
     
-    public void inorder(Node head){
+    public void inorder(TreeNode head){
         if(head == null){
             return;
         }
         inorder(head.before);
-        System.out.print(head.data + " ");
+        System.out.print(head.val + " ");
         inorder(head.next);
     }
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(10, head);
-        head = ll.addNode(12, head);
-        head = ll.addNode(15, head);
-        head = ll.addNode(25, head);
-        head = ll.addNode(30, head);
-        head = ll.addNode(36, head);
-        head = ll.addNode(40, head);
-        head = ll.addNode(45, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(10, head);
+        head = ll.addTreeNode(12, head);
+        head = ll.addTreeNode(15, head);
+        head = ll.addTreeNode(25, head);
+        head = ll.addTreeNode(30, head);
+        head = ll.addTreeNode(36, head);
+        head = ll.addTreeNode(40, head);
+        head = ll.addTreeNode(45, head);
         
         LinkListToCompleteBinaryTree llct = new LinkListToCompleteBinaryTree();
         llct.convert(head);

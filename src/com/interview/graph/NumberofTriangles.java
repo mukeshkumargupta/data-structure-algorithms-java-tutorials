@@ -7,7 +7,7 @@ import java.util.Map;
  * http://www.careercup.com/question?id=5988741646647296
  * Given an undirected graph find number of triangles in this graph
  * Find cycle of length 3. Pass parent in DFS search.
- * If there is a cycle check if my parent is neighbor of the the node 
+ * If there is a cycle check if my parent is neighbor of the the TreeNode 
  * which caused it to be a cycle.
  */
 public class NumberofTriangles {

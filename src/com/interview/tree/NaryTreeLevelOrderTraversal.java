@@ -6,8 +6,8 @@ package com.interview.tree;
  */
 public class NaryTreeLevelOrderTraversal {
     List<List<Integer>> result = new ArrayList<>();
-    Queue<Node> q = new LinkedList<>();
-    public List<List<Integer>> levelOrder(Node root) {
+    Queue<TreeNode> q = new LinkedList<>();
+    public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
@@ -18,11 +18,11 @@ public class NaryTreeLevelOrderTraversal {
             int size = q.size();
             List<Integer> currentLevelList = new LinkedList<>();
             for (int i = 0; i < size; i++) {
-                Node currentNode = q.remove();
-                currentLevelList.add(currentNode.val);
+                TreeNode currentTreeNode = q.remove();
+                currentLevelList.add(currentTreeNode.val);
                 
-                for (Node node: currentNode.children) {
-                    q.add(node);
+                for (TreeNode TreeNode: currentTreeNode.children) {
+                    q.add(TreeNode);
                 }
             }
             result.add(currentLevelList);

@@ -79,10 +79,10 @@ public class Graph<T>{
     public Collection<Vertex<T>> getAllVertex(){
         return allVertex.values();
     }
-    public void setDataForVertex(long id, T data){
+    public void setvalForVertex(long id, T val){
         if(allVertex.containsKey(id)){
             Vertex<T> vertex = allVertex.get(id);
-            vertex.setData(data);
+            vertex.setval(val);
         }
     }
 
@@ -100,7 +100,7 @@ public class Graph<T>{
 
 class Vertex<T> {
     long id;
-    private T data;
+    private T val;
     private List<Edge<T>> edges = new ArrayList<>();
     private List<Vertex<T>> adjacentVertex = new ArrayList<>();
     
@@ -112,12 +112,12 @@ class Vertex<T> {
         return id;
     }
     
-    public void setData(T data){
-        this.data = data;
+    public void setval(T val){
+        this.val = val;
     }
     
-    public T getData(){
-        return data;
+    public T getval(){
+        return val;
     }
     
     public void addAdjacentVertex(Edge<T> e, Vertex<T> v){

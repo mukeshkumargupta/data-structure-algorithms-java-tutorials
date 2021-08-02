@@ -2,7 +2,7 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/move-zeroes/
- * Category: E
+ * Category: Easy
  */
 public class MoveZeroes {
     private void moveZero(int[] nums, int start, int end) {

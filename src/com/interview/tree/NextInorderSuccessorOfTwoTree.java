@@ -10,13 +10,13 @@ import java.util.Stack;
  */
 public class NextInorderSuccessorOfTwoTree {
 
-    private Node root1 = null;
-    private Node root2 = null;
-    Stack<Node> stack1 = new Stack<Node>();
-    Stack<Node> stack2 = new Stack<Node>();
-    Set<Node> visited = new HashSet<Node>();
+    private TreeNode root1 = null;
+    private TreeNode root2 = null;
+    Stack<TreeNode> stack1 = new Stack<TreeNode>();
+    Stack<TreeNode> stack2 = new Stack<TreeNode>();
+    Set<TreeNode> visited = new HashSet<TreeNode>();
 
-    NextInorderSuccessorOfTwoTree(Node root1, Node root2) {
+    NextInorderSuccessorOfTwoTree(TreeNode root1, TreeNode root2) {
         this.root1 = root1;
         this.root2 = root2;
     }
@@ -29,8 +29,8 @@ public class NextInorderSuccessorOfTwoTree {
         return false;
     }
 
-    public Node next() {
-        Node node = null;
+    public TreeNode next() {
+        TreeNode TreeNode = null;
         while (root1 != null) {
             stack1.push(root1);
             root1 = root1.left;
@@ -40,43 +40,43 @@ public class NextInorderSuccessorOfTwoTree {
             root2 = root2.left;
         }
         if (!stack1.isEmpty() && !stack2.isEmpty()) {
-            if (stack1.peek().data <= stack2.peek().data) {
-                node = stack1.pop();
-                root1 = node.right;
+            if (stack1.peek().val <= stack2.peek().val) {
+                TreeNode = stack1.pop();
+                root1 = TreeNode.right;
             } else {
-                node = stack2.pop();
-                root2 = node.right;
+                TreeNode = stack2.pop();
+                root2 = TreeNode.right;
             }
         } else if (stack1.isEmpty()) {
-            node = stack2.pop();
-            root2 = node.right;
+            TreeNode = stack2.pop();
+            root2 = TreeNode.right;
         } else {
-            node = stack1.pop();
-            root1 = node.right;
+            TreeNode = stack1.pop();
+            root1 = TreeNode.right;
         }
-        return node;
+        return TreeNode;
     }
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node node = null;
-        node = bt.addNode(10, node);
-        node = bt.addNode(-5, node);
-        node = bt.addNode(7, node);
-        node = bt.addNode(20, node);
-        node = bt.addNode(3, node);
-        node = bt.addNode(14, node);
+        TreeNode TreeNode = null;
+        TreeNode = bt.addTreeNode(10, TreeNode);
+        TreeNode = bt.addTreeNode(-5, TreeNode);
+        TreeNode = bt.addTreeNode(7, TreeNode);
+        TreeNode = bt.addTreeNode(20, TreeNode);
+        TreeNode = bt.addTreeNode(3, TreeNode);
+        TreeNode = bt.addTreeNode(14, TreeNode);
      
-        Node node1 = null;
-        node1 = bt.addNode(8, node1);
-        node1 = bt.addNode(-10, node1);
-        node1 = bt.addNode(18, node1);
-        node1 = bt.addNode(2, node1);
-        node1 = bt.addNode(11, node1);
+        TreeNode TreeNode1 = null;
+        TreeNode1 = bt.addTreeNode(8, TreeNode1);
+        TreeNode1 = bt.addTreeNode(-10, TreeNode1);
+        TreeNode1 = bt.addTreeNode(18, TreeNode1);
+        TreeNode1 = bt.addTreeNode(2, TreeNode1);
+        TreeNode1 = bt.addTreeNode(11, TreeNode1);
         
-        NextInorderSuccessorOfTwoTree nis = new NextInorderSuccessorOfTwoTree(node, node1);
+        NextInorderSuccessorOfTwoTree nis = new NextInorderSuccessorOfTwoTree(TreeNode, TreeNode1);
         while(nis.hasNext()){
-            System.out.println(nis.next().data);
+            System.out.println(nis.next().val);
         }
         
     }

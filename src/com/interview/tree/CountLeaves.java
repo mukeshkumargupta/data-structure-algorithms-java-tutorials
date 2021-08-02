@@ -6,16 +6,16 @@ package com.interview.tree;
  * //Category: Must Do
  * //Note: Print All Leaves, print all left leaves sums or right leaves sum (done) or true, sum all leave whose parent have only one leave either left or right(Logic: check both left and right not null if yes return false, if any one null return true, pass this argument),  if two tree have same leaves pattern
  * example https://leetcode.com/problems/leaf-similar-trees/
- * It is not similar question but must solve it https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+ * It is not similar question but must solve it https://leetcode.com/problems/count-good-TreeNodes-in-binary-tree/
  * Category: Easy, All leaves related questions
 */
 public class CountLeaves {
-    void countLeavesUtil(Node root, int[] result) {
+    void countLeavesUtil(TreeNode root, int[] result) {
         // Your code
         if (root == null) {
             return;
         }
-        // Check leave node
+        // Check leave TreeNode
         if (root.left == null && root.right == null) {
             
             
@@ -25,10 +25,10 @@ public class CountLeaves {
         countLeavesUtil(root.right, result);
     }
     
-    int countLeaves(Node node) {
+    int countLeaves(TreeNode TreeNode) {
         // Your code
         int[] result = new int[1];
-        countLeavesUtil(node, result);
+        countLeavesUtil(TreeNode, result);
         return result[0];
     }
     
@@ -37,12 +37,12 @@ public class CountLeaves {
     // get right leave sum or count of leave
     int leftSum = 0;
     
-    private void sumOfLeftLeavesUtil(Node root, boolean isLeft) {
+    private void sumOfLeftLeavesUtil(TreeNode root, boolean isLeft) {
         if (root == null)
             return;
         
         if (isLeft && root.left == null && root.right == null) {
-            leftSum += root.data;
+            leftSum += root.val;
             return;
         }
         
@@ -51,7 +51,7 @@ public class CountLeaves {
         
     }
     
-    public int sumOfLeftLeaves(Node root) {
+    public int sumOfLeftLeaves(TreeNode root) {
         if (root == null)
             return 0;
         
@@ -69,7 +69,7 @@ public class CountLeaves {
         }
         
         if (root.left != null) {
-            if (root.left.left == null && root.left.right == null) {//Leaf node
+            if (root.left.left == null && root.left.right == null) {//Leaf TreeNode
                 sum += root.left.val;
             } 
         }
@@ -91,13 +91,13 @@ public class CountLeaves {
         }
         
         if (!(root.left != null && root.right != null) ) {
-            //Check which child is leaf node
+            //Check which child is leaf TreeNode
             if (root.left != null) {
-                if (root.left.left == null && root.left.right == null) {//Leaf node
+                if (root.left.left == null && root.left.right == null) {//Leaf TreeNode
                     sum += root.left.val;
                 }
             } else {
-                if (root.right.left == null && root.right.right == null) {//Leaf node
+                if (root.right.left == null && root.right.right == null) {//Leaf TreeNode
                     sum += root.right.val;
                 }
             }

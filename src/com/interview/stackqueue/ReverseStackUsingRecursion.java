@@ -19,13 +19,13 @@ public class ReverseStackUsingRecursion {
         pushAtBottom(stack,temp);
     }
     
-    private void pushAtBottom(Deque<Integer> stack,int data){
+    private void pushAtBottom(Deque<Integer> stack,int val){
         if(stack.size() == 0){
-            stack.offerFirst(data);
+            stack.offerFirst(val);
             return;
         }
         int temp = stack.pollFirst();
-        pushAtBottom(stack, data);
+        pushAtBottom(stack, val);
         stack.offerFirst(temp);
     }
     

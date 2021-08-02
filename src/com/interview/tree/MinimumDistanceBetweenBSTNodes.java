@@ -1,9 +1,9 @@
 package com.interview.tree;
 
 /*
- * https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+ * https://leetcode.com/problems/minimum-distance-between-bst-TreeNodes/
  * Category: Easy
- * Given the root of a Binary Search Tree (BST), return the minimum difference between the values of any two different nodes in the tree.
+ * Given the root of a Binary Search Tree (BST), return the minimum difference between the values of any two different TreeNodes in the tree.
 
  
 
@@ -21,14 +21,14 @@ Output: 1
 
 Constraints:
 
-The number of nodes in the tree is in the range [2, 100].
-0 <= Node.val <= 105
+The number of TreeNodes in the tree is in the range [2, 100].
+0 <= TreeNode.val <= 105
  
 
 Note: This question is the same as 530: https://leetcode.com/problems/minimum-absolute-difference-in-bst/
  */
-public class MinimumDistanceBetweenBSTNodes {
-    int previousNodeValue = -1;
+public class MinimumDistanceBetweenBSTTreeNodes {
+    int previousTreeNodeValue = -1;
     public void minDiffInBSTUtil(TreeNode root, int[] min) {
     if (root == null) {
         return;
@@ -36,23 +36,23 @@ public class MinimumDistanceBetweenBSTNodes {
     
     minDiffInBSTUtil(root.left, min);
         
-    if (previousNodeValue != -1) {
-        int diff = root.val - previousNodeValue;
-        //System.out.println("diff " + diff + " root " + root.val + " previousNode " + previousNodeValue);
+    if (previousTreeNodeValue != -1) {
+        int diff = root.val - previousTreeNodeValue;
+        //System.out.println("diff " + diff + " root " + root.val + " previousTreeNode " + previousTreeNodeValue);
         if (diff < min[0]) {
             min[0] = diff;
         }
     }
     
-    previousNodeValue = root.val;
-    //System.out.println(" root print " + previousNodeValue);
+    previousTreeNodeValue = root.val;
+    //System.out.println(" root print " + previousTreeNodeValue);
         
     minDiffInBSTUtil(root.right, min);      
 }
 
 
 public int minDiffInBST(TreeNode root) {
-    int previousNodeValue = -1;
+    int previousTreeNodeValue = -1;
     int[] min = new int [1];
     min[0] = Integer.MAX_VALUE;
     

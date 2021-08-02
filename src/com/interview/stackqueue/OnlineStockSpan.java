@@ -39,16 +39,16 @@ There will be at most 150000 calls to StockSpanner.next across all test cases.
 The total time limit for this problem has been reduced by 75% for C++, and 50% for all other languages.
  */
 public class OnlineStockSpan {
-    class Node {
-        int data;
+    class TreeNode {
+        int val;
         int index;
-        Node (int data, int index) {
-            this.data = data;
+        TreeNode (int val, int index) {
+            this.val = val;
             this.index = index;
         }
         
     }
-    Stack<Node> s1;
+    Stack<TreeNode> s1;
 
     public OnlineStockSpan() {
         s1 = new Stack<>();
@@ -61,7 +61,7 @@ public class OnlineStockSpan {
         int index = s1.size() == 0 ?  0 : s1.peek().index + 1;
         while (s1.size() > 0) {
             //System.out.println(s1.peek());
-            if (price >= s1.peek().data) {
+            if (price >= s1.peek().val) {
                 s1.pop();
             } else {
                 span = index -  s1.peek().index;
@@ -73,7 +73,7 @@ public class OnlineStockSpan {
             span = index+1;
         }
 
-        s1.push(new Node(price, index));
+        s1.push(new TreeNode(price, index));
         return span;
         
     }

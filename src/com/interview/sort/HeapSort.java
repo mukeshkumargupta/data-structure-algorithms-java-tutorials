@@ -24,7 +24,7 @@ package com.interview.sort;
  * 
  * Reference: https://www.geeksforgeeks.org/heap-sort/
  * Saurabh School: https://www.youtube.com/watch?v=5GrJwDggoas
- * Leetcode: https://leetcode.com/problems/sort-an-numsay
+ * Leetcode: https://leetcode.com/problems/sort-an-array
  * Status: Done code taken from geeksfromgeeks
  * Category: Medium, Must Do, Tricky
  * Related: https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/254069/quick-sort-partition Medium
@@ -34,11 +34,11 @@ package com.interview.sort;
  */
 public class HeapSort {
     
-    public int[] sortArray(int[] nums) {
+    public int[] sortArray(int[] nums) {//runtime 53%
         int n = nums.length;
  
         // Build heap (rearrange array)
-        for (int i = n / 2 - 1; i >= 0; i--)//why n/2-1 because after it there is only leaf node
+        for (int i = n / 2 - 1; i >= 0; i--)//why n/2-1 because after it there is only leaf TreeNode
             heapify(nums, n, i);
  
         // One by one extract an element from heap
@@ -55,7 +55,7 @@ public class HeapSort {
         
     }
     
-    // To heapify a subtree rooted with node i which is
+    // To heapify a subtree rooted with TreeNode i which is
     // an index in arr[]. n is size of heap
     void heapify(int arr[], int n, int i)
     {

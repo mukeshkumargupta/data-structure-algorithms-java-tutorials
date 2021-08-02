@@ -5,21 +5,21 @@ package com.interview.tree;
  * @author Mukesh Kumar Gupta
  *
  * Write class for interval tree
- * Keep a max at every node which is max of that subtree.
+ * Keep a max at every TreeNode which is max of that subtree.
  * This max is used to decide which direction to move when checking
  * for overlap. When an interval's high is less than max of left side go
  * in that direciton otherwise go in other direction.
  */
-class InternalNode {
+class InternalTreeNode {
     int low;
     int high;
     int max;
-    InternalNode left;
-    InternalNode right;
+    InternalTreeNode left;
+    InternalTreeNode right;
 
     @Override
     public String toString() {
-        return "InternalNode{" +
+        return "InternalTreeNode{" +
                 "max=" + max +
                 ", low=" + low +
                 ", high=" + high +
@@ -29,13 +29,13 @@ class InternalNode {
 
 public class IntervalTree {
 
-    public InternalNode insert(InternalNode root, int low, int high) {
+    public InternalTreeNode insert(InternalTreeNode root, int low, int high) {
         if(root == null) {
-            InternalNode node = new InternalNode();
-            node.low = low;
-            node.high = high;
-            node.max = high;
-            return node;
+            InternalTreeNode TreeNode = new InternalTreeNode();
+            TreeNode.low = low;
+            TreeNode.high = high;
+            TreeNode.max = high;
+            return TreeNode;
         }
 
         if(low < root.low) {
@@ -48,7 +48,7 @@ public class IntervalTree {
         return root;
     }
 
-    public InternalNode isOverlap(InternalNode root, int low, int high) {
+    public InternalTreeNode isOverlap(InternalTreeNode root, int low, int high) {
         if(root == null) {
             return null;
         }
@@ -66,7 +66,7 @@ public class IntervalTree {
 
     public static void main(String args[]) {
         IntervalTree it = new IntervalTree();
-        InternalNode root = null;
+        InternalTreeNode root = null;
         root = it.insert(root, 10, 15);
         root = it.insert(root, 11, 13);
         root = it.insert(root, 18, 21);

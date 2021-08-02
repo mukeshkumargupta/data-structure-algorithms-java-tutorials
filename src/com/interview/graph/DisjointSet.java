@@ -23,40 +23,40 @@ import java.util.Map;
  */
 public class DisjointSet {
 
-    private Map<Long, Node> map = new HashMap<>();
+    private Map<Long, TreeNode> map = new HashMap<>();
 
-    class Node {
-        long data;
-        Node parent;
+    class TreeNode {
+        long val;
+        TreeNode parent;
         int rank;
     }
 
     /**
      * Create a set with only one element.
      */
-    public void makeSet(long data) {
-        Node node = new Node();
-        node.data = data;
-        node.parent = node;
-        node.rank = 0;
-        map.put(data, node);
+    public void makeSet(long val) {
+        TreeNode TreeNode = new TreeNode();
+        TreeNode.val = val;
+        TreeNode.parent = TreeNode;
+        TreeNode.rank = 0;
+        map.put(val, TreeNode);
     }
 
     /**
      * Combines two sets together to one.
      * Does union by rank
      *
-     * @return true if data1 and data2 are in different set before union else false.
+     * @return true if val1 and val2 are in different set before union else false.
      */
-    public boolean union(long data1, long data2) {
-        Node node1 = map.get(data1);
-        Node node2 = map.get(data2);
+    public boolean union(long val1, long val2) {
+        TreeNode TreeNode1 = map.get(val1);
+        TreeNode TreeNode2 = map.get(val2);
 
-        Node parent1 = findSet(node1);
-        Node parent2 = findSet(node2);
+        TreeNode parent1 = findSet(TreeNode1);
+        TreeNode parent2 = findSet(TreeNode2);
 
         //if they are part of same set do nothing
-        if (parent1.data == parent2.data) {
+        if (parent1.val == parent2.val) {
             return false;
         }
 
@@ -74,21 +74,21 @@ public class DisjointSet {
     /**
      * Finds the representative of this set
      */
-    public long findSet(long data) {
-        return findSet(map.get(data)).data;
+    public long findSet(long val) {
+        return findSet(map.get(val)).val;
     }
 
     /**
      * Find the representative recursively and does path
      * compression as well.
      */
-    private Node findSet(Node node) {
-        Node parent = node.parent;
-        if (parent == node) {
+    private TreeNode findSet(TreeNode TreeNode) {
+        TreeNode parent = TreeNode.parent;
+        if (parent == TreeNode) {
             return parent;
         }
-        node.parent = findSet(node.parent);
-        return node.parent;
+        TreeNode.parent = findSet(TreeNode.parent);
+        return TreeNode.parent;
     }
 
     public static void main(String args[]) {

@@ -3,17 +3,17 @@ package com.interview.tree;
 /**
  * http://www.careercup.com/question?id=6241652616200192
  * Test cases:
- * 0,1 or more nodes in the tree
+ * 0,1 or more TreeNodes in the tree
  */
 public class BinaryTreeToSortedLinkList {
 
-    public Node toSortedLinkList(Node root){
+    public TreeNode toSortedLinkList(TreeNode root){
         if(root == null){
             return null;
         }
         
-        Node left = toSortedLinkList(root.left);
-        Node right = toSortedLinkList(root.right);
+        TreeNode left = toSortedLinkList(root.left);
+        TreeNode right = toSortedLinkList(root.right);
         
         root.left = null;
         root.right = null;
@@ -21,14 +21,14 @@ public class BinaryTreeToSortedLinkList {
         return merge(root,right);
     }
     
-    private Node merge(Node head1,Node head2){
+    private TreeNode merge(TreeNode head1,TreeNode head2){
         if(head1 == null){
             return head2;
         }
         if(head2 == null){
             return head1;
         }
-        if(head1.data <= head2.data){
+        if(head1.val <= head2.val){
             head1.next = merge(head1.next, head2);
             return head1;
         }else{
@@ -37,9 +37,9 @@ public class BinaryTreeToSortedLinkList {
         }
     }
     
-    private void print(Node root){
+    private void print(TreeNode root){
         while(root != null){
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             root = root.next;
         }
     }
@@ -48,7 +48,7 @@ public class BinaryTreeToSortedLinkList {
         int in[] = {-6,0,15,10,3,25,2};
         int pre[] = {10,15,-6,0,25,3,2};
         ConstructTreeFromInOrderPreOrder ct = new ConstructTreeFromInOrderPreOrder();
-        Node root = ct.createTree(in, pre);
+        TreeNode root = ct.createTree(in, pre);
         BinaryTreeToSortedLinkList bt = new BinaryTreeToSortedLinkList();
         root = bt.toSortedLinkList(root);
         bt.print(root);

@@ -6,21 +6,21 @@ package com.interview.linklist;
  * https://leetcode.com/problems/palindrome-linked-list
  * Category: Easy
  * Test cases:
- * odd number of nodes
- * even number of nodes
- * 0 1 or more nodes
+ * odd number of TreeNodes
+ * even number of TreeNodes
+ * 0 1 or more TreeNodes
  * palindrome list
  * non palindrom list
  */
 public class LinkListIsPalindrome {
 
-    public boolean isPalindrome(ListNode head) {
+    public boolean isPalindrome(ListTreeNode head) {
         if (head == null) {
             return true;
             
         }
-        ListNode firstPointer = head;
-        ListNode secondPointer = head;
+        ListTreeNode firstPointer = head;
+        ListTreeNode secondPointer = head;
         if (firstPointer.next == null) {
             return true;
             
@@ -37,11 +37,11 @@ public class LinkListIsPalindrome {
         }
         
         //Reverse second part
-        ListNode current = firstPointer;
-        ListNode previous = null;
+        ListTreeNode current = firstPointer;
+        ListTreeNode previous = null;
         
         while (current != null) {
-            ListNode temp = current.next;
+            ListTreeNode temp = current.next;
             current.next = previous;
             previous = current;
             current = temp;

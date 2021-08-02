@@ -10,8 +10,8 @@ package com.interview.tree;
  * Sorted or reverse sorted
  */
 public class CountNumberOfSmallerElementOnRight {
-    private Node leftRotate(Node root){
-        Node newRoot = root.right;
+    private TreeNode leftRotate(TreeNode root){
+        TreeNode newRoot = root.right;
         root.right = root.right.left;
         newRoot.left = root;
         root.height = setHeight(root);
@@ -21,8 +21,8 @@ public class CountNumberOfSmallerElementOnRight {
         return newRoot;
     }
     
-    private Node rightRotate(Node root){
-        Node newRoot = root.left;
+    private TreeNode rightRotate(TreeNode root){
+        TreeNode newRoot = root.left;
         root.left = root.left.right;
         newRoot.right = root;
         root.height = setHeight(root);
@@ -32,14 +32,14 @@ public class CountNumberOfSmallerElementOnRight {
         return newRoot;
     }
 
-    private int setHeight(Node root){
+    private int setHeight(TreeNode root){
         if(root == null){
             return 0;
         }
         return 1 + Math.max((root.left != null ? root.left.height : 0), (root.right != null ? root.right.height : 0));
     }
     
-    private int height(Node root){
+    private int height(TreeNode root){
         if(root == null){
             return 0;
         }else {
@@ -47,27 +47,27 @@ public class CountNumberOfSmallerElementOnRight {
         }
     }
     
-    private int setSize(Node root){
+    private int setSize(TreeNode root){
         if(root == null){
             return 0;
         }
         return 1 + Math.max((root.left != null ? root.left.size : 0), (root.right != null ? root.right.size : 0));
     }
     
-    private Node insert(Node root, int data,int count[],int pos,int val){
+    private TreeNode insert(TreeNode root, int val,int count[],int pos,int val){
         if(root == null){
             count[pos] = val;
-            return Node.newNode(data);
+            return TreeNode.newTreeNode(val);
         }
-        if(root.data <= data){
+        if(root.val <= val){
             val++;
             if(root.left != null){
                 val += root.left.size;
             }
-            root.right = insert(root.right,data,count,pos,val);
+            root.right = insert(root.right,val,count,pos,val);
         }
         else{
-            root.left = insert(root.left,data,count,pos,val);
+            root.left = insert(root.left,val,count,pos,val);
         }
         if(height(root.left) - height(root.right) > 1){
             if(height(root.left.left) >= height(root.left.right)){
@@ -93,7 +93,7 @@ public class CountNumberOfSmallerElementOnRight {
     
     public int[] count(int input[]){
         int count[] = new int[input.length];
-        Node root = null;
+        TreeNode root = null;
         for(int i=input.length-1; i >= 0; i--){
             root = insert(root,input[i],count,i,0);
         }

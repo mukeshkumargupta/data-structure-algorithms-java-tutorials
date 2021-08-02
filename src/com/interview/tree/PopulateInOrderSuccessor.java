@@ -1,44 +1,44 @@
 package com.interview.tree;
 
 /**
- * http://www.geeksforgeeks.org/populate-inorder-successor-for-all-nodes/
+ * http://www.geeksforgeeks.org/populate-inorder-successor-for-all-TreeNodes/
  */
 public class PopulateInOrderSuccessor {
 
-    private void populate(Node root, NodeRef nodeRef){
+    private void populate(TreeNode root, TreeNodeRef TreeNodeRef){
         if(root == null){
             return;
         }
-        populate(root.right,nodeRef);
-        root.next = nodeRef.node;
-        nodeRef.node = root;
-        populate(root.left,nodeRef);
+        populate(root.right,TreeNodeRef);
+        root.next = TreeNodeRef.TreeNode;
+        TreeNodeRef.TreeNode = root;
+        populate(root.left,TreeNodeRef);
     }
     
-    public void populate(Node root){
-        NodeRef nodeRef = new NodeRef();
-        populate(root,nodeRef);
+    public void populate(TreeNode root){
+        TreeNodeRef TreeNodeRef = new TreeNodeRef();
+        populate(root,TreeNodeRef);
     }
     
-    public void print(Node root){
+    public void print(TreeNode root){
         if(root == null){
             return;
         }
-        System.out.println(root.data);
+        System.out.println(root.val);
         print(root.next);
     }
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(20, head);
-        head = bt.addNode(-1, head);
-        head = bt.addNode(21, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(-1, head);
+        head = bt.addTreeNode(21, head);
         PopulateInOrderSuccessor pio = new PopulateInOrderSuccessor();
         pio.populate(head);
         while(head.left != null){

@@ -6,16 +6,16 @@ package com.interview.tree;
  */
 public class NaryTreePreorderTraversal {
     List<Integer> result = new ArrayList<>();
-    void preorderUtil(Node root) {
+    void preorderUtil(TreeNode root) {
         if (root == null) return;
         
         result.add(root.val);
-        for (Node node : root.children) {
-            preorderUtil(node);
+        for (TreeNode TreeNode : root.children) {
+            preorderUtil(TreeNode);
         }
         
     }
-    public List<Integer> preorder(Node root) {
+    public List<Integer> preorder(TreeNode root) {
         if (root == null) {
             return result;
         }

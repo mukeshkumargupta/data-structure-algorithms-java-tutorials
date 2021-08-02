@@ -67,7 +67,7 @@ public class ReentrantReadWriteLockExample {
     
     /**
      * Writer.java
-     * This thread randomly read an element from a shared data structure
+     * This thread randomly read an element from a shared val structure
      * @author www.codejava.net
      */
     public class Writer extends Thread {
@@ -91,7 +91,7 @@ public class ReentrantReadWriteLockExample {
     
     /**
      * Reader.java
-     * This thread randomly adds an element to a shared data structure
+     * This thread randomly adds an element to a shared val structure
      * @author www.codejava.net
      */
     class Reader extends Thread {

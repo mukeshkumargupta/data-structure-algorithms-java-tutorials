@@ -16,53 +16,53 @@ import java.util.Stack;
  */
 public class KClosestValueInBinaryTree {
 
-    public List<Integer> closestKValues(Node root, double target, int k) {
+    public List<Integer> closestKValues(TreeNode root, double target, int k) {
         if (root == null || k == 0) {
             return new ArrayList<>();
         }
 
-        Stack<Node> predecessor = new Stack();
-        Stack<Node> successor = new Stack();
+        Stack<TreeNode> predecessor = new Stack();
+        Stack<TreeNode> successor = new Stack();
 
         double closestDiff = Double.MAX_VALUE;
-        Node closestDiffNode = null;
+        TreeNode closestDiffTreeNode = null;
         while (root != null) {
             predecessor.push(root);
             successor.push(root);
-            if (Math.abs(target - root.data) < closestDiff) {
-                closestDiff = Math.abs(target - root.data);
-                closestDiffNode = root;
+            if (Math.abs(target - root.val) < closestDiff) {
+                closestDiff = Math.abs(target - root.val);
+                closestDiffTreeNode = root;
             }
-            if (root.data == target) {
+            if (root.val == target) {
                 break;
             }
 
-            else if (target > root.data) {
+            else if (target > root.val) {
                 root = root.right;
             } else {
                 root = root.left;
             }
         }
 
-        while (predecessor.peek() != closestDiffNode) {
+        while (predecessor.peek() != closestDiffTreeNode) {
             predecessor.pop();
             successor.pop();
         }
         predecessor.pop();
         successor.pop();
         List<Integer> result = new ArrayList<>();
-        result.add(closestDiffNode.data);
-        Node prec = closestDiffNode;
-        Node succ = closestDiffNode;
+        result.add(closestDiffTreeNode.val);
+        TreeNode prec = closestDiffTreeNode;
+        TreeNode succ = closestDiffTreeNode;
         k--;
         prec = predecessor(predecessor, prec);
         succ = successor(successor, succ);
         while (k > 0) {
-            if (succ == null || (prec != null && Math.abs(target - prec.data) < Math.abs(target - succ.data))) {
-                result.add(prec.data);
+            if (succ == null || (prec != null && Math.abs(target - prec.val) < Math.abs(target - succ.val))) {
+                result.add(prec.val);
                 prec = predecessor(predecessor, prec);
             } else {
-                result.add(succ.data);
+                result.add(succ.val);
                 succ = successor(successor, succ);
             }
             k--;
@@ -70,7 +70,7 @@ public class KClosestValueInBinaryTree {
         return result;
     }
 
-    private Node predecessor(Stack<Node> stack, Node current) {
+    private TreeNode predecessor(Stack<TreeNode> stack, TreeNode current) {
         if (current == null) {
             return null;
         }
@@ -94,7 +94,7 @@ public class KClosestValueInBinaryTree {
         }
     }
 
-    private Node successor(Stack<Node> stack, Node current) {
+    private TreeNode successor(Stack<TreeNode> stack, TreeNode current) {
         if (current == null) {
             return null;
         }

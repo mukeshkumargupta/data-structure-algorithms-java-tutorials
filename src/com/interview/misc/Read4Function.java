@@ -29,10 +29,10 @@ public class Read4Function extends Read4{
         int start;
         int end;
         int count;
-        char[] data;
+        char[] val;
         int size;
         Queue(int size) {
-            data = new char[size];
+            val = new char[size];
             this.size = size;
         }
 
@@ -41,13 +41,13 @@ public class Read4Function extends Read4{
         }
 
         void offer(char b) {
-            data[start] = b;
+            val[start] = b;
             start = (start + 1)%size;
             count++;
         }
 
         char poll() {
-            char d = data[end];
+            char d = val[end];
             end = (end + 1)%size;
             count--;
             return d;

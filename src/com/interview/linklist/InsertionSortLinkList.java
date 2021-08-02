@@ -3,22 +3,22 @@ package com.interview.linklist;
 /**
  * http://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
  * Test cases:
- * 0 nodes
- * 1 nodes 
- * 2 or more nodes
+ * 0 TreeNodes
+ * 1 TreeNodes 
+ * 2 or more TreeNodes
  * already sorted
  * reverse sorted
  * negative positive numbers 
  */
 public class InsertionSortLinkList {
 
-    private Node insert(Node head,Node curr){
+    private TreeNode insert(TreeNode head,TreeNode curr){
         if(head == null){
             return curr;
         }
-        Node prev = null;
-        Node start = head;
-        while(start != null && curr.data >= start.data){
+        TreeNode prev = null;
+        TreeNode start = head;
+        while(start != null && curr.val >= start.val){
             prev = start;
             start = start.next;
         }
@@ -32,10 +32,10 @@ public class InsertionSortLinkList {
         return head;
     }
     
-    public Node sort(Node head){
-        Node result = null;
-        Node curr = head;
-        Node prevCurr = null;
+    public TreeNode sort(TreeNode head){
+        TreeNode result = null;
+        TreeNode curr = head;
+        TreeNode prevCurr = null;
         while(curr != null){
             prevCurr = curr;
             curr = curr.next;
@@ -47,13 +47,13 @@ public class InsertionSortLinkList {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(11, head);
-        head = ll.addNode(12, head);
-        head = ll.addNode(-3, head);
-        head = ll.addNode(45, head);
-        head = ll.addNode(5, head);
-        head = ll.addNode(101, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(11, head);
+        head = ll.addTreeNode(12, head);
+        head = ll.addTreeNode(-3, head);
+        head = ll.addTreeNode(45, head);
+        head = ll.addTreeNode(5, head);
+        head = ll.addTreeNode(101, head);
     
         InsertionSortLinkList isll = new InsertionSortLinkList();
         head = isll.sort(head);

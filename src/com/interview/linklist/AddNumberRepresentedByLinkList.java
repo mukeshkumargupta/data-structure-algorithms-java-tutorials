@@ -12,39 +12,39 @@ public class AddNumberRepresentedByLinkList {
 
     private int carry = 0;
     
-    private Node addWithCarry(Node head1, Node head2){
+    private TreeNode addWithCarry(TreeNode head1, TreeNode head2){
         if(head1 == null){
             return null;
         }
-        Node result = Node.newNode(0);
+        TreeNode result = TreeNode.newTreeNode(0);
         result.next = addWithCarry(head1.next, head2.next);
-        int r = head1.data + head2.data + carry;
-        result.data = r % 10;
+        int r = head1.val + head2.val + carry;
+        result.val = r % 10;
         carry = r / 10;
         return result;
     }
     
-    private Node addRemaining(Node start, Node stop){
+    private TreeNode addRemaining(TreeNode start, TreeNode stop){
         if(start != stop){
-            Node result = Node.newNode(0);
+            TreeNode result = TreeNode.newTreeNode(0);
             result.next = addRemaining(start.next , stop);
-            result.data = (start.data + carry)%10;
-            carry = (start.data + carry)/10;
+            result.val = (start.val + carry)%10;
+            carry = (start.val + carry)/10;
             return result;
         }else{
             return null;
         }
     }
     
-    public Node add(Node head1, Node head2){
+    public TreeNode add(TreeNode head1, TreeNode head2){
         if(head1 == null || head2 == null){
             throw new IllegalArgumentException();
         }
         LinkList ll = new LinkList();
         int size1 = ll.size(head1);
         int size2 = ll.size(head2);
-        Node larger = null;
-        Node smaller = null;
+        TreeNode larger = null;
+        TreeNode smaller = null;
         if(size1 >= size2){
             larger = head1;
             smaller = head2;
@@ -53,19 +53,19 @@ public class AddNumberRepresentedByLinkList {
             smaller = head1;
         }
         int diff = Math.abs(size1 - size2);
-        Node largerStart = larger;
+        TreeNode largerStart = larger;
         while(diff > 0){
             largerStart = largerStart.next;
             diff--;
         }
-        Node result = addWithCarry(largerStart,smaller);
-        Node result1 = addRemaining(larger,largerStart);
+        TreeNode result = addWithCarry(largerStart,smaller);
+        TreeNode result1 = addRemaining(larger,largerStart);
         if(carry != 0){
-            Node top = Node.newNode(carry);
+            TreeNode top = TreeNode.newTreeNode(carry);
             result1 = ll.addAtFront(top, result1);
         }
         if(result1 != null){
-            Node tail = result1;
+            TreeNode tail = result1;
             while(tail.next != null){
                 tail = tail.next;
             }
@@ -77,17 +77,17 @@ public class AddNumberRepresentedByLinkList {
     
     public static void main(String args[]){
         LinkList ll = new LinkList();
-        Node head = null;
-        head = ll.addNode(9, head);
-        head = ll.addNode(4, head);
+        TreeNode head = null;
+        head = ll.addTreeNode(9, head);
+        head = ll.addTreeNode(4, head);
     
-        Node head1 = null;
-        head1 = ll.addNode(3, head1);
-        head1 = ll.addNode(1, head1);
-        head1 = ll.addNode(2, head1);
+        TreeNode head1 = null;
+        head1 = ll.addTreeNode(3, head1);
+        head1 = ll.addTreeNode(1, head1);
+        head1 = ll.addTreeNode(2, head1);
     
         AddNumberRepresentedByLinkList anr = new AddNumberRepresentedByLinkList();
-        Node result = anr.add(head,head1);
+        TreeNode result = anr.add(head,head1);
         ll.printList(result);
     }
 }

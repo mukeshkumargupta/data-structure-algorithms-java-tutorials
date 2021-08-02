@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class MaximumIminusJSuchThatAiGTAj {
 
-    class Node{
+    class TreeNode{
         int index;
         int size;
     }

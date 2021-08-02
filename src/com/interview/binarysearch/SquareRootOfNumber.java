@@ -45,9 +45,9 @@ public class SquareRootOfNumber {
  
         while((mid*mid != number) && (diff > precision)) {
             if(mid*mid > number) {
-                end = mid;
+                end = mid -1; //Earlier it was mid, normal mid -1 is also wroking that is as usual binary search
             } else {
-                start = mid;
+                start = mid +1;//Earlier it was mid, normal mid -1 is also wroking that is as usual binary search
             }
             prevMid = mid;
             mid = (start+end)/2;
@@ -84,10 +84,10 @@ public class SquareRootOfNumber {
     }
     
     public static void main(String[] args) {
-        //int number = 36;
-        int number = 1;
+        int number = 9;
+        //int number = 1;
         System.out.println("Square root of " + number + " = " + findSquareRoot(number));
-        System.out.println("Square root of " + number + " = " + mySqrt_v1(number));
+        //System.out.println("Square root of " + number + " = " + mySqrt_v1(number));
     }
     
 }

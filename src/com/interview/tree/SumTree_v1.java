@@ -2,15 +2,15 @@ package com.interview.tree;
 
 public class SumTree_v1 {
 
-	private int sumTree(Node root) {
+	private int sumTree(TreeNode root) {
 		if (root == null) {
 			return 0;
 		}
 		
-		return root.data + sumTree(root.left) + sumTree(root.right);
+		return root.val + sumTree(root.left) + sumTree(root.right);
 	}
 
-	private boolean isSumTree(Node root) {
+	private boolean isSumTree(TreeNode root) {
 		//Important to know whther it shoud return true or falue,
 		//Scenareo 4 and having chaild as 4 so root null should return true.
 		if (root == null) {
@@ -18,14 +18,14 @@ public class SumTree_v1 {
 		}
 
 
-		//Base case if given root is leaf node.
+		//Base case if given root is leaf TreeNode.
 		if (root.left == null && root.right == null) {
 			return true;
 		}
 		
 		int leftSum = sumTree(root.left);
 		int rightSum = sumTree(root.right);
-		if (((leftSum + rightSum) == root.data) && isSumTree(root.left) && isSumTree(root.right)) {
+		if (((leftSum + rightSum) == root.val) && isSumTree(root.left) && isSumTree(root.right)) {
 			return true;
 		}
 		return false;
@@ -38,7 +38,7 @@ public class SumTree_v1 {
 		//int preorder[] = { 46, 10, 4, 6, 13, 11, 2 };
 		int inorder[] = { 8};
 		int preorder[] = { 8};
-		Node root = ctf.createTree(inorder, preorder);
+		TreeNode root = ctf.createTree(inorder, preorder);
 		SumTree_v1 st = new SumTree_v1();
 		System.out.println(st.isSumTree(root));
 	}

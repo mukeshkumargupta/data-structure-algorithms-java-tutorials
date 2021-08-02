@@ -9,7 +9,7 @@ package com.interview.binarysearch;
  * Time complexity O(logn)
  * Space complexity O(1)
  * 
- * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ 100% runtime
  * Category: Medium
  */
 public class SearchForRange {

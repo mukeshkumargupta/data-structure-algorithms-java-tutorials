@@ -2,17 +2,17 @@ package com.interview.systemdesign;
 
 import java.util.*;
 
-/* Reference: https://leetcode.com/problems/find-median-from-data-stream
+/* Reference: https://leetcode.com/problems/find-median-from-val-stream
  * Category: Hard
  * Reference: https://www.youtube.com/watch?v=1LkOrc-Le-Y&t=1186s
  */
-public class FindMedianfromDataStream {
+public class FindMedianfromvalStream {
     PriorityQueue<Integer> pq1;
     PriorityQueue<Integer> pq2;
     int length;
 
-    /** initialize your data structure here. */
-    public FindMedianfromDataStream() {
+    /** initialize your val structure here. */
+    public FindMedianfromvalStream() {
         pq1 = new PriorityQueue<>((a, b) -> {
             return b -a; 
         });

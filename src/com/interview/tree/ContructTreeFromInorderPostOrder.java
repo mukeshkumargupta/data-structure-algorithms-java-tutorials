@@ -23,12 +23,12 @@ public class ContructTreeFromInorderPostOrder {
             return null;
         }
 
-        int data = postorder[postOrderEnd];
+        int val = postorder[postOrderEnd];
         
-        //System.out.println("Post order=>" + data);
+        //System.out.println("Post order=>" + val);
 
-        //create new node
-        TreeNode root = new TreeNode(data);
+        //create new TreeNode
+        TreeNode root = new TreeNode(val);
         int position = search(inorder, postorder, inorderStart, inorderEnd, postOrderStart, postOrderEnd);
         int leftTreeSize = position - inorderStart;
         int rightTreeSize = inorderEnd - position;

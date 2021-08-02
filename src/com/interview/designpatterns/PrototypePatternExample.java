@@ -19,7 +19,7 @@ public class PrototypePatternExample {
           this.vehicleList = list;
         }
         
-        public void insertData() {
+        public void insertval() {
           vehicleList.add("Honda amaze");
           vehicleList.add("Audi A4");
           vehicleList.add("Hyundai Creta");
@@ -44,7 +44,7 @@ public class PrototypePatternExample {
       }
     void runPrototypePatternExample() throws CloneNotSupportedException {
         Vehicle a = new Vehicle();
-        a.insertData();
+        a.insertval();
         //Verify by changing value of a object
         
         Vehicle b = (Vehicle) a.clone();

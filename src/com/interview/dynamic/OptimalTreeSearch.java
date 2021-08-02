@@ -2,6 +2,7 @@ package com.interview.dynamic;
 
 /**
  * http://www.geeksforgeeks.org/dynamic-programming-set-24-optimal-binary-search-tree/
+ * Category: Hard, Tricky, Done
  */
 public class OptimalTreeSearch {
 
@@ -34,13 +35,13 @@ public class OptimalTreeSearch {
             T[i][i] = freq[i];
         }
         
-        for(int l = 2; l <= input.length; l++){
+        for(int l = 2; l <= input.length; l++){//take lengh of two then three and so on
             for(int i=0; i <= input.length-l; i++){
                 int j = i + l -1;
                 T[i][j] = Integer.MAX_VALUE;
                 int sum = getSum(freq, i, j);
                 
-                for(int k=i; k <= j; k++){
+                for(int k=i; k <= j; k++){ //Tricky, ,make one by one root, 
                      int val = sum + (k-1 < i ? 0 : T[i][k-1]) +
                             (k+1 > j ? 0 : T[k+1][j]) ;
                      if(val < T[i][j]){
@@ -49,7 +50,7 @@ public class OptimalTreeSearch {
                 }
             }
         }
-        return T[0][input.length-1];
+        return T[0][input.length-1];//top right corner is ans
     }
     
     private int getSum(int freq[], int i, int j){

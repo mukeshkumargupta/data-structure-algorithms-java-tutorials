@@ -7,7 +7,7 @@ package com.interview.tree;
  * Test cases:
  * Same tree
  * Exact mirror
- * Some nodes flipped
+ * Some TreeNodes flipped
  * Reference: https://www.youtube.com/watch?v=9Eo42meRcrY
  * Reference: Check two tree is mirror of each other: https://www.youtube.com/watch?v=9jH2L2Ysxko
  * Make same tree to mirror of own tree(I think we need to swap the pointer), or print mirror of given tree(I think just reverse left and right call
@@ -15,7 +15,7 @@ package com.interview.tree;
  */
 public class TreeIsomorphism {
 
-    public boolean areIsomorphicTrees(Node root1, Node root2) {
+    public boolean areIsomorphicTrees(TreeNode root1, TreeNode root2) {
         if (root1 == null && root2 == null) {
             return true;
         }
@@ -24,7 +24,7 @@ public class TreeIsomorphism {
             return false;
         }
 
-        return root1.data == root2.data
+        return root1.val == root2.val
                 && ((areIsomorphicTrees(root1.left, root2.left) && areIsomorphicTrees(
                         root1.right, root2.right)) || (areIsomorphicTrees(
                         root1.left, root2.right) && areIsomorphicTrees(
@@ -38,8 +38,8 @@ public class TreeIsomorphism {
         int in2[] = {11,9,12,10,6,5,15};
         int pre2[] = {10,9,11,12,5,6,15};
         ConstructTreeFromInOrderPreOrder ct = new ConstructTreeFromInOrderPreOrder();
-        Node root1 = ct.createTree(in1, pre1);
-        Node root2 = ct.createTree(in2, pre2);
+        TreeNode root1 = ct.createTree(in1, pre1);
+        TreeNode root2 = ct.createTree(in2, pre2);
         TreeIsomorphism ti = new TreeIsomorphism();
         System.out.println(ti.areIsomorphicTrees(root1, root2));
     }

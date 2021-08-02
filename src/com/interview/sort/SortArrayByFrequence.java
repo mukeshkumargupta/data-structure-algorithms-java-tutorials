@@ -10,20 +10,20 @@ import java.util.Map;
  */
 public class SortArrayByFrequence {
 
-    class SortNode{
+    class SortTreeNode{
         int count;
         int firstIndex;
     }
     
     class FrequenceComparator implements Comparator<Integer>{
-        private Map<Integer,SortNode> countMap = null;
-        FrequenceComparator(Map<Integer,SortNode> countMap){
+        private Map<Integer,SortTreeNode> countMap = null;
+        FrequenceComparator(Map<Integer,SortTreeNode> countMap){
             this.countMap = countMap;
         }
         @Override
         public int compare(Integer i1, Integer i2) {
-            SortNode n1 = countMap.get(i1);
-            SortNode n2 = countMap.get(i2);
+            SortTreeNode n1 = countMap.get(i1);
+            SortTreeNode n2 = countMap.get(i2);
             if(n1.count > n2.count){
                 return -1;
             }else if(n1.count < n2.count){
@@ -36,14 +36,14 @@ public class SortArrayByFrequence {
     }
     
     public void sortByFrequence(Integer arr[]){
-        Map<Integer,SortNode> countMap = new HashMap<Integer,SortNode>();
+        Map<Integer,SortTreeNode> countMap = new HashMap<Integer,SortTreeNode>();
         int index = 0;
         for(int a : arr){
             if(countMap.containsKey(a)){
-                SortNode s = countMap.get(a);
+                SortTreeNode s = countMap.get(a);
                 s.count++;
             }else{
-                SortNode s = new SortNode();
+                SortTreeNode s = new SortTreeNode();
                 s.count = 1;
                 s.firstIndex = index;
                 countMap.put(a, s);

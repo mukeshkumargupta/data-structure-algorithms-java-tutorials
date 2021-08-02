@@ -13,37 +13,37 @@ import java.util.Stack;
  * https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
  */
 public class FlattenLinkListToBinaryTreePreorder {
-    public void flatten(Node root) {
+    public void flatten(TreeNode root) {
         if (root == null) {
             return;
         }
-        Stack<Node> stack = new Stack<>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
-        Node prev = null;
+        TreeNode prev = null;
         while (!stack.isEmpty()) {
-            Node node = stack.pop();
+            TreeNode TreeNode = stack.pop();
             if (prev != null) {
-                prev.right = node;
+                prev.right = TreeNode;
             }
-            prev = node;
-            if (node.right != null) {
-                stack.push(node.right);
+            prev = TreeNode;
+            if (TreeNode.right != null) {
+                stack.push(TreeNode.right);
             }
-            if (node.left != null) {
-                stack.push(node.left);
+            if (TreeNode.left != null) {
+                stack.push(TreeNode.left);
             }
-            node.left = null;
-            node.right = null;
+            TreeNode.left = null;
+            TreeNode.right = null;
         }
     }
 
-    public void flatten1(Node root) {
+    public void flatten1(TreeNode root) {
         if(root==null)
             return;
         flatten(root.left);
         flatten(root.right);
-        Node left  = root.left;
-        Node right = root.right;
+        TreeNode left  = root.left;
+        TreeNode right = root.right;
         root.left  = null;
         root.right = left;
         while(root.right!=null)

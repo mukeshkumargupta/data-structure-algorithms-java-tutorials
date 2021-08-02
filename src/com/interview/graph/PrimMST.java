@@ -26,7 +26,7 @@ public class PrimMST {
      */
     public List<Edge<Integer>> primMST(Graph<Integer> graph){
 
-        //binary heap + map data structure
+        //binary heap + map val structure
         BinaryMinHeap<Vertex<Integer>> minHeap = new BinaryMinHeap<>();
 
         //map of vertex to edge which gave minimum weight to this vertex.
@@ -62,7 +62,7 @@ public class PrimMST {
             for(Edge<Integer> edge : current.getEdges()){
                 Vertex<Integer> adjacent = getVertexForEdge(current, edge);
                 //check if adjacent vertex exist in heap + map and weight attached with this vertex is greater than this edge weight
-                if(minHeap.containsData(adjacent) && minHeap.getWeight(adjacent) > edge.getWeight()){
+                if(minHeap.containsval(adjacent) && minHeap.getWeight(adjacent) > edge.getWeight()){
                     //decrease the value of adjacent vertex to this edge weight.
                     minHeap.decrease(adjacent, edge.getWeight());
                     //add vertex->edge mapping in the graph.

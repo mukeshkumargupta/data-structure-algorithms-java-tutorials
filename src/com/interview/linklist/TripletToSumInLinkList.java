@@ -4,7 +4,7 @@ package com.interview.linklist;
  * http://www.geeksforgeeks.org/find-a-triplet-from-three-linked-lists-with-sum-equal-to-a-given-number/
  * Test case
  * empty list
- * list with 0 1 or more nodes
+ * list with 0 1 or more TreeNodes
  * negative sum
  * 0 sum
  * positive sum
@@ -14,14 +14,14 @@ package com.interview.linklist;
 //sum equal to a given number 
 class LinkedList 
 { 
- Node head;  // head of list 
+ TreeNode head;  // head of list 
 
- /* Linked list Node*/
- class Node 
+ /* Linked list TreeNode*/
+ class TreeNode 
  { 
-     int data; 
-     Node next; 
-     Node(int d) {data = d; next = null; } 
+     int val; 
+     TreeNode next; 
+     TreeNode(int d) {val = d; next = null; } 
  } 
 
  /* A function to check if there are three elements in a, b 
@@ -31,22 +31,22 @@ class LinkedList
 boolean isSumSorted(LinkedList la, LinkedList lb, LinkedList lc, 
                     int givenNumber) 
 { 
-   Node a = la.head; 
+   TreeNode a = la.head; 
 
-   // Traverse all nodes of la 
+   // Traverse all TreeNodes of la 
    while (a != null) 
    { 
-       Node b = lb.head; 
-       Node c = lc.head; 
+       TreeNode b = lb.head; 
+       TreeNode c = lc.head; 
 
-       // for every node in la pick 2 nodes from lb and lc 
+       // for every TreeNode in la pick 2 TreeNodes from lb and lc 
        while (b != null && c!=null) 
        { 
-           int sum = a.data + b.data + c.data; 
+           int sum = a.val + b.val + c.val; 
            if (sum == givenNumber) 
            { 
-              System.out.println("Triplet found " + a.data + 
-                                  " " + b.data + " " + c.data); 
+              System.out.println("Triplet found " + a.val + 
+                                  " " + b.val + " " + c.val); 
               return true; 
            } 
 
@@ -65,19 +65,19 @@ boolean isSumSorted(LinkedList la, LinkedList lb, LinkedList lc,
 
 
  /*  Given a reference (pointer to pointer) to the head 
-    of a list and an int, push a new node on the front 
+    of a list and an int, push a new TreeNode on the front 
     of the list. */
- void push(int new_data) 
+ void push(int new_val) 
  { 
-     /* 1 & 2: Allocate the Node & 
-               Put in the data*/
-     Node new_node = new Node(new_data); 
+     /* 1 & 2: Allocate the TreeNode & 
+               Put in the val*/
+     TreeNode new_TreeNode = new TreeNode(new_val); 
 
-     /* 3. Make next of new Node as head */
-     new_node.next = head; 
+     /* 3. Make next of new TreeNode as head */
+     new_TreeNode.next = head; 
 
-     /* 4. Move the head to point to new Node */
-     head = new_node; 
+     /* 4. Move the head to point to new TreeNode */
+     head = new_TreeNode; 
  } 
 
   /* Drier program to test above functions */

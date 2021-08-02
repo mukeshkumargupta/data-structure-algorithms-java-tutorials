@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BishopTour {
     
-    // Class for storing a cell's data 
+    // Class for storing a cell's val 
     static class cell { 
         int x, y; 
         int dis;

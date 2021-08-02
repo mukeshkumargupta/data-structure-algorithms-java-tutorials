@@ -9,21 +9,21 @@ package com.interview.linklist;
  */
 public class StackWithLinkListMiddleOperation {
     
-    private Node head = null;
-    private Node middle = null;
+    private TreeNode head = null;
+    private TreeNode middle = null;
     private int size = 0;
-    public void push(int data){
+    public void push(int val){
         if(head == null){
-            head = Node.newNode(data);
+            head = TreeNode.newTreeNode(val);
             middle = head;
             size++;
             return;
         }
         size++;
-        Node node = Node.newNode(data);
-        node.next = head;
-        head.before = node;
-        head = node;
+        TreeNode TreeNode = TreeNode.newTreeNode(val);
+        TreeNode.next = head;
+        head.before = TreeNode;
+        head = TreeNode;
         if(size % 2 ==0){
             middle = middle.before;
         }
@@ -49,22 +49,22 @@ public class StackWithLinkListMiddleOperation {
         if(size % 2 !=  0 || size == 0){
             middle = middle.next;
         }
-        int data = head.data;
+        int val = head.val;
         head = head.next;
         head.before = null;
-        return data;
+        return val;
     }
     public int top(){
         if(size == 0){
             throw new IllegalArgumentException();
         }
-        return head.data;
+        return head.val;
     }
     public int middle(){
         if(size == 0){
             throw new IllegalArgumentException();
         }
-        return middle.data;
+        return middle.val;
     }
     public int deleteMiddle(){
         if(size == 0){
@@ -72,34 +72,34 @@ public class StackWithLinkListMiddleOperation {
         }
         size--;
         if(middle == head){
-            int data = middle.data;
+            int val = middle.val;
             middle = middle.next;
             head = head.next;
             if(head != null){
                 head.before = null;
             }
-            return data;
+            return val;
         }
         
         if(size % 2 == 0){
-            int data = middle.data;
-            Node next = middle.next;
+            int val = middle.val;
+            TreeNode next = middle.next;
             middle = middle.before;
             middle.next = next;
             if(next != null){
                 next.before = middle;
             }
-            return data;
+            return val;
         }
         else{
-            int data = middle.data;
-            Node before = middle.before;
+            int val = middle.val;
+            TreeNode before = middle.before;
             middle = middle.next;
             middle.before = before;
             if(before != null){
                 before.next = middle;
             }
-            return data;
+            return val;
         }
     }
     

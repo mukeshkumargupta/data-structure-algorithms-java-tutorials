@@ -10,16 +10,16 @@ public class KClosestValueInBinaryTreeTest {
 
     @Test
     public void testDifferentCases() {
-        Node root = null;
+        TreeNode root = null;
         BinaryTree bt = new BinaryTree();
-        root = bt.addNode(10, root);
-        root = bt.addNode(20, root);
-        root = bt.addNode(30, root);
-        root = bt.addNode(0, root);
-        root = bt.addNode(6, root);
-        root = bt.addNode(-6, root);
-        root = bt.addNode(16, root);
-        root = bt.addNode(19, root);
+        root = bt.addTreeNode(10, root);
+        root = bt.addTreeNode(20, root);
+        root = bt.addTreeNode(30, root);
+        root = bt.addTreeNode(0, root);
+        root = bt.addTreeNode(6, root);
+        root = bt.addTreeNode(-6, root);
+        root = bt.addTreeNode(16, root);
+        root = bt.addTreeNode(19, root);
 
         KClosestValueInBinaryTree kClosestValueInBinaryTree = new KClosestValueInBinaryTree();
         List<Integer> result = kClosestValueInBinaryTree.closestKValues(root, 18, 2);

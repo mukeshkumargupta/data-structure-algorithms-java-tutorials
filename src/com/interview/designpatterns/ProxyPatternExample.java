@@ -1,39 +1,39 @@
 package com.interview.designpatterns;
 
 //Reference: https://www.youtube.com/watch?v=AB0gaAg9jwI&list=PLIA-9QRQ0RqG0KnmB8MHTaRBkT0zt8byZ&index=6&t=8s
-interface DatabaseExecuter {
-    public void executeDatabase(String query) throws Exception;
+interface valbaseExecuter {
+    public void executevalbase(String query) throws Exception;
 }
 
-class DatabaseExecuterImpl implements DatabaseExecuter {
+class valbaseExecuterImpl implements valbaseExecuter {
     
     @Override
-    public void executeDatabase(String query) throws Exception {
+    public void executevalbase(String query) throws Exception {
         System.out.println("Going to execute Query: " + query);
     }
     
 }
 
-class DatabaseExecuterProxy implements DatabaseExecuter {
+class valbaseExecuterProxy implements valbaseExecuter {
     boolean ifAdmin;
-    DatabaseExecuterImpl dbExecuter;
+    valbaseExecuterImpl dbExecuter;
     
-    public DatabaseExecuterProxy(String name, String passwd) {
+    public valbaseExecuterProxy(String name, String passwd) {
         if (name == "Admin" && passwd == "Admin@123") {
             ifAdmin = true;
         }
-        dbExecuter = new DatabaseExecuterImpl();
+        dbExecuter = new valbaseExecuterImpl();
     }
     
     @Override
-    public void executeDatabase(String query) throws Exception {
+    public void executevalbase(String query) throws Exception {
         if (ifAdmin) {
-            dbExecuter.executeDatabase(query);
+            dbExecuter.executevalbase(query);
         } else {
             if (query.equals("DELETE")) {
                 throw new Exception("DELETE not allowed for non-admin user");
             } else {
-                dbExecuter.executeDatabase(query);
+                dbExecuter.executevalbase(query);
             }
         }
     }
@@ -42,14 +42,14 @@ class DatabaseExecuterProxy implements DatabaseExecuter {
 public class ProxyPatternExample {
     
     public static void main(String[] args) throws Exception {
-        DatabaseExecuter nonAdminExecuter = new DatabaseExecuterProxy("NonAdmin", "Admin@123");
-        nonAdminExecuter.executeDatabase("DELEE");
+        valbaseExecuter nonAdminExecuter = new valbaseExecuterProxy("NonAdmin", "Admin@123");
+        nonAdminExecuter.executevalbase("DELEE");
         
-        DatabaseExecuter nonAdminExecuterDELETE = new DatabaseExecuterProxy("NonAdmin", "Admin@123");
-        nonAdminExecuterDELETE.executeDatabase("DELETE");
+        valbaseExecuter nonAdminExecuterDELETE = new valbaseExecuterProxy("NonAdmin", "Admin@123");
+        nonAdminExecuterDELETE.executevalbase("DELETE");
         
-        DatabaseExecuter adminExecuter = new DatabaseExecuterProxy("Admin", "Admin@123");
-        adminExecuter.executeDatabase("DELETE");
+        valbaseExecuter adminExecuter = new valbaseExecuterProxy("Admin", "Admin@123");
+        adminExecuter.executevalbase("DELETE");
         
     }
     

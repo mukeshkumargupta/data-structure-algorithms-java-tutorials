@@ -10,7 +10,7 @@ import java.util.*;
  * For example, given n = 12, return 3 because 12 = 4 + 4 + 4; given n = 13, return 2 because 13 = 4 + 9.
  *
  * Solution 1 - Using DP similar to coin change problem with infinite supply
- * Solution 2 - Using a BFS. Put all perfect squares in queue. Then considering each as a node try adding
+ * Solution 2 - Using a BFS. Put all perfect squares in queue. Then considering each as a TreeNode try adding
  * another perfect square and see if we can get n. Keep doing this in BFS fashion till you hit the number.
  *
  * https://leetcode.com/problems/perfect-squares/
@@ -58,9 +58,9 @@ public class MinimumNumberOfPerfectSquares {
             int size = queue.size();
             distance++;
             for (int j = 0; j < size; j++) {
-                int node = queue.poll();
+                int TreeNode = queue.poll();
                 for (int square : perfectSquares) {
-                    int sum = node + square;
+                    int sum = TreeNode + square;
                     if (sum == n) {
                         return distance;
                     } else if (!visited.contains(sum)) {

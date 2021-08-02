@@ -1,13 +1,13 @@
 package com.interview.tree;
 import java.util.*;
 /*
- * Reference:https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+ * Reference:https://leetcode.com/problems/all-TreeNodes-distance-k-in-binary-tree/
  * Category: Medium, Must Do
  * Video: https://www.youtube.com/watch?v=nPtARJ2cYrg
  */
 
 /**
- * Definition for a binary tree node.
+ * Definition for a binary tree TreeNode.
  * public class TreeNode {
  *     int val;
  *     TreeNode left;
@@ -15,7 +15,7 @@ import java.util.*;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class AllNodesDistanceKInBinaryTree {
+public class AllTreeNodesDistanceKInBinaryTree {
     Map<TreeNode, TreeNode> lookup = new HashMap<>();
     int level = 0;
     
@@ -56,18 +56,18 @@ public class AllNodesDistanceKInBinaryTree {
                 
             }
             for (int i = 0; i < size; i++) {
-                TreeNode node = q.remove();
-                if (node.left != null && !visited.contains(node.left.val)) {
-                    q.add(node.left);
-                    visited.add(node.left.val);
+                TreeNode TreeNode = q.remove();
+                if (TreeNode.left != null && !visited.contains(TreeNode.left.val)) {
+                    q.add(TreeNode.left);
+                    visited.add(TreeNode.left.val);
                 }
-                if (node.right != null && !visited.contains(node.right.val)) {
-                    q.add(node.right);
-                    visited.add(node.right.val);
+                if (TreeNode.right != null && !visited.contains(TreeNode.right.val)) {
+                    q.add(TreeNode.right);
+                    visited.add(TreeNode.right.val);
                 }
-                if (lookup.containsKey(node) && !visited.contains(lookup.get(node).val)) {
-                    q.add(lookup.get(node));
-                    visited.add(lookup.get(node).val);
+                if (lookup.containsKey(TreeNode) && !visited.contains(lookup.get(TreeNode).val)) {
+                    q.add(lookup.get(TreeNode));
+                    visited.add(lookup.get(TreeNode).val);
                 }
             }
             level++;

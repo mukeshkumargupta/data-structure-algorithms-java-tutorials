@@ -1,7 +1,7 @@
 package com.interview.tree;
 
 /**
- * http://www.geeksforgeeks.org/check-if-each-internal-node-of-a-bst-has-exactly-one-child/
+ * http://www.geeksforgeeks.org/check-if-each-internal-TreeNode-of-a-bst-has-exactly-one-child/
  */
 public class BSTOneChildPreOrderTraversal {
 

@@ -4,8 +4,8 @@ package com.interview.tree;
  * Date 03/22/2017
  * @author Mukesh Kumar Gupta
  *
- * Given a binary tree, find the maximum path sum. For this problem, a path is defined as any sequence of nodes
- * from some starting node to any node in the tree along the parent-child connections.
+ * Given a binary tree, find the maximum path sum. For this problem, a path is defined as any sequence of TreeNodes
+ * from some starting TreeNode to any TreeNode in the tree along the parent-child connections.
  * 
  * Time complexity O(n)
  * Space complexity depends on depth of tree.
@@ -18,13 +18,13 @@ package com.interview.tree;
 public class BinaryTreeMaximumPathSum {
     int max = 0;
 
-    public int maxPathSum(Node root) {
+    public int maxPathSum(TreeNode root) {
         max = Integer.MIN_VALUE;
         maxPathSumUtil(root);
         return max;
     }
 
-    private int maxPathSumUtil(Node root) {
+    private int maxPathSumUtil(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class BinaryTreeMaximumPathSum {
         if (right < 0) {
             right = 0;
         }
-        max = Math.max(max, root.data + left + right);
-        return root.data + Math.max(left, right);
+        max = Math.max(max, root.val + left + right);
+        return root.val + Math.max(left, right);
     }
 }

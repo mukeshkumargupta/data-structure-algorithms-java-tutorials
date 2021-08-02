@@ -15,12 +15,12 @@ package com.interview.tree;
  * 
  * Test cases:
  * Null tree
- * 1 node tree
- * multi node tree
+ * 1 TreeNode tree
+ * multi TreeNode tree
  */
 public class SizeOfBinaryTree {
 
-    public int size(Node root){
+    public int size(TreeNode root){
         if(root == null){
             return 0;
         }
@@ -29,14 +29,14 @@ public class SizeOfBinaryTree {
     
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
-        Node head = null;
-        head = bt.addNode(10, head);
-        head = bt.addNode(15, head);
-        head = bt.addNode(5, head);
-        head = bt.addNode(7, head);
-        head = bt.addNode(19, head);
-        head = bt.addNode(20, head);
-        head = bt.addNode(-1, head);
+        TreeNode head = null;
+        head = bt.addTreeNode(10, head);
+        head = bt.addTreeNode(15, head);
+        head = bt.addTreeNode(5, head);
+        head = bt.addTreeNode(7, head);
+        head = bt.addTreeNode(19, head);
+        head = bt.addTreeNode(20, head);
+        head = bt.addTreeNode(-1, head);
         SizeOfBinaryTree sbt = new SizeOfBinaryTree();
         System.out.println(sbt.size(head));
     }

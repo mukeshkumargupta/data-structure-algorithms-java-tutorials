@@ -3,7 +3,7 @@ package com.interview.sort;
 import java.util.*;
 /*
  * https://leetcode.com/problems/kth-largest-element-in-a-stream/
- * Category: Easy, heap
+ * Category: Easy, heap, Must Do
  */
 
 public class KthLargestElementinaStream {
@@ -33,7 +33,7 @@ public class KthLargestElementinaStream {
         kthLargest = k;
         // Print
         /*
-         * for (int data : pq) { System.out.println(data);
+         * for (int val : pq) { System.out.println(val);
          * 
          * }
          */

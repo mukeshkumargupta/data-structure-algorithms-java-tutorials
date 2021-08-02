@@ -11,59 +11,59 @@ package com.interview.linklist;
  */
 public class SortedCircularLinkList {
 
-    public Node add(Node head,int data){
+    public TreeNode add(TreeNode head,int val){
         if(head == null){
-            head = Node.newNode(data);
+            head = TreeNode.newTreeNode(val);
             head.next = head;
             return head;
         }
-        Node node = Node.newNode(data);
-        Node tail = getTail(head);
-        if(node.data < head.data){
-            node.next = head;
-            tail.next = node;
-            return node;
+        TreeNode TreeNode = TreeNode.newTreeNode(val);
+        TreeNode tail = getTail(head);
+        if(TreeNode.val < head.val){
+            TreeNode.next = head;
+            tail.next = TreeNode;
+            return TreeNode;
         }
-        Node current = head;
-        Node pre = null;
-        while(current != tail && node.data >= current.data){
+        TreeNode current = head;
+        TreeNode pre = null;
+        while(current != tail && TreeNode.val >= current.val){
             pre = current;
             current = current.next;
         }
-        if(node.data < current.data){
-            node.next = current;
-            pre.next = node;
+        if(TreeNode.val < current.val){
+            TreeNode.next = current;
+            pre.next = TreeNode;
         }
         else{
-            node.next = tail.next;
-            tail.next = node;
+            TreeNode.next = tail.next;
+            tail.next = TreeNode;
         }
         return head;
     }
     
-    private Node getTail(Node head){
-        Node temp = head;
+    private TreeNode getTail(TreeNode head){
+        TreeNode temp = head;
         while(temp.next != head){
             temp = temp.next;
         }
         return temp;
     }
     
-    public void printList(Node head){
+    public void printList(TreeNode head){
         if(head == null){
             return;
         }
-        Node current = head.next;
-        System.out.println(head.data);
+        TreeNode current = head.next;
+        System.out.println(head.val);
         while(current != head){
-            System.out.println(current.data);
+            System.out.println(current.val);
             current = current.next;
         }
     }
     
     public static void main(String args[]){
         SortedCircularLinkList scll = new SortedCircularLinkList();
-        Node head = null;
+        TreeNode head = null;
         head = scll.add(head, 10);
         head = scll.add(head, 12);
         head = scll.add(head, -1);

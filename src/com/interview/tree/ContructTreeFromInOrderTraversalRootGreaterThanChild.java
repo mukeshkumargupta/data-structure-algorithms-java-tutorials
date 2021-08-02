@@ -2,17 +2,17 @@ package com.interview.tree;
 
 /**
  * http://www.geeksforgeeks.org/construct-binary-tree-from-inorder-traversal/
- * Given inorder traversal of binary tree where every node is greater than 
+ * Given inorder traversal of binary tree where every TreeNode is greater than 
  * its left and right child.
  * Test cases:
- * One two or more nodes in the tree
+ * One two or more TreeNodes in the tree
  */
 public class ContructTreeFromInOrderTraversalRootGreaterThanChild {
 
-    public Node createTree(int inorder[]){
+    public TreeNode createTree(int inorder[]){
         return createTree(inorder,0,inorder.length-1);
     }
-    private Node createTree(int inorder[],int low,int high)
+    private TreeNode createTree(int inorder[],int low,int high)
     {
         if(low > high){
             return null;
@@ -24,7 +24,7 @@ public class ContructTreeFromInOrderTraversalRootGreaterThanChild {
                 maxIndex = i;
             }
         }
-        Node root = Node.newNode(inorder[maxIndex]);
+        TreeNode root = TreeNode.newTreeNode(inorder[maxIndex]);
         root.left = createTree(inorder,low,maxIndex-1);
         root.right = createTree(inorder,maxIndex+1,high);
         return root;
@@ -33,7 +33,7 @@ public class ContructTreeFromInOrderTraversalRootGreaterThanChild {
     public static void main(String args[]){
         int inorder[] = {9,15,25,6,18,-1,3,-3};
         ContructTreeFromInOrderTraversalRootGreaterThanChild tf = new ContructTreeFromInOrderTraversalRootGreaterThanChild();
-        Node root = tf.createTree(inorder);
+        TreeNode root = tf.createTree(inorder);
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
     }

@@ -43,14 +43,14 @@ public class LevelOrderTraversalInReverse {
             int size = q.size();
             List<Integer> rowList = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode currentNode = q.remove();
-                rowList.add(currentNode.val);
-                if (currentNode.left != null) {
-                    q.add(currentNode.left);
+                TreeNode currentTreeNode = q.remove();
+                rowList.add(currentTreeNode.val);
+                if (currentTreeNode.left != null) {
+                    q.add(currentTreeNode.left);
                 }
                 
-                if (currentNode.right != null) {
-                    q.add(currentNode.right);
+                if (currentTreeNode.right != null) {
+                    q.add(currentTreeNode.right);
                 } 
             }
             list.add(rowList);

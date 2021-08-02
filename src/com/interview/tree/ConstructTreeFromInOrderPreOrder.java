@@ -8,10 +8,10 @@ package com.interview.tree;
 public class ConstructTreeFromInOrderPreOrder {
     
     int index = 0;
-    int search(int[] inorder, int start, int end, int data) {
+    int search(int[] inorder, int start, int end, int val) {
         int index;
         for (index = start; index <= end; index++) {
-            if (data == inorder[index]) {
+            if (val == inorder[index]) {
                break; 
             }
         }
@@ -22,11 +22,11 @@ public class ConstructTreeFromInOrderPreOrder {
         if (start > end) {
             return null;
         }
-        int data = preorder[index++];
+        int val = preorder[index++];
 
-        //create new node
-        TreeNode root = new TreeNode(data);
-        int position = search(inorder, start, end, data);
+        //create new TreeNode
+        TreeNode root = new TreeNode(val);
+        int position = search(inorder, start, end, val);
         root.left = buildTreeUtil(preorder, inorder, start, position-1);
         root.right = buildTreeUtil(preorder, inorder, position+1, end);
         return root;
