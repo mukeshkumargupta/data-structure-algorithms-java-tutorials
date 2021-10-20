@@ -3,6 +3,13 @@ package com.interview.matrix;
 /**
  * Date 10/20/2017
  * @author Mukesh Kumar Gupta
+ * https://leetcode.com/problems/game-of-life/submissions/
+ * Category: Medium, Tricky
+ * Related:
+ * https://leetcode.com/problems/image-smoother/ Easy
+ * https://leetcode.com/problems/falling-squares/ Hard
+ * https://leetcode.com/problems/check-if-move-is-legal/ Medium
+ * 
  * Given a board with m by n cells, each cell has an initial state live (1) or dead (0).
  * Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following
  * four rules (taken from the above Wikipedia article):
@@ -16,55 +23,77 @@ package com.interview.matrix;
  * https://leetcode.com/problems/game-of-life/
  */
 public class GameOfLife {
-    public void gameOfLife(int[][] board) {
-        if (board.length == 0 || board[0].length == 0) {
-            return;
+    boolean isSafe(int i, int j, int R, int C) {
+        if (i < R && i >= 0 && j < C && j >= 0) {
+            return true;
         }
-        int n = board.length;
-        int m = board[0].length;
-        int[] prevRow = new int[m];
-        int[] currentRow = new int[m];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                currentRow[j] = doesLive(i, j, board) ? 1 : 0;
-            }
-            if (i != 0) {
-                copyRow(prevRow, board[i - 1]);
-            }
-            if (i != n - 1) {
-                copyRow(currentRow, prevRow);
-            }
-        }
-        copyRow(currentRow, board[n - 1]);
+        return false;
+        
     }
-
-    private void copyRow(int[] source, int[] dest) {
-        for (int i = 0; i < source.length; i++) {
-            dest[i] = source[i];
-        }
-    }
-
-    private boolean doesLive(int x, int y, int[][] board) {
-        int count = 0;
-        for (int i = x - 1; i <= x + 1; i++) {
-            for (int j = y - 1; j <= y + 1; j++) {
-                if (x == i && y == j) {
-                    continue;
+    public void gameOfLife(int[][] board) {//Runtime: 0 ms, faster than 100.00% of Java online submissions for Game of Life., Memory Usage: 37 MB, less than 94.45% of Java online submissions for Game of Life.Space optimized, but refer second method and top of it optimzed the code, it is way to write code
+        int R = board.length;
+        int C = board[0].length;
+        
+        int[][] dir = { {1, 0}, {1,1}, {0, 1},  {-1, 1}, {-1,0}, {-1, -1}, {0, -1}, {1, -1} };
+        
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                //8 dir
+                int countLives = 0;
+                for (int[] pos: dir) {
+                    if (isSafe(i+ pos[1] , j + pos[0], R, C ) && Math.abs(board[i+ pos[1]][j + pos[0]]) == 1) {
+                        countLives++;
+                    }
                 }
-                if (i < 0 || i >= board.length) {
-                    break;
+                
+                if (board[i][j] == 0 && countLives == 3) {
+                    board[i][j] = 2;
+                } else if (board[i][j] == 1 && (countLives < 2 || countLives > 3)) {
+                    board[i][j] = -1;
                 }
-                if (j < 0 || j >= board[0].length) {
-                    continue;
-                }
-                count += board[i][j];
+                        
             }
         }
-        if (board[x][y] == 1) {
-            return count == 2 || count == 3;
-        } else {
-            return count == 3;
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                board[i][j] = board[i][j] > 0 ? 1 : 0;
+            }
         }
+
+        
+    }
+    public void gameOfLife1(int[][] board) {//TODO: Memory can be enhanced: Runtime: 0 ms, faster than 100.00% of Java online submissions for Game of Life.
+        int R = board.length;
+        int C = board[0].length;
+        int[][] copyBoard = new int[R][C];
+        
+        
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                copyBoard[i][j] = board[i][j];
+            } 
+        }
+        int[][] dir = { {1, 0}, {1,1}, {0, 1},  {-1, 1}, {-1,0}, {-1, -1}, {0, -1}, {1, -1} };
+        
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                //8 dir
+                int countLives = 0;
+                for (int[] pos: dir) {
+                    if (isSafe(i+ pos[1] , j + pos[0], R, C ) && copyBoard[i+ pos[1]][j + pos[0]] == 1) {
+                        countLives++;
+                    }
+                }
+                
+                if (copyBoard[i][j] == 0 && countLives == 3) {
+                    board[i][j] = 1;
+                } else if (copyBoard[i][j] == 1 && (countLives < 2 || countLives > 3)) {
+                    board[i][j] = 0;
+                }
+                        
+            }
+        }
+
+        
     }
 }

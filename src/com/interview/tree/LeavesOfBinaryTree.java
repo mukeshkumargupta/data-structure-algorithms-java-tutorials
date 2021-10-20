@@ -13,8 +13,8 @@ import java.util.List;
  * Time complexity O(n^2) for unbalanced tree.
  *
  * https://leetcode.com/problems/find-leaves-of-binary-tree/
- * Derived question all all leaf TreeNode count in given tree, Find sum of all leaf TreeNode, find maximum in all lead TreeNode
- * find longest distance between leaf TreeNodes, find shortest distance between leaf TreeNodes. find distance in between given two TreeNodes
+ * Derived question all all leaf TreeNode count in given tree, Find sum of all leaf TreeNode, find maximum in all leaf TreeNode
+ * find longest distance between leaf TreeNodes(Good Question Must Try), find shortest distance between leaf TreeNodes. find distance in between given two TreeNodes(Good Question Must Try)
  * 
  * Must Do
  */

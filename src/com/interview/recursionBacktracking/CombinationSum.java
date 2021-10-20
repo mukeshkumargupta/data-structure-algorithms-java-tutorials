@@ -1,15 +1,14 @@
 package com.interview.recursionBacktracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Date 07/10/2017
  * @author Mukesh Kumar Gupta
  *
  * Given an input and total print all combinations with repetitions in this input
- * which sums to given total.
+ * which sums to given total. Note: if ask count then it seems coin change help here but here it is asked all print
+ * https://www.youtube.com/watch?v=OyZFFqQtu98&t=1296s
  * e.g
  * input - {2,3,5}
  * total - 10

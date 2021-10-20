@@ -7,19 +7,29 @@ package com.interview.dynamic;
  * Find maximum sum for non adjacent elements.
  * Variation is finding maximum sum non adjacent elements assuming its a circular array.
  * So first element cannot be with last element.
+ * Tushar has also video on it which I have followed solution
+ * https://www.youtube.com/watch?v=jzpsHKJy00c&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=36
  *
  * Time complexity O(n)
  * Space complexity O(1)
  *
- * https://leetcode.com/problems/house-robber/
- * https://leetcode.com/problems/house-robber-ii/
+ * https://leetcode.com/problems/house-robber/ Medium
+ * Category: Medium, Tricky, Google
+ * https://leetcode.com/problems/house-robber-ii/ Medium
+ * https://leetcode.com/problems/maximum-product-subarray/ Medium
+ * https://leetcode.com/problems/paint-house/ Medium
+ * https://leetcode.com/problems/paint-fence/ Medium
+ * https://leetcode.com/problems/house-robber-iii/ Medium
+ * https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/ Hard
+ * https://leetcode.com/problems/coin-path/ Hard
+ * https://leetcode.com/problems/delete-and-earn/ Medium
  */
 public class MaxSumForNonAdjacentElements {
 
     /**
      * Fast DP solution.
      */
-    public int maxSum(int arr[]) {
+    public int maxSum(int arr[]) {//Tricky
         int excl = 0;
         int incl = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -40,37 +50,6 @@ public class MaxSumForNonAdjacentElements {
             return Math.max(arr[0], arr[1]);
         }
         return Math.max(this.maxSum(arr, index - 2) + arr[index], this.maxSum(arr, index - 1));
-    }
-
-    /**
-     * Find maximum sum from left to right ignoring first element.
-     * Find maximum sum from right to left ignoring last element.
-     * Maximum of two will be the answer. It gurantees that both first and last element
-     * will be not selected together.
-     */
-    public int maxSumCircularArray(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
-        if (nums.length == 1) {
-            return nums[0];
-        }
-        int with = nums[1];
-        int without = 0;
-        for (int i = 2; i < nums.length; i++) {
-            int newWith = without + nums[i];
-            without = with;
-            with = Math.max(with, newWith);
-        }
-
-        int with1 = nums[nums.length - 2];
-        int without1 = 0;
-        for (int i = nums.length - 3; i >= 0; i--) {
-            int newWith1 = without1 + nums[i];
-            without1 = with1;
-            with1 = Math.max(with1, newWith1);
-        }
-        return Math.max(with, with1);
     }
 
     public static void main(String args[]) {

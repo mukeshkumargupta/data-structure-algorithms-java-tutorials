@@ -1,11 +1,6 @@
 package com.interview.graph;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Date 10/01/2017
@@ -13,6 +8,13 @@ import java.util.Set;
  *
  * Given a directed graph, find all strongly connected components in this graph.
  * We are going to use Kosaraju's algorithm to find strongly connected component.
+ * https://www.youtube.com/watch?v=V8qIqJxCioo&list=PLIA-9QRQ0RqFtv70kQcM7y0Gjt5wjGW90&index=69
+ * Category: Medium, Must Do
+ * 
+ * Related:
+ * https://leetcode.com/problems/longest-consecutive-sequence/ Medium
+ * https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/ Hard
+ * https://leetcode.com/problems/number-of-provinces/ Medium, Soln: Simple DFS, already done
  *
  * Algorithm
  * Create a order of vertices by finish time in decreasing order.
@@ -28,91 +30,87 @@ import java.util.Set;
  * http://www.geeksforgeeks.org/strongly-connected-components/
  */
 public class StronglyConnectedComponent {
-
-    public List<Set<Vertex<Integer>>> scc(Graph<Integer> graph) {
-
-        //it holds vertices by finish time in reverse order.
-        Deque<Vertex<Integer>> stack = new ArrayDeque<>();
-        //holds visited vertices for DFS.
-        Set<Vertex<Integer>> visited = new HashSet<>();
-
-        //populate stack with vertices with vertex finishing last at the top.
-        for (Vertex<Integer> vertex : graph.getAllVertex()) {
-            if (visited.contains(vertex)) {
-                continue;
+        private void dfs(int node, Stack<Integer> st, ArrayList<ArrayList<Integer>> adj, int vis[]) {
+            vis[node] = 1;
+            for(Integer it : adj.get(node)) {
+                if(vis[it] == 0) {
+                    dfs(it, st, adj, vis); 
+                }
             }
-            DFSUtil(vertex, visited, stack);
+
+            st.push(node); 
         }
 
-        //reverse the graph.
-        Graph<Integer> reverseGraph = reverseGraph(graph);
-
-        //Do a DFS based off vertex finish time in decreasing order on reverse graph..
-        visited.clear();
-        List<Set<Vertex<Integer>>> result = new ArrayList<>();
-        while (!stack.isEmpty()) {
-            Vertex<Integer> vertex = reverseGraph.getVertex(stack.poll().getId());
-            if(visited.contains(vertex)){
-                continue;
+        private void revDfs(int node, ArrayList<ArrayList<Integer>> transpose, int vis[]) {
+            vis[node] = 1;
+            System.out.print(node + " "); 
+            for(Integer it : transpose.get(node)) {
+                if(vis[it] == 0) {
+                    revDfs(it, transpose, vis); 
+                }
             }
-            Set<Vertex<Integer>> set = new HashSet<>();
-            DFSUtilForReverseGraph(vertex, visited, set);
-            result.add(set);
         }
-        return result;
-    }
 
-    private Graph<Integer> reverseGraph(Graph<Integer> graph) {
-        Graph<Integer> reverseGraph = new Graph<>(true);
-        for (Edge<Integer> edge : graph.getAllEdges()) {
-            reverseGraph.addEdge(edge.getVertex2().getId(), edge.getVertex1()
-                    .getId(), edge.getWeight());
-        }
-        return reverseGraph;
-    }
-
-    private void DFSUtil(Vertex<Integer> vertex,
-            Set<Vertex<Integer>> visited, Deque<Vertex<Integer>> stack) {
-        visited.add(vertex);
-        for (Vertex<Integer> v : vertex.getAdjacentVertexes()) {
-            if (visited.contains(v)) {
-                continue;
+        void kosaRaju(ArrayList<ArrayList<Integer>> adj, int n)
+        {
+            int vis[] = new int[n]; 
+            Stack<Integer> st = new Stack<Integer>(); 
+            for(int i = 0;i<n;i++) {
+                if(vis[i] == 0) {
+                    dfs(i, st, adj, vis); 
+                }
             }
-            DFSUtil(v, visited, stack);
-        }
-        stack.offerFirst(vertex);
-    }
 
-    private void DFSUtilForReverseGraph(Vertex<Integer> vertex,
-                                        Set<Vertex<Integer>> visited, Set<Vertex<Integer>> set) {
-        visited.add(vertex);
-        set.add(vertex);
-        for (Vertex<Integer> v : vertex.getAdjacentVertexes()) {
-            if (visited.contains(v)) {
-                continue;
+            ArrayList<ArrayList<Integer> > transpose = new ArrayList<ArrayList<Integer> >();
+            
+            for (int i = 0; i < n; i++) 
+                transpose.add(new ArrayList<Integer>());
+
+            for(int i = 0;i<n;i++) {
+                vis[i] = 0; 
+                for(Integer it: adj.get(i)) {
+                    transpose.get(it).add(i); 
+                }
             }
-            DFSUtilForReverseGraph(v, visited, set);
+
+            while(st.size() > 0) {
+                int node = st.peek(); 
+                st.pop(); 
+                if(vis[node] == 0) {
+                    System.out.print("SCC: "); 
+                    revDfs(node, transpose, vis);
+                    System.out.println(); 
+                }
+            }
+
         }
-    }
+        void runSCC() {
+            int n = 5;
+            ArrayList<ArrayList<Integer> > adj = new ArrayList<ArrayList<Integer> >();
+            
+            for (int i = 0; i < n; i++) 
+                adj.add(new ArrayList<Integer>());
+                
+            adj.get(0).add(1);
+            adj.get(1).add(2);
+            adj.get(2).add(0);
+            adj.get(1).add(3);
+            adj.get(3).add(4);
+            kosaRaju(adj, n); 
+        }
+        public static void main(String args[])
+        {
+            StronglyConnectedComponent obj = new StronglyConnectedComponent(); 
+            obj.runSCC(); 
+            
+        }
 
-    public static void main(String args[]){
-        Graph<Integer> graph = new Graph<>(true);
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 0);
-        graph.addEdge(1, 3);
-        graph.addEdge(3, 4);
-        graph.addEdge(4, 5);
-        graph.addEdge(5, 3);
-        graph.addEdge(5, 6);
-
-        StronglyConnectedComponent scc = new StronglyConnectedComponent();
-        List<Set<Vertex<Integer>>> result = scc.scc(graph);
-
-        //print the result
-        result.forEach(set -> {
-            set.forEach(v -> System.out.print(v.getId() + " "));
-            System.out.println();
-        });
-    }
+    /*
+    5 5 
+    0 1 
+    1 2 
+    2 0 
+    1 3 
+    3 4 
+    */
 }

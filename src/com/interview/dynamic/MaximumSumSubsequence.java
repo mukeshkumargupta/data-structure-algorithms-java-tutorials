@@ -11,6 +11,7 @@ package com.interview.dynamic;
  *
  * Reference:
  * http://www.geeksforgeeks.org/dynamic-programming-set-14-maximum-sum-increasing-subsequence/
+ * Category: Medium, Must Do (Not on leetcode)
  */
 public class MaximumSumSubsequence {
 

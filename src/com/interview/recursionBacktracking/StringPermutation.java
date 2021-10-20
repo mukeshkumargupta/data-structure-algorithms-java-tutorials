@@ -9,7 +9,11 @@ import java.util.TreeMap;
  * Date 01/29/2017
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/permutations/
+ * https://www.youtube.com/watch?v=f2ic2Rsc9pU&t=6s
  * Category: Medium, Must Do, Tricky
+ * Related:
+ * https://leetcode.com/problems/permutations-ii/ Medium
+ * https://leetcode.com/problems/combinations/ Medium
  * 
  * 
  * Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
@@ -39,7 +43,7 @@ public class StringPermutation {
         
     }
     private void permuteUtil(int[] nums, int l, int r) {
-        if (l == r-1) {
+        if (l == r) {
             List<Integer> list = new ArrayList<>();
             for (int num : nums) {
                 list.add(num);
@@ -47,16 +51,16 @@ public class StringPermutation {
             result.add(list);
             return;
         }
-        for (int i = l; i < r; i++) {
+        for (int i = l; i <= r; i++) {
             swap(nums, l, i);
             permuteUtil(nums,l+1, r);
             swap(nums, l, i);
         }
         
     }
-    public List<List<Integer>> permute(int[] nums) {
+    public List<List<Integer>> permute(int[] nums) {//100% runtime
         int l = nums.length;
-        permuteUtil(nums, 0, l);
+        permuteUtil(nums, 0, l-1);
         return result;
         
         

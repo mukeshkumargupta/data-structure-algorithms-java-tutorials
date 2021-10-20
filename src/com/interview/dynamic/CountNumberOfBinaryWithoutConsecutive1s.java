@@ -5,9 +5,27 @@ package com.interview.dynamic;
  * It is really a straight up fibonacci series with values
  * 1,2,3,5,8,13....
  * Look how we assign a[i] value of a[i-1] + b[i-1] and then b[i] becomes a[i]
+ * Category: Easy, Must Do
  */
 public class CountNumberOfBinaryWithoutConsecutive1s {
 
+    public int countDPRecursion(int n, int[] dp) {//Mine
+        if (n ==1) {
+            dp[1] = 2;
+            return dp[1];
+        }
+        if (n ==2) {
+            dp[2] = 3;
+            return dp[2];
+        }
+        
+        if (dp[n] != 0) {
+            return dp[n];
+        }
+        dp[n] = countDPRecursion(n-1, dp) + countDPRecursion(n-2, dp);
+        return dp[n];
+        
+    }
     public int count(int n){
         int a[] = new int[n];
         int b[] = new int[n];
@@ -39,5 +57,7 @@ public class CountNumberOfBinaryWithoutConsecutive1s {
     public static void main(String args[]){
         CountNumberOfBinaryWithoutConsecutive1s cnb = new CountNumberOfBinaryWithoutConsecutive1s();
         System.out.println(cnb.count(5));
+        int[] dp = new int[6];
+        System.out.println(cnb.countDPRecursion(5, dp));//Mukesh approach
     }
 }

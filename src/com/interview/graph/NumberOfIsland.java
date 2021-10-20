@@ -40,7 +40,7 @@ public class NumberOfIsland {
         return numberOfIslands;
     }
     
-    public void BFS(char[][] grid, int i, int j, boolean[][] visitedGrid) {
+    public void BFS(char[][] grid, int i, int j, boolean[][] visitedGrid) {//runtime 19.88
 
         Queue<Point> queue = new LinkedList<>();
         
@@ -65,7 +65,7 @@ public class NumberOfIsland {
 
     }
     
-    public int numIslandsDfs(char[][] grid) {
+    public int numIslandsDfs(char[][] grid) {//runtime 99.95
         int numberOfIslands = 0;
         int r1 = grid.length;
         if (r1 == 0) return 0;

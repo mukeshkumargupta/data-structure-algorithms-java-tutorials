@@ -11,10 +11,10 @@ import java.util.List;
  *
  * Time complexity O(n)
  *
- * https://leetcode.com/problems/path-sum/
- * https://leetcode.com/problems/path-sum-ii/ 
+ * https://leetcode.com/problems/path-sum/ done
+ * https://leetcode.com/problems/path-sum-ii/ done
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/ Difficult Category  Reference: https://www.youtube.com/watch?v=TO5zsKtc1Ic
- * https://leetcode.com/problems/sum-root-to-leaf-numbers/
+ * https://leetcode.com/problems/sum-root-to-leaf-numbers/ done
  * https://leetcode.com/problems/smallest-string-starting-from-leaf/
  * 
  * This is better explanation: https://www.youtube.com/watch?v=MwLDG-WNOjM
@@ -91,5 +91,31 @@ public class PathSum {
             return root.val == sum;
         }
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+    //Related: https://leetcode.com/problems/smallest-string-starting-from-leaf/submissions/
+    //Related: https://leetcode.com/problems/reverse-only-letters/ Easy\
+    //https://leetcode.com/problems/kth-ancestor-of-a-tree-node/ Hard
+    //https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/ Hard
+    String smallestString = "";
+
+    void smallestFromLeafUtil(TreeNode root, String currentString) {//faster than 100% of Java online submissions for Smallest String Starting From Leaf.
+        if (root == null) {
+            return;
+        }
+        
+        currentString = "" + (char)('a' + root.val) + currentString;
+
+        if (root.left == null && root.right == null) {
+            if (smallestString.isEmpty() || currentString.compareTo(smallestString) < 0) {
+                smallestString = currentString;
+            }
+        }
+        smallestFromLeafUtil(root.left, currentString);
+        smallestFromLeafUtil(root.right, currentString);
+    }
+    public String smallestFromLeaf(TreeNode root) {
+        smallestFromLeafUtil(root, "");
+        return smallestString;
+        
     }
 }

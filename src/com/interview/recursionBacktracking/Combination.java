@@ -1,82 +1,42 @@
-package com.interview.recursion;
+package com.interview.recursionBacktracking;
 
-import java.util.*;
-
+/*
+ * https://www.youtube.com/watch?v=p8SDPaX1wgw&list=PLIA-9QRQ0RqHYFNJc6zVT1_sJz0qCU9b0&index=5
+ * Category : medium, Must Do
+ */
 public class Combination {
-
-   public void combination(char input[]){
-       Map<Character, Integer> countMap = new TreeMap<>();
-       for (char ch : input) {
-           countMap.compute(ch, (key, val) -> {
-               if (val == null) {
-                   return 1;
-               } else {
-                   return val + 1;
-               }
-           });
-       }
-       char str[] = new char[countMap.size()];
-       int count[] = new int[countMap.size()];
-       int index = 0;
-       for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
-           str[index] = entry.getKey();
-           count[index] = entry.getValue();
-           index++;
-       }
-       char[] output = new char[input.length];
-       combination(str, count, 0, output, 0);
-    }
-
-    private void combination(char input[],int count[],int pos, char output[],int len){
-        print(output, len);
-        for(int i=pos; i < input.length; i++){
-            if (count[i] == 0) {
-                continue;
+    void print(char[] input, boolean[] bitSets) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bitSets.length; i++) {
+            if (bitSets[i] == true) {
+                sb.append(input[i]);
             }
-            output[len] = input[i];
-            count[i]--;
-            combination(input, count, i, output, len + 1);
-            count[i]++;
         }
+        System.out.println(sb.toString());
+        
     }
-
-    private void print(char result[],int pos){
-        for(int i=0; i < pos; i++){
-            System.out.print(result[i] + " ");
+    private void combination(char[] input, int start, int end, boolean[] bitSets) {
+        if (start == end) {
+            bitSets[start] = false;
+            print(input, bitSets);
+            bitSets[start] = true;
+            print(input, bitSets);
+            return;
+            
         }
-        System.out.println();
+        bitSets[start] = false;
+        combination(input, start+1, end, bitSets);
+        bitSets[start] = true;
+        combination(input, start+1, end, bitSets);
     }
-
-    public void combinationEasy(char[] input) {
-        List<Character> r = new ArrayList<>();
-        Arrays.sort(input);
-        combinationEasy(input, 0, r);
-    }
-
-    private void combinationEasy(char[] input, int pos, List<Character> r) {
-
-        r.forEach(r1 -> System.out.print(r1 + " "));
-        System.out.println();
-        for (int i = pos; i < input.length; i++) {
-            if (i != pos && input[i] == input[i-1]) {
-                continue;
-            }
-            r.add(input[i]);
-            combinationEasy(input, i + 1, r);
-            r.remove(r.size() - 1);
-        }
-    }
-
-    public static void main(String args[]){
-        Combination c = new Combination();
-        c.combination("aabbc".toCharArray());
-        System.out.println("------------------------------------------\n");
-        c.combinationEasy("aabbc".toCharArray());
-        System.out.println("------------------------------------------\n");
-        c.combination("abc".toCharArray());
-        System.out.println("------------------------------------------\n");
-        c.combination("aaa".toCharArray());
-
+    
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Combination pac = new Combination();
+        String input = "ABC";
+        boolean[] bitSets = new boolean[input.length()];
+        pac.combination(input.toCharArray(), 0, input.length() -1 , bitSets);
+        
     }
     
 }

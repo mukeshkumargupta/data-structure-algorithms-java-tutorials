@@ -6,7 +6,12 @@ import java.util.List;
  * Date 07/07/2017
  * @author Mukesh Kumar Gupta
  * Reference: https://leetcode.com/problems/edit-distance/submissions/
- * Category: Hard, Must Do, Tricky
+ * Category: Hard, Must Do, Tricky, Google
+ * Related:
+ * https://leetcode.com/problems/one-edit-distance/ Medium
+ * https://leetcode.com/problems/delete-operation-for-two-strings/ Medium
+ * https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/ Medium
+ * https://leetcode.com/problems/uncrossed-lines/ Medium
  *
  * Given two strings how many minimum edits(update, delete or add) is needed to convert one string to another
  *
@@ -18,32 +23,32 @@ import java.util.List;
  * https://en.wikipedia.org/wiki/Edit_distance
  */
 public class EditDistance {
-    public int minDistance(String word1, String word2) {
+    public int minDistance(String word1, String word2) {//Runtime: 4 ms, faster than 90.37% of Java online submissions for Edit Distance.
         
 
-        int l1 = word1.length(); // Make it column side
-        int l2 = word2.length(); //Make it row side
-        int[][]T = new int[l2+1][l1+1];
+        int C = word1.length() +1; // Make it column side
+        int R = word2.length() +1; //Make it row side
+        int[][]T = new int[R][C];
         T[0][0] = 0;
         
-        for ( int i =1; i <= l1 ; i++) { //fill first row
+        for ( int i =1; i < C ; i++) { //fill first row
             T[0][i] = i;
         }
         
-        for (int i = 1; i <=  l2; i++) {//fill first column
+        for (int i = 1; i <  R; i++) {//fill first column
             T[i][0] = i;
         }
         
-        for (int i = 0; i < l2 ; i++) {
-            for (int j = 0; j < l1; j++ ) {
-                if (word2.charAt(i) == word1.charAt(j)) {
-                    T[i+1][j+1] = T[i][j];
+        for (int i = 1; i < R ; i++) {
+            for (int j = 1; j < C; j++ ) {
+                if (word2.charAt(i-1) == word1.charAt(j-1)) {
+                    T[i][j] = T[i-1][j-1];
                 } else {
-                    T[i+1][j+1] = Math.min(Math.min(T[i][j], T[i+1][j]) , T[i][j+1]) +1;
+                    T[i][j] = Math.min(Math.min(T[i-1][j-1], T[i][j-1]) , T[i-1][j]) +1;
                 }
             }
         }
-        return T[l2][l1];
+        return T[R-1][C-1];
         
     }
     

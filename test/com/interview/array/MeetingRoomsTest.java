@@ -3,6 +3,8 @@ package com.interview.array;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.interview.greedy.MeetingRooms;
+
 import java.util.Arrays;
 
 public class MeetingRoomsTest {

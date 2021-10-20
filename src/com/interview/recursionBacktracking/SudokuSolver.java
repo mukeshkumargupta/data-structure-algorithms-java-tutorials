@@ -9,57 +9,48 @@ import java.util.Arrays;
  * Write a program to solve a Sudoku puzzle by filling the empty cells.
  *
  * https://leetcode.com/problems/sudoku-solver/
+ * Category: Hard, Must Do
+ * Related: https://leetcode.com/problems/valid-sudoku/ Medium
+ * https://leetcode.com/problems/unique-paths-iii/ Hard
  */
 public class SudokuSolver {
 
-    public void solveSudoku(char[][] input) {
-        boolean[][] horizontal = new boolean[9][9];
-        boolean[][] vertical = new boolean[9][9];
-        boolean[][] box = new boolean[9][9];
-        for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[0].length; j++) {
-                if (input[i][j] == '.') {
-                    continue;
-                }
-                horizontal[i][input[i][j] - '1'] = true;
-                vertical[j][input[i][j] - '1'] = true;
-                int index = 3*(i/3) + j/3;
-                box[index][input[i][j] - '1'] = true;
-            }
-        }
-        solveSudokuUtil(input, horizontal, vertical, box, 0, 0);
+    public void solveSudoku(char[][] board) {
+        if(board == null || board.length == 0)
+            return;
+        solve(board);
     }
-
-    private boolean solveSudokuUtil(char[][] input, boolean[][] horizontal, boolean[][] vertical, boolean[][] box, int row, int col) {
-        if (col == 9) {
-            row = row + 1;
-            col = 0;
-        }
-        if (row == 9) {
-            return true;
-        }
-
-        if (input[row][col] != '.') {
-            return solveSudokuUtil(input, horizontal, vertical, box, row, col + 1);
-        }
-
-        for (int val = 1; val <= 9; val++) {
-            int index = 3*(row/3) + col/3;
-            if (horizontal[row][val - 1] == false && vertical[col][val - 1] == false && box[index][val - 1] == false) {
-                horizontal[row][val - 1] = true;
-                vertical[col][val - 1] = true;
-                box[index][val - 1] = true;
-                input[row][col] = (char)(val + '0');
-                if (solveSudokuUtil(input, horizontal, vertical, box, row, col + 1)) {
-                    return true;
+    
+    public boolean solve(char[][] board){
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[0].length; j++){
+                if(board[i][j] == '.'){
+                    for(char c = '1'; c <= '9'; c++){//trial. Try 1 through 9
+                        if(isValid(board, i, j, c)){
+                            board[i][j] = c; //Put c for this cell
+                            
+                            if(solve(board))
+                                return true; //If it's the solution return true
+                            else
+                                board[i][j] = '.'; //Otherwise go back
+                        }
+                    }
+                    
+                    return false;
                 }
-                input[row][col] = '.';
-                horizontal[row][val - 1] = false;
-                vertical[col][val - 1] = false;
-                box[index][val - 1] = false;
             }
         }
-        return false;
+        return true;
+    }
+    
+    private boolean isValid(char[][] board, int row, int col, char c){
+        for(int i = 0; i < 9; i++) {
+            if(board[i][col] != '.' && board[i][col] == c) return false; //check row
+            if(board[row][i] != '.' && board[row][i] == c) return false; //check column
+            if(board[3 * (row / 3) + i / 3][ 3 * (col / 3) + i % 3] != '.' && 
+board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; //check 3*3 block
+        }
+        return true;
     }
 
     public static void main(String args[]) {

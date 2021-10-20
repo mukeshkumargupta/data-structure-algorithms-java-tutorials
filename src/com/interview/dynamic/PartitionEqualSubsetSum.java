@@ -5,7 +5,8 @@ package com.interview.dynamic;
  * Category: Medium, Tricky
  * 
  * Given a non-empty array nums containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
-
+Related: https://leetcode.com/problems/partition-to-k-equal-sum-subsets/ medium
+https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/ Medium
  
 
 Example 1:
@@ -31,30 +32,31 @@ public class PartitionEqualSubsetSum {
         if (sum % 2 != 0) {
             return false;
         }
-        int R = l1;
-        int C = sum/2;
-        boolean[][]T = new boolean[R+1][C+1];
+        int R = l1+1;
+        int C = sum/2+1;
+        boolean[][]T = new boolean[R][C];
 
+        T[0][0] = true;
         //Fill first row
-        for (int j = 1; j <= C ; j++) {
+        for (int j = 1; j < C ; j++) {
             T[0][j] = false;
         }
         //Fill first column
-        for (int i = 0; i <= R ; i++) {
+        for (int i = 1; i < R ; i++) {
             T[i][0] = true;
         }
         
-        for (int i = 0; i < l1; i++) {
-            for (int j = 1; j <= C; j++) {
-                if (nums[i] > j) {
-                    T[i+1][j] = T[i][j];
+        for (int i = 1; i < R; i++) {
+            for (int j = 1; j < C; j++) {
+                if (nums[i-1] > j) {
+                    T[i][j] = T[i-1][j];
                     
                 } else {
-                    T[i+1][j] = T[i][j] || T[i][j - nums[i]];
+                    T[i][j] = T[i-1][j] || T[i-1][j - nums[i-1]];
                 }
             }
         }
-        return T[R][C];
+        return T[R-1][C-1];
         
     }
 }

@@ -12,7 +12,7 @@ package com.interview.array;
  * Space complexity O(1)
  *
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
- * Category: Easy
+ * Category: Easy, Tricky
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
  */
 public class BuySellStockProfit {

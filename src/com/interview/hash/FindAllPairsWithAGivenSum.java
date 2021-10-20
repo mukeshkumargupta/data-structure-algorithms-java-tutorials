@@ -5,12 +5,12 @@ import java.io.*;
 
 /*
  * Reference: https://practice.geeksforgeeks.org/problems/find-all-pairs-whose-sum-is-x/0
- * Derived Questions: https://leetcode.com/problems/two-sum/ Easy
+ * Derived Questions: https://leetcode.com/problems/two-sum/ Easy, here any one found then return
  * https://leetcode.com/problems/finding-pairs-with-a-certain-sum/ Medium use hash
  * https://leetcode.com/problems/max-number-of-k-sum-pairs/ Medium, sort and use two pointer
  * Practice all question from hashing
  * https://leetcode.com/tag/hash-table/
- * Category: Must Do
+ * Category: Must Do, Write own code
  */ 
  
 

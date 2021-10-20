@@ -19,6 +19,7 @@ package com.interview.dynamic;
  * 2) 0 
  * 3) 1
  * 4) Very high number
+ * Category: Easy, Must do, Do own way of dp
  * 
  */
 public class FibonacciSeries {
@@ -27,7 +28,7 @@ public class FibonacciSeries {
      * DP version where we do not recalculate values but just keep last 2
      * calculate values
      */
-    public int fibonacciSeries(int n){
+    public int fibonacciSeriesIterative(int n){
         int n1 = 0, n2 = 1;
         int sum;
 
@@ -48,7 +49,7 @@ public class FibonacciSeries {
      * Recursive and slow version. Recalculates same value over and over again.
      * Chokes for n greater than 60
      */
-    public int fibonacciSeriesRecursive(int n){
+    public int fibonacciSeriesRecursive(int n){//Use memoization
         if(n == 1 || n == 0){
             return n;
         }
@@ -57,7 +58,7 @@ public class FibonacciSeries {
     
     public static void main(String args[]){
         FibonacciSeries fs = new FibonacciSeries();
-        System.out.println(fs.fibonacciSeries(15));
+        System.out.println(fs.fibonacciSeriesIterative(15));
         System.out.println(fs.fibonacciSeriesRecursive(15));
     }
     

@@ -1,93 +1,107 @@
 package com.interview.graph;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Date 11/05/2017
+ * 
  * @author Mukesh Kumar Gupta
  *
- * Write program for Bellman Ford algorithm to find single source shortest path in directed graph.
- * Bellman ford works with negative edges as well unlike Dijksra's algorithm. If there is negative
- * weight cycle it detects it.
+ *         Write program for Bellman Ford algorithm to find single source
+ *         shortest path in directed graph. Bellman ford works with negative
+ *         edges as well unlike Dijksra's algorithm. If there is negative weight
+ *         cycle it detects it.
+ *         https://www.youtube.com/watch?v=75yC1vbS8S8&list=PLIA-9QRQ0RqFtv70kQcM7y0Gjt5wjGW90&index=71
+ *         Category: Medium, Must Do
+ *         Related:
+ *         https://leetcode.com/problems/cheapest-flights-within-k-stops/ Medium
+ *         https://leetcode.com/problems/path-with-maximum-probability/ Medium
  *
- * Time complexity - O(EV)
- * Space complexity - O(V)
+ *         Time complexity - O(EV) Space complexity - O(V)
  *
- * References
- * https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
- * http://www.geeksforgeeks.org/dynamic-programming-set-23-bellman-ford-algorithm/
+ *         References
+ *         https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
+ *         http://www.geeksforgeeks.org/dynamic-programming-set-23-bellman-ford-algorithm/
  */
 
 public class BellmanFordShortestPath {
-
-    //some random big number is treated as infinity. I m not taking INTEGER_MAX as infinity because
-    //doing any addition on that causes integer overflow
-    private static int INFINITY = 10000000;
-
-    class NegativeWeightCycleException extends RuntimeException {
+    
+    class Node {
+        private int u;
+        private int v;
+        private int weight;
+        
+        Node(int _u, int _v, int _w) {
+            u = _u;
+            v = _v;
+            weight = _w;
+        }
+        
+        Node() {
+        }
+        
+        int getV() {
+            return v;
+        }
+        
+        int getU() {
+            return u;
+        }
+        
+        int getWeight() {
+            return weight;
+        }
+        
     }
     
-    public Map<Vertex<Integer>, Integer> getShortestPath(Graph<Integer> graph,
-            Vertex<Integer> sourceVertex) {
-
-        Map<Vertex<Integer>, Integer> distance = new HashMap<>();
-        Map<Vertex<Integer>, Vertex<Integer>> parent = new HashMap<>();
-
-        //set distance of every vertex to be infinity initially
-        for(Vertex<Integer> v : graph.getAllVertex()) {
-            distance.put(v, INFINITY);
-            parent.put(v, null);
-        }
-
-        //set distance of source vertex to be 0
-        distance.put(sourceVertex, 0);
-
-        int V = graph.getAllVertex().size();
-
-        //relax edges repeatedly V - 1 times
-        for (int i = 0; i < V - 1 ; i++) {
-            for (Edge<Integer> edge : graph.getAllEdges()) {
-                Vertex<Integer> u = edge.getVertex1();
-                Vertex<Integer> v = edge.getVertex2();
-                //relax the edge
-                //if we get better distance to v via u then use this distance
-                //and set u as parent of v.
-                if (distance.get(u) + edge.getWeight() < distance.get(v)) {
-                    distance.put(v, distance.get(u) + edge.getWeight());
-                    parent.put(v, u);
+    void bellmanFord(ArrayList<Node> edges, int N, int src) {
+        int dist[] = new int[N];
+        for (int i = 0; i < N; i++)
+            dist[i] = 10000000;//Better take Integer.MAX_VALUE;
+        
+        dist[src] = 0;
+        
+        for (int i = 1; i <= N - 1; i++) {
+            for (Node node : edges) {
+                if (dist[node.getU()] + node.getWeight() < dist[node.getV()]) {
+                    dist[node.getV()] = dist[node.getU()] + node.getWeight();
                 }
             }
         }
-
-        //relax all edges again. If we still get lesser distance it means
-        //there is negative weight cycle in the graph. Throw exception in that
-        //case
-        for (Edge<Integer> edge : graph.getAllEdges()) {
-            Vertex<Integer> u = edge.getVertex1();
-            Vertex<Integer> v = edge.getVertex2();
-            if (distance.get(u) + edge.getWeight() < distance.get(v)) {
-                throw new NegativeWeightCycleException();
+        
+        int fl = 0;
+        for (Node node : edges) {
+            if (dist[node.getU()] + node.getWeight() < dist[node.getV()]) {
+                fl = 1;
+                System.out.println("Negative Cycle");
+                break;
             }
         }
-        return distance;
-    }
-
-    public static void main(String args[]){
         
-        Graph<Integer> graph = new Graph<>(false);
-        graph.addEdge(0, 3, 8);
-        graph.addEdge(0, 1, 4);
-        graph.addEdge(0, 2, 5);
-        graph.addEdge(1, 2, -3);
-        graph.addEdge(2, 4, 4);
-        graph.addEdge(3, 4, 2);
-        graph.addEdge(4, 3, 1);
-
-        BellmanFordShortestPath shortestPath = new BellmanFordShortestPath();
-        Vertex<Integer> startVertex = graph.getAllVertex().iterator().next();
-        Map<Vertex<Integer>,Integer> distance = shortestPath.getShortestPath(graph, startVertex);
-        System.out.println(distance);
+        if (fl == 0) {
+            for (int i = 0; i < N; i++) {
+                System.out.println(i + " " + dist[i]);
+            }
+        }
     }
-
+    
+    void runBelManFord() {
+        int n = 6;
+        ArrayList<Node> adj = new ArrayList<Node>();
+        
+        adj.add(new Node(3, 2, 6));
+        adj.add(new Node(5, 3, 1));
+        adj.add(new Node(0, 1, 5));
+        adj.add(new Node(1, 5, -3));
+        adj.add(new Node(1, 2, -2));
+        adj.add(new Node(3, 4, -2));
+        adj.add(new Node(2, 4, 3));
+        bellmanFord(adj, n, 0);
+    }
+    
+    public static void main(String args[]) {
+        BellmanFordShortestPath obj = new BellmanFordShortestPath();
+        obj.runBelManFord();
+        
+    }
 }

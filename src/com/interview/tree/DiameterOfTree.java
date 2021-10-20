@@ -9,7 +9,7 @@ package com.interview.tree;
  * All left TreeNodes
  * All right TreeNodes
  * Category: Easy, Must Do, VVImp
- * Note: This algo is very fats compare to geeksforgeeks
+ * Note: This algo is very fast compare to geeksforgeeks
  */
 public class DiameterOfTree {
     

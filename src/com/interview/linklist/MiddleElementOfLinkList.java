@@ -16,21 +16,15 @@ package com.interview.linklist;
  */
 public class MiddleElementOfLinkList {
 
-    public ListNode middleNode(ListNode head) {//runtime 100%
-        if(head == null || head.next == null){
-            return head;
-        }
-        
+    public ListNode middleNode(ListNode head) {//100% fast
+        ListNode fast = head;
         ListNode slow = head;
-        ListNode fast = head.next; //Tricky
-        while(fast != null && fast.next != null){
+        while(fast!=null && fast.next!=null){
             slow = slow.next;
             fast = fast.next.next;
         }
-        if (fast == null) {
-            return slow;
-        } else {//i.e. fast.next is null
-            return slow.next;
-        }
+        
+        return slow;
+        
     }
 }

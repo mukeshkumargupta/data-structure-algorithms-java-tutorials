@@ -1,6 +1,5 @@
 package com.interview.string;
 
-import java.util.*;
 
 public class ReverseWordsInStringHavingMoreSpace {
 

@@ -13,104 +13,59 @@ import java.util.List;
  * any placement of queens which do not attack each other. Other solution is to find all placements of queen
  * on the board.
  *
- * Time complexity O(n*n)
- * Space complexity O(n*n)
+ * Solution for https://leetcode.com/problems/n-queens/
+ * Category: Hard, Must Do
+ * Related: 
+ * https://leetcode.com/problems/n-queens-ii/ Hard
+ * https://leetcode.com/problems/grid-illumination/ Hard
  */
 public class NQueenProblem {
-
-    class Position {
-        int row, col;
-        Position(int row, int col) {
-            this.row = row;
-            this.col = col;
-        }
-    }
-
-    public Position[] solveNQueenOneSolution(int n) {
-        Position[] positions = new Position[n];
-        boolean hasSolution = solveNQueenOneSolutionUtil(n, 0, positions);
-        if (hasSolution) {
-            return positions;
-        } else {
-            return new Position[0];
-        }
-    }
-
-    private boolean solveNQueenOneSolutionUtil(int n, int row, Position[] positions) {
-        if (n == row) {
-            return true;
-        }
-        int col;
-        for (col = 0; col < n; col++) {
-            boolean foundSafe = true;
-
-            //check if this row and col is not under attack from any previous queen.
-            for (int queen = 0; queen < row; queen++) {
-                if (positions[queen].col == col || positions[queen].row - positions[queen].col == row - col ||
-                        positions[queen].row + positions[queen].col == row + col) {
-                    foundSafe = false;
-                    break;
-                }
-            }
-            if (foundSafe) {
-                positions[row] = new Position(row, col);
-                if (solveNQueenOneSolutionUtil(n, row + 1, positions)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /*
-     *Solution for https://leetcode.com/problems/n-queens/
-     */
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>> result = new ArrayList<>();
-        Position[] positions = new Position[n];
-        solve(0, positions, result, n);
-        return result;
+        char[][] board = new char[n][n];
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                board[i][j] = '.';
+        List<List<String>> res = new ArrayList<>();
+        int leftRow[] = new int[n];
+        int upperDiagonal[] = new int[2*n-1]; 
+        int lowerDiagonal[] = new int[2*n-1]; 
+        solve(0, board, res, leftRow, lowerDiagonal, upperDiagonal);
+        
+        
+        return res;
     }
-
-    public void solve(int current, Position[] positions, List<List<String>> result, int n) {
-        if (n == current) {
-            StringBuffer buff = new StringBuffer();
-            List<String> oneResult = new ArrayList<>();
-            for (Position p : positions) {
-                for (int i = 0; i < n; i++) {
-                    if (p.col == i) {
-                        buff.append("Q");
-                    } else {
-                        buff.append(".");
-                    }
-                }
-                oneResult.add(buff.toString());
-                buff = new StringBuffer();
-
-            }
-            result.add(oneResult);
+    
+    
+    
+    private void solve(int col, char[][] board, List<List<String>> res, int leftRow[], int lowerDiagonal[], int upperDiagonal[]) {
+        if(col == board.length) {
+            res.add(construct(board));
             return;
         }
-
-        for (int i = 0; i < n; i++) {
-            boolean foundSafe = true;
-            for (int j = 0; j < current; j++) {
-                if (positions[j].col == i || positions[j].col - positions[j].row == i - current || positions[j].row + positions[j].col == i + current) {
-                    foundSafe = false;
-                    break;
-                }
-            }
-            if (foundSafe) {
-                positions[current] = new Position(current, i);
-                solve(current + 1, positions, result, n);
+        
+        for(int row = 0; row < board.length; row++) {
+            if(leftRow[row] == 0 && lowerDiagonal[row+col] == 0 && upperDiagonal[board.length -1 + col - row] == 0) {
+                board[row][col] = 'Q';
+                leftRow[row] = 1;
+                lowerDiagonal[row+col] = 1;
+                upperDiagonal[board.length-1 + col - row] = 1;
+                solve(col+1, board, res, leftRow, lowerDiagonal, upperDiagonal );
+                board[row][col] = '.';
+                leftRow[row] = 0;
+                lowerDiagonal[row+col] = 0;
+                upperDiagonal[board.length - 1 + col - row] = 0;
             }
         }
     }
-
-    public static void main(String args[]) {
-        NQueenProblem s = new NQueenProblem();
-        Position[] positions = s.solveNQueenOneSolution(6);
-        Arrays.stream(positions).forEach(position -> System.out.println(position.row + " " + position.col));
+    
+    
+    private List<String> construct(char[][] board) {
+        List<String> res = new ArrayList<String>();
+        for(int i = 0; i < board.length; i++) {
+            String s = new String(board[i]);
+            res.add(s);
+        }
+        return res;
     }
 }
 

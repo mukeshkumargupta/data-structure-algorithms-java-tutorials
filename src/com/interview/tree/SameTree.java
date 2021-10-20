@@ -7,7 +7,12 @@ package com.interview.tree;
  * Youtube link - https://youtu.be/ySDDslG8wws
  * 
  * Reference: https://leetcode.com/problems/same-tree/
- * Category: Easy
+ * 
+ * Category: Easy, Google
+ * Related:
+ * https://leetcode.com/problems/boundary-of-binary-tree/ Medium
+ * https://leetcode.com/problems/operations-on-tree/ Medium
+ * https://leetcode.com/problems/find-if-path-exists-in-graph/ Easy
  * Given roots of two tree, return true if they have same val and same structure
  * or return false.
  * 
@@ -22,34 +27,20 @@ package com.interview.tree;
  */
 public class SameTree {
 
-    public boolean sameTree(TreeNode root1, TreeNode root2){
-        if(root1 == null && root2 == null){
-            return true;
-        }
-        if(root1 == null || root2 == null){
-            return false;
-        }
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Same Tree.
+Memory Usage: 38.5 MB, less than 12.99% of Java online submissions for Same Tree.
+         */
+        if (p == null && q == null) return true;
         
-        return root1.val == root2.val && 
-                sameTree(root1.left, root2.left) &&
-                sameTree(root1.right, root2.right);
+        if ( p == null || q == null) return false;
+        
+        if (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)) {             return true;
+            
+        } else {
+            return false;
+        }  
     }
     
-    public static void main(String args[]){
-        BinaryTree bt = new BinaryTree();
-        TreeNode root1 = null;
-        root1 = bt.addTreeNode(10, root1);
-        root1 = bt.addTreeNode(20, root1);
-        root1 = bt.addTreeNode(15, root1);
-        root1 = bt.addTreeNode(2, root1);
-
-        TreeNode root2 = null;
-        root2 = bt.addTreeNode(10, root2);
-        root2 = bt.addTreeNode(20, root2);
-        root2 = bt.addTreeNode(15, root2);
-        root2 = bt.addTreeNode(2, root2);
-        
-        SameTree st = new SameTree();
-        assert st.sameTree(root1, root2);
-   }
 }

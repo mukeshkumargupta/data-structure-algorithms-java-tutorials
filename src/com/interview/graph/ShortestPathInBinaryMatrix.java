@@ -6,6 +6,10 @@ import java.util.*;
  * Reference: https://leetcode.com/problems/shortest-path-in-binary-matrix
  * Category: Medium, Must Do
  * Video:https://www.youtube.com/watch?v=CABaqOkWbgQ
+ * Related:
+ * https://leetcode.com/problems/the-skyline-problem/ Hard
+ * https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/ Hard
+ * https://leetcode.com/problems/brace-expansion-ii/ Hard
  */
 
 public class ShortestPathInBinaryMatrix {
@@ -48,7 +52,6 @@ public class ShortestPathInBinaryMatrix {
                 Point current = q.remove();
                 if (current.i == R-1 && current.j == C-1) {
                     return current.d;
-
                 }
                 //Go in all safe path in 8 direction
                 int[][] dir = { {0, 1}, {-1,1}, {-1,0}, {-1,-1}, {0,-1}, {1,-1}, {1,0}, {1, 1}};

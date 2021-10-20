@@ -23,57 +23,15 @@ import java.util.*;
  * is required only. https://leetcode.com/problems/find-bottom-left-tree-value/
  * this question can be solved just to traverse and put point based on criteria.
  * keep traversing and update result and keep change the result.
- *
+ * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree 
+ * Category: Hard, Must Do, Google
+ * Related: https://leetcode.com/problems/flatten-nested-list-iterator/ Medium
+ * https://leetcode.com/problems/widest-pair-of-indices-with-equal-range-sum/ Medium\
+ * https://leetcode.com/problems/add-one-row-to-tree/ Medium
  * https://leetcode.com/problems/binary-tree-vertical-order-traversal/ (Premium
  * question on leetcode) Category: Must Do, VVImp Status: Done
  */
 public class VerticalOrder {
-    public List<List<Integer>> verticalOrder_NotMine(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>();
-        }
-        int minVal = 0;
-        int maxVal = 0;
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        
-        Deque<TreeNode> queue = new LinkedList<>();
-        Deque<Integer> verticalQueue = new LinkedList<>();
-        
-        queue.offerFirst(root);
-        verticalQueue.offerFirst(0);
-        int vertical;
-        while (!queue.isEmpty()) {
-            root = queue.pollFirst();
-            vertical = verticalQueue.pollFirst();
-            minVal = Math.min(minVal, vertical);
-            maxVal = Math.max(maxVal, vertical);
-            
-            List<Integer> r = map.get(vertical);
-            if (r == null) {
-                r = new ArrayList<>();
-                map.put(vertical, r);
-            }
-            r.add(root.val);
-            
-            if (root.left != null) {
-                queue.offerLast(root.left);
-                verticalQueue.offerLast(vertical - 1);
-            }
-            
-            if (root.right != null) {
-                queue.offerLast(root.right);
-                verticalQueue.offerLast(vertical + 1);
-            }
-        }
-        
-        List<List<Integer>> result = new ArrayList<>();
-        for (int i = minVal; i <= maxVal; i++) {
-            List<Integer> r = map.get(i);
-            result.add(r);
-        }
-        return result;
-    }
-    
     //////////////////////////////////////////////////////////////////////////////////
     // Using bfs approach
     class Point {
@@ -148,6 +106,7 @@ public class VerticalOrder {
     }
     //////////////////////////////////////////////////////////////////////////////////
     
+   
     //////////////////////////////////////////////////////////////////////////////////
     // Using dfs Note: Practice same question with so many method to make it clear
     public void verticalTraversalDfsUtil(Point point, Map<Integer, PriorityQueue<Point>> map, int[] minIdx,
@@ -173,7 +132,10 @@ public class VerticalOrder {
     }
     
     public List<List<Integer>> verticalTraversalDfs(TreeNode root) {
-        
+        /*
+         * Runtime: 2 ms, faster than 99.84% of Java online submissions for Vertical Order Traversal of a Binary Tree.
+Memory Usage: 39.5 MB, less than 36.20% of Java online submissions for Vertical Order Traversal of a Binary Tree.
+         */
         List<List<Integer>> ans = new ArrayList<>();
         Map<Integer, PriorityQueue<Point>> map = new HashMap<>();
         int[] minIdx = new int[1];

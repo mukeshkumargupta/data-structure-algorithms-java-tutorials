@@ -34,7 +34,7 @@ public class DetermineWhetherMatrixCanBeObtainedByRotation {
         
     }
     boolean isEqualMatrix(int[][] mat, int[][] target) {
-        //Compare each eleemnt
+        //Compare each element
         int R1 = mat.length;
         int C1 = mat[0].length;
         for (int i = 0; i  < R1; i++) {
@@ -63,7 +63,7 @@ public class DetermineWhetherMatrixCanBeObtainedByRotation {
                 isEqual = isEqualMatrix(mat, target);
             } 
             if (isEqual) {
-               return true; 
+               return true;
             }
         }
         return false; 

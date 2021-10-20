@@ -6,6 +6,9 @@ package com.interview.graph;
  * Related: Dijakshtra, shortest distance from single source
  * Video: https://www.youtube.com/watch?v=t2d-XYuPfg0&t=304s
  * https://www.youtube.com/watch?v=Sj5Z-jaE2x0
+ * Related: https://leetcode.com/problems/making-a-large-island/ Hard
+ * https://leetcode.com/problems/validate-binary-tree-nodes/ Medium
+ * https://leetcode.com/problems/number-of-operations-to-make-network-connected/ Medium
  * You are given a network of n TreeNodes, labeled from 1 to n. You are also given times, a list of travel times as directed edges times[i] = (ui, vi, wi), where ui is the source TreeNode, vi is the target TreeNode, and wi is the time it takes for a signal to travel from source to target.
 
 We will send a signal from a given TreeNode k. Return the time it takes for all the n TreeNodes to receive the signal. If it is impossible for all the n TreeNodes to receive the signal, return -1.

@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * https://leetcode.com/explore/featured/card/30-day-leetcoding-challenge/530/week-3/3301/
  * Variant Problem: https://www.geeksforgeeks.org/min-cost-path-dp-6/  (Here diagonal is also included)
- * Other variant question Find all path
+ * Other variant question Find all path, then find path then start from bottom right and go to 0,0
  * Reference: https://www.youtube.com/watch?v=lBRtnuxg-gU
  * Note: What I was knowing solution was wrong
  * Category: Tricky
