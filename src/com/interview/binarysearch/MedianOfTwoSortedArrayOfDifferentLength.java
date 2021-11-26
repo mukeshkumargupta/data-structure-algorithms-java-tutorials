@@ -3,7 +3,14 @@ package com.interview.binarysearch;
 /**
  * There are two sorted arrays nums1 and nums2 of size m and n respectively.
  * Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
- *
+ *https://www.youtube.com/watch?v=NTop3VTjmxk
+ *Category: Tricky, Hard
+ *Related: https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/ Easy
+ *https://leetcode.com/problems/escape-a-large-maze/ Hard,
+ *https://leetcode.com/problems/shift-2d-grid/ Easy
+ *https://leetcode.com/problems/word-abbreviation/ Hard
+ *https://leetcode.com/problems/maximum-score-words-formed-by-letters/ Hard
+ *https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/ Hard
  * Solution
  * Take minimum size of two array. Possible number of partitions are from 0 to m in m size array.
  * Try every cut in binary search way. When you cut first array at i then you cut second array at (m + n + 1)/2 - i
@@ -17,46 +24,44 @@ package com.interview.binarysearch;
  */
 public class MedianOfTwoSortedArrayOfDifferentLength {
 
-    public double findMedianSortedArrays(int input1[], int input2[]) {
-        //if input1 length is greater than switch them so that input1 is smaller than input2.
-        if (input1.length > input2.length) {
-            return findMedianSortedArrays(input2, input1);
-        }
-        int x = input1.length;
-        int y = input2.length;
-
-        int low = 0;
-        int high = x;
-        while (low <= high) {
-            int partitionX = (low + high)/2;
-            int partitionY = (x + y + 1)/2 - partitionX;
-
-            //if partitionX is 0 it means nothing is there on left side. Use -INF for maxLeftX
-            //if partitionX is length of input then there is nothing on right side. Use +INF for minRightX
-            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : input1[partitionX - 1];
-            int minRightX = (partitionX == x) ? Integer.MAX_VALUE : input1[partitionX];
-
-            int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : input2[partitionY - 1];
-            int minRightY = (partitionY == y) ? Integer.MAX_VALUE : input2[partitionY];
-
-            if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
-                //We have partitioned array at correct place
-                // Now get max of left elements and min of right elements to get the median in case of even length combined array size
-                // or get max of left for odd length combined array size.
-                if ((x + y) % 2 == 0) {
-                    return ((double)Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY))/2;
-                } else {
-                    return (double)Math.max(maxLeftX, maxLeftY);
-                }
-            } else if (maxLeftX > minRightY) { //we are too far on right side for partitionX. Go on left side.
-                high = partitionX - 1;
-            } else { //we are too far on left side for partitionX. Go on right side.
-                low = partitionX + 1;
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        /*
+         * Runtime: 2 ms, faster than 99.90% of Java online submissions for Median of Two Sorted Arrays.
+Memory Usage: 40.3 MB, less than 67.80% of Java online submissions for Median of Two Sorted Arrays.
+    TC: log(min(l1, l2)
+         */
+        if(nums2.length < nums1.length) return findMedianSortedArrays(nums2, nums1);
+        int l1 = nums1.length;
+        int l2 = nums2.length; 
+        int start = 0, end = l1;
+        
+        while(start <= end) {
+            //int cut1 = (start+end) >> 1;
+            int cut1 = start + (end - start)/2;
+            int cut2 = (l1 + l2 + 1) / 2 - cut1; 
+            
+        
+            int left1 = cut1 == 0 ? Integer.MIN_VALUE : nums1[cut1-1];
+            int left2 = cut2 == 0 ? Integer.MIN_VALUE : nums2[cut2-1]; 
+            
+            int right1 = cut1 == l1 ? Integer.MAX_VALUE : nums1[cut1];
+            int right2 = cut2 == l2 ? Integer.MAX_VALUE : nums2[cut2]; 
+            
+            
+            if(left1 <= right2 && left2 <= right1) {
+                if( (l1 + l2) % 2 == 0 ) 
+                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0; 
+                else 
+                    return Math.max(left1, left2); 
+            }
+            else if(left1 > right2) {
+                end = cut1 - 1; 
+            }
+            else {
+                start = cut1 + 1; 
             }
         }
-
-        //Only we we can come here is if input arrays were not sorted. Throw in that scenario.
-        throw new IllegalArgumentException();
+        return 0.0; 
     }
 
     public static void main(String[] args) {

@@ -8,42 +8,27 @@ package com.interview.searching;
  * 
  * Runtime complexity - O(m + n) where m is length of text and n is length of pattern
  * Space complexity - O(n)
- * Building prefix sub array: https://www.youtube.com/watch?v=KG44VoDtsAA&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=4
- * KMP Search: https://www.youtube.com/watch?v=GTJr8OvyEVQ&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&index=5
+ * Building prefix sub array: https://www.youtube.com/watch?v=KG44VoDtsAA&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&j=4
+ * KMP Search: https://www.youtube.com/watch?v=GTJr8OvyEVQ&list=PLIA-9QRQ0RqHAzWyAsAn4m-1UlENJG1Cg&j=5
  * Category: Must Do
  */
 public class SubstringSearch {
-
-    /**
-     * Slow method of pattern matching
-     */
-    public boolean hasSubstring(char[] text, char[] pattern){
-        int i=0;
-        int j=0;
-        int k = 0;
-        while(i < text.length && j < pattern.length){
-}
-        if(j == pattern.length){
-            return true;
-        }
-        return false;
-    }
     
     /**
      * Compute temporary array to maintain size of suffix which is same as prefix
      * Time/space complexity is O(size of pattern)
      */
-    private int[] computeTemporaryArray(char pattern[]){
-        int [] lps = new int[pattern.length];
-        int index =0;
+    private int[] computeLPSArray(char pattern[]){
+        int [] lps = new int[pattern.length];//longest prefix substring which has same suffix
+        int j =0;
         for(int i=1; i < pattern.length;){
-            if(pattern[i] == pattern[index]){
-                lps[i] = index + 1;
-                index++;
+            if(pattern[i] == pattern[j]){
+                lps[i] = j + 1;
+                j++;
                 i++;
             }else{
-                if(index != 0){
-                    index = lps[index-1];
+                if(j != 0){
+                    j = lps[j-1];
                 }else{
                     lps[i] =0;
                     i++;
@@ -56,9 +41,9 @@ public class SubstringSearch {
     /**
      * KMP algorithm of pattern matching.
      */
-    public boolean KMP(char []text, char []pattern){
+    public boolean KMP( char [] pattern, char []text){
         
-        int lps[] = computeTemporaryArray(pattern);
+        int lps[] = computeLPSArray(pattern);
         int i=0;
         int j=0;
         while(i < text.length && j < pattern.length){
@@ -84,7 +69,7 @@ public class SubstringSearch {
         String str = "abcxabcdabcdabcy";
         String subString = "abcdabcy";
         SubstringSearch ss = new SubstringSearch();
-        boolean result = ss.KMP(str.toCharArray(), subString.toCharArray());
+        boolean result = ss.KMP(subString.toCharArray(), str.toCharArray());
         System.out.println(str.contains(subString));//Mukesh
         
     }

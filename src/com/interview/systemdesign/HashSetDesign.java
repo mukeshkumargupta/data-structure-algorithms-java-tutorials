@@ -7,12 +7,12 @@ import java.util.*;
  * Category: Easy, Google
  * Related: https://leetcode.com/problems/design-skiplist/  Hard
  */
-public class DesignHashSet {
+public class HashSetDesign {
     int MAX = 150;
     List<Integer>[] lookup;
 
     /** Initialize your val structure here. */
-    public DesignHashSet() {
+    public HashSetDesign() {
         lookup = new LinkedList[MAX];
         
     }

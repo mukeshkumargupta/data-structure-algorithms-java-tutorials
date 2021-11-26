@@ -3,6 +3,7 @@ package com.interview.hash;
 import java.util.*;
 /*
  * https://leetcode.com/problems/longest-consecutive-sequence/
+ * https://www.youtube.com/watch?v=qgizvmgeyUM&t=40s
  * Category: Medium, Tricky
  * Time complexity O(n)
  * Space complexity O(n)

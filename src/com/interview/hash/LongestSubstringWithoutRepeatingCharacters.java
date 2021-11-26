@@ -3,7 +3,8 @@ import java.util.*;
 
 /*
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
- * Category: Medium, Tricky
+ * Category: Medium, Tricky, Amazon
+ * https://www.youtube.com/watch?v=qtVh-XEpsJo&t=1090s
  * Given a string s, find the length of the longest substring without repeating characters.
 
  

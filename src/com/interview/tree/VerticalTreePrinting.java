@@ -18,8 +18,8 @@ public class VerticalTreePrinting {
     
     private void printLevel(Map<Integer,List<TreeNode>> map){
         for(Integer key : map.keySet()){
-            List<TreeNode> listTreeNodes = map.get(key);
-            for(TreeNode n : listTreeNodes){
+            List<TreeNode> ListNodes = map.get(key);
+            for(TreeNode n : ListNodes){
                 System.out.print(n.val + " ");
             }
             System.out.println();
@@ -30,14 +30,14 @@ public class VerticalTreePrinting {
         if(root == null){
             return;
         }
-        List<TreeNode> listTreeNodes = null;
+        List<TreeNode> ListNodes = null;
         if(map.containsKey(level)){
-            listTreeNodes = map.get(level);
+            ListNodes = map.get(level);
         }else{
-            listTreeNodes = new ArrayList<TreeNode>();
-            map.put(level, listTreeNodes);
+            ListNodes = new ArrayList<TreeNode>();
+            map.put(level, ListNodes);
         }
-        listTreeNodes.add(root);
+        ListNodes.add(root);
         populateMap(root.left,map,level-1);
         populateMap(root.right,map,level+1);
     }

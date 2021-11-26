@@ -22,16 +22,17 @@ public class HeightBalanced {
         return (1+ Math.max(height(root.left), height(root.right)));
     }
     public boolean isBalanced(TreeNode root) {
+        /*
+         * Runtime: 1 ms, faster than 56.17% of Java online submissions for Balanced Binary Tree.
+Memory Usage: 41.5 MB, less than 24.48% of Java online submissions for Balanced Binary Tree.
+            Here we are calculating height for each node, can we use memoization to increase performance
+         */
         if (root == null) return true;
         
         int leftHeight = height(root.left);
         int rightHeight = height(root.right);
-        int diff = leftHeight > rightHeight ? leftHeight - rightHeight : rightHeight - leftHeight;
-        if (diff <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
-            return true;  
-        } else {    
-            return false;
-        }
+        int diff = Math.abs(leftHeight - rightHeight);
+        return diff <= 1 && isBalanced(root.left) && isBalanced(root.right);
     }
     public static void main(String[] args ) {
     	//Create tree

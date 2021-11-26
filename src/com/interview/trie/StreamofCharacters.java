@@ -114,8 +114,8 @@ Memory Usage: 75.7 MB, less than 48.43% of Java online submissions for Stream of
                 }
                 current = TreeNode;
             }
-            //Exhasted then return false
-            return false;
+          //return true of current's endOfWord is true else return false.
+            return TreeNode.endOfWord;
         }
         
         public boolean query(char letter) {

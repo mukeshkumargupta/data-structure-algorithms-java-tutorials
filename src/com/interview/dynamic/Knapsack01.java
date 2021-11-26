@@ -13,7 +13,12 @@ package com.interview.dynamic;
  * Youtube link
  * Topdown DP - https://youtu.be/149WSzQ4E1g
  * Category: Medium, Must Do
- * Bottomup DP - https://youtu.be/8LusJS5-AGo
+ * Bottomup DP - https://youtu.be/8LusJS5-AGo (This method selected)
+ * 
+    int val[] = { 60, 100, 120 };
+    int wt[] = { 10, 20, 30 };
+    int W = 50;
+
  *
  * References -
  * http://www.geeksforgeeks.org/dynamic-programming-set-10-0-1-knapsack-problem/
@@ -50,6 +55,7 @@ public class Knapsack01 {
         Knapsack01 k = new Knapsack01();
         int val[] = {22, 20, 15, 30, 24, 54, 21, 32, 18, 25};
         int wt[] = {4, 2, 3, 5, 5, 6, 9, 7, 8, 10};
+
         System.out.println(k.bottomUpDP(val, wt, 30));
     }
 }

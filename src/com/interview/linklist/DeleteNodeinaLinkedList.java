@@ -7,7 +7,7 @@ Output: [4,1,9]
 Explanation: You are given the second TreeNode with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
  */
 public class DeleteTreeNodeinaLinkedList {
-    public void deleteTreeNode(ListTreeNode TreeNode) {
+    public void deleteTreeNode(ListNode TreeNode) {
         if (TreeNode == null) {
             return;
             

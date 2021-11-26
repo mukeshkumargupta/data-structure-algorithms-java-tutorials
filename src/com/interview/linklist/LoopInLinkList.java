@@ -15,9 +15,9 @@ package com.interview.linklist;
  * Status: Done
  */
 public class LoopInLinkList {
-    public ListTreeNode detectCycle(ListTreeNode head) {
-        ListTreeNode slow = head;
-        ListTreeNode fast = head;
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
         
         while (fast != null && fast.next != null) {
             slow = slow.next;

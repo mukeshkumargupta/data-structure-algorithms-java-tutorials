@@ -5,61 +5,80 @@ package com.interview.dynamic;
  * 
  * Write a program to perform regex matching with * an . 
  * 
- * References : http://leetcode.com/2011/09/regular-expression-matching.html
+ * References : https://leetcode.com/problems/regular-expression-matching/
+ * https://www.youtube.com/watch?v=l3hda49XcDE
+ * Category: Hard, Must Do
+ * Related: https://leetcode.com/problems/wildcard-matching/ Hard
+ * 
+ * Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+
+ 
+
+Example 1:
+
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+Example 2:
+
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+Example 3:
+
+Input: s = "ab", p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+Example 4:
+
+Input: s = "aab", p = "c*a*b"
+Output: true
+Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches "aab".
+Example 5:
+
+Input: s = "mississippi", p = "mis*is*p*."
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length <= 20
+1 <= p.length <= 30
+s contains only lowercase English letters.
+p contains only lowercase English letters, '.', and '*'.
+It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
  */
 public class RegexMatching {
 
-    public boolean matchRegexRecursive(char[] str, char[] pattern){
-        return matchRegexRecursive(str,pattern,0,0);
-    }
-    
-    private boolean matchRegexRecursive(char text[], char pattern[], int pos1, int pos2){
-        //if pos2 has reached end of pattern means pos2 should also reach end of text for match
-        //to happen
-        if(pos2 == pattern.length) { 
-            return pos1 == text.length;
-        } 
-      
-        //if next character is not * means either current value at pattern and text should be same
-        //or current value at pattern should be . in which case you can skip one character of text
-        if(pos2 == pattern.length - 1 || pattern[pos2+1] != '*') {
-            return (pos1 < text.length && (text[pos1] == pattern[pos2] || pattern[pos2] == '.')) && matchRegexRecursive(text, pattern, pos1+1, pos2+1);
-        }
-  
-        //if we have case like abc and ad*bc so here we totally skip d*
-        if(matchRegexRecursive(text, pattern, pos1, pos2+2)){
-            return true;
-        }
-  
-        //For case like abbc and ab*c match first b with b* and then next b to c. If that does not work out
-        //then try next b with b* and then c with c and so on.
-        //if pattern current val is . then skip one character at time from text till we either reach end of text
-        //or a match is found
-        while(pos1 < text.length && (text[pos1] == pattern[pos2] || pattern[pos2] == '.')){
-            if( matchRegexRecursive(text, pattern, pos1+1, pos2+2)){
-                return true;
-            }
-            pos1++;
-        }
-        return false;
-    }
 
-    /**
-     * Dynamic programming technique for regex matching.
-     */
-    public boolean matchRegex(char[] text, char[] pattern) {
-        boolean T[][] = new boolean[text.length + 1][pattern.length + 1];
+
+    public boolean isMatch(String s, String p) {
+        /*
+         * Runtime: 1 ms, faster than 100.00% of Java online submissions for Regular Expression Matching.
+Memory Usage: 37.8 MB, less than 70.81% of Java online submissions for Regular Expression Matching.
+            TC: o(m,n)
+            SC: o(m,n)
+         */
+        char [] text = s.toCharArray();
+        char[] pattern = p.toCharArray();
+        int R = text.length + 1;
+        int C = pattern.length + 1;
+        boolean T[][] = new boolean[R][C];
 
         T[0][0] = true;
         //Deals with patterns like a* or a*b* or a*b*c*
-        for (int i = 1; i < T[0].length; i++) {
-            if (pattern[i-1] == '*') {
-                T[0][i] = T[0][i - 2];
+        for (int j = 1; j < C; j++) {
+            if (pattern[j-1] == '*') {
+                T[0][j] = T[0][j - 2];
             }
         }
 
-        for (int i = 1; i < T.length; i++) {
-            for (int j = 1; j < T[0].length; j++) {
+        for (int i = 1; i < R; i++) {
+            for (int j = 1; j < C; j++) {
                 if (pattern[j - 1] == '.' || pattern[j - 1] == text[i - 1]) {
                     T[i][j] = T[i-1][j-1];
                 } else if (pattern[j - 1] == '*')  {
@@ -72,21 +91,11 @@ public class RegexMatching {
                 }
             }
         }
-        return T[text.length][pattern.length];
+        return T[R-1][C-1];
+        
     }
 
     public static void main(String args[]){
-        RegexMatching rm = new RegexMatching();
-        System.out.println(rm.matchRegexRecursive("Tushar".toCharArray(),"Tushar".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("Tusha".toCharArray(),"Tushar*a*b*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("".toCharArray(),"a*b*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("abbbbccc".toCharArray(),"a*ab*bbbbc*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("abbbbccc".toCharArray(),"aa*bbb*bbbc*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("abbbbccc".toCharArray(),".*bcc".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("abbbbccc".toCharArray(),".*bcc*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("abbbbccc".toCharArray(),".*bcc*".toCharArray()));
-        System.out.println(rm.matchRegexRecursive("aaa".toCharArray(),"ab*a*c*a".toCharArray()));
 
-        System.out.println(rm.matchRegex("aa".toCharArray(), "a*".toCharArray()));
     }
 }

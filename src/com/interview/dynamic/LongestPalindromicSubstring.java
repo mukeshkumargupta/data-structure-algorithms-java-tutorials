@@ -8,6 +8,7 @@ package com.interview.dynamic;
  * https://leetcode.com/problems/palindromic-substrings/ Medium 
  * 
  * Given a string s, return the longest palindromic substring in s.
+ * 
 
  
 
@@ -37,6 +38,10 @@ s consist of only digits and English letters.
  * 
  */
 public class LongestPalindromicSubstring {
+    /*
+     * Runtime: 115 ms, faster than 40.43% of Java online submissions for Longest Palindromic Substring.
+Memory Usage: 43 MB, less than 31.54% of Java online submissions for Longest Palindromic Substring.
+     */
  // This function prints the longest
     // palindrome substring of str[].
     // It also returns the length of the

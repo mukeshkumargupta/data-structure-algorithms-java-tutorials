@@ -50,7 +50,7 @@ public class MinimumPlatforms {
     {
         // add your code here
         Arrays.sort(arr);
-        Arrays.sort(dep);
+        Arrays.sort(dep);//Tricky
         
         int platformNeeded =1;
         int maxPlatform = 1;

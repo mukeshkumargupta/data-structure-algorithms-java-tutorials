@@ -8,7 +8,7 @@ import java.util.*;
  * Related: https://leetcode.com/problems/4sum/ Medium
  * https://leetcode.com/problems/split-array-into-consecutive-subsequences/ Medium
  * https://leetcode.com/problems/sum-of-beauty-in-the-array/ Medium
- * 
+ * Derived question: count of combination which sum is given number, here in this question all list is mentioned.
  * Find all valid combinations of k numbers that sum up to n such that the following conditions are true:
 
 Only numbers 1 through 9 are used.
@@ -83,6 +83,7 @@ Memory Usage: 38.2 MB, less than 37.98% of Java online submissions for Combinati
         combinationSumUtil(k, n, 1, combination, result);
         return result;
     }
+    
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

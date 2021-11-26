@@ -49,17 +49,35 @@ public class FibonacciSeries {
      * Recursive and slow version. Recalculates same value over and over again.
      * Chokes for n greater than 60
      */
-    public int fibonacciSeriesRecursive(int n){//Use memoization
+    public int fibonacciSeriesRecursive(int n){//Without memoization
         if(n == 1 || n == 0){
             return n;
         }
         return fibonacciSeriesRecursive(n-1) + fibonacciSeriesRecursive(n-2);
     }
     
+    /**
+     * Recursive and slow version. Recalculates same value over and over again.
+     * Chokes for n greater than 60
+     */
+    public int fibonacciSeriesRecursiveWithMemoization(int n, int[] dp){//Use memoization
+        if(n == 1 || n == 0){
+            dp[n] = n;
+            return n;
+        }
+        if (dp[n] != 0) {
+            return dp[n];
+        }
+        dp[n] =  fibonacciSeriesRecursiveWithMemoization(n-1, dp) + fibonacciSeriesRecursiveWithMemoization(n-2, dp);
+        return  dp[n];
+    }
+    
     public static void main(String args[]){
         FibonacciSeries fs = new FibonacciSeries();
         System.out.println(fs.fibonacciSeriesIterative(15));
         System.out.println(fs.fibonacciSeriesRecursive(15));
+        int[] dp = new int[16];
+        System.out.println(fs.fibonacciSeriesRecursiveWithMemoization(15, dp));
     }
     
 }

@@ -3,6 +3,7 @@ package com.interview.tree;
 /*
  * Reference: https://leetcode.com/problems/find-bottom-left-tree-value/
  * Category: Medium, Must Do
+ * Derived question: find botton right tree value, Soln: first right then left
  */
 public class FindBottomLeftTreeValue {
     int probableResult = -1;

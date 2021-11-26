@@ -11,54 +11,54 @@ package com.interview.searching;
  */
 public class RabinKarpSearch {
 
- // d is the number of characters in the input alphabet 
-    static final int d = 256;
+ // totalCharacterLength is the number of characters in the input alphabet 
+    static final int totalCharacterLength = 256;
 
      /* pat -> pattern 
         txt -> text 
-        q -> A prime number 
+        primeNumber -> A prime number 
     */
-    public int search(char[] pat, char[] txt, int q) 
+    public int search(char[] pat, char[] txt, int primeNumber) 
     { 
-        int M = pat.length; 
-        int N = txt.length; 
+        int patternLength = pat.length; 
+        int textLength = txt.length; 
         int i, j; 
-        int p = 0; // hash value for pattern 
-        int t = 0; // hash value for txt 
-        int h = 1; 
+        int patternHashCode = 0; // hash value for pattern 
+        int textHashCode = 0; // hash value for txt 
+        int power = 1; 
         
-        int result = -1;;
+        int result = -1;
 
-        // The value of h would be "pow(d, M-1)%q" 
-        for (i = 0; i < M - 1; i++) 
-            h = (h * d) % q; 
+        // The value of power would be "pow(totalCharacterLength, patternLength-1)%primeNumber" 
+        for (i = 0; i < patternLength - 1; i++) 
+            power = (power * totalCharacterLength) % primeNumber; 
 
         // Calculate the hash value of pattern and first 
         // window of text 
-        for (i = 0; i < M; i++) 
+        for (i = 0; i < patternLength; i++) 
         { 
-            p = (d * p + pat[i]) % q; 
-            t = (d * t + txt[i]) % q; 
+            patternHashCode = (totalCharacterLength * patternHashCode + pat[i]) % primeNumber; 
+            textHashCode = (totalCharacterLength * textHashCode + txt[i]) % primeNumber; 
         } 
 
         // Slide the pattern over text one by one 
-        for (i = 0; i <= N - M; i++) 
+        for (i = 0; i <= textLength - patternLength; i++) 
         { 
 
             // Check the hash values of current window of text 
             // and pattern. If the hash values match then only 
             // check for characters on by one 
-            if ( p == t ) 
+            if ( patternHashCode == textHashCode ) 
             { 
                 /* Check for characters one by one */
-                for (j = 0; j < M; j++) 
+                for (j = 0; j < patternLength; j++) 
                 { 
                     if (txt[i+j] != pat[j]) 
                         break; 
                 } 
 
-                // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1] 
-                if (j == M) {
+                // if patternHashCode == textHashCode and pat[0...patternLength-1] = txt[i, i+1, ...i+patternLength-1] 
+                if (j == patternLength) {
                     result = i;
                     break;
                 }
@@ -66,14 +66,14 @@ public class RabinKarpSearch {
 
             // Calculate hash value for next window of text: Remove 
             // leading digit, add trailing digit 
-            if ( i < N-M ) 
+            if ( i < textLength-patternLength ) 
             { 
-                t = (d*(t - txt[i]*h) + txt[i+M])%q; 
+                textHashCode = (totalCharacterLength*(textHashCode - txt[i]*power) + txt[i+patternLength])%primeNumber;//this is multiplied to shift left side because after removal of first char, need to shift left 
 
-                // We might get negative value of t, converting it 
+                // We might get negative value of textHashCode, converting it 
                 // to positive 
-                if (t < 0) 
-                t = (t + q); 
+                if (textHashCode < 0) 
+                textHashCode = (textHashCode + primeNumber); 
             }
         }
         return result;
@@ -83,9 +83,9 @@ public class RabinKarpSearch {
     public static void main(String args[]){
         String txt = "GEEKS FOR GEEKS"; 
         String pat = "GEEK"; 
-        int q = 101; // A prime number 
+        int primeNumber = 101; // A prime number 
         RabinKarpSearch rks = new RabinKarpSearch();
-        int index = rks.search(pat.toCharArray(), txt.toCharArray(), q); 
+        int index = rks.search(pat.toCharArray(), txt.toCharArray(), primeNumber); 
         System.out.println(index);
     }
 }

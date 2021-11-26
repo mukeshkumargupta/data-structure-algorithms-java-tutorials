@@ -37,10 +37,6 @@ public class GroupAnagrams {
          * Runtime: 24 ms, faster than 20.30% of Java online submissions for Group Anagrams.
 Memory Usage: 56.1 MB, less than 7.96% of Java online submissions for Group Anagrams.
          */
-        if (strs.length == 0) {
-            return new ArrayList<>();
-        }
-        
         Map<String, List<String>> lookup  = new HashMap<>();
 
         for (String val : strs) {
@@ -49,10 +45,15 @@ Memory Usage: 56.1 MB, less than 7.96% of Java online submissions for Group Anag
                 counter[ch - 'a']++;
             }
             StringBuilder sb = new StringBuilder();
-            for (int c : counter) {
+            //Note both are working, even map we can take but result is not matching with that
+            for (int i = 0; i < 26; i++) {
+                sb.append('a' + i);
+                sb.append(counter[i]);
+            }
+            /*for (int c : counter) {
                 sb.append('#');
                 sb.append(c);
-            }
+            }*/
             String key = sb.toString();
             if (!lookup.containsKey(key)) {
                 lookup.put(key, new ArrayList<>());
@@ -64,6 +65,9 @@ Memory Usage: 56.1 MB, less than 7.96% of Java online submissions for Group Anag
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
+        String[] input = {"eat","tea","tan","ate","nat","bat"};
+        GroupAnagrams ga = new GroupAnagrams();
+        ga.groupAnagrams(input);
         
     }
     

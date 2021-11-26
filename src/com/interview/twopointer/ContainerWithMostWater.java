@@ -59,7 +59,7 @@ Memory Usage: 78.7 MB, less than 16.17% of Java online submissions for Container
 
         while(width > 0) {
             int idx = minHeightIndex;
-            while(height[idx] <= minHeight) {
+            while(height[idx] <= minHeight) {//keep doing loop wntil you get value greater than min
                 if(minHeightIndex < maxHeightIndex) {//check min idex is in left lide or right side, if left side then increment otherwise decrement
                     idx++;
                 } else {

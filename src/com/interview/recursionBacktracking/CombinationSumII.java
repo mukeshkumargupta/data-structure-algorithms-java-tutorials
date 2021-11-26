@@ -41,9 +41,9 @@ Output:
  */
 public class CombinationSumII {
     
-    private void combinationSumUtil(int[] candidates, int ind, int target, List<Integer> combination, List<List<Integer>> result) {
+    private void combinationSumUtil(int[] candidates, int ind, int target, List<Integer> ds, List<List<Integer>> result) {
         if (target == 0) {
-            result.add(new ArrayList<>(combination));
+            result.add(new ArrayList<>(ds));
             return;
         }
         
@@ -55,17 +55,17 @@ public class CombinationSumII {
             if (candidates[i] > target ) {
                 break;
             }
-            combination.add(candidates[i]);
-            combinationSumUtil(candidates, i+1, target - candidates[i], combination, result);
-            combination.remove(combination.size()-1);
+            ds.add(candidates[i]);
+            combinationSumUtil(candidates, i+1, target - candidates[i], ds, result);
+            ds.remove(ds.size()-1);
         }
     }
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {//runtime 98.5
         Arrays.sort(candidates);
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> combination = new ArrayList<>();
-        combinationSumUtil(candidates, 0, target, combination, result);
+        List<Integer> ds = new ArrayList<>();
+        combinationSumUtil(candidates, 0, target, ds, result);
         return result;
         
     } 

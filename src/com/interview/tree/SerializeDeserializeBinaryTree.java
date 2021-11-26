@@ -7,140 +7,100 @@ import java.util.LinkedList;
 /**
  * Date 03/12/2017
  * @author Mukesh Kumar Gupta
+ * https://www.youtube.com/watch?v=-YbXySKJsX8 Using level order
+ * https://www.youtube.com/watch?v=jwzo6IsMAFQ&t=701s Using Preorder This can be done other traversal as well
  *
  * Serialize/Deserialize a binary tree whose val is a number.
  *
  *  Time complexity O(n)
  *  Space complexity O(n)
+ *  Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+
+Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+
+Clarification: The input/output format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,2,3,null,null,4,5]
+Output: [1,2,3,null,null,4,5]
+Example 2:
+
+Input: root = []
+Output: []
+Example 3:
+
+Input: root = [1]
+Output: [1]
+Example 4:
+
+Input: root = [1,2]
+Output: [1,2]
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 104].
+-1000 <= Node.val <= 1000
  *
  * Reference
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
- * VImp
+ * Category: Hard, Must Do
+ * Related: https://leetcode.com/problems/encode-and-decode-strings/ Medium
+ * https://leetcode.com/problems/serialize-and-deserialize-bst/ Medium
+ * https://leetcode.com/problems/find-duplicate-subtrees/ Medium
+ * https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/ Hard
  */
 public class SerializeDeserializeBinaryTree {
-
-    /**
-     * Serialize Tree using preorder DFS
-     * @param root
-     * @return
+    //Using level order but any traversal can be used to do this problem
+    /*
+     * Runtime: 15 ms, faster than 60.94% of Java online submissions for Serialize and Deserialize Binary Tree.
+Memory Usage: 41.5 MB, less than 60.46% of Java online submissions for Serialize and Deserialize Binary Tree.
      */
     public String serialize(TreeNode root) {
-        StringBuffer buff = new StringBuffer();
-        serializeUtil(root, buff);
-        return buff.toString();
+        if (root == null) return "";
+        Queue<TreeNode> q = new LinkedList<>();
+        StringBuilder res = new StringBuilder();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node == null) {
+                res.append("n ");
+                continue;
+            }
+            res.append(node.val + " ");
+            q.add(node.left);
+            q.add(node.right);
+        }
+        return res.toString();
     }
 
-    private void serializeUtil(TreeNode root, StringBuffer buff) {
-        if (root == null) {
-            buff.append("%,");
-            return;
-        }
-
-        buff.append(root.val).append(",");
-        if (root.left != null || root.right != null) {
-            buff.append("$,");
-            serializeUtil(root.left, buff);
-            serializeUtil(root.right, buff);
-        } else {
-            return;
-        }
-
-    }
-    int index = 0;
-
-    /**
-     * Deserialize Tree using preorder DFS
-     * @param val
-     * @return
-     */
-    public TreeNode deserialize(String val) {
-        String[] input = val.split(",");
-        index = 0;
-        return deserializeUtil(input);
-    }
-
-    private TreeNode deserializeUtil(String input[]) {
-        if (index == input.length) {
-            return null;
-        }
-
-        if (input[index].equals("%")) {
-            index++;
-            return null;
-        }
-        TreeNode n = new TreeNode();
-        n.val = Integer.parseInt(input[index]);
-        if (index < input.length - 1) {
-            if (input[index + 1].equals("$")) {
-                index += 2;
-                n.left = deserializeUtil(input);
-                n.right = deserializeUtil(input);
-            } else {
-                index++;
+    public TreeNode deserialize(String data) {
+        if (data == "") return null;
+        Queue<TreeNode> q = new LinkedList<>();
+        String[] values = data.split(" ");
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        q.add(root);
+        for (int i = 1; i < values.length; i++) {
+            TreeNode parent = q.poll();
+            if (!values[i].equals("n")) {
+                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+                parent.left = left;
+                q.add(left);
             }
-        }
-        return n;
-    }
-
-    /**
-     * Serialize tree using level order traversal.
-     */
-    public String serializeLevelOrder(TreeNode root) {
-        if (root == null) {
-            return "";
-        }
-
-        Deque<TreeNode> queue = new LinkedList<>();
-        queue.offerFirst(root);
-        StringBuffer buff = new StringBuffer();
-        while (!queue.isEmpty()) {
-            root = queue.pollFirst();
-            if (root == null) {
-                buff.append("%,");
-            } else {
-                buff.append(root.val).append(",");
-                queue.offer(root.left);
-                queue.offer(root.right);
+            if (!values[++i].equals("n")) {
+                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+                parent.right = right;
+                q.add(right);
             }
-        }
-        for (int i = buff.length() - 1; i >= 0; i--) {
-            if (buff.charAt(i) == '%' || buff.charAt(i) == ',') {
-                buff.deleteCharAt(i);
-            } else {
-                break;
-            }
-        }
-        return buff.toString();
-    }
-
-    /**
-     * Deserialize Tree using level order traversal.
-     */
-    public TreeNode deserializeLevelOrder(String val) {
-        if (val == null || val.length() == 0) {
-            return null;
-        }
-        String[] input = val.split(",");
-        Deque<TreeNode> queue = new LinkedList<>();
-        int index = 0;
-        queue.offerFirst(TreeNode.newTreeNode(Integer.parseInt(input[index])));
-        TreeNode root = queue.peekFirst();
-        index++;
-        while (!queue.isEmpty()) {
-            TreeNode current = queue.pollFirst();
-            if (index < input.length && !input[index].equals("%")) {
-                current.left = TreeNode.newTreeNode(Integer.parseInt(input[index]));
-                queue.offerLast(current.left);
-            }
-            index++;
-            if (index < input.length && !input[index].equals("%")) {
-                current.right = TreeNode.newTreeNode(Integer.parseInt(input[index]));
-                queue.offerLast(current.right);
-            }
-            index++;
         }
         return root;
     }
+    
+
 
 
     public static void main(String args[]) {

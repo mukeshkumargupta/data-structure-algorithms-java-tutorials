@@ -3,7 +3,30 @@ package com.interview.tree;
 /**
  * Reference: https://leetcode.com/problems/diameter-of-binary-tree/ 
  * Reference: https://www.youtube.com/watch?v=9bCqmaIY2as
- * http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
+ * Given the root of a binary tree, return the length of the diameter of the tree.
+
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+The length of a path between two nodes is represented by the number of edges between them.
+
+ 
+
+Example 1:
+
+
+Input: root = [1,2,3,4,5]
+Output: 3
+Explanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].
+Example 2:
+
+Input: root = [1,2]
+Output: 1
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [1, 104].
+-100 <= Node.val <= 100
  * Category: Easy, Tricky
  * Test cases
  * All left TreeNodes
@@ -13,30 +36,30 @@ package com.interview.tree;
  */
 public class DiameterOfTree {
     
-    class TreeNode {
+    class Node {
         int height;
         int dm;
-        TreeNode() {
+        Node() {
             height = 0;
             dm = 0;
         }
     }
     
-    public TreeNode diameterOfBinaryTreeUtil(TreeNode root){
+    public Node diameterOfBinaryTreeUtil(TreeNode root){
 
         if (root == null) {
-            return new TreeNode();
+            return new Node();
         }
-        TreeNode leftTreeNode = diameterOfBinaryTreeUtil(root.left);
-        TreeNode rightTreeNode = diameterOfBinaryTreeUtil(root.right);
+        Node leftNode = diameterOfBinaryTreeUtil(root.left);
+        Node rightNode = diameterOfBinaryTreeUtil(root.right);
 
         
         //Note post order traversal is important because left and right is processed
-        TreeNode rootTreeNode = new TreeNode();
-        rootTreeNode.height = Math.max(leftTreeNode.height, rightTreeNode.height) + 1;
-        rootTreeNode.dm = Math.max(Math.max(leftTreeNode.dm, rightTreeNode.dm), (1 + leftTreeNode.height + rightTreeNode.height));
+        Node rootNode = new Node();
+        rootNode.height = Math.max(leftNode.height, rightNode.height) + 1;
+        rootNode.dm = Math.max(Math.max(leftNode.dm, rightNode.dm), (1 + leftNode.height + rightNode.height));
         
-        return rootTreeNode; 
+        return rootNode; 
     }
 
     public int diameterOfBinaryTree(TreeNode root){
@@ -45,7 +68,7 @@ public class DiameterOfTree {
             return 0; 
         }
 
-        TreeNode resultTreeNode = diameterOfBinaryTreeUtil(root);
+        Node resultTreeNode = diameterOfBinaryTreeUtil(root);
         return resultTreeNode.dm -1;//not TreeNode but edge count
     }
 }

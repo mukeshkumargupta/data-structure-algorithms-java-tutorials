@@ -68,4 +68,34 @@ public class SortArrayByParityII {
         
     }
     
+    //Even value of odd position and odd value on even position
+    public int[] sortArrayByParityIIDerived(int[] nums) {
+        
+        int l = nums.length;
+        int evenIndex = 0;
+        int oddIndex = 1;
+        
+        
+        while (evenIndex < l && oddIndex < l) {
+            if (evenIndex %2 == 0 && nums[evenIndex] % 2 !=0) {
+                evenIndex+= 2;
+                continue;
+            }
+            
+            if (oddIndex %2 != 0 && nums[oddIndex] % 2 ==0) {
+                oddIndex+=2;
+                continue;
+            }
+            
+            //swap
+            int temp = nums[evenIndex];
+            nums[evenIndex] = nums[oddIndex];
+            nums[oddIndex] = temp;
+            
+            
+        }
+        return nums;
+        
+    }
+    
 }

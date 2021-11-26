@@ -37,8 +37,8 @@ The list is guaranteed to be sorted in ascending order.
  */
 public class RemoveDuplicatesSortedList {
 
-    public ListTreeNode deleteDuplicates(List head) {
-        ListTreeNode currentTreeNode = head;
+    public ListNode deleteDuplicates(List head) {
+        ListNode currentTreeNode = head;
 
         //If duplicate
         while(currentTreeNode != null) {

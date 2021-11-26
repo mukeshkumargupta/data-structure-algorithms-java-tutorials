@@ -36,11 +36,7 @@ Memory Usage: 38.5 MB, less than 12.99% of Java online submissions for Same Tree
         
         if ( p == null || q == null) return false;
         
-        if (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)) {             return true;
-            
-        } else {
-            return false;
-        }  
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);  
     }
     
 }

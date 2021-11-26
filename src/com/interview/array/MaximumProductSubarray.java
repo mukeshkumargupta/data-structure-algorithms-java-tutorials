@@ -45,6 +45,10 @@ The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit int
  */
 public class MaximumProductSubarray {
     public int maxProduct(int[] nums) {
+        /*
+         * Runtime: 4 ms, faster than 15.08% of Java online submissions for Maximum Product Subarray.
+Memory Usage: 40.1 MB, less than 12.25% of Java online submissions for Maximum Product Subarray.
+         */
         int maxSoFarSum = nums[0];
         int l = nums.length;
         int maxTillSum = nums[0];

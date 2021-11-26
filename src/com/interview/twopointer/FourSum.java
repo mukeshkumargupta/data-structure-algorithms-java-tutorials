@@ -3,7 +3,11 @@ package com.interview.twopointer;
 /*
  * https://www.youtube.com/watch?v=4ggF3tXIAp0&list=PLgUwDviBIf0rBT8io74a95xT-hDFZonNs&index=5
  * https://leetcode.com/problems/4sum/
- * Category: Medium, VImp
+ * https://www.youtube.com/watch?v=8ViERnSgPKs
+ * 
+ * Category: Medium, Must Do
+ * Related: https://leetcode.com/problems/4sum-ii/ Medium
+ * https://leetcode.com/problems/count-special-quadruplets/ Easy
  * Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
 
 0 <= a, b, c, d < n
@@ -25,7 +29,53 @@ Output: [[2,2,2,2]]
  * 
  */
 public class FourSum {
-    
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < len - 3; i++) {
+            // If find solution for previous one the ignore current
+            if (i != 0 && nums[i] == nums[i - 1])
+                continue;
+            
+
+            for (int j = i + 1; j < len - 2; j++) {
+                
+                // If find solution for previous one the ignore current
+                if (j != i + 1 && nums[j] == nums[j - 1])
+                    continue;
+  
+                int k = j + 1;
+                int l = len - 1;
+
+                while (k < l) {
+                    if (nums[i] + nums[j] + nums[k] + nums[l] == target) {
+                        List<Integer> temp = new ArrayList<Integer>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[k]);
+                        temp.add(nums[l]);
+                        result.add(temp);
+                        
+                        k++;
+                        l--;
+                        while (k < len && nums[k] == nums[k - 1]) {
+                            k++;
+                        }
+                        while (l >= 0 && nums[l] == nums[l + 1]) {
+                            l--;
+                        }
+                    } else if (nums[i] + nums[j] + nums[k] + nums[l]  < target) {
+                        k++;
+                    } else {
+                        l--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

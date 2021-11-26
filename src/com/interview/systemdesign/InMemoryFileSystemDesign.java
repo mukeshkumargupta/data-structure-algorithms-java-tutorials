@@ -4,10 +4,10 @@ import java.util.*;
 /**
  * Date 05/08/2020
  * @author Mukesh Kumar Gupta
- *
- * Reference: https://www.geeksforgeeks.org/design-val-structures-algorithms-memory-file-system/
- * Difficulty: Hard
- * Category: Recursion, Design
+ * https://leetcode.com/problems/design-in-memory-file-system/
+ * All google question: https://www.youtube.com/watch?v=SJmYTJEVa_U
+ * Reference: https://www.geeksforgeeks.org/design-val-structures-algorithms-memory-file-system/ 
+ * Category: Recursion, Design, Hard
  * Company: Google, Amazon, Facebook
  * Status: Done
  */

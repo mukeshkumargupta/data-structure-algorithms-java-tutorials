@@ -2,7 +2,11 @@ package com.interview.dynamic;
 
 /*
  * Reference: https://leetcode.com/problems/partition-equal-subset-sum/
- * Category: Medium, Tricky
+ * Category: Medium, Must Do
+ * Time complexity - O(input.size * total_sum)
+ * Space complexity - O(input.size*total_sum)
+ *
+ * Youtube video - https://youtu.be/s6FhG--P7z0
  * 
  * Given a non-empty array nums containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
 Related: https://leetcode.com/problems/partition-to-k-equal-sum-subsets/ medium
@@ -38,9 +42,9 @@ public class PartitionEqualSubsetSum {
 
         T[0][0] = true;
         //Fill first row
-        for (int j = 1; j < C ; j++) {
+        /*for (int j = 1; j < C ; j++) {
             T[0][j] = false;
-        }
+        }*/ // Not required because it is by default false
         //Fill first column
         for (int i = 1; i < R ; i++) {
             T[i][0] = true;

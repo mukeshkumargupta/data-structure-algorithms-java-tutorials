@@ -6,11 +6,11 @@ package com.interview.linklist;
  * Tricky
  */
 public class ReverseLinkedList {
-   public ListTreeNode reverseList(ListTreeNode head) {
+   public ListNode reverseList(ListNode head) {
         
-        ListTreeNode current = head, prev = null;
+        ListNode current = head, prev = null;
         while(current != null) {
-            ListTreeNode temp = current.next;//take backup
+            ListNode temp = current.next;//take backup
             current.next = prev; //Break link
             prev = current ; //Maintain previous
             current = temp;  //jump

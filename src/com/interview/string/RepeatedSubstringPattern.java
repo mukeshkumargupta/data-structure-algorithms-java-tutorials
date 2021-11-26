@@ -3,6 +3,7 @@ package com.interview.string;
 /*
  * https://leetcode.com/problems/repeated-substring-pattern/
  * https://www.youtube.com/watch?v=p92_kEjyJAo&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=30
+ * Other solution: take map which keep index of element present, and if found then take diff of current emlemnt and that element and keep comapre
  * Category: Easy, Google, Tricky
  * Related:
  * https://leetcode.com/problems/repeated-string-match/ Medium

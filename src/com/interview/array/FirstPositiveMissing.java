@@ -7,6 +7,31 @@ package com.interview.array;
  * Category: Hard, Google, Tricky, 
  * Related: https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/ Easy
  * https://leetcode.com/problems/couples-holding-hands/ Hard
+ * 
+ * Given an unsorted integer array nums, return the smallest missing positive integer.
+
+You must implement an algorithm that runs in O(n) time and uses constant extra space.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,0]
+Output: 3
+Example 2:
+
+Input: nums = [3,4,-1,1]
+Output: 2
+Example 3:
+
+Input: nums = [7,8,9,11,12]
+Output: 1
+ 
+
+Constraints:
+
+1 <= nums.length <= 5 * 105
+-231 <= nums[i] <= 231 - 1
  */
 public class FirstPositiveMissing {
  public int firstMissingPositive(int[] nums) {
@@ -28,7 +53,7 @@ Memory Usage: 118.2 MB, less than 8.31% of Java online submissions for First Mis
             return 2;
         }
         
-        //this below is for if 1 is found
+        //this below is for if 1 is found and let is not 1
         for (int i = 0; i < l; i++) {
             int val = Math.abs(nums[i]);
             if (nums[i] <= 0 || nums[i] > l) {//[3,5,-1,1, 0]  for this case
@@ -47,7 +72,7 @@ Memory Usage: 118.2 MB, less than 8.31% of Java online submissions for First Mis
                 return i + 1;
             }
         }
-        return l + 1;
+        return l + 1;//this case is 1 2 3 4 5 so will return 6
         
     }
 }

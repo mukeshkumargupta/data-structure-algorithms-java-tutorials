@@ -3,7 +3,7 @@ package com.interview.array;
 /*
  * https://leetcode.com/problems/majority-element/
  * https://www.youtube.com/watch?v=AoX3BPWNnoE&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2
- * Category: Medium, Tricky
+ * Category: Medium, Must DO
  *Note: In this case input is always given in form of majority element if not given then need to check count and ensure it is really majority element, that part is not added here because it is not part of question
  */
 public class MajorityElement {

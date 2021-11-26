@@ -39,6 +39,10 @@ class TreeNode{
         n.color = Color.RED;
         return n;
     }
+    
+     TreeNode(int val) {
+         this.val = val;
+    }
 }
 
 public class BinaryTree {

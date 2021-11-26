@@ -2,8 +2,15 @@ package com.interview.string;
 
 /*
  * Reference: https://leetcode.com/problems/add-binary/
- * Category: Easy
+ * Category: Easy, Facebook
  * Given two binary strings a and b, return their sum as a binary string.
+ * 
+ * Related: https://leetcode.com/problems/optimal-division/ Medium
+ * https://leetcode.com/problems/new-21-game/ Medium
+ * https://leetcode.com/problems/longest-happy-string/ Medium
+ * https://leetcode.com/problems/palindrome-permutation/ Easy
+ * https://leetcode.com/problems/output-contest-matches/ Medium
+ * https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/ Medium
 
  
 
@@ -25,6 +32,29 @@ Each string does not contain leading zeros except for the zero itself.
  */
 public class AddBinary {
     public String addBinary(String a, String b) {
+        /*
+         * Runtime: 3 ms, faster than 50.01% of Java online submissions for Add Binary.
+Memory Usage: 39.4 MB, less than 38.40% of Java online submissions for Add Binary.
+         */
+        StringBuilder result = new StringBuilder();
+        int i = a.length()-1, j = b.length()-1;
+        int carry = 0;
+        while(i >= 0 || j >= 0){
+            int sum = carry;
+            if(i >= 0) sum += a.charAt(i--) - '0';
+            if(j >= 0) sum += b.charAt(j--) - '0';
+            carry = sum > 1 ? 1 : 0;
+            result.append(sum%2);
+        }
+        if(carry != 0) result.append(carry);
+        return result.reverse().toString();
+    }
+    
+    public String addBinaryLongSolution(String a, String b) {
+        /*
+         * Runtime: 4 ms, faster than 35.25% of Java online submissions for Add Binary.
+Memory Usage: 39.9 MB, less than 15.37% of Java online submissions for Add Binary.
+         */
         a = new StringBuffer(a).reverse().toString();
         b = new StringBuffer(b).reverse().toString();
         int len1 = a.length();

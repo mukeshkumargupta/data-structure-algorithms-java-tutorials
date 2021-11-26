@@ -4,6 +4,7 @@ package com.interview.twopointer;
  * https://leetcode.com/problems/boats-to-save-people/
  * Category: Medium, Tricky, Greedy, two pointer
  * Related:
+ * Here only max two people allowed in boat, but if more that two allowed which is under limit then try to solve it
  * https://leetcode.com/problems/evaluate-reverse-polish-notation/ Medium
  * https://leetcode.com/problems/push-dominoes/ Medium
  * https://leetcode.com/problems/ways-to-make-a-fair-array/ Medium
@@ -56,6 +57,25 @@ Memory Usage: 47.8 MB, less than 88.29% of Java online submissions for Boats to 
             minBoat++; 
         }
         return minBoat;
+        
+    }
+    
+    public int numRescueBoatsPractice1(int[] people, int limit) {
+        int l = people.length;
+        int count = 0;
+        int left = 0; int right = l-1;
+        Arrays.sort(people);
+        
+        while (left <= right) {
+            //System.out.println(left + " " + right);
+            if (left != right && people[right] + people[left] <= limit) {
+               left++; 
+            }
+            
+            right--;
+            count++;
+        }
+        return count;
         
     }
     public static void main(String[] args) {

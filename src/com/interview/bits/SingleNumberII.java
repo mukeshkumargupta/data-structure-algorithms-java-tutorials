@@ -9,6 +9,8 @@ package com.interview.bits;
  * 
  * Related: https://leetcode.com/problems/single-number-iii/ Medium
  * 
+ * Derived question: each number 5 time or 4 time and one is single , then just take % of N
+ * 
  * Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
 
 You must implement a solution with a linear runtime complexity and use only constant extra space.

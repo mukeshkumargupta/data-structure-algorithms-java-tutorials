@@ -28,7 +28,8 @@ public class ContructTreeFromInorderPostOrder {
         //System.out.println("Post order=>" + val);
 
         //create new TreeNode
-        TreeNode root = new TreeNode(val);
+        //TreeNode root = new TreeNode(val);
+        TreeNode root = TreeNode.newTreeNode(val);
         int position = search(inorder, postorder, inorderStart, inorderEnd, postOrderStart, postOrderEnd);
         int leftTreeSize = position - inorderStart;
         int rightTreeSize = inorderEnd - position;
@@ -39,6 +40,24 @@ public class ContructTreeFromInorderPostOrder {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         int l = inorder.length;
         return buildTreeUtil(inorder, postorder, 0, l-1, 0, l-1);
+        
+    }
+    
+    void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.println(root.val);
+        inorder(root.right);
+    }
+    
+    public static void main(String[] args ) {
+        int[] inorder = {8,3, 5, 2, 1, 9};
+        int[] postorder = {8, 3, 1, 2, 9,5};
+        ContructTreeFromInorderPostOrder instance = new ContructTreeFromInorderPostOrder();
+        TreeNode root = instance.buildTree(inorder, postorder);
+        instance.inorder(root);
         
     }
 }

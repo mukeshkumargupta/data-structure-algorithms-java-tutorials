@@ -6,6 +6,8 @@ package com.interview.tree;
  *
  * Given a binary search tree and a TreeNode in it, find the in-order successor of that TreeNode in the BST.
  * Reference: https://www.youtube.com/watch?v=5cPbNCrdotA
+ * Predecessor is also given here:
+ * https://www.geeksforgeeks.org/inorder-predecessor-successor-given-key-bst/
  *
  * Time complexity O(h)
  * Space complexity O(h)

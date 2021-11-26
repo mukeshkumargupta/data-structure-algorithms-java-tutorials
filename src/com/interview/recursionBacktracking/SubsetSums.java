@@ -38,17 +38,17 @@ Constraints:
 0 <= arr[i] <= 10000
  */
 public class SubsetSums {
-    void func(int ind, int sum, ArrayList<Integer> arr, int N, ArrayList<Integer> sumSubset) {
-        if(ind == N) {
+    void func(int ind, int sum, ArrayList<Integer> arr, int l, ArrayList<Integer> sumSubset) {
+        if(ind == l) {
             sumSubset.add(sum); 
             return; 
         }
         
         // pick the element 
-        func(ind + 1, sum + arr.get(ind), arr, N, sumSubset); 
+        func(ind + 1, sum + arr.get(ind), arr, l, sumSubset); 
         
         // Do-not pick the element
-        func(ind + 1, sum, arr, N, sumSubset);
+        func(ind + 1, sum, arr, l, sumSubset);
     }
     
     ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){

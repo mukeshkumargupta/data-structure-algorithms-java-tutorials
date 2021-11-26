@@ -5,6 +5,8 @@ import java.util.*;
  * https://leetcode.com/problems/insert-interval/
  * Category: Tricky, Medium , Google
  * 
+ * Related: If second input is having  ore than one array asize then think how to merge it
+ * 
  * Related: https://leetcode.com/problems/merge-intervals/ Medium
  * https://leetcode.com/problems/range-module/ Hard
  * 

@@ -1,16 +1,26 @@
 package com.interview.linklist;
 
-
-
+/**
+ * http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+ * Reference: https://www.youtube.com/watch?v=H3J-HoGCVXs 
+ * https://leetcode.com/problems/palindrome-linked-list
+ * Category: Easy
+ * Test cases:
+ * odd number of TreeNodes
+ * even number of TreeNodes
+ * 0 1 or more TreeNodes
+ * palindrome list
+ * non palindrom list
+ */
 public class PalindromeLinkedList {
-    
-    public boolean isPalindrome(TreeNode head) {
+
+    public boolean isPalindrome(ListNode head) {
         if (head == null) {
             return true;
             
         }
-        TreeNode firstPointer = head;
-        TreeNode secondPointer = head;
+        ListNode firstPointer = head;
+        ListNode secondPointer = head;
         if (firstPointer.next == null) {
             return true;
             
@@ -27,11 +37,11 @@ public class PalindromeLinkedList {
         }
         
         //Reverse second part
-        TreeNode current = firstPointer;
-        TreeNode previous = null;
+        ListNode current = firstPointer;
+        ListNode previous = null;
         
         while (current != null) {
-            TreeNode temp = current.next;
+            ListNode temp = current.next;
             current.next = previous;
             previous = current;
             current = temp;
@@ -58,18 +68,4 @@ public class PalindromeLinkedList {
         return true;
  
     }
-    
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        LinkList ll = new LinkList();
-        TreeNode head = null;
-        head = ll.addTreeNode(1, head);
-        head = ll.addTreeNode(2, head);
-        head = ll.addTreeNode(2, head);
-        head = ll.addTreeNode(1, head);
-        ll.printList(head);
-        PalindromeLinkedList pll = new PalindromeLinkedList();
-        System.out.println(pll.isPalindrome(head));
-    }
-    
 }

@@ -3,7 +3,7 @@ import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/design-hashmap
  */
-public class DesignHashMap {
+public class HashMapDesign {
     /*class TreeNode {
         int key;
         int value;
@@ -51,7 +51,7 @@ public class DesignHashMap {
     int[] lookup = new int[MAX];
 
     /** Initialize your val structure here. */
-    public DesignHashMap() {
+    public HashMapDesign() {
         for (int i = 0; i < MAX; i++) {
             lookup[i] = -1;
         }

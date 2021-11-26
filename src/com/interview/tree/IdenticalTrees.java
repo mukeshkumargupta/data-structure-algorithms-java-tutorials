@@ -9,7 +9,7 @@ import java.util.Set;
  * http://www.geeksforgeeks.org/check-for-identical-bsts-without-building-the-trees/
  * Test cases
  * Both array should be same size and have exact same elements and first element should be same
- * Category: Must Do
+ * Category: Not Done
  * Derived question: exactly same tree, only structure same but val might differ, 
  * print mirror tree, check mirror tree of given tree.
  */
@@ -38,6 +38,7 @@ public class IdenticalTrees {
         
         BigSmall bs1 = nextBigSmall(tree1,index,min,max);
         BigSmall bs2 = nextBigSmall(tree2,i,min,max);
+        
         
         boolean r1=  tree1[bs1.big] == tree2[bs2.big] && tree1[bs1.small] == tree2[bs2.small] ;
         if(r1 == false){

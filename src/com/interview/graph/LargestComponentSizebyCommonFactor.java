@@ -65,7 +65,7 @@ Memory Usage: 109.6 MB, less than 27.64% of Java online submissions for Largest 
             for(int i = 2; i <= Math.sqrt(x); ++i){
                 if(x % i == 0){
                     union(i, x, parent);
-                    union(x, x/i, parent);
+                    union(i, x/i, parent);
                 }
             }
         }

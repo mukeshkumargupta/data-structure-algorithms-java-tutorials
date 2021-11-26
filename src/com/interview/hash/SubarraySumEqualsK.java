@@ -12,6 +12,7 @@ public class SubarraySumEqualsK {
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         
         for(int i = 0; i < nums.length; i++) {
+            //Commulative sum
             s += nums[i];
             if(map.containsKey(s-k))
                 count += map.get(s-k);
