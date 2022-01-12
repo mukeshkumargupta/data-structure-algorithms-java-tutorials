@@ -7,6 +7,7 @@ import java.util.*;
  * Related: https://leetcode.com/problems/ones-and-zeroes/ Medium
  * https://leetcode.com/problems/first-unique-number/ Medium
  * https://leetcode.com/problems/find-the-middle-index-in-array/ Easy
+ * Derived question: Reverse is also done using API: findDiagonalOrderReverse
  * Given a list of lists of integers, nums, return all elements of nums in diagonal order as shown in the below images.
  
 
@@ -59,9 +60,11 @@ public class DiagonalTraverseII {
             List<Integer> childList = nums.get(i);
             for(int j = 0; j < childList.size(); j++) {
                 totalCount++;
-                Stack<Integer> s = map.getOrDefault(i + j, new Stack());
-                s.add(childList.get(j));
-                map.putIfAbsent(i + j, s);
+                Stack s = null;
+                if (!map.containsKey(i + j) ){
+                    map.put(i + j, new Stack());
+                }
+                map.get(i + j).add(childList.get(j));
             }
         }
         int[] ans = new int[totalCount];
@@ -76,7 +79,7 @@ public class DiagonalTraverseII {
 
         return ans;
     }
-    public int[] findDiagonalOrder1(List<List<Integer>> nums) {//Runtime: 47 ms, faster than 41.72% of Java online submissions for Diagonal Traverse II.
+    public int[] findDiagonalOrderM2(List<List<Integer>> nums) {//Runtime: 47 ms, faster than 41.72% of Java online submissions for Diagonal Traverse II.
         int R = nums.size();
 
         List<int[]> result = new ArrayList<>();
@@ -111,7 +114,46 @@ public class DiagonalTraverseII {
 
         
     }
-}
+    
+    public int[] findDiagonalOrderReverse(List<List<Integer>> nums) {//50% runtime, little looks better but both are good approach
+        int R = nums.size();
+        /*
+        00 01 02 03 04
+        10 11
+        20 
+        30 31 32
+        40 41 42 43 44 
+        
+        map of i + j - > diagnols
+        as i + j means diagnols
+        stack is used to reverse print values
+        */
+        HashMap<Integer, List<Integer>> map = new LinkedHashMap();
+        int totalCount = 0;
+        for(int i = 0; i < R; i++) {
+            List<Integer> childList = nums.get(i);
+            for(int j = 0; j < childList.size(); j++) {
+                totalCount++;
+                List s = null;
+                if (!map.containsKey(i + j) ){
+                    map.put(i + j, new ArrayList<>());
+                }
+                map.get(i + j).add(childList.get(j));
+            }
+        }
+        int[] ans = new int[totalCount];
+        int ind = 0;
+        
+        for(int key: map.keySet()) {
+            List<Integer> s = map.get(key);
+            for (int elm: s) {
+               ans[ind++] = elm;
+            }
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

@@ -2,8 +2,8 @@ package com.interview.linklist;
 
 /*
  * Reference: https://leetcode.com/problems/reverse-linked-list/
- * Category: Easy
- * Tricky
+ * Category: Easy, Must Do
+ * 
  */
 public class ReverseLinkedList {
    public ListNode reverseList(ListNode head) {

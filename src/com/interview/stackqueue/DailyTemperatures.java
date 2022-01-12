@@ -6,11 +6,11 @@ import java.util.*;
  * https://www.youtube.com/watch?v=WGm4Kj3lhRI
  * Category: Medium, Top100, Tricky, Google, Facebook
  * Related:https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/ Medium
- * https://leetcode.com/problems/next-greater-element-i/
- * https://leetcode.com/problems/next-greater-element-ii/
- * https://leetcode.com/problems/next-greater-element-iii/
- * https://leetcode.com/problems/online-stock-span/
- * https://leetcode.com/problems/score-of-parentheses/ Medium
+ * https://leetcode.com/problems/longest-word-in-dictionary/ Medium
+ * https://leetcode.com/problems/next-greater-element-i/ done
+ * https://leetcode.com/problems/next-greater-element-ii/ done
+ * https://leetcode.com/problems/next-greater-element-iii/ solved nextpermutation is application of it
+ * https://leetcode.com/problems/score-of-parentheses/ Medium Hint solve using stack, not tried
  * https://leetcode.com/problems/find-the-most-competitive-subsequence/ Medium
  * Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
 
@@ -36,6 +36,7 @@ Constraints:
 30 <= temperatures[i] <= 100
  */
 public class DailyTemperatures {
+    
     public int[] dailyTemperatures(int[] temperatures) {
         /*
          * Runtime: 36 ms, faster than 57.88% of Java online submissions for Daily Temperatures.

@@ -37,6 +37,7 @@ public class NonoverlappingIntervals {
         /*
          * Runtime: 130 ms, faster than 7.84% of Java online submissions for Non-overlapping Intervals.
 Memory Usage: 105.8 MB, less than 46.66% of Java online submissions for Non-overlapping Intervals.
+Note: Find better solution
          */
         int intervalCount = intervals.length;
         

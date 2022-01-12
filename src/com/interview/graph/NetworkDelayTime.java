@@ -77,15 +77,15 @@ public class NetworkDelayTime {
         d[k-1] = 0;
         for (int i = 0 ; i < n-1; i++) {
             //Find TreeNode which has min distance
-            int TreeNode = minDistanceIndex(d, visited, n);
-            if (TreeNode == -1) {
+            int minDistanceIndex = minDistanceIndex(d, visited, n);
+            if (minDistanceIndex == -1) {
                return -1; 
             }
-            visited[TreeNode] = true;
+            visited[minDistanceIndex] = true;
             //Minimize all connected TreeNode
             for(int j = 0 ; j < n; j++) {
-                if (!visited[j] && input[TreeNode][j] != Integer.MAX_VALUE && d[TreeNode] + input[TreeNode][j] < d[j]) {
-                    d[j] = d[TreeNode] + input[TreeNode][j];
+                if (!visited[j] && input[minDistanceIndex][j] != Integer.MAX_VALUE && d[minDistanceIndex] + input[minDistanceIndex][j] < d[j]) {
+                    d[j] = d[minDistanceIndex] + input[minDistanceIndex][j];
                 }
             }
         }

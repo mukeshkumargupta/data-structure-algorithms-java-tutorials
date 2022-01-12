@@ -2,7 +2,10 @@ package com.interview.sort;
 
 /*
  * https://leetcode.com/problems/sort-list/
- * Category: Medium, Tricky, Must Do,
+ * https://www.youtube.com/watch?v=Lay55DGfyhA&t=625s
+ * This video for sorting two list
+ * https://www.youtube.com/watch?v=yn6kTAkf9Mc (merge login is explained here well)
+ * Category: Medium, Must Do,
  * Done in o1 space
  * Given the head of a linked list, return the list after sorting it in ascending order.
 
@@ -27,60 +30,36 @@ public class SortList {
         
     }
     
-    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {//runtime 100%
-        ListNode head = null;
-        if (l1 != null && l2 == null) {//if any one of them is null
-            return l1;
-        }
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
         
-        if (l1 == null && l2 != null) {
-            return l2;
-        }
-        ListNode previous = null;
-        while (l1 != null && l2 != null) {//Both are null
-            if (l1.val == l2.val) {
-                if (head == null) {
-                    head = l1;
-                }
-                ListNode temp = l1.next;
-                if (previous != null) {
-                   previous.next = l1; 
-                }
-                l1.next = l2;
-                previous = l2;
-                l2 = l2.next;
-                l1 = temp; 
-            } else if (l1.val < l2.val) {
-                if (head == null) {
-                    head = l1;
-                }
-                if (previous != null) {
-                   previous.next = l1; 
-                }
-                previous = l1;
+        ListNode head = l1;
+        if(l1.val > l2.val){//First decide which one is head
+            head = l2;
+            l2 = l2.next;
+        } else
+            l1 = l1.next;
+        
+        ListNode curr = head;
+        while(l1 != null && l2 != null){
+            if(l1.val <= l2.val){
+                curr.next = l1;
                 l1 = l1.next;
             } else {
-                if (head == null) {
-                    head = l2;
-                }
-                if (previous != null) {
-                   previous.next = l2; 
-                }
-                previous = l2;
-                l2 = l2.next;    
+                curr.next = l2;
+                l2 = l2.next;
             }
-            
+            curr = curr.next;
         }
-        if (l1 != null) {
-            previous.next = l1;
-        }
-        if (l2 != null) {
-           previous.next = l2; 
-        }
+        if(l1 != null) curr.next = l1;
+        else curr.next = l2;
+        
         return head;
     }
+    
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head == null || head.next == null) {//If signel node or node null then return
             return head;
         }
         

@@ -3,7 +3,8 @@ package com.interview.linklist;
 /*
  * https://leetcode.com/problems/reverse-nodes-in-k-group/
  * Category: Hard, Must Do
- * https://www.youtube.com/watch?v=Of0HPkk3JgI&t=458s
+ * https://www.youtube.com/watch?v=BfQeP6XEXEc
+ * Related: https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ Medium
  * 
  * Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
@@ -44,99 +45,52 @@ The number of nodes in the list is in the range sz.
 Follow-up: Can you solve the problem in O(1) extra memory space?
  */
 public class ReverseNodesinkGroup {
-    private void printNode(ListNode head) {
-        while (head != null) {
-            //System.out.println(head.val + "->");
-            head = head.next;
-        }
-        
-        
-    }
+
     public ListNode reverseKGroup(ListNode head, int k) {
-        //first find length of string
+        /*
+         * Runtime: 1 ms, faster than 32.47% of Java online submissions for Reverse Nodes in k-Group.
+Memory Usage: 42.7 MB, less than 17.59% of Java online submissions for Reverse Nodes in k-Group.
+         */
+        if (head == null || head.next == null || k ==1) {
+            return head;
+        }
+        //find length
         int l = 0;
-        ListNode headTemp = head;
-        ListNode current = headTemp;
+        ListNode current = head;
         while (current != null) {
-            current = current.next;
             l++;
+            current = current.next;
         }
-        
-        int kGroup = l/k;
-        boolean isCompleteGroup = false;
-        if (kGroup * k == l) {
-            isCompleteGroup = true;
-        }
-        
-        ListNode nextGroupStartingtemp = null;
-        ListNode groupEndingtemp = null;
-        ListNode previous = null;
-        for (int i = 0; i < kGroup; i++) {
-             current = headTemp;
-            //System.out.println(current.val);
-            //Find next group starting
-            for (int j = 0; j < k; j++) {
-                //System.out.println(j + "->" + k);
-                if (current != null) {
-                    groupEndingtemp = current;
-                    //System.out.println(groupEndingtemp.val + "->Iterate");
-                    current = current.next;
-                } 
-            }
-            nextGroupStartingtemp = current;
-            if (nextGroupStartingtemp !=null) {
-                //System.out.println(nextGroupStartingtemp.val);  
-            }
-            //Break previousNode link before reverse
-            groupEndingtemp.next = null;
-            
-            //Find previous which will be previous for reverse k group
-            //if it is not last valid group
-            if (!isCompleteGroup &&  i < kGroup -1) {
-                for (int j = 0; j < k-1; j++) {
-                    if (current != null) {
-                        current = current.next;
-                    } 
-
-                }
-                previous = current;
-                //System.out.println(previous.val);
-            } else if(isCompleteGroup &&  i < kGroup) {
-                for (int j = 0; j < k-1; j++) {
-                    if (current != null) {
-                        current = current.next;
-                    } 
-
-                }
-                previous = current;
-                //System.out.println(previous.val);
-                
-            }else {//First node of last group is previous node
-                previous = nextGroupStartingtemp;
-            }
-            
-            //Now previous is there and head is there, so reverse group
-            ListNode currentTemp = headTemp;
-            //Reverse linklsit
-            while(currentTemp != null) {
-                ListNode localTemp = currentTemp.next;
-                currentTemp.next = previous;
-                previous = currentTemp;
-                currentTemp = localTemp;
-            }
-            //System.out.println(previous.val);
-            if (i == 0) {
-                head = previous;
+        ListNode newHead = null;
+        current = head;
+        ListNode prev = null, tail1 = null, tail2 = current, temp = null;
+        while (l >= k) {
+            //Reverse k gropup            
+            for (int i = 0 ; i < k; i++) {
+                temp = current.next;
+                current.next = prev;
+                prev = current;
+                current = temp;
                 
             }
-            //printNode(previous);
-            
-            //now set head for next group processing
-            headTemp = nextGroupStartingtemp;
+            l -= k;
+            if (newHead == null) {
+                newHead = prev;
+            }
+            if (tail1 != null) {
+                tail1.next = prev; //Tricky
+            }
+            tail2.next = current; // l is not multiple of k
+            tail1 = tail2;
+            tail2 = current; 
+            prev = null;//rest previous
         }
-        return head;
+        return newHead;
+            
         
     }
+              
+     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

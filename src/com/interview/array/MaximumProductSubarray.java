@@ -4,6 +4,7 @@ package com.interview.array;
  * 
  * https://leetcode.com/problems/maximum-product-subarray/
  * Category: Medium, Must Do
+ * https://leetcode.com/problems/maximum-product-subarray/discuss/1608862/JAVA-or-3-Solutions-or-Detailed-Explanation-Using-Image
  * Related:
  * https://leetcode.com/problems/maximum-product-of-three-numbers/ Easy
  * https://leetcode.com/problems/subarray-product-less-than-k/ Medium
@@ -44,7 +45,35 @@ Constraints:
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
  */
 public class MaximumProductSubarray {
-    public int maxProduct(int[] nums) {
+    /*
+     * Approach 2: Just the slight modification of previous approach. As we know that on multiplying with negative number max will become min and min will become max, so why not as soon as we encounter negative element, we swap the max and min already.
+     */
+    public int maxProduct(int[] nums) {//Little optimization, some comparision is reduced
+        /*
+         * Runtime: 1 ms, faster than 91.34% of Java online submissions for Maximum Product Subarray.
+Memory Usage: 41.5 MB, less than 5.60% of Java online submissions for Maximum Product Subarray.
+         */
+        int maxSoFarSum = nums[0];
+        int l = nums.length;
+        int maxTillSum = nums[0];
+        int minTillSum = nums[0];
+        for (int i = 1; i < l; i++) {
+            //Just the slight modification of previous approach. As we know that on multiplying with negative number max will become min and min will become max, so why not as soon as we encounter negative element, we swap the max and min already.
+            if (nums[i] < 0) {
+                int temp = maxTillSum;
+                maxTillSum = minTillSum;
+                minTillSum = temp;
+            }
+            maxTillSum = Math.max(nums[i]*maxTillSum, nums[i]); 
+            minTillSum =Math.min(nums[i]*minTillSum, nums[i]);
+            if (maxTillSum > maxSoFarSum) {
+                maxSoFarSum = maxTillSum;
+            }
+        }
+        return maxSoFarSum;
+        
+    }
+    public int maxProductM2(int[] nums) {//Lititle optimization, some comparision is reduced
         /*
          * Runtime: 4 ms, faster than 15.08% of Java online submissions for Maximum Product Subarray.
 Memory Usage: 40.1 MB, less than 12.25% of Java online submissions for Maximum Product Subarray.
@@ -55,8 +84,8 @@ Memory Usage: 40.1 MB, less than 12.25% of Java online submissions for Maximum P
         int minTillSum = nums[0];
         for (int i = 1; i < l; i++) {
             int temp = maxTillSum;
-            maxTillSum = Math.max(Math.max(nums[i], nums[i]*maxTillSum), nums[i]*minTillSum);//nums[i] is 0 case
-            minTillSum = Math.min(Math.min(nums[i], nums[i]*temp), nums[i]*minTillSum);//nums[i] is 0 case
+            maxTillSum = Math.max(Math.max(nums[i]*maxTillSum, nums[i]*minTillSum), nums[i]); //Math.max(Math.max(nums[i], nums[i]*maxTillSum), nums[i]*minTillSum);//nums[i] is 0 case
+            minTillSum = Math.min(Math.min(nums[i]*minTillSum, nums[i]*temp), nums[i]);//nums[i] is 0 case
             if (maxTillSum > maxSoFarSum) {
                 maxSoFarSum = maxTillSum;
             }

@@ -6,8 +6,8 @@ import java.util.*;
  * https://leetcode.com/problems/subsets-ii/
  * https://www.youtube.com/watch?v=RIn3gOkbhQE&t=1526s
  * Category: Must Do, Medium
- * Given an integer array nums that may contain 
-, return all possible subsets (the power set).
+ * Derived: This problem CombinationSumII is just extension of this problem
+ * Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
 
 The solution set must not contain duplicate subsets. Return the solution in any order.
 Related: https://leetcode.com/problems/subsets/ Medium

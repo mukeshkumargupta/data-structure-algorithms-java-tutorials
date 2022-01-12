@@ -2,7 +2,7 @@ package com.interview.binarysearch;
 import java.util.*;
 /*
  * https://leetcode.com/problems/h-index/
- * Category: Medium, Tricky, Must Do
+ * Category: Medium, Tricky
  * Related: https://leetcode.com/problems/find-lucky-integer-in-an-array/ Easy
  * https://leetcode.com/problems/minimum-speed-to-arrive-on-time/ Medium
  * https://leetcode.com/problems/find-a-peak-element-ii/ Medium
@@ -29,20 +29,20 @@ Output: 1
 public class HIndex {
     public int hIndex(int[] citations) {//100% runtime
         Arrays.sort(citations);
-        int n = citations.length;
-        int start=0,end=n-1,mid;
+        int l = citations.length;
+        int start=0,end=l-1,mid;
         
         while(start<=end)
         {
             mid = start+(end-start)/2;
-            if(citations[mid]==(n-mid))
+            if(citations[mid]==(l-mid))
                 return citations[mid];
-            else if(citations[mid]>(n-mid))
+            else if(citations[mid]>(l-mid))
                 end = mid-1;
             else
                 start = mid+1;
         }
-        return n-start;
+        return l-start;
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

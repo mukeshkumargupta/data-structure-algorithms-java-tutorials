@@ -70,7 +70,7 @@ Memory Usage: 38.8 MB, less than 90.39% of Java online submissions for Remove Du
         int fast = 2;
         
         while (fast < l) {
-            if (nums[fast] != nums[slow-2]) {//increase bith with copy
+            if (nums[fast] != nums[slow-2]) {//increase both with copy
                 nums[slow++] = nums[fast];
             }
             fast++;//otherwise only increase fast// here min 3 can be extended then slow fats will start from 3
@@ -79,6 +79,35 @@ Memory Usage: 38.8 MB, less than 90.39% of Java online submissions for Remove Du
         return slow;
         
     }
+    
+    //Derived question: for 3 repeated allowed
+    /*
+     * inp: [1,1,1,1, 1, 2,2,2,2,3]
+     * o/p: [1,1,1,2,2,2,3]
+     */
+    public int removeDuplicatesMoreThanThree(int[] nums) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Duplicates from Sorted Array II.
+Memory Usage: 38.8 MB, less than 90.39% of Java online submissions for Remove Duplicates from Sorted Array II.
+         */
+        int l = nums.length;
+        if (l < 4) {
+            return l;
+        }
+        int slow = 3;
+        int fast = 3;
+        
+        while (fast < l) {
+            if (nums[fast] != nums[slow-3]) {//increase bith with copy
+                nums[slow++] = nums[fast];
+            }
+            fast++;//otherwise only increase fast// here min 3 can be extended then slow fats will start from 3
+            
+        }
+        return slow;
+        
+    }
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

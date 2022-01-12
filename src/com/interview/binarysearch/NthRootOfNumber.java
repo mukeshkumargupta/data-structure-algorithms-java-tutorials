@@ -15,9 +15,9 @@ Output : 3
 3^4 = 81
  */
 public class NthRootOfNumber {
-    double multiply(double number, int n) {
+    double multiply(int powerRoot, double number) {
         double ans = 1.0;
-        for(int i = 1;i<=n;i++) {
+        for(int i = 1;i<=powerRoot;i++) {
             ans = ans * number;
         }
         return ans; 
@@ -31,11 +31,11 @@ public class NthRootOfNumber {
         
         while((high - low) > eps) {
             double mid = (low + high) / 2.0; 
-            if(multiply(mid, powerRoot) < number) {
-                low = mid; //Tricky
+            if(multiply(powerRoot, mid) < number) {
+                low = mid; //Tricky, Note: mid +1  will not work
             }
             else {
-                high = mid;  //Tricky
+                high = mid;  //Tricky, mid -1 will not work
             }
         }
         

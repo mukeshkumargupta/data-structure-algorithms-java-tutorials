@@ -5,6 +5,9 @@ package com.interview.binarysearch;
  * Category: medium, Must Do, Facebook
  * Related: find kth smallest, largest(reverse inorder) Goolge, 
  * https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/ Easy
+ * Related: https://leetcode.com/problems/maximum-average-subtree/ Medium
+ * https://leetcode.com/problems/validate-binary-tree-nodes/ Medium
+ * https://leetcode.com/problems/count-nodes-with-the-highest-score/ Medium
  * 
  * Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
 
@@ -62,6 +65,10 @@ public class KthSmallestElementinaBST {
         
     }
     public int kthSmallest(TreeNode root, int k) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Kth Smallest Element in a BST.
+Memory Usage: 42.1 MB, less than 27.09% of Java online submissions for Kth Smallest Element in a BST.
+         */
         kthSmallestUtil(root, k); 
         return result;
     }

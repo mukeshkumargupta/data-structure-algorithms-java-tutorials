@@ -4,9 +4,9 @@ package com.interview.array;
  * Date 03/06/2017
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/increasing-triplet-subsequence/
- * Category: Medium, Tricky, Top150
+ * Category: Medium, Tricky, Top150, triplet, lis
  * Bruitforce soln is n3 must tell then proceed optimization
- * Derived question make four or five increasing sequence make three, four variable and do
+ * Derived question make four or five increasing sequence make three, four variable and do, lis logic can be also applied but not optimized
  * Related: https://leetcode.com/problems/count-special-quadruplets/ Easy
  *Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
 

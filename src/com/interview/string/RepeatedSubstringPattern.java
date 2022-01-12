@@ -33,6 +33,9 @@ Constraints:
 s consists of lowercase English letters.
  */
 public class RepeatedSubstringPattern {
+    /*
+     * This solution is to trick and hard to remember, so take map and count each element and check each frequency is same, if yes return true otherwise false
+     */
     public boolean repeatedSubstringPattern(String s) {
         /*
          * Runtime: 71 ms, faster than 37.93% of Java online submissions for Repeated Substring Pattern.

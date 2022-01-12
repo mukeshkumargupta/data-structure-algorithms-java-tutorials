@@ -3,7 +3,7 @@ package com.interview.systemdesign;
 import java.util.*;
 
 /* Reference: https://leetcode.com/problems/find-median-from-val-stream
- * Category: Hard
+ * Category: Hard, Must Do
  * Reference: https://www.youtube.com/watch?v=1LkOrc-Le-Y&t=1186s
  */
 public class FindMedianfromvalStream {

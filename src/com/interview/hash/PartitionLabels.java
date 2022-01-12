@@ -8,7 +8,7 @@ import java.util.*;
  * https://leetcode.com/problems/maximum-repeating-substring/ Easy
  * 
  * You are given a string s. We want to partition the string into as many parts as possible so that each letter appears in at most one part.
-
+Derived Question: if it asked all substring then also you can find it
 Return a list of integers representing the size of these parts.
 
  

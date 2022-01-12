@@ -79,7 +79,7 @@ public class RandomPickwithWeight {
     }
     
     public int pickIndex() {
-        int num = r.nextInt(max);//start index 0 so add 1
+        int num = r.nextInt(max);//start index 0 so add 1, example: max is 10 then value will come 0 to 9 random but we need 1 to 10
         num = num +1;
         int start = 0;
         int end = commulativeSum.length-1;

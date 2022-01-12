@@ -11,7 +11,7 @@ package com.interview.searching;
  */
 public class RabinKarpSearch {
 
- // totalCharacterLength is the number of characters in the input alphabet 
+    // totalCharacterLength is the number of characters in the input alphabet 
     static final int totalCharacterLength = 256;
 
      /* pat -> pattern 
@@ -30,8 +30,10 @@ public class RabinKarpSearch {
         int result = -1;
 
         // The value of power would be "pow(totalCharacterLength, patternLength-1)%primeNumber" 
-        for (i = 0; i < patternLength - 1; i++) 
-            power = (power * totalCharacterLength) % primeNumber; 
+        for (i = 0; i < patternLength - 1; i++) {
+            power = (power * totalCharacterLength) % primeNumber;
+        } 
+             
 
         // Calculate the hash value of pattern and first 
         // window of text 
@@ -40,10 +42,42 @@ public class RabinKarpSearch {
             patternHashCode = (totalCharacterLength * patternHashCode + pat[i]) % primeNumber; 
             textHashCode = (totalCharacterLength * textHashCode + txt[i]) % primeNumber; 
         } 
-
-        // Slide the pattern over text one by one 
-        for (i = 0; i <= textLength - patternLength; i++) 
+        int start = 0;
+        // Check the hash values of current window of text 
+        // and pattern. If the hash values match then only 
+        // check for characters on by one 
+        if ( patternHashCode == textHashCode ) 
         { 
+            /* Check for characters one by one */
+            for (j = 0; j < patternLength; j++) 
+            { 
+                if (txt[start+j] != pat[j]) 
+                    break; 
+            } 
+
+            // if patternHashCode == textHashCode and pat[0...patternLength-1] = txt[i, i+1, ...i+patternLength-1] 
+            if (j == patternLength) {
+                result = start;
+                return result;
+            }
+        } 
+
+        
+        // Slide the pattern over text one by one 
+        for (int end = i; end < textLength; end++) 
+        {
+            // Calculate hash value for next window of text: Remove 
+            // leading digit, add trailing digit 
+            textHashCode = (totalCharacterLength*(textHashCode - txt[start]*power) + txt[end])%primeNumber;//this is multiplied to shift left side because after removal of first char, need to shift left 
+            start++;
+
+            // We might get negative value of textHashCode, converting it 
+            // to positive 
+            if (textHashCode < 0) {
+                textHashCode = (textHashCode + primeNumber); 
+            }
+            //System.out.println(textHashCode);
+            //System.out.println(start);
 
             // Check the hash values of current window of text 
             // and pattern. If the hash values match then only 
@@ -53,31 +87,19 @@ public class RabinKarpSearch {
                 /* Check for characters one by one */
                 for (j = 0; j < patternLength; j++) 
                 { 
-                    if (txt[i+j] != pat[j]) 
+                    if (txt[start+j] != pat[j]) 
                         break; 
                 } 
 
                 // if patternHashCode == textHashCode and pat[0...patternLength-1] = txt[i, i+1, ...i+patternLength-1] 
                 if (j == patternLength) {
-                    result = i;
+                    result = start;
                     break;
                 }
             } 
-
-            // Calculate hash value for next window of text: Remove 
-            // leading digit, add trailing digit 
-            if ( i < textLength-patternLength ) 
-            { 
-                textHashCode = (totalCharacterLength*(textHashCode - txt[i]*power) + txt[i+patternLength])%primeNumber;//this is multiplied to shift left side because after removal of first char, need to shift left 
-
-                // We might get negative value of textHashCode, converting it 
-                // to positive 
-                if (textHashCode < 0) 
-                textHashCode = (textHashCode + primeNumber); 
-            }
         }
         return result;
-    } 
+    }  
 
     
     public static void main(String args[]){

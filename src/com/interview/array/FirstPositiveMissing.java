@@ -4,13 +4,17 @@ package com.interview.array;
  * https://leetcode.com/problems/first-missing-positive/
  * 
  * https://www.youtube.com/watch?v=L1u-R_s2Mok&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=39
- * Category: Hard, Google, Tricky, 
+ * Category: Hard, Google, Tricky, find-duplicate
  * Related: https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/ Easy
  * https://leetcode.com/problems/couples-holding-hands/ Hard
  * 
  * Given an unsorted integer array nums, return the smallest missing positive integer.
 
 You must implement an algorithm that runs in O(n) time and uses constant extra space.
+
+Soln: Sorting nlogn
+hashing TC: O(N) SC: O(N)
+Both not accepted
 
  
 
@@ -53,7 +57,7 @@ Memory Usage: 118.2 MB, less than 8.31% of Java online submissions for First Mis
             return 2;
         }
         
-        //this below is for if 1 is found and let is not 1
+        //this below is for if 1 is found and length is not 1
         for (int i = 0; i < l; i++) {
             int val = Math.abs(nums[i]);
             if (nums[i] <= 0 || nums[i] > l) {//[3,5,-1,1, 0]  for this case

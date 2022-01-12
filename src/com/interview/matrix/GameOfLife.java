@@ -30,7 +30,7 @@ public class GameOfLife {
         return false;
         
     }
-    public void gameOfLife(int[][] board) {//Runtime: 0 ms, faster than 100.00% of Java online submissions for Game of Life., Memory Usage: 37 MB, less than 94.45% of Java online submissions for Game of Life.Space optimized, but refer second method and top of it optimzed the code, it is way to write code
+    public void gameOfLife(int[][] board) {//Runtime: 0 ms, faster than 100.00% of Java online submissions for Game of Life., Memory Usage: 37 MB, less than 94.45% of Java online submissions for Game of Life.Space optimized, but refer second method and top of it optimized the code, it is way to write code
         int R = board.length;
         int C = board[0].length;
         

@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/design-hashset/
  * https://www.youtube.com/watch?v=U79BoHTcCYw&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=17
- * Category: Easy, Google
+ * Category: Easy, Google, Must Do
  * Related: https://leetcode.com/problems/design-skiplist/  Hard
  */
 public class HashSetDesign {

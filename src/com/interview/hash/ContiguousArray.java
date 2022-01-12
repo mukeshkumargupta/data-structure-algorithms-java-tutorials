@@ -6,6 +6,7 @@ import java.util.*;
  * https://www.youtube.com/watch?v=9ZyLjjk536U&list=PLIA-9QRQ0RqGP4zrm09iyiVSXU-3e6CfP&index=59
  * Category: Medium, Tricky
  * Related: https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/ Medium
+ * Derived Question: Minimum and max length both asked, try with sliding window technics (Not tried yet for this question)
  * Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
 
  
@@ -32,6 +33,7 @@ public class ContiguousArray {
         /*
          * Runtime: 41 ms, faster than 23.96% of Java online submissions for Contiguous Array.
 Memory Usage: 100 MB, less than 6.31% of Java online submissions for Contiguous Array.
+Not better solution: TODO
          */
         Map<Integer, Integer> lookup = new HashMap<>();
         

@@ -6,6 +6,7 @@ import java.util.*;
  * https://leetcode.com/problems/combination-sum-ii/
  * https://www.youtube.com/watch?v=G1fRTGRxXU8
  * Category: Medium, Tricky, Must Do
+ * Derived: This problem is just extension of SubsetsII so try first this
  * Related: https://leetcode.com/problems/maximum-vacation-days/ Hard
  * https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/ Hard
  * https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/ Hard
@@ -41,15 +42,15 @@ Output:
  */
 public class CombinationSumII {
     
-    private void combinationSumUtil(int[] candidates, int ind, int target, List<Integer> ds, List<List<Integer>> result) {
+    private void combinationSumUtil(int[] candidates, int start, int target, List<Integer> ds, List<List<Integer>> result) {
         if (target == 0) {
             result.add(new ArrayList<>(ds));
             return;
         }
         
         
-        for (int i = ind; i < candidates.length; i++) {
-            if (i > ind && candidates[i] == candidates[i-1]) {
+        for (int i = start; i < candidates.length; i++) {
+            if (i > start && candidates[i] == candidates[i-1]) {
                 continue;
             }
             if (candidates[i] > target ) {

@@ -45,18 +45,15 @@ Constraints:
 1 ≤ Ai ≤ 105
  */
 public class CuttingRod {
-    public int cutRod(int prices[], int n){
+    public int cutRod(int price[], int n) {
+        //code here
         int R = n+1;
-        int[] np = new int [R];
-        for (int i = 0; i < n; i++) {
-            np[i+1] = prices[i];
-        }
         
         int[] dp = new int [R];
         dp[0] = 0;
-        dp[1] = np[1];
+        dp[1] = price[0];
         for (int i = 2; i < R; i++) {
-            dp[i] = np[i];
+            dp[i] = price[i-1];
             int left = 1;
             int right = i-1;
             while (left <= right) {
@@ -64,6 +61,8 @@ public class CuttingRod {
                     dp[i] = dp[left] + dp[right];
                 }
                 left++;
+                
+                
                 right--;
             }
         }

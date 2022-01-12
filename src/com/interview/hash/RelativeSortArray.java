@@ -10,6 +10,7 @@ import java.util.*;
    
 Sort the elements of arr1 such that the relative ordering of items in arr1 are the same as in arr2.  Elements that don't appear in arr2 should be placed at the end of arr1 in ascending order.
 
+Derived: Dont sort the element which are not present and add in same order as in array1 then insertion sort what we did could be better choice
 Related: https://leetcode.com/problems/bomb-enemy/ Medium
 https://leetcode.com/problems/escape-a-large-maze/ Hard
 https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/ Medium

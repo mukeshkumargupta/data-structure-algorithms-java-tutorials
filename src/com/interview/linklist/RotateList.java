@@ -37,6 +37,45 @@ The number of nodes in the list is in the range [0, 500].
  */
 public class RotateList {
     public ListNode rotateRight(ListNode head, int k) {
+        int l = 0;
+        //if only one node
+        if (head == null || head.next == null || k ==0) {
+            return head;
+        }
+        
+        //calculate length
+        ListNode current = head;
+        ListNode end = null;
+        while (current != null) {
+            l++;
+            end = current;
+           current = current.next; 
+        }
+        if (k > l) {
+            k = k % l;
+        }
+        int iterateUpto = l -k;
+        int i = 0;
+        //System.out.println(l);
+        //System.out.println(iterateUpto);
+        //System.out.println(end.val);
+        current = head;
+        ListNode previous = null;
+        while (current.next != null) {
+            i++;
+            if (i == iterateUpto) {
+                ListNode temp = current.next;
+                current.next = null;
+                end.next = head;
+                head = temp;
+               break; 
+            }
+            current = current.next;
+        }
+        return head;
+        
+    }
+    public ListNode rotateRightM2(ListNode head, int k) {
         /*
          * Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate List.
 Memory Usage: 38.1 MB, less than 90.81% of Java online submissions for Rotate List.

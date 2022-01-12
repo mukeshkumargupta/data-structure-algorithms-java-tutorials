@@ -2,12 +2,12 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
- * Category: Medium, Facebook, Tricky
+ * Category: Medium, Facebook, Tricky, buy-and-sell
  * 
  * Related: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/ Hard
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/ Hard
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/ Medium
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/ Medium
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/ Medium  well explained: https://www.youtube.com/watch?v=GY0O57llkKQ
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/ Medium well explained: https://www.youtube.com/watch?v=pTQB9wbIpfU
  * 
  * You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
 

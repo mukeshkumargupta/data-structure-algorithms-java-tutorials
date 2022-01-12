@@ -6,7 +6,7 @@ import java.util.*;
  * https://www.youtube.com/watch?v=lO9R5CaGRPY&t=219s
  * https://www.interviewbit.com/problems/subarray-with-given-xor/
  * https://www.geeksforgeeks.org/count-number-subarrays-given-xor/
- * Category: Tricky, Google, Medium
+ * Category: Tricky, Google, Medium, SubarraySumEqualsK
  * Given an array of integers arr[] and a number m, count the number of subarrays having XOR of their elements as m.
 Examples: 
 
@@ -32,7 +32,7 @@ public class CountSubarrayswithXoasK {
         Map<Integer, Integer> prefixXORCount = new HashMap<>();
         for (int i = 0; i < l; i++) {
             xor ^= A[i];
-            cnt += prefixXORCount.getOrDefault(xor ^ B, 0);
+            cnt += prefixXORCount.getOrDefault(xor ^ B, 0);//Tricky
             
             if (xor == B) {
                 cnt += 1;

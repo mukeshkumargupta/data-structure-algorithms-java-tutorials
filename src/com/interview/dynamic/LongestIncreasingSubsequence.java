@@ -6,7 +6,7 @@ package com.interview.dynamic;
  * 
  * Youtube link - https://youtu.be/CE2b_-XfVDk
  * Leetcode: https://leetcode.com/problems/longest-increasing-subsequence/
- * Category: Medium, Tricky
+ * Category: Medium, Must Do
  * 
  * Find a subsequence in given array in which the subsequence's elements are 
  * in sorted order, lowest to highest, and in which the subsequence is as long as possible

@@ -2,7 +2,7 @@ package com.interview.hash;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/subarray-sum-equals-k/
- * Category: Medium, Tricky, VVImp
+ * Category: Medium, Tricky, VVImp, SubarraySumEqualsK
  * Video: https://www.youtube.com/watch?v=HbbYPQc-Oo4
  */
 public class SubarraySumEqualsK {

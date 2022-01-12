@@ -40,7 +40,8 @@ All the words in s are separated by a single space.
 public class WordPattern {
     public boolean wordPattern(String pattern, String s) {
         /*
-         * 100% fast
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Word Pattern.
+Memory Usage: 36.9 MB, less than 74.76% of Java online submissions for Word Pattern.
          */
         int l1 = pattern.length();
         String[] splittedArray = s.split(" ");

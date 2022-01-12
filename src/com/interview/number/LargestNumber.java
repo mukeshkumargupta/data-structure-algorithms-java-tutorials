@@ -69,6 +69,9 @@ Memory Usage: 38.5 MB, less than 77.22% of Java online submissions for Largest N
 */
             
         }
+        if (input.length == 1) {//Not required sorting truncate
+            return input[0];
+        }
         
         Arrays.sort(input, (arr1, arr2) -> {
             String ij = arr1 + arr2;
@@ -80,7 +83,8 @@ Memory Usage: 38.5 MB, less than 77.22% of Java online submissions for Largest N
         for (int i = 0; i < input.length; i++) {
             result.append(input[i]);
         }
-        if (result.length() > 0 && result.charAt(0) == '0') {
+        if (result.length() > 0 && result.charAt(0) == '0') {//This is case: [0,0]
+            
             return "0";
         }
         return result.toString();

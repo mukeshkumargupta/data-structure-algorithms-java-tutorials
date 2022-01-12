@@ -2,6 +2,7 @@ package com.interview.systemdesign;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/design-hashmap
+ * Category: Must Do
  */
 public class HashMapDesign {
     /*class TreeNode {

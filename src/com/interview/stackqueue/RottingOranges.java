@@ -3,6 +3,7 @@ package com.interview.stackqueue;
 import java.util.*;
 /*
  * https://leetcode.com/problems/rotting-oranges/
+ * https://www.youtube.com/watch?v=pUAPcVlHLKA
  * Category: Medium, Must Do, VVImp
  * Related:
  * https://leetcode.com/problems/walls-and-gates/ Medium
@@ -49,119 +50,73 @@ Constraints:
 
  */
 public class RottingOranges {
-    private boolean  isSafe(int i, int j, int R, int C, int[][] grid) {
-        if (i >=0 && i < R && j >=0 && j < C) {
-            if (grid[i][j]  == 1) {
-                return true;
-            }
+    boolean isSafe(int i, int j, int R, int C, int[][] grid)  {
+        if (i >=0 && i < R && j >=0 && j < C && grid[i][j] == 1) {
+            return true;
         }
         return false;
         
     }
-    private boolean  isEmpty(int i, int j, int R, int C, int[][] grid) {
-        if (i >=0 && i < R && j >=0 && j < C) {
-            if (grid[i][j]  == 0) {
-                return true;
-            }
-        } else {//out of boundry then return true
-           return true; 
-        }
-        return false;
-        
-    }
-    
-    private boolean  stillLeft(int i, int j, int R, int C, int[][] grid) {
-        if (i >=0 && i < R && j >=0 && j < C) {
-            if (grid[i][j]  == 1) {
-                return true;
-            }
-        }
-        return false;
-        
-    }
-    public  int orangesRotting(int[][] grid) {
+    public int orangesRotting(int[][] grid) {
+        if(grid == null || grid.length == 0) return 0;
+        int R = grid.length;
+        int C = grid[0].length;
         class Point {
-            int time;
             int i;
             int j;
-            Point (int time, int i, int j) {
-                //System.out.println(time);
-                this.time = time;
+            Point(int i, int j) {
                 this.i = i;
                 this.j = j;
             }
-            
         }
-        Queue<Point> q = new LinkedList<>();
-        int R = grid.length;
-        int C = grid[0].length;
-        boolean[][] visited = new boolean[R][C];
-        for (int i = 0; i < R; i ++) {
-            for (int j = 0; j < C; j++) {
-                if (grid[i][j] ==2) {
-                    q.add(new Point(0, i, j));
-                    visited[i][j] = true;
+        Queue<Point> queue = new LinkedList<>();
+        int count_fresh = 0;
+        //Put the position of all rotten oranges in queue
+        //count the number of fresh oranges
+        for(int i = 0 ; i < R ; i++) {
+            for(int j = 0 ; j < C ; j++) {
+                if(grid[i][j] == 2) {
+                    queue.add(new Point(i, j));
                 }
-                boolean isAnyTrue = false;
-                if (grid[i][j] ==1) {
-                    //check all four dir
-                    isAnyTrue = isAnyTrue || !isEmpty(i, j+1, R, C, grid);//right
-                    isAnyTrue = isAnyTrue || !isEmpty(i+1, j, R, C, grid);//bottom
-                    isAnyTrue = isAnyTrue || !isEmpty(i, j-1, R, C, grid);//left
-                    isAnyTrue = isAnyTrue || !isEmpty(i-1, j, R, C, grid);//top
-                    if (!isAnyTrue) {
-                        return -1;
+                if(grid[i][j] != 0) {
+                    count_fresh++;
+                }
+            }
+        }
+       
+        if(count_fresh == 0) return 0;
+        int time = 0, rottenCount = 0;
+        int[][] dir = { {0,1}, {0,-1}, {1, 0}, {-1, 0}};
+        
+        //bfs starting from initially rotten oranges
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            rottenCount += size; 
+            for(int k = 0 ; k < size ; k++) {
+                Point point = queue.remove();
+                for(int[] d : dir) {
+                    int i = point.i + d[0];
+                    int j = point.j + d[1];
+                    
+                    if(isSafe(i, j, R, C, grid))  {
+                       grid[i][j] = 2;
+                        queue.add(new Point(i, j)); 
                     }
                     
-                }
-                
-                
-            }
-            
-        }
-
-        int totalTime =0;
-        //System.out.println(q.size());
-        while(!q.isEmpty()) {
-            Point current = q.remove();
-            totalTime =  current.time;
-            if (isSafe(current.i, current.j+1, R, C, grid) && !visited[current.i][current.j+1]) {//right
-                q.add(new Point(current.time +1, current.i, current.j+1));
-                grid[current.i][current.j+1] = 2;
-                visited[current.i][current.j+1] = true;
-            }
-            if (isSafe(current.i+1, current.j, R, C, grid) && !visited[current.i+1][current.j]) {//bottom
-                q.add(new Point(current.time +1, current.i+1, current.j));
-                visited[current.i+1][current.j] = true;
-                grid[current.i+1][current.j] = 2;
-            }
-            if (isSafe(current.i, current.j-1, R, C, grid) && !visited[current.i][current.j-1]) {//left
-                q.add(new Point(current.time +1, current.i, current.j-1));
-                visited[current.i][current.j-1] = true;
-                grid[current.i][current.j-1] = 2;
-            }
-            if (isSafe(current.i-1, current.j, R, C, grid) && !visited[current.i-1][current.j]) {//top
-                q.add(new Point(current.time +1, current.i-1, current.j));
-                visited[current.i-1][current.j] = true;
-                grid[current.i-1][current.j] = 2;
-            }
-            
-        }
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (stillLeft(i, j, R, C, grid)) {
-                    return -1;
+                    
                 }
             }
+            if(queue.size() != 0) {
+                time++;
+            }
         }
-
-        return totalTime;
-        
+        return count_fresh == rottenCount ? time : -1;
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         int[][] input = {{2,1,1}, {1,1,0}, {0,1,1}};
-        int result = orangesRotting(input);
+        RottingOranges instance = new RottingOranges();
+        int result = instance.orangesRotting(input);
         
     }
     

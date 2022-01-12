@@ -43,14 +43,14 @@ SC: O(1)
         int diff = Integer.MAX_VALUE; 
         int result = Integer.MAX_VALUE;
         for (int i = 0; i < l-2; i++) {
-            int j = i+1;
-            int k = l-1;
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
+            int left = i+1;
+            int right = l-1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
                 if (sum > target) {
-                    k--;
+                    right--;
                 } else {
-                    j++;
+                    left++;
                 }
                 if (Math.abs(sum-target) < diff) {
                     diff = Math.abs(sum-target);

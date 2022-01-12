@@ -4,7 +4,7 @@ package com.interview.binarysearch;
  * There are two sorted arrays nums1 and nums2 of size m and n respectively.
  * Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
  *https://www.youtube.com/watch?v=NTop3VTjmxk
- *Category: Tricky, Hard
+ *Category: Must Do, Hard
  *Related: https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/ Easy
  *https://leetcode.com/problems/escape-a-large-maze/ Hard,
  *https://leetcode.com/problems/shift-2d-grid/ Easy

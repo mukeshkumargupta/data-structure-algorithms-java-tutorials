@@ -6,7 +6,7 @@ import java.util.Comparator;
 /*
  * Reference: https://www.youtube.com/watch?v=cr6Ip0J9izc
  * https://www.youtube.com/watch?v=LjPx4wQaRIs&list=PLgUwDviBIf0pmWCl2nepwGDO05a0-7EfJ&index=3 See this video
- * Category: Medium, VVImp, Tricky, Must Do
+ * Category: Medium, VVImp, Must Do
  * https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  * https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#
  * 

@@ -8,6 +8,9 @@ Explanation: You are given the second TreeNode with value 5, the linked list sho
  */
 public class DeleteTreeNodeinaLinkedList {
     public void deleteTreeNode(ListNode TreeNode) {
+        /*
+         * TC: O( 1 )
+         */
         if (TreeNode == null) {
             return;
             

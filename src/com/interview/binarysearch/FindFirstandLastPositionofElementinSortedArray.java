@@ -11,7 +11,7 @@ package com.interview.binarysearch;
  * https://www.youtube.com/watch?v=OE7wUUpJw6I&list=PLIA-9QRQ0RqFaV3j0I4FMiPQQkG-jIouX&index=3
  * 
  * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ 100% runtime
- * Category: Medium, Tricky
+ * Category: Medium, Must Do
  * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
 
 If target is not found in the array, return [-1, -1].
@@ -35,22 +35,29 @@ Output: [-1,-1]
  */
 public class FindFirstandLastPositionofElementinSortedArray {
     public int[] searchRange(int[] nums, int target) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+Memory Usage: 44.5 MB, less than 6.70% of Java online submissions for Find First and Last Position of Element in Sorted Array.
+         */
         int first = firstOccurence(nums, target);
         if (first == -1) {
             return new int[]{-1, -1};
         }
         int last = lastOccurence(nums, target);
-        return new int[]{first, last};
+        int[] result = new int[2];
+        result[0] = first;
+        result[1] = last;
+        return result;
     }
 
     private int firstOccurence(int[] nums, int target) {
         int start = 0;
         int end = nums.length - 1;
         while (start <= end) {
-            int mid = (start + end)/2;
-            if (nums[mid] == target && (mid == 0 || nums[mid - 1] < target)) { //Imp, Tricky
+            int mid = start + (end - start)/2;
+            if (nums[mid] == target && (mid == 0 || nums[mid - 1] != target)) { //Imp, Tricky
                 return mid;
-            } else if (nums[mid] >= target) {
+            } else if ( target <= nums[mid]) {
                 end = mid - 1;
             } else {
                 start = mid + 1;
@@ -63,10 +70,10 @@ public class FindFirstandLastPositionofElementinSortedArray {
         int start = 0;
         int end = nums.length - 1;
         while (start <= end) {
-            int mid = (start + end)/2;
-            if (nums[mid] == target && (mid == nums.length - 1 || nums[mid + 1] > target)) {//Imp, Tricky
+            int mid = start + (end - start)/2;
+            if (nums[mid] == target && (mid == nums.length - 1 || nums[mid + 1] != target)) {//Imp, Tricky
                 return mid;
-            } else if (nums[mid] <= target) {
+            } else if (target >= nums[mid]) {
                 start = mid + 1;
             } else {
                 end = mid - 1;

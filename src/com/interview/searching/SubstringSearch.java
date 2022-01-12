@@ -44,6 +44,10 @@ public class SubstringSearch {
     public boolean KMP( char [] pattern, char []text){
         
         int lps[] = computeLPSArray(pattern);
+        /*for (int elm: lps) {
+            System.out.println(elm);
+        }*/
+        
         int i=0;
         int j=0;
         while(i < text.length && j < pattern.length){

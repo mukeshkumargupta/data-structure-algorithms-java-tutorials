@@ -31,15 +31,15 @@ s1 and s2 consist of lowercase English letters.
  */
 public class PermutationinString {
     public boolean checkInclusion(String s1, String s2) {//runtime 87%
-        int k = s1.length();
-        int l = s2.length();
+        int s1Length = s1.length();
+        int s2Length = s2.length();
         
-        if(l < k) return false;
+        if(s2Length < s1Length) return false;
         
         int[] s1Freq = new int[26];
         int[] s2Freq = new int[26];
         
-        for(int i = 0; i< k; i++) {
+        for(int i = 0; i< s1Length; i++) {
             s1Freq[s1.charAt(i) - 'a']++;
             s2Freq[s2.charAt(i) - 'a']++;
         }
@@ -48,8 +48,8 @@ public class PermutationinString {
             return true;
         }
         
-        for(int j = k; j < l; j++) {
-            s2Freq[s2.charAt(j-k) - 'a']--;
+        for(int j = s1Length; j < s2Length; j++) {
+            s2Freq[s2.charAt(j-s1Length) - 'a']--;
             s2Freq[s2.charAt(j) - 'a']++;
             if(Arrays.equals(s2Freq, s1Freq)) {
                 return true;

@@ -10,7 +10,7 @@ import java.io.*;
  * https://leetcode.com/problems/max-number-of-k-sum-pairs/ Medium, sort and use two pointer
  * Practice all question from hashing
  * https://leetcode.com/tag/hash-table/
- * Category: Must Do, Write own code
+ * Category: 
  */ 
  
 

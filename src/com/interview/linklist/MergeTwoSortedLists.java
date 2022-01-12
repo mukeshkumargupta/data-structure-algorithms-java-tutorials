@@ -2,6 +2,7 @@ package com.interview.linklist;
 
 /*
  * https://leetcode.com/problems/merge-two-sorted-lists
+ * https://www.youtube.com/watch?v=yn6kTAkf9Mc
  * Category: Easy
  * Related: https://leetcode.com/problems/merge-k-sorted-lists/ Hard
  * https://leetcode.com/problems/merge-sorted-array/ Easy
@@ -11,56 +12,35 @@ package com.interview.linklist;
  * https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/ Medium
  */
 public class MergeTwoSortedLists {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {//runtime 100%
-        ListNode head = null;
-        if (l1 != null && l2 == null) {//if any one of them is null
-            return l1;
-        }
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Two Sorted Lists.
+Memory Usage: 38.1 MB, less than 96.83% of Java online submissions for Merge Two Sorted Lists.
+         */
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
         
-        if (l1 == null && l2 != null) {
-            return l2;
-        }
-        ListNode previous = null;
-        while (l1 != null && l2 != null) {//Both are null
-            if (l1.val == l2.val) {
-                if (head == null) {
-                    head = l1;
-                }
-                ListNode temp = l1.next;
-                if (previous != null) {
-                   previous.next = l1; 
-                }
-                l1.next = l2;
-                previous = l2;
-                l2 = l2.next;
-                l1 = temp; 
-            } else if (l1.val < l2.val) {
-                if (head == null) {
-                    head = l1;
-                }
-                if (previous != null) {
-                   previous.next = l1; 
-                }
-                previous = l1;
+        ListNode head = l1;
+        if(l1.val > l2.val){//First decide which one is head
+            head = l2;
+            l2 = l2.next;
+        } else
+            l1 = l1.next;
+        
+        ListNode curr = head;
+        while(l1 != null && l2 != null){
+            if(l1.val <= l2.val){
+                curr.next = l1;
                 l1 = l1.next;
             } else {
-                if (head == null) {
-                    head = l2;
-                }
-                if (previous != null) {
-                   previous.next = l2; 
-                }
-                previous = l2;
-                l2 = l2.next;    
+                curr.next = l2;
+                l2 = l2.next;
             }
-            
+            curr = curr.next;
         }
-        if (l1 != null) {
-            previous.next = l1;
-        }
-        if (l2 != null) {
-           previous.next = l2; 
-        }
+        if(l1 != null) curr.next = l1;
+        else curr.next = l2;
+        
         return head;
     }
 }

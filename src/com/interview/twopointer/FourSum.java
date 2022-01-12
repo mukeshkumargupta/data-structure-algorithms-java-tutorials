@@ -46,30 +46,30 @@ public class FourSum {
                 if (j != i + 1 && nums[j] == nums[j - 1])
                     continue;
   
-                int k = j + 1;
-                int l = len - 1;
+                int left = j + 1;
+                int right = len - 1;
 
-                while (k < l) {
-                    if (nums[i] + nums[j] + nums[k] + nums[l] == target) {
+                while (left < right) {
+                    if (nums[i] + nums[j] + nums[left] + nums[right] == target) {
                         List<Integer> temp = new ArrayList<Integer>();
                         temp.add(nums[i]);
                         temp.add(nums[j]);
-                        temp.add(nums[k]);
-                        temp.add(nums[l]);
+                        temp.add(nums[left]);
+                        temp.add(nums[right]);
                         result.add(temp);
                         
-                        k++;
-                        l--;
-                        while (k < len && nums[k] == nums[k - 1]) {
-                            k++;
+                        left++;
+                        right--;
+                        while (left < len && nums[left] == nums[left - 1]) {
+                            left++;
                         }
-                        while (l >= 0 && nums[l] == nums[l + 1]) {
-                            l--;
+                        while (right >= 0 && nums[right] == nums[right + 1]) {
+                            right--;
                         }
-                    } else if (nums[i] + nums[j] + nums[k] + nums[l]  < target) {
-                        k++;
+                    } else if (nums[i] + nums[j] + nums[left] + nums[right]  < target) {
+                        left++;
                     } else {
-                        l--;
+                        right--;
                     }
                 }
             }

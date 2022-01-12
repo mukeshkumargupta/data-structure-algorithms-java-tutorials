@@ -2,7 +2,8 @@ package com.interview.binarysearch;
 
 /*
  * https://leetcode.com/problems/h-index-ii/
- * Category: Medium, Tricky, Must Do
+ * Category: Medium, Tricky
+ * https://www.youtube.com/watch?v=CjKJDloMnwE&t=691s
  * Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith paper and citations is sorted in an ascending order, return compute the researcher's h-index.
 
 According to the definition of h-index on Wikipedia: A scientist has an index h if h of their n papers have at least h citations each, and the other n − h papers have no more than h citations each.
@@ -26,20 +27,20 @@ Output: 2
  */
 public class HIndexII {
     public int hIndex(int[] citations) {//100 runtime
-        int n = citations.length;
-        int start=0,end=n-1,mid;
+        int l = citations.length;
+        int start=0,end=l-1,mid;
         
         while(start<=end)
         {
             mid = start+(end-start)/2;
-            if(citations[mid]==(n-mid))
+            if(citations[mid]==(l-mid))
                 return citations[mid];
-            else if(citations[mid]>(n-mid))
+            else if(citations[mid]>(l-mid))
                 end = mid-1;
             else
                 start = mid+1;
         }
-        return n-start;
+        return l-start;
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

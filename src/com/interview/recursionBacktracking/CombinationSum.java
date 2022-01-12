@@ -31,25 +31,30 @@ import java.util.*;
  */
 public class CombinationSum {
 
-    private void combinationSumUtil(int[] candidates, int i, int target, List<Integer> combination, List<List<Integer>> result) {
-        if (i == candidates.length) {
+    private void combinationSumUtil(int[] candidates, int start, int target, List<Integer> ds, List<List<Integer>> result) {
+        if (start == candidates.length) {
             if (target == 0) {
-                result.add(new ArrayList<>(combination));
+                result.add(new ArrayList<>(ds));
             }
             return;
         }
 
-        if (candidates[i]<=target) {//if pick it
-            combination.add(candidates[i]);
-            combinationSumUtil(candidates, i, target - candidates[i], combination, result);
-            combination.remove(combination.size()-1);
+        if (candidates[start]<=target) {//if pick it
+            ds.add(candidates[start]);
+            combinationSumUtil(candidates, start, target - candidates[start], ds, result);
+            ds.remove(ds.size()-1);
         }
-        combinationSumUtil(candidates, i+1, target, combination, result);//Why not else but does not work
+        combinationSumUtil(candidates, start+1, target, ds, result);//Not pick case
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        /*
+         * Runtime: 2 ms, faster than 98.89% of Java online submissions for Combination Sum.
+Memory Usage: 38.9 MB, less than 93.75% of Java online submissions for Combination Sum.
+Next challenges:
+         */
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> combination = new ArrayList<>();
-        combinationSumUtil(candidates, 0, target, combination, result);
+        List<Integer> ds = new ArrayList<>();
+        combinationSumUtil(candidates, 0, target, ds, result);
         return result;
         
     }

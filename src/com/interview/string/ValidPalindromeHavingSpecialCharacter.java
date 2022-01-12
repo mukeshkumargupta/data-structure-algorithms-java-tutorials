@@ -46,23 +46,23 @@ public class ValidPalindromeHavingSpecialCharacter {
 Memory Usage: 40.4 MB, less than 32.00% of Java online submissions for Valid Palindrome.
          */
         int len = s.length();
-        int i = 0;
-        int j = len -1;
-        while( i < j) {
-            if (!isLetterOrDigit(s.charAt(i))) {
-                i++;
+        int start = 0;
+        int end = len -1;
+        while( start < end) {
+            if (!isLetterOrDigit(s.charAt(start))) {
+                start++;
                 continue;
             }
-            if (!isLetterOrDigit(s.charAt(j))) {
-                j--;
+            if (!isLetterOrDigit(s.charAt(end))) {
+                end--;
                 continue;
             }
             
-            if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+            if (Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) {
                 return false;
             } else {
-                i++;
-                j--;
+                start++;
+                end--;
             }
         }
         return true;

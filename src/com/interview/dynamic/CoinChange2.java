@@ -2,7 +2,7 @@ package com.interview.dynamic;
 
 /*
  * Reference: https://leetcode.com/problems/coin-change-2/
- * Category: Medium , Must Do, Tricky
+ * Category: Medium , Must Do
  * Related:
  * https://leetcode.com/problems/remove-boxes/ Hard
  * https://leetcode.com/problems/partition-to-k-equal-sum-subsets/ Medium done

@@ -10,6 +10,8 @@ import java.util.*;
  * Given arrival and departure times of all trains that reach a railway station. Find the minimum number of platforms required for the railway station so that no train is kept waiting.
 Consider that all the trains arrive on the same day and leave on the same day. Arrival and departure time can never be the same for a train but we can have arrival time of one train equal to departure time of the other. At any given instance of time, same platform can not be used for both departure of a train and arrival of another train. In such cases, we need different platforms.
 
+This problem is exactly same as meeting room 2 where mimim meeting room asked here minimum platform is asked , in 
+meeting room == was required here will not because when one train come and same time other train leave also then min two platform are required
 
 Example 1:
 
@@ -44,9 +46,81 @@ Constraints:
 0000 ≤ A[i] ≤ D[i] ≤ 2359
  */
 public class MinimumPlatforms {
+    
     //Function to find the minimum number of platforms required at the
     //railway station such that no train waits.
+    //This is generic solution, but pq is not required when only minimumn platform is asked
     static int findPlatform(int arr[], int dep[], int n)
+    {
+        // add your code heree
+        
+        List<List<Integer>> times = new ArrayList<>();
+        int l = arr.length;
+        for (int i = 0; i < l; i++) {
+            List<Integer> time = new ArrayList<>();
+            time.add(arr[i]);
+            time.add(dep[i]);
+            times.add(time);
+        }
+        Collections.sort(times, (a, b) ->  a.get(0) - b.get(0));//sort by start
+        PriorityQueue<List<Integer>> pq = new PriorityQueue<>((a, b) -> a.get(1) - b.get(1));//sort fo end
+        int platform = 0;
+        int size = times.size();
+        if (size >= 1) {
+            platform = 1;
+            pq.add(times.get(0));//add first element
+        }
+        for (int i =1; i < size; i++) {
+            while (!pq.isEmpty() && times.get(i).get(0) > pq.peek().get(1)) {//Note: only equal sign change from meeting room 2 problem, if end time in pq is less or exqual to current meeting start time then remove all element from pq
+                pq.remove();
+            }
+            pq.add(times.get(i));
+            if (pq.size() > platform) {
+                platform = pq.size();
+            }
+
+        }
+        return platform;
+        
+    }
+    //Without pq, easy to understand as well
+    static int findPlatformM1(int arr[], int dep[], int n)
+    {
+        // add your code heree
+        Arrays.sort(arr);
+        Arrays.sort(dep);//Tricky
+        
+        int platformNeeded =1;
+        int maxPlatform = 1;
+        int l = arr.length;
+        if (l >= 1) {
+            platformNeeded = 1;
+            maxPlatform = 1;
+        }
+        int j = 0;
+        for (int i =1; i < l; i++) {
+            while (arr[i] > dep[j]) {
+                platformNeeded--;
+                j++;
+            }
+            
+            platformNeeded++; //how u are adding in pq same here just increase
+  
+            if (platformNeeded > maxPlatform) {
+                maxPlatform = platformNeeded;
+            }
+
+        }
+        return maxPlatform;
+        
+    }
+    
+    //This is not intutive, Ignore it , Function to find the minimum number of platforms required at the
+    //railway station such that no train waits.
+    //Here priority queue is not required, because min platform is asked but when question is changes like 
+    /*find peak time and return all those train available on the platform or find those list of train when only two or three etc platform is required then pq is maindator 
+            then this is optimized version of first method where pq is required but first is generic solution where may dervied question can be solved*/
+    static int findPlatformM3(int arr[], int dep[], int n)
     {
         // add your code here
         Arrays.sort(arr);

@@ -2,7 +2,7 @@ package com.interview.binarysearch;
 
 /*
  * https://leetcode.com/problems/first-bad-version/
- * Category: Easy, Tricky, Facebook
+ * Category: Easy, Must Do, Facebook
  * Related: https://leetcode.com/problems/guess-number-higher-or-lower/ Easy
  * 
  * You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.

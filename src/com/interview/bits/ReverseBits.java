@@ -45,12 +45,10 @@ TC O(32)
          */
         int result = 0;
         for (int i = 0; i < 32; i++) {
-            result <<=1;
             int mask = n&1;
-            result |= mask;
-            
-            
             n >>= 1;
+            result <<=1;
+            result |= mask; 
         }
         return result;
         

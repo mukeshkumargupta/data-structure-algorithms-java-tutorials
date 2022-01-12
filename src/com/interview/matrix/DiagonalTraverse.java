@@ -9,6 +9,8 @@ package com.interview.matrix;
  * https://leetcode.com/problems/cinema-seat-allocation/ Medium
  * https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/ Medium
  * Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.
+ * 
+ * Derived Question: make down then print diagonal
 
  
 
@@ -32,7 +34,7 @@ n == mat[i].length
 -105 <= mat[i][j] <= 105
  */
 public class DiagonalTraverse {
-    public int[] findDiagonalOrder(int[][] mat) {//runtime 97%
+    public int[] findDiagonalOrder(int[][] mat) {//runtime 97% here right taken then dowon
         int R = mat.length;
         int C = mat[0].length;
         int[] result = new int[R*C];
@@ -41,7 +43,44 @@ public class DiagonalTraverse {
         for (int i = 0; i < l ; i++) {
             //System.out.println(r  + " , " + c);
             result[i] = mat[r][c];
-            if ( (r + c) % 2 == 0) {
+            if ( (r + c) % 2 == 0) {//Note: if r+c is even then go up, then it will hit r == 0 or c == c-1
+                if(c == C -1) {
+                   r++; 
+                } else if (r == 0) {
+                    c++;
+                } else {//Tricky go up if even: remember it
+                    r--;
+                    c++;
+                }
+                
+            } else {
+                if( r == R -1) {
+                    c++;
+                } else if (c ==0) {
+                    r++;
+                } else {
+                    r++;
+                    c--;
+                }
+                
+            }
+            
+        }
+        return result;
+        
+    }
+    
+    
+    public int[] findDiagonalOrderReverse(int[][] mat) {//runtime 97% here right taken then dowon
+        int R = mat.length;
+        int C = mat[0].length;
+        int[] result = new int[R*C];
+        int l = result.length;
+        int r =0; int c = 0;
+        for (int i = 0; i < l ; i++) {
+            //System.out.println(r  + " , " + c);
+            result[i] = mat[r][c];
+            if ( (r + c) % 2 != 0) {//Note: Just change the sign
                 if(c == C -1) {
                    r++; 
                 } else if (r == 0) {

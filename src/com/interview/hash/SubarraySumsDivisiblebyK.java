@@ -11,6 +11,8 @@ import java.util.*;
 
 A subarray is a contiguous part of an array.
 
+Derived: Try another approach like cummulative sum logic same approach commulative sum equal k
+
  
 
 Example 1:
@@ -41,7 +43,10 @@ Memory Usage: 42 MB, less than 90.84% of Java online submissions for Subarray Su
         int[] count = new int[k];
         int sum = 0;
         for (int elm : nums) {
-            sum += (elm%k + k)%k;
+            /*Remember:         
+            System.out.println(-4%5);//-4
+            System.out.println(-8%5);//-3 */
+            sum += (elm%k + k)%k;//to avoid overflow otherwise test case will fail
             count[sum%k]++;
         }
         

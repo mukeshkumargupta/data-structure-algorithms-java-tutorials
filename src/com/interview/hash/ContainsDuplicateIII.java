@@ -5,7 +5,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/contains-duplicate-iii/
  * https://www.youtube.com/watch?v=Cu7g9ovYHNI
- * Category: Medium, Google, Must Do, Sliding window
+ * Category: Medium, Google, Tricky, Sliding window
  * Related:
  * https://leetcode.com/problems/sliding-puzzle/ Hard
  * https://leetcode.com/problems/maximize-distance-to-closest-person/ Medium
@@ -44,17 +44,17 @@ public class ContainsDuplicateIII {
         /*
          * Runtime: 44 ms, faster than 40.13% of Java online submissions for Contains Duplicate III.
 Memory Usage: 43 MB, less than 45.21% of Java online submissions for Contains Duplicate III.
-        In tree set insertion deletetion and search is logk (uses balanced bst internally)
+        In tree set insertion deletion and search is logk (uses balanced bst internally)
          */
         TreeSet<Long> set = new TreeSet<>();
         
         for (int i = 0; i < nums.length; i++) {
-            Long floor = set.floor((long)nums[i]);//it return equal or imediate less value found in set if not then return null
+            Long floor = set.floor((long)nums[i]);//it return equal or immediate less value found in set if not then return null
             if (floor != null && nums[i] - floor <= t) {
                 return true;
             }
             
-            Long ceil = set.ceiling((long)nums[i]);//it return equal or imediate greater value found in set if not then return null
+            Long ceil = set.ceiling((long)nums[i]);//it return equal or immediate greater value found in set if not then return null
             if (ceil != null &&  ceil - nums[i] <= t) {
                 return true;
             }

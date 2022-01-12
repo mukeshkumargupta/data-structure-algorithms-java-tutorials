@@ -33,7 +33,7 @@ Example 3:
 Input: nums = [1]
 Output: [[1]]
  */
-public class StringPermutation {
+public class Permutation {
 
     List<List<Integer>> result = new ArrayList<>();
     private void swap(int[] nums, int i, int j) {
@@ -42,8 +42,8 @@ public class StringPermutation {
         nums[j] = temp;
         
     }
-    private void permuteUtil(int[] nums, int l, int r) {
-        if (l == r) {
+    private void permuteUtil(int[] nums, int start, int end) {
+        if (start == end) {
             List<Integer> list = new ArrayList<>();
             for (int num : nums) {
                 list.add(num);
@@ -51,18 +51,15 @@ public class StringPermutation {
             result.add(list);
             return;
         }
-        for (int i = l; i <= r; i++) {
-            swap(nums, l, i);
-            permuteUtil(nums,l+1, r);
-            swap(nums, l, i);
+        for (int i = start; i <= end; i++) {
+            swap(nums, start, i);
+            permuteUtil(nums,start+1, end);
+            swap(nums, start, i);
         }
         
     }
     public List<List<Integer>> permute(int[] nums) {//100% runtime
-        int l = nums.length;
-        permuteUtil(nums, 0, l-1);
+        permuteUtil(nums, 0, nums.length-1);
         return result;
-        
-        
     }
 }

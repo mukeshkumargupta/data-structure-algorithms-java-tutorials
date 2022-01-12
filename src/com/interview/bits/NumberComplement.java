@@ -51,6 +51,23 @@ Memory Usage: 35.9 MB, less than 64.70% of Java online submissions for Number Co
         return num ^ mask;
         
     }
+    public int findComplementM2(int num) {//Not tested//Not work if all 0000
+        int result = 0;
+        //while(num > 0) {32 time loop then try, it will be slow
+            //int xbit = !(num & 1);//toggle
+            int xbit = (num & 1);
+            if (xbit == 1) {
+                xbit = 0;
+            } else {
+                xbit = 1;
+            }
+            num >>=1;
+            result <<=1;
+            result ^= xbit;
+        }
+        return result;
+        
+    }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         NumberComplement instance = new NumberComplement();

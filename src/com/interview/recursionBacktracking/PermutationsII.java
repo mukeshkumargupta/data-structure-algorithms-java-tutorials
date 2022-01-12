@@ -7,7 +7,7 @@ import java.util.*;
  * Category: Medium, Must Do, Top150
  * Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
 
- 
+ Other approach like duplicate element and apply tricky same as combination trick after sort but will fail, when you do dry run, so only hashing will help here
 
 Example 1:
 
@@ -37,8 +37,8 @@ private void swap(int[] nums, int i, int j) {
     
 }
 
-private void permuteUtil(int[] nums, int l, int r) {
-if (l == r) {
+private void permuteUtil(int[] nums, int start, int end) {
+if (start == end) {
     List<Integer> list = new ArrayList<>();
     for (int num : nums) {
         list.add(num);
@@ -48,14 +48,14 @@ if (l == r) {
     return;
 }
 Set<Integer> set = new HashSet<>();
-for (int i = l; i <= r; i++) {
+for (int i = start; i <= end; i++) {
     if (set.contains(nums[i])) {
        continue; 
     }
     set.add(nums[i]);
-    swap(nums, l, i);
-    permuteUtil(nums,l+1, r);
-    swap(nums, l, i);
+    swap(nums, start, i);
+    permuteUtil(nums,start+1, end);
+    swap(nums, start, i);
 }
 
 }
@@ -65,15 +65,14 @@ public List<List<Integer>> permuteUnique(int[] nums) {
 Memory Usage: 39.6 MB, less than 83.97% of Java online submissions for Permutations II.
 https://www.youtube.com/watch?v=is_T6uzlTyg
      */
-int l = nums.length;
-permuteUtil(nums, 0, l-1);
+permuteUtil(nums, 0, nums.length -1);
 return result;
 
 
 }
 
-private void permuteUtilSlow(int[] nums, int l, int r) {
-    if (l == r) {
+private void permuteUtilSlow(int[] nums, int start, int end) {
+    if (start == end) {
         List<Integer> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (int num : nums) {
@@ -87,10 +86,10 @@ private void permuteUtilSlow(int[] nums, int l, int r) {
         
         return;
     }
-    for (int i = l; i <= r; i++) {
-        swap(nums, l, i);
-        permuteUtilSlow(nums,l+1, r);
-        swap(nums, l, i);
+    for (int i = start; i <= end; i++) {
+        swap(nums, start, i);
+        permuteUtilSlow(nums,start+1, end);
+        swap(nums, start, i);
     }
     
 }
@@ -100,8 +99,7 @@ public List<List<Integer>> permuteUniqueSlow(int[] nums) {
 Memory Usage: 39.7 MB, less than 74.02% of Java online submissions for Permutations II.
 Bruitforce try to optimise by removing set
      */
-    int l = nums.length;
-    permuteUtil(nums, 0, l-1);
+    permuteUtil(nums, 0, nums.length-1);
     return result;
     
     

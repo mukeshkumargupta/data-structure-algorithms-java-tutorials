@@ -43,7 +43,7 @@ public class SetMatrixZeroes {
         int C = matrix[0].length;
         boolean status = true;
         for (int i = 0; i < R; i++) {
-            if (matrix[i][0] == 0) {
+            if (matrix[i][0] == 0) {//Here first column is taken but you can take either of one like first row
                 status = false;
             }
             for (int j = 1; j < C; j++) {

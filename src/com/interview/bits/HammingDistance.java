@@ -38,6 +38,8 @@ public class HammingDistance {
         /*
          * Runtime: 0 ms, faster than 100.00% of Java online submissions for Hamming Distance.
 Memory Usage: 35.5 MB, less than 91.45% of Java online submissions for Hamming Distance.
+
+Other method just loop till 32 and & 1 extract one bit and using xor check 1 if then increment count then right shift both number
          */
         int xor = x ^ y;
         int countSetBit = 0;

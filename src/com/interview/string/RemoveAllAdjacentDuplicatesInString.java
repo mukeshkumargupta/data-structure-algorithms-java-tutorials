@@ -32,25 +32,52 @@ Constraints:
 s consists of lowercase English letters.
  */
 public class RemoveAllAdjacentDuplicatesInString {
+    //String builder and stack both are same approach but string builder one is fast
     public String removeDuplicates(String s) {
         /*
          * Runtime: 9 ms, faster than 83.40% of Java online submissions for Remove All Adjacent Duplicates In String.
 Memory Usage: 39.8 MB, less than 58.68% of Java online submissions for Remove All Adjacent Duplicates In String.
          */
-        StringBuilder b = new StringBuilder(); 
+        StringBuilder sb = new StringBuilder(); 
         
         for(char c : s.toCharArray()){ 
-            if(b.length() == 0){ 
-                b.append(c);
+            if(sb.length() == 0){ 
+                sb.append(c);
             } else{ 
-                if(b.charAt(b.length()-1) == c){ 
-                    b.deleteCharAt(b.length()-1);
+                if(sb.charAt(sb.length()-1) == c){ 
+                    sb.deleteCharAt(sb.length()-1);
                 } else{ 
-                    b.append(c);
+                    sb.append(c);
                 }  
             }    
         }
         
-        return b.toString();
+        return sb.toString();
+    }
+    //Using stack, it is slow
+    public String removeDuplicatesM2(String s) {
+        /*
+         * Runtime: 140 ms, faster than 7.02% of Java online submissions for Remove All Adjacent Duplicates In String.
+Memory Usage: 41.2 MB, less than 34.82% of Java online submissions for Remove All Adjacent Duplicates In String.
+         */
+        Stack<Character> st = new Stack<>();
+        int l = s.length();
+        for (int i = 0; i < l; i++) {
+            if (st.empty()) {
+                st.push(s.charAt(i));
+            } else {
+                if (st.peek() == s.charAt(i)) {
+                    st.pop();
+                } else {
+                    st.push(s.charAt(i));
+                }
+                
+            }
+        }
+        String result = "";
+        while (!st.empty()) {
+            result = st.pop() + result;
+        }
+        return result;
     }
 }

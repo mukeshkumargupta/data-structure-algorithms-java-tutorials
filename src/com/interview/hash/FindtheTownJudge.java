@@ -41,6 +41,7 @@ public class FindtheTownJudge {
         /*
          * Runtime: 4 ms, faster than 47.47% of Java online submissions for Find the Town Judge.
 Memory Usage: 81.6 MB, less than 19.66% of Java online submissions for Find the Town Judge.
+Try to solve like celebrity problem because it is slow here, this solution is good solution and straight forward
          */
                 
         int[] follow = new int [n];
