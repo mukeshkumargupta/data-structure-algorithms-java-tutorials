@@ -1,4 +1,4 @@
-package com.interview.binarysearch;
+package com.interview.bst;
 /*
  * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
  * https://www.youtube.com/watch?v=_Vo3cQ2xtqk

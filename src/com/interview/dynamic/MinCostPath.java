@@ -19,28 +19,28 @@ public class MinCostPath {
   
     
     public int minPathSum(int[][] grid) {
-        int m = grid.length; //Row
-        int n = grid[0].length; //Column
+        int R = grid.length; //Row
+        int C = grid[0].length; //Column
         int i, j; 
-        int tc[][] = new int[m][n]; 
-        tc[0][0] = grid[0][0]; 
+        int dp[][] = new int[R][C]; 
+        dp[0][0] = grid[0][0]; 
         
-        /* Initialize first column of total cost(tc) array */
-        for (i = 1; i < m; i++) 
-            tc[i][0] = tc[i-1][0] + grid[i][0]; 
+        /* Initialize first column of total cost(dp) array */
+        for (i = 1; i < R; i++) 
+            dp[i][0] = dp[i-1][0] + grid[i][0]; 
   
-        /* Initialize first row of tc array */
-        for (j = 1; j < n; j++) 
-            tc[0][j] = tc[0][j-1] + grid[0][j]; 
+        /* Initialize first row of dp array */
+        for (j = 1; j < C; j++) 
+            dp[0][j] = dp[0][j-1] + grid[0][j]; 
   
-        /* Construct rest of the tc array */
-        for (i = 1; i < m; i++) 
-            for (j = 1; j < n; j++) 
-                tc[i][j] = min(
-                               tc[i-1][j], 
-                               tc[i][j-1]) + grid[i][j]; 
+        /* Construct rest of the dp array */
+        for (i = 1; i < R; i++) 
+            for (j = 1; j < C; j++) 
+                dp[i][j] = min(
+                               dp[i-1][j], 
+                               dp[i][j-1]) + grid[i][j]; 
   
-        return tc[m-1][n-1]; 
+        return dp[R-1][C-1]; 
     }
 
 }

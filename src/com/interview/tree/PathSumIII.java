@@ -6,7 +6,8 @@ public class PathSumIII {
      * 
      * https://www.youtube.com/watch?v=yyZA4v0x16w
      * https://leetcode.com/problems/path-sum-iii/submissions/
-     * Related: https://leetcode.com/problems/path-sum-iv/ Medium. Must Do
+     * Category: Medium, Must Do
+     * Related: https://leetcode.com/problems/path-sum-iv/ 
      * https://leetcode.com/problems/longest-univalue-path/ Medium
      * Given the root of a binary tree and an integer targetSum, return the number of paths where the sum of the values along the path equals targetSum.
 

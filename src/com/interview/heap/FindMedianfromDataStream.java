@@ -1,9 +1,9 @@
-package com.interview.systemdesign;
+package com.interview.heap;
 
 import java.util.*;
 
 /* Reference: https://leetcode.com/problems/find-median-from-val-stream
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, VVImp
  * Reference: https://www.youtube.com/watch?v=1LkOrc-Le-Y&t=1186s
  */
 public class FindMedianfromvalStream {

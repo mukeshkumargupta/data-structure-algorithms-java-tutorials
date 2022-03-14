@@ -1,4 +1,4 @@
-package com.interview.systemdesign;
+package com.interview.hash;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/design-hashmap

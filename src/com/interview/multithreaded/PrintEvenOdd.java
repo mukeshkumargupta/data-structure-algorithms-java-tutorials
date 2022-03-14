@@ -11,7 +11,7 @@ public class PrintEvenOdd {
     static int N; 
   
     // Function to print odd numbers 
-    public void printOddNumber() 
+    public void printOneNumber() 
     { 
         synchronized (this) 
         { 
@@ -19,7 +19,7 @@ public class PrintEvenOdd {
             while (counter < N) { 
   
                 // If count is even then print 
-                while (counter % 2 == 0) { 
+                while (counter % 3 != 0 && counter % 2 != 0) { 
   
                     // Exception handle 
                     try { 
@@ -32,19 +32,19 @@ public class PrintEvenOdd {
                 } 
   
                 // Print the number 
-                System.out.print(counter + " "); 
+                System.out.print(1 + " "); 
   
                 // Increment counter 
                 counter++; 
   
-                // Notify to second thread 
-                notify(); 
+                // Notify to other thread 
+                notifyAll(); 
             } 
         } 
     } 
   
     // Function to print even numbers 
-    public void printEvenNumber() 
+    public void printTwoNumber() 
     { 
         synchronized (this) 
         { 
@@ -52,7 +52,7 @@ public class PrintEvenOdd {
             while (counter < N) { 
   
                 // If count is odd then print 
-                while (counter % 2 == 1) { 
+                while (counter % 2 != 0) { 
   
                     // Exception handle 
                     try { 
@@ -66,13 +66,46 @@ public class PrintEvenOdd {
   
                 // Print the number 
                 System.out.print( 
-                    counter + " "); 
+                    2 + " "); 
   
                 // Increment counter 
                 counter++; 
   
-                // Notify to 2nd thread 
-                notify(); 
+                // Notify to other thread 
+                notifyAll(); 
+            } 
+        } 
+    } 
+    
+    // Function to print odd numbers 
+    public void printThreeNumber() 
+    { 
+        synchronized (this) 
+        { 
+            // Print number till the N 
+            while (counter < N) { 
+  
+                // If count is even then print 
+                while (counter % 3 != 0) { 
+  
+                    // Exception handle 
+                    try { 
+                        wait(); 
+                    } 
+                    catch ( 
+                        InterruptedException e) { 
+                        e.printStackTrace(); 
+                    } 
+                } 
+  
+                // Print the number 
+                System.out.print(3 + " "); 
+  
+                // Increment counter 
+                counter++; 
+  
+                // Notify to second thread 
+                notifyAll(); 
             } 
         } 
     } 
@@ -84,30 +117,17 @@ public class PrintEvenOdd {
         // Create an object of class 
         PrintEvenOdd EvenOdd = new PrintEvenOdd(); 
   
-        // Create thread t1 
-        /*Thread t1 = new Thread(new Runnable() { 
-            public void run() 
-            { 
-                EvenOdd.printEvenNumber(); 
-            } 
-        }); 
-  
-        // Create thread t2 
-        Thread t2 = new Thread(new Runnable() { 
-            public void run() 
-            { 
-                EvenOdd.printOddNumber(); 
-            } 
-        }); */
         
         // Create thread t1 
-        Thread t1 = new Thread(EvenOdd::printEvenNumber);
-        Thread t2 = new Thread(EvenOdd::printOddNumber);
+        Thread t1 = new Thread(EvenOdd::printOneNumber);
+        Thread t2 = new Thread(EvenOdd::printTwoNumber);
+        Thread t3 = new Thread(EvenOdd::printThreeNumber);
   
 
   
         // Start both threads 
         t1.start(); 
         t2.start(); 
+        t3.start(); 
     } 
 }

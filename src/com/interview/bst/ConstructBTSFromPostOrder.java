@@ -1,4 +1,4 @@
-package com.interview.tree;
+package com.interview.bst;
 
 /*
  * https://www.youtube.com/watch?v=KsGXE7_y2Nw

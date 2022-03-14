@@ -15,7 +15,6 @@ import com.interview.array.KthElementInArray;
  * Category: Medium, Tricky
  * https://www.youtube.com/watch?v=eOlp2q08EDU
  *
- * https://leetcode.com/problems/wiggle-sort/
  * https://leetcode.com/problems/wiggle-sort-ii/
  */
 public class WiggleSort {

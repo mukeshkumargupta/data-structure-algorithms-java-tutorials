@@ -35,6 +35,33 @@ intervals[i].length == 2
 public class NonoverlappingIntervals {
     public int eraseOverlapIntervals(int[][] intervals) {
         /*
+         * Runtime: 47 ms, faster than 77.98% of Java online submissions for Non-overlapping Intervals.
+Memory Usage: 96.7 MB, less than 58.48% of Java online submissions for Non-overlapping Intervals.
+         */
+        Arrays.sort(intervals, (int[] interval1, int[] interval2) -> {
+            if (interval1[0] != interval1[1]) {
+                return interval1[1] - interval2[1];
+            } else {
+                return interval1[0] - interval2[0];
+            }
+            
+        });
+        int end = intervals[0][1];
+        int R = intervals.length;
+        int removalCount = 0;
+        for (int i = 1; i < R; i++) {
+            if (intervals[i][0] < end) {
+                removalCount++;
+                continue;
+            }
+            end = intervals[i][1];
+            
+        }
+        return removalCount;
+        
+    }
+    public int eraseOverlapIntervalsM2(int[][] intervals) {
+        /*
          * Runtime: 130 ms, faster than 7.84% of Java online submissions for Non-overlapping Intervals.
 Memory Usage: 105.8 MB, less than 46.66% of Java online submissions for Non-overlapping Intervals.
 Note: Find better solution

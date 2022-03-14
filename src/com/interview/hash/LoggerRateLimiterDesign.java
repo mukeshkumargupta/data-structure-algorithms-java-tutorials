@@ -1,11 +1,11 @@
-package com.interview.systemdesign;
+package com.interview.hash;
 
 import java.util.*;
 
 /*
  * Reference: https://www.youtube.com/watch?v=a5vcIOaKuuY
  * https://leetcode.com/problems/logger-rate-limiter/
- * Category: Easy
+ * Category: Easy, Must Do
  * Status: Done
  */
 public class LoggerRateLimiterDesign {

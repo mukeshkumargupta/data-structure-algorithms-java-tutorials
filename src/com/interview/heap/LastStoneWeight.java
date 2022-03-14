@@ -1,4 +1,4 @@
-package com.interview.stackqueue;
+package com.interview.heap;
 
 import java.util.*;
 

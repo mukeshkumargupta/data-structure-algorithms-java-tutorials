@@ -95,46 +95,121 @@ public class TreeTraversals {
         
     }
     
-    public void postOrderItr(TreeNode root){
-        Deque<TreeNode> stack1 = new LinkedList<TreeNode>();
-        Deque<TreeNode> stack2 = new LinkedList<TreeNode>();
-        stack1.addFirst(root);
-        while(!stack1.isEmpty()){
-            root = stack1.pollFirst();
-            if(root.left != null){
-                stack1.addFirst(root.left);
-            }
-            if(root.right != null){
-                stack1.addFirst(root.right);
-            }
-            stack2.addFirst(root);
+    /*
+     * https://www.youtube.com/watch?v=2YBhNLodD8Q
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        /*
+         * Runtime: 1 ms, faster than 44.45% of Java online submissions for Binary Tree Postorder Traversal.
+Memory Usage: 42.7 MB, less than 7.44% of Java online submissions for Binary Tree Postorder Traversal.
+            Category: Easy
+            Related: https://leetcode.com/problems/binary-search-tree-iterator/ Medium VImp
+            https://leetcode.com/problems/closest-binary-search-tree-value-ii/ Hard Locked
+            https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/ Medium Locked 2 and 3rd version is aslo locked
+         */
+        Stack<TreeNode> st1 = new Stack<>();
+        Stack<TreeNode> st2 = new Stack<>();
+        if (root != null) {
+            st1.push(root);
         }
-        while(!stack2.isEmpty()){
-            System.out.print(stack2.pollFirst().val + " ");
+        
+        while(!st1.isEmpty()) {
+            TreeNode current = st1.pop();
+            st2.push(current);
+            if (current.left != null) {
+                st1.push(current.left);
+            }
+            
+            if (current.right != null) {
+                st1.push(current.right);
+            }
         }
+        List<Integer> result = new ArrayList<>();
+        while(!st2.isEmpty()) {
+            result.add(st2.pop().val);
+        }
+        return result;
+        
     }
     //VVImp
-    public void postOrderItrOneStack(TreeNode root){
+    public List<Integer> postorderTraversalOneStack(TreeNode root) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Tree Postorder Traversal.
+Memory Usage: 40 MB, less than 47.18% of Java online submissions for Binary Tree Postorder Traversal.
+TC: 2N, here N + N( when while n is equal to right then print)
+SC: N
+         */
+        Stack<TreeNode> st1 = new Stack<>();
         TreeNode current = root;
-        Deque<TreeNode> stack = new LinkedList<>();
-        while(current != null || !stack.isEmpty()){
-            if(current != null){
-                stack.addFirst(current);
+        List<Integer> result = new ArrayList<>();
+        while(current != null || !st1.isEmpty()) {
+            while (current != null) {//keep trying left then 
+                st1.push(current);
                 current = current.left;
-            }else{
-                TreeNode temp = stack.peek().right;
-                if (temp == null) {
-                    temp = stack.poll();
-                    System.out.print(temp.val + " ");
-                    while (!stack.isEmpty() && temp == stack.peek().right) {
-                        temp = stack.poll();
-                        System.out.print(temp.val + " ");
+            }
+            
+            TreeNode temp = st1.peek().right;
+            if (temp == null) {//it means left and right both null then print
+                temp = st1.pop();
+                result.add(temp.val);
+
+
+                while(!st1.isEmpty() && st1.peek().right == temp) {
+                    temp = st1.pop();
+                    result.add(temp.val);
+                }
+
+            } else {
+                current = temp;
+            }
+            
+
+            
+        }
+
+        return result;
+        
+    }
+    
+    public List<Integer> postorderTraversalSlow(TreeNode root) {
+        /*
+         * Runtime: 1 ms, faster than 44.45% of Java online submissions for Binary Tree Postorder Traversal.
+Memory Usage: 42.2 MB, less than 27.33% of Java online submissions for Binary Tree Postorder Traversal
+Related:
+https://leetcode.com/problems/equal-tree-partition/ Medium Locked
+https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/ Hard VVImp
+https://leetcode.com/problems/correct-a-binary-tree/ Medium Locked
+         */
+        Stack<TreeNode> st1 = new Stack<>();
+        TreeNode current = root;
+        List<Integer> result = new ArrayList<>();
+        while(current != null || !st1.isEmpty()) {
+            if (current != null) {
+                st1.push(current);
+                current = current.left;
+            } else {
+                TreeNode temp = st1.peek().right;
+                if (temp == null) {//it means left and right both null then print
+                    temp = st1.pop();
+                    result.add(temp.val);
+
+
+                    while(!st1.isEmpty() && st1.peek().right == temp) {
+                        temp = st1.pop();
+                        result.add(temp.val);
                     }
+
                 } else {
                     current = temp;
                 }
             }
+            
+
+            
         }
+
+        return result;
+        
     }
     
     public static void main(String args[]){

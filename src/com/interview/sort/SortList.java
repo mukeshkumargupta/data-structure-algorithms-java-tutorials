@@ -6,6 +6,8 @@ package com.interview.sort;
  * This video for sorting two list
  * https://www.youtube.com/watch?v=yn6kTAkf9Mc (merge login is explained here well)
  * Category: Medium, Must Do,
+ * Related: https://leetcode.com/problems/insertion-sort-list/ Medium
+ * https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/ Medium
  * Done in o1 space
  * Given the head of a linked list, return the list after sorting it in ascending order.
 
@@ -30,30 +32,30 @@ public class SortList {
         
     }
     
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
+    public ListNode mergeTwoLists(ListNode p1, ListNode p2) {
+        if(p1 == null) return p2;
+        if(p2 == null) return p1;
         
-        ListNode head = l1;
-        if(l1.val > l2.val){//First decide which one is head
-            head = l2;
-            l2 = l2.next;
+        ListNode head = p1;
+        if(p1.val > p2.val){//First decide which one is head
+            head = p2;
+            p2 = p2.next;
         } else
-            l1 = l1.next;
+            p1 = p1.next;
         
         ListNode curr = head;
-        while(l1 != null && l2 != null){
-            if(l1.val <= l2.val){
-                curr.next = l1;
-                l1 = l1.next;
+        while(p1 != null && p2 != null){
+            if(p1.val <= p2.val){
+                curr.next = p1;
+                p1 = p1.next;
             } else {
-                curr.next = l2;
-                l2 = l2.next;
+                curr.next = p2;
+                p2 = p2.next;
             }
             curr = curr.next;
         }
-        if(l1 != null) curr.next = l1;
-        else curr.next = l2;
+        if(p1 != null) curr.next = p1;
+        else curr.next = p2;
         
         return head;
     }

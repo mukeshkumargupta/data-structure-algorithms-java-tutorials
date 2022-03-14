@@ -1,11 +1,12 @@
-package com.interview.tree;
+package com.interview.bst;
+
+import com.interview.tree.TreeNode;
 
 /*
  * https://www.youtube.com/watch?v=UAsLKuEMhsQ
  * Category: Medium
  */
 public class ConstructBSTFromInorderOrderArray {
-    int preIdx=0;
     public TreeNode bstFromInorder(int[] inorder) {
         return formBST(preorder,0,inorder.length-1);
     }

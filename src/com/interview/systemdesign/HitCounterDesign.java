@@ -9,7 +9,7 @@ import java.util.*;
  * Reference: https://www.youtube.com/watch?v=hsUPfyfPcxE
  * Reference: https://www.geeksforgeeks.org/design-a-hit-counter/?ref=rp
  * https://leetcode.com/problems/design-hit-counter/
- * Category: Medium
+ * Category: Medium, Must Do
  * Company: Google, Amazon, Facebook
  * Examples:
 

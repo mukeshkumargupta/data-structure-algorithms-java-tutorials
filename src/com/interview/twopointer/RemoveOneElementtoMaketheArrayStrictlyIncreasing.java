@@ -49,7 +49,26 @@ Constraints:
 1 <= nums[i] <= 1000
  */
 public class RemoveOneElementtoMaketheArrayStrictlyIncreasing {//
-    public boolean canBeIncreasing(int[] nums) {//Runtime: 2 ms, faster than 20.58% of Java online submissions for Remove One Element to Make the Array Strictly Increasing.
+    
+    public boolean canBeIncreasing(int[] nums) {
+        int count=0;
+         for(int i=0;i<nums.length-1;i++)
+        {
+            if(nums[i]>=nums[i+1])
+            {
+                count++;
+                if(i>0 && nums[i-1]>=nums[i+1])
+                {
+                    nums[i+1] = nums[i];
+                    //We can not do like this: nums[i+1] = nums[i-1];//Case: [541,783,433,744]
+                }
+            }
+            if(count>1)
+                return false;
+        }
+       return true;   
+    }
+    public boolean canBeIncreasingInTwoLoop(int[] nums) {//Runtime: 2 ms, faster than 20.58% of Java online submissions for Remove One Element to Make the Array Strictly Increasing.
         int l = nums.length;
         int last = nums[l-1];
         int leftCount = 0;
@@ -74,6 +93,8 @@ public class RemoveOneElementtoMaketheArrayStrictlyIncreasing {//
         return Math.min(rightCount, leftCount) <=1;
 
     }
+    
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

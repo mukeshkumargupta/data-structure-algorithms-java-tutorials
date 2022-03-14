@@ -1,4 +1,4 @@
-package com.interview.systemdesign;
+package com.interview.stackqueue;
 
 import java.util.*;
 /*

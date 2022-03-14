@@ -4,7 +4,7 @@ package com.interview.sort;
  * 
  * https://leetcode.com/problems/merge-k-sorted-lists/
  * https://www.youtube.com/watch?v=kpCesr9VXDA&t=794s
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Fundamental
  * Related: https://leetcode.com/problems/ugly-number-ii/ Medium
  * You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
 

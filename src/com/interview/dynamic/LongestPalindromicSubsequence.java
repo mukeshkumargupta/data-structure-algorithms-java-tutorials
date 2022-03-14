@@ -5,6 +5,7 @@ package com.interview.dynamic;
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/longest-palindromic-subsequence/
  * Category: Medium, Must Do
+ * Derived Question: DP 29. Minimum Insertions to Make String Palindrome
  *
  * Given a string find longest palindromic subsequence in this string.
  * Related: https://leetcode.com/problems/palindromic-substrings/ Medium
@@ -43,10 +44,12 @@ public class LongestPalindromicSubsequence {
         int length = s.length();
         int[][] dp = new int [length][length];
         
+        //for one length
         for (int i = 0; i < length; i++) {
             dp[i][i] = 1;
         }
         
+        //for two length
         for (int i = 0; i < length -1; i++) {
             if (s.charAt(i) == s.charAt(i+1)) {
                dp[i][i+1] = 2; 

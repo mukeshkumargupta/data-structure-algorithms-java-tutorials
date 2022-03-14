@@ -62,7 +62,7 @@ public class MajorityElementII {
         for (int elm : nums) {
             if (candidate1 == elm) {
                 count1++;
-            } else  if (candidate2 == elm) {
+            } else  if (candidate2 == elm) {//[-1,-1,-1], to make candidate1 and candidate 2 different
                 count2++;
             }
         }

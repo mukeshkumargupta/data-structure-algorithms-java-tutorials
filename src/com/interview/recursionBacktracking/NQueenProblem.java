@@ -65,7 +65,7 @@ public class NQueenProblem {
     
     
     private void solve(int col, char[][] board, List<List<String>> res, int leftRow[], int lowerDiagonal[], int upperDiagonal[]) {
-        if(col == board.length) {
+        if(col == board.length) { //base case
             res.add(construct(board));
             return;
         }

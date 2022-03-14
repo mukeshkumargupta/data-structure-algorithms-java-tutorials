@@ -1,9 +1,12 @@
-package com.interview.hash;
+package com.interview.slidingwindow;
 
 import java.util.*;
 /*
  *https://leetcode.com/problems/find-all-anagrams-in-a-string/
- *Category: Medium, Must Do
+ *Category: Medium, Must Do, VVImp
+ *Related: https://leetcode.com/problems/minimum-index-sum-of-two-lists/ Easy Imp
+ *https://leetcode.com/problems/sort-features-by-popularity/ Medium, Locked but i think map and pq will solve it
+ *https://leetcode.com/problems/groups-of-strings/ Hard VImp
  *https://www.youtube.com/watch?v=fYgU6Bi2fRg&t=324s
  *TODO: Need to understand why this is failing
  *Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
@@ -36,57 +39,44 @@ s and p consist of lowercase English letters.
  */
 
 public class FindAllAnagramsinaString {
-    boolean isMapEqual(Map<Character, Integer> m1, Map<Character, Integer> m2) {
-        boolean isEqual = true;
-        for (Character key: m2.keySet()) {
-            if (m1.get(key) != m2.get(key)) {//Compare
-                isEqual = false;
-            }
-            
-        }
-        return isEqual;
-        
-        
-    }
     public List<Integer> findAnagrams(String s, String p) {
-        Map<Character, Integer> m1 = new HashMap<>();
-        Map<Character, Integer> m2 = new HashMap<>();
+        /*
+         * Runtime: 8 ms, faster than 86.97% of Java online submissions for Find All Anagrams in a String.
+Memory Usage: 48.1 MB, less than 33.37% of Java online submissions for Find All Anagrams in a String.
+         */
+        int[] slidingWindowCount = new int[26];
+        int[] patternCount = new int[26];
         int l1 = s.length();
-        int l2 = p.length();
+        int windowSize = p.length();
         List<Integer> result = new ArrayList();
-        if (l2 > l1) {
+        if (windowSize > l1) {
             return result;
         }
-        for (int i = 0; i < l2; i++) {
-            Character ch = p.charAt(i);
-             m2.put(ch, m2.getOrDefault(ch, 0) +1);
-            
-            ch = s.charAt(i);
-            m1.put(ch, m1.getOrDefault(ch, 0) +1);
+        //process first window
+        int i = 0;
+        for (; i < windowSize; i++) {
+            slidingWindowCount[s.charAt(i) - 'a'] += 1;
+            patternCount[p.charAt(i) - 'a'] += 1;
         }
-
-
-        //Now comparte and accumulate result
-        if (isMapEqual(m1, m2)) {
+        //Check both are equals
+        if (Arrays.equals(slidingWindowCount, patternCount)) {
             result.add(0);
-            
         }
-        int start = 0;
-        for (int end = l2; end < l1; end++) {
-            //Reduce one count
-            Character startChar = s.charAt(start++);
-            m1.put(startChar, m1.getOrDefault(startChar, 0) -1);
-            
-            //m1.remove(s.charAt(start));
-            Character ch = s.charAt(end);
-            m1.put(ch, m1.getOrDefault(ch, 0) +1);
-            if (isMapEqual(m1, m2)) {
-                result.add(start);
-            
+        
+        //process window by window
+        for (;i < l1; i++) {
+            //encrease by one  due to including window
+            slidingWindowCount[s.charAt(i) - 'a'] += 1;
+            //reduce by one due to excluding window
+            slidingWindowCount[s.charAt(i-windowSize) - 'a'] -= 1;//i-windowSize exclude of window
+            //Check both are equals
+            if (Arrays.equals(slidingWindowCount, patternCount)) {
+                result.add(i-windowSize+1);//here start of window
             }
             
             
         }
+
         return result;   
     }
     public static void main(String[] args) {

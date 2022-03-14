@@ -1,4 +1,4 @@
-package com.interview.stackqueue;
+package com.interview.bfsdfs;
 
 import java.util.*;
 /*
@@ -106,7 +106,7 @@ public class RottingOranges {
                     
                 }
             }
-            if(queue.size() != 0) {
+            if(queue.size() != 0) { //Good trick to check children has added in queue, apply think concept in burning tree, or find all element in k distance
                 time++;
             }
         }

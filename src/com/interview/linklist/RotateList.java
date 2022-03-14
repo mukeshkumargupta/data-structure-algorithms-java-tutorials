@@ -10,7 +10,7 @@ package com.interview.linklist;
  *
  * https://leetcode.com/problems/rotate-list/
  * https://www.youtube.com/watch?v=9VPm6nEbVPA
- * Related:https://leetcode.com/problems/split-linked-list-in-parts/ Medium
+ * Related:https://leetcode.com/problems/split-linked-list-in-parts/ Medium VVImp
  * Category: Medium, Must Do
  * 
  * Given the head of a linked list, rotate the list to the right by k places.
@@ -36,7 +36,10 @@ The number of nodes in the list is in the range [0, 500].
 0 <= k <= 2 * 109
  */
 public class RotateList {
-    public ListNode rotateRight(ListNode head, int k) {
+    public ListNode rotateRight(ListNode head, int k) {/*
+    /*Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate List.
+Memory Usage: 43.5 MB, less than 10.70% of Java online submissions for Rotate List.
+*/
         int l = 0;
         //if only one node
         if (head == null || head.next == null || k ==0) {

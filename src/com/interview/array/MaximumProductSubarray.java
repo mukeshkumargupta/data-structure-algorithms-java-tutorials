@@ -53,24 +53,22 @@ public class MaximumProductSubarray {
          * Runtime: 1 ms, faster than 91.34% of Java online submissions for Maximum Product Subarray.
 Memory Usage: 41.5 MB, less than 5.60% of Java online submissions for Maximum Product Subarray.
          */
-        int maxSoFarSum = nums[0];
+        int maxSoFarProduct = nums[0];
         int l = nums.length;
-        int maxTillSum = nums[0];
-        int minTillSum = nums[0];
+        int maxTillProduct = nums[0];
+        int minTillProduct = nums[0];
         for (int i = 1; i < l; i++) {
             //Just the slight modification of previous approach. As we know that on multiplying with negative number max will become min and min will become max, so why not as soon as we encounter negative element, we swap the max and min already.
             if (nums[i] < 0) {
-                int temp = maxTillSum;
-                maxTillSum = minTillSum;
-                minTillSum = temp;
+                int temp = maxTillProduct;
+                maxTillProduct = minTillProduct;
+                minTillProduct = temp;
             }
-            maxTillSum = Math.max(nums[i]*maxTillSum, nums[i]); 
-            minTillSum =Math.min(nums[i]*minTillSum, nums[i]);
-            if (maxTillSum > maxSoFarSum) {
-                maxSoFarSum = maxTillSum;
-            }
+            maxTillProduct = Math.max(nums[i]*maxTillProduct, nums[i]); 
+            minTillProduct =Math.min(nums[i]*minTillProduct, nums[i]);
+            maxSoFarProduct = Math.max(maxSoFarProduct, maxTillProduct);
         }
-        return maxSoFarSum;
+        return maxSoFarProduct;
         
     }
     public int maxProductM2(int[] nums) {//Lititle optimization, some comparision is reduced
@@ -78,19 +76,19 @@ Memory Usage: 41.5 MB, less than 5.60% of Java online submissions for Maximum Pr
          * Runtime: 4 ms, faster than 15.08% of Java online submissions for Maximum Product Subarray.
 Memory Usage: 40.1 MB, less than 12.25% of Java online submissions for Maximum Product Subarray.
          */
-        int maxSoFarSum = nums[0];
+        int maxSoFarProduct = nums[0];
         int l = nums.length;
-        int maxTillSum = nums[0];
-        int minTillSum = nums[0];
+        int maxTillProduct = nums[0];
+        int minTillProduct = nums[0];
         for (int i = 1; i < l; i++) {
-            int temp = maxTillSum;
-            maxTillSum = Math.max(Math.max(nums[i]*maxTillSum, nums[i]*minTillSum), nums[i]); //Math.max(Math.max(nums[i], nums[i]*maxTillSum), nums[i]*minTillSum);//nums[i] is 0 case
-            minTillSum = Math.min(Math.min(nums[i]*minTillSum, nums[i]*temp), nums[i]);//nums[i] is 0 case
-            if (maxTillSum > maxSoFarSum) {
-                maxSoFarSum = maxTillSum;
+            int temp = maxTillProduct;
+            maxTillProduct = Math.max(Math.max(nums[i]*maxTillProduct, nums[i]*minTillProduct), nums[i]); //Math.max(Math.max(nums[i], nums[i]*maxTillProduct), nums[i]*minTillProduct);//nums[i] is 0 case
+            minTillProduct = Math.min(Math.min(nums[i]*minTillProduct, nums[i]*temp), nums[i]);//nums[i] is 0 case
+            if (maxTillProduct > maxSoFarProduct) {
+                maxSoFarProduct = maxTillProduct;
             }
         }
-        return maxSoFarSum;
+        return maxSoFarProduct;
         
     }
     public static void main(String[] args) {

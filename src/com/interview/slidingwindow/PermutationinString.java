@@ -3,7 +3,7 @@ package com.interview.slidingwindow;
 import java.util.*;
 /*
  * https://leetcode.com/problems/permutation-in-string
- * Category: Medium, Must Do
+ * Category: Medium, Imp
  * 
  * Related: https://leetcode.com/problems/minimum-window-substring/ Hard
  * 

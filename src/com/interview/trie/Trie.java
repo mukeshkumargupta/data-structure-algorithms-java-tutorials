@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * Reference
  * https://en.wikipedia.org/wiki/Trie
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, Fundamental
  */
 public class Trie {
 

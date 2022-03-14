@@ -24,7 +24,7 @@ import java.util.*;
  * this question can be solved just to traverse and put point based on criteria.
  * keep traversing and update result and keep change the result.
  * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree 
- * Category: Hard, Must Do, Google
+ * Category: Hard, Must Do, Google, Fundamental
  * Related: https://leetcode.com/problems/flatten-nested-list-iterator/ Medium
  * https://leetcode.com/problems/widest-pair-of-indices-with-equal-range-sum/ Medium\
  * https://leetcode.com/problems/add-one-row-to-tree/ Medium

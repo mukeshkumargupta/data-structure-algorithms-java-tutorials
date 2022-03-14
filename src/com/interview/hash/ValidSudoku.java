@@ -5,6 +5,7 @@ import java.util.*;
  * https://leetcode.com/problems/valid-sudoku/submissions/
  * https://www.youtube.com/watch?v=rJ9NFK9s_mI
  * Category: Medium, Must Do, Top150, Sudoku
+ * https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/ Easy Imp
  * Related: https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/ Medium
  * https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/ Medium
  * https://leetcode.com/problems/get-maximum-in-generated-array/ Easy

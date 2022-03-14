@@ -3,6 +3,8 @@ package com.interview.array;
  * References
  * https://oj.leetcode.com/problems/trapping-rain-water/
  * https://leetcode.com/problems/trapping-rain-water/
+ * Related: https://leetcode.com/problems/trapping-rain-water-ii/ Hard VVImp
+ * https://leetcode.com/problems/pour-water/ Medium Locked
  * https://www.youtube.com/watch?v=m18Hntz4go8&t=1s
  * Category: Hard, Must Do
  * Related: https://leetcode.com/problems/trapping-rain-water-ii/ Hard

@@ -3,7 +3,11 @@ import java.util.*;
 /*
  * Reference:https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
  * Category: Medium, Must Do
+ * https://www.youtube.com/watch?v=i9ORlEy6EsI&t=1s
  * Video: https://www.youtube.com/watch?v=nPtARJ2cYrg
+ * Related: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/ Medium, treeconstruction, VVImp
+ * https://leetcode.com/problems/check-completeness-of-a-binary-tree/ Medium, VVImp
+ * https://leetcode.com/problems/two-sum-bsts/ Medium, Locked
  */
 
 /**
@@ -17,8 +21,8 @@ import java.util.*;
  */
 public class AllTreeNodesDistanceKInBinaryTree {
     /*
-     * Runtime: 25 ms, faster than 18.72% of Java online submissions for All Nodes Distance K in Binary Tree.
-Memory Usage: 39.6 MB, less than 22.53% of Java online submissions for All Nodes Distance K in Binary Tree.
+     * Runtime: 19 ms, faster than 46.35% of Java online submissions for All Nodes Distance K in Binary Tree.
+Memory Usage: 43.3 MB, less than 25.69% of Java online submissions for All Nodes Distance K in Binary Tree.
 Time Complexity: O(N)O(N), where NN is the number of nodes in the given tree.
 
 Space Complexity: O(N)O(N).
@@ -63,18 +67,18 @@ Space Complexity: O(N)O(N).
                 
             }
             for (int i = 0; i < size; i++) {
-                TreeNode TreeNode = q.remove();
-                if (TreeNode.left != null && !visited.contains(TreeNode.left)) {
-                    q.add(TreeNode.left);
-                    visited.add(TreeNode.left);
+                TreeNode currentNode = q.remove();
+                if (currentNode.left != null && !visited.contains(currentNode.left)) {
+                    q.add(currentNode.left);
+                    visited.add(currentNode.left);
                 }
-                if (TreeNode.right != null && !visited.contains(TreeNode.right)) {
-                    q.add(TreeNode.right);
-                    visited.add(TreeNode.right);
+                if (currentNode.right != null && !visited.contains(currentNode.right)) {
+                    q.add(currentNode.right);
+                    visited.add(currentNode.right);
                 }
-                if (lookup.containsKey(TreeNode) && !visited.contains(lookup.get(TreeNode))) {
-                    q.add(lookup.get(TreeNode));
-                    visited.add(lookup.get(TreeNode));
+                if (lookup.containsKey(currentNode) && !visited.contains(lookup.get(currentNode))) {
+                    q.add(lookup.get(currentNode));
+                    visited.add(lookup.get(currentNode));
                 }
             }
             level++;

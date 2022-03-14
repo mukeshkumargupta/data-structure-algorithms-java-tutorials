@@ -7,6 +7,9 @@ import java.util.*;
  * Related: https://leetcode.com/problems/zigzag-conversion/ Medium
  * https://leetcode.com/problems/design-phone-directory/ Medium
  * https://leetcode.com/problems/design-in-memory-file-system/ Medium
+ * https://leetcode.com/problems/reorganize-string/ Medium VVImp
+ * https://leetcode.com/problems/longest-arithmetic-subsequence/ Medium VVImp
+ * https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/ Medium VImp
  * Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
 
  
@@ -59,5 +62,32 @@ public class FirstUniqueCharacterinaString {
         } else {
             return -1;
         }
+    }
+    
+    
+    public int firstUniqChar_P1(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int l = s.length();
+
+        for (int i = 0; i < l; i++) {
+            char ch = s.charAt(i);
+            if (!map.containsKey(ch)) {
+                map.put(ch, i);
+            } else {
+                map.put(ch, -1);
+            }
+            
+        }
+        
+        //find min index
+        int minIndex = Integer.MAX_VALUE;
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            if (map.containsKey(ch) && map.get(ch) != -1) {
+                //System.out.println(ch);
+                minIndex = Math.min(minIndex, map.get(ch));
+            }
+        }
+        return minIndex != Integer.MAX_VALUE ? minIndex : -1;
+        
     }
 }

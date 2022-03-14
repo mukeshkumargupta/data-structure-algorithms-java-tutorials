@@ -1,4 +1,7 @@
-package com.interview.tree;
+package com.interview.bst;
+
+import com.interview.tree.TreeNode;
+import com.interview.tree.TreeTraversals;
 
 class Index{
     int index;

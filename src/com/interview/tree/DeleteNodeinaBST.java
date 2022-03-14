@@ -3,7 +3,7 @@ package com.interview.tree;
 /*
  * Reference:
  * https://leetcode.com/problems/delete-node-in-a-bst/submissions/
- * Category: Medium, Tricky
+ * Category: Medium, Tricky, Fundamental
  * Related: https://leetcode.com/problems/split-bst/
  * https://www.youtube.com/watch?v=5_AZcOOc-kM&list=PLIA-9QRQ0RqFaV3j0I4FMiPQQkG-jIouX&index=27
  */

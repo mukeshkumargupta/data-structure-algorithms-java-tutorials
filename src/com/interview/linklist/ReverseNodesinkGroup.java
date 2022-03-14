@@ -2,7 +2,7 @@ package com.interview.linklist;
 
 /*
  * https://leetcode.com/problems/reverse-nodes-in-k-group/
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Fundamental
  * https://www.youtube.com/watch?v=BfQeP6XEXEc
  * Related: https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ Medium
  * 
@@ -65,7 +65,7 @@ Memory Usage: 42.7 MB, less than 17.59% of Java online submissions for Reverse N
         current = head;
         ListNode prev = null, tail1 = null, tail2 = current, temp = null;
         while (l >= k) {
-            //Reverse k gropup            
+            //Reverse k group            
             for (int i = 0 ; i < k; i++) {
                 temp = current.next;
                 current.next = prev;
@@ -86,8 +86,6 @@ Memory Usage: 42.7 MB, less than 17.59% of Java online submissions for Reverse N
             prev = null;//rest previous
         }
         return newHead;
-            
-        
     }
               
      

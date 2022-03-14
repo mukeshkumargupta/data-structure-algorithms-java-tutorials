@@ -123,6 +123,32 @@ public class FlatteningaLinkedList {
         root = mergeTwoLists(root, root.next);
         return root;
     }
+    Node flattenRecursiveMineVersion(Node root)
+    {
+    // Your code here
+        if (root == null || root.next == null) {//if null or first node
+            return root;
+        }
+        Node next = flatten(root.next);
+        root = mergeTwoLists(root, next);
+        return root;
+    }
+    
+    Node flattenIterativeMineVersion(Node root)
+    {
+        // Your code here
+        if (root == null || root.next == null) {//if null or first node
+            return root;
+        }
+        //Process first two and 
+        Node head = root;
+        Node current = root.next;
+        while (current != null) {
+            head = mergeTwoLists(head, current);
+            current = current.next;
+        }
+        return head;
+    }
     
     //This is iterative solution, two list is merge at a time that is not optimized, use priority queue to solve it
     Node flatten(Node root)
@@ -141,7 +167,7 @@ public class FlatteningaLinkedList {
     }
     
     /*Using ksorted list
-     * Some test case are failing but try when time permit here
+     * Working code now
      * https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
      */
     public Node mergeKLists(List<Node> lists) {
@@ -188,9 +214,7 @@ public class FlatteningaLinkedList {
             kSortedListHead.add(current);
             current = current.next;
         }
-        mergeKLists(kSortedListHead);
-        
-        return root;
+        return mergeKLists(kSortedListHead);
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

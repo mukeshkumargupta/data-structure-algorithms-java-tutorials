@@ -2,8 +2,12 @@ package com.interview.tree;
 
 /**
  * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
- * Category: Medium, Must Do
- * Related: construct all tree from inorder preorder, inorder post order,   
+ * Category: Medium, Must Do, Fundamental
+ * Note: Since search is taking time so use map here to get in order of 1
+ * Related: construct all tree from inorder preorder, inorder post order, 
+ * https://leetcode.com/problems/magic-squares-in-grid/ Medium
+ * https://leetcode.com/problems/number-of-closed-islands/ Medium
+ * https://leetcode.com/problems/count-square-submatrices-with-all-ones/ Medium  
  */
 public class ConstructTreeFromInOrderPreOrder {
     

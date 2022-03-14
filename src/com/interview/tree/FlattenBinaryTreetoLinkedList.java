@@ -3,7 +3,7 @@ package com.interview.tree;
 import java.util.*;
 /*
  * https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, Tricky
  * https://www.youtube.com/watch?v=sWf7k1x9XR4
  * Derived: Just make it reverse of it, where right will be null, left skewed design
  * Related: https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/ Medium

@@ -9,10 +9,10 @@ import java.util.*;
  * Status: Some test case failing on leetcode
  */
 public class SlidingWindowMedian {
-    PriorityQueue<Integer> pq1 = new PriorityQueue<>((a, b) -> {
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> {
         return b -a; 
     });
-PriorityQueue<Integer> pq2 = new PriorityQueue<>((a, b) -> {
+PriorityQueue<Integer> meanHeap = new PriorityQueue<>((a, b) -> {
         return a - b; 
     });
 int length = 0;
@@ -20,46 +20,46 @@ int length = 0;
 public void addNum(int num) {
     length++;
     if (length % 2 != 0) {//odd then add in max heap
-        if (pq2.size() > 0 && num > pq2.peek()) {
-            pq1.add(pq2.remove());
-            pq2.add(num);
+        if (meanHeap.size() > 0 && num > meanHeap.peek()) {
+            maxHeap.add(meanHeap.remove());
+            meanHeap.add(num);
             
         } else {
-            pq1.add(num);
+            maxHeap.add(num);
             
         }
         
     } else {//add in mean heap
-        if (pq1.size() > 0 && num < pq1.peek()) {
-            pq2.add(pq1.remove());
-            pq1.add(num);
+        if (maxHeap.size() > 0 && num < maxHeap.peek()) {
+            meanHeap.add(maxHeap.remove());
+            maxHeap.add(num);
             
         } else {
-            pq2.add(num);
+            meanHeap.add(num);
             
         }
     } 
 }
 public void removeNum(int num) {
     if (length % 2 != 0) {//length odd then remove from max heap: TODO: Need to correct it
-        if (pq2.size() > 0 && num >= pq2.peek()) {
-            pq2.remove(num);
-            pq2.add(pq1.remove());
+        if (meanHeap.size() > 0 && num >= meanHeap.peek()) {
+            meanHeap.remove(num);
+            meanHeap.add(maxHeap.remove());
             
             
         } else {
-            pq1.remove(num);
+            maxHeap.remove(num);
             
         }
         
     } else {//remove from mean heap
-        if (pq1.size() > 0 && num <= pq1.peek()) {
-            pq1.remove(num);
-            pq1.add(pq2.remove());
+        if (maxHeap.size() > 0 && num <= maxHeap.peek()) {
+            maxHeap.remove(num);
+            maxHeap.add(meanHeap.remove());
             
             
         } else {
-            pq2.remove(num);
+            meanHeap.remove(num);
             
         }
     }
@@ -67,11 +67,11 @@ public void removeNum(int num) {
 }
 public double findMedian() {
     if (length % 2 != 0) {//odd then add in max heap
-        return pq1.peek(); 
+        return maxHeap.peek(); 
     } else {
         
-        //return (pq1.peek() +  pq2.peek())/2.0;
-        return (pq1.peek()/2.0 +  pq2.peek()/2.0);
+        //return (maxHeap.peek() +  meanHeap.peek())/2.0;
+        return (maxHeap.peek()/2.0 +  meanHeap.peek()/2.0);
     }
     
 }

@@ -3,66 +3,87 @@ package com.interview.tree;
 /**
  * Date 03/08/2017
  * @author Mukesh Kumar Gupta
- *
+ *Category: Medium, Tricky
  * Morris inorder/preorder traversals
- *
+ * Related: 
+ * https://leetcode.com/problems/binary-search-tree-iterator/ Medium VVImp
+ * https://leetcode.com/problems/closest-binary-search-tree-value-ii/ Hard Locked
+ * https://leetcode.com/problems/inorder-successor-in-bst/ Medium Locked
+ * https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/ Medium, Locked
+ *https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/ Medium Locked
  * Time complexity O(n)
- * Space complexity O(1)
- * Reference: https://www.youtube.com/watch?v=wGXB9OWhPTg
+ * Space complexity O(1)  Important, here O(1) space is there
+ * Reference: https://www.youtube.com/watch?v=80Zug6D1_r4&t=5s
  * Must Do (VImp)
  */
 public class MorrisTraversal {
 
-    public void inorder(TreeNode root) {
-        TreeNode current = root;
-        while(current != null) {
-            //left is null then print the TreeNode and go to right
-            if (current.left == null) {
-                System.out.print(current.val + " ");
-                current = current.right;
-            }
-            else {
-                //find the predecessor.
-                TreeNode predecessor = current.left;
-                //To find predecessor keep going right till right TreeNode is not null or right TreeNode is not current.
-                while(predecessor.right != current && predecessor.right != null){
-                    predecessor = predecessor.right;
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        TreeNode curr = root;
+        
+        while (curr != null) {
+            if (curr.left == null) {
+                result.add(curr.val);
+                curr = curr.right;
+            } else {//if there is left, then make connection by going right most, then go left
+                TreeNode prev = curr.left;
+                
+                while(prev.right != null && prev.right != curr) {//there will be two casse if current right exist then make connection, make sure, it soes not reach to own, if point to own it means print that and break the connection,
+                    prev = prev.right;
                 }
-                //if right TreeNode is null then go left after establishing link from predecessor to current.
-                if(predecessor.right == null){
-                    predecessor.right = current;
-                    current = current.left;
-                }else{ //left is already visit. Go rigth after visiting current.
-                    predecessor.right = null;
-                    System.out.print(current.val + " ");
-                    current = current.right;
+                
+                if (prev.right == null) {
+                   prev.right =  curr;
+                    curr= curr.left;
+                } else {
+                    result.add(curr.val);
+                    prev.right = null;//break the connection
+                    curr = curr.right;
                 }
+                
+                
             }
+            
         }
+        return result;
+        
     }
 
     public void preorder(TreeNode root) {
-        TreeNode current = root;
-        while (current != null) {
-            if(current.left == null) {
-                System.out.print(current.val + " ");
-                current = current.right;
-            }
-            else {
-                TreeNode predecessor = current.left;
-                while(predecessor.right != current && predecessor.right != null) {
-                    predecessor = predecessor.right;
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Tree Preorder Traversal.
+Memory Usage: 42.6 MB, less than 14.93% of Java online submissions for Binary Tree Preorder Traversal.
+         */
+        List<Integer> result = new ArrayList<>();
+        TreeNode curr = root;
+        
+        while (curr != null) {
+            if (curr.left == null) {
+                result.add(curr.val);
+                curr = curr.right;
+            } else {//if there is left, then make connection by going right most, then go left
+                TreeNode prev = curr.left;
+                
+                while(prev.right != null && prev.right != curr) {//there will be two casse if current right exist then make connection, make sure, it soes not reach to own, if point to own it means print that and break the connection,
+                    prev = prev.right;
                 }
-                if(predecessor.right == null){
-                    predecessor.right = current;
-                    System.out.print(current.val + " ");
-                    current = current.left;
-                }else{
-                    predecessor.right = null;
-                    current = current.right;
+                
+                if (prev.right == null) {
+                   result.add(curr.val);//This si one line change from inorder
+                   prev.right =  curr;
+                    curr= curr.left;
+                } else {
+                    
+                    prev.right = null;//break the connection
+                    curr = curr.right;
                 }
+                
+                
             }
+            
         }
+        return result;
     }
 
     public static void main(String args[]) {

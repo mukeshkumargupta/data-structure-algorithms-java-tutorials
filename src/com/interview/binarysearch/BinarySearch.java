@@ -6,7 +6,7 @@ package com.interview.binarysearch;
  * Related: https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/ Medium
  */
 public class BinarySearch {
-    int bsRecursive(int[] nums, int start, int end, int target) {//8% runtime, need to find why?
+    int bsRecursive(int[] nums, int start, int end, int target) {
         if (start > end) {
             return -1;
         }
@@ -15,12 +15,21 @@ public class BinarySearch {
         if (nums[mid] == target) {
             return mid;
         } else if (target < nums[mid]) {
-            end = end -1;
+            return bsRecursive(nums, start, mid-1, target);
         } else {
-            start = start +1;
+            return bsRecursive(nums, mid+1, end, target);
         }
-        return bsRecursive(nums, start, end, target);
 
+    }
+    public int search(int[] nums, int target) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Search.
+Memory Usage: 43.1 MB, less than 67.14% of Java online submissions for Binary Search.
+         */
+        return bsRecursive(nums, 0, nums.length-1, target);
+
+ 
+        
     }
     
     int bsIterative(int[] nums, int start, int end, int target) {//runtime 100%
@@ -34,6 +43,7 @@ public class BinarySearch {
 
     }
       public int search(int[] nums, int target) {
+   
           return bsIterative(nums, 0, nums.length - 1, target);
           //return bsRecursive(nums, 0, nums.length - 1, target);
       }

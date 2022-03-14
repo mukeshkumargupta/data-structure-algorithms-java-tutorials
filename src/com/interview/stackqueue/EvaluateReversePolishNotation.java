@@ -4,6 +4,9 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/evaluate-reverse-polish-notation/
  * Category: Medium, Must Do, Top150
+ * Related:
+ * https://leetcode.com/problems/basic-calculator/ Hard VVImp
+ * https://leetcode.com/problems/expression-add-operators/ Hard VVImp
  * Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
 Valid operators are +, -, *, and /. Each operand may be an integer or another expression.
@@ -73,7 +76,8 @@ TC: O(d) where dis no of digit like 1,4,3, 6, so in worst case it can go upto th
                 Integer num1 = stack.pop();
                 stack.add(num1 / num2);
             }else {
-                Integer newNum = Integer.parseInt(temp);
+                //Integer newNum = Integer.parseInt(temp);
+                Integer newNum = Integer.valueOf(temp);//Both working
                 stack.add(newNum);
             }
         }

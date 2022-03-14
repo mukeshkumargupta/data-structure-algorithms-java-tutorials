@@ -9,6 +9,10 @@ import java.util.Comparator;
  * Category: Medium, VVImp, Must Do
  * https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  * https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#
+ * Derived Question: Given total time get max profit then knapsack we can use
+ * Derived: Find all job index also then i think below optimization might not work
+ * Related : https://leetcode.com/problems/maximum-earnings-from-taxi/ Medium Imp
+ * https://leetcode.com/problems/two-best-non-overlapping-events/ Medium Imp
  * 
  * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 
@@ -82,6 +86,17 @@ public class WeightedJobSchedulingMaximumProfit {
     public int maximum(Job[] jobs){
         int T[] = new int[jobs.length];
         Arrays.sort(jobs, (a,b) -> a.end - b.end);
+        /*
+         * If you are doing sorting by start time this case will fail when we do optimation
+         * 
+[1,2,3,4,6]
+[3,5,10,6,9]
+[20,20,100,70,60]
+
+
+
+
+         */
         
         T[0] = jobs[0].profit;
         for(int i=1; i < jobs.length; i++){
@@ -104,6 +119,10 @@ public class WeightedJobSchedulingMaximumProfit {
     
     //https://leetcode.com/problems/maximum-profit-in-job-scheduling/
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        /*
+         * Runtime: 38 ms, faster than 63.20% of Java online submissions for Maximum Profit in Job Scheduling.
+Memory Usage: 71.7 MB, less than 37.34% of Java online submissions for Maximum Profit in Job Scheduling.
+         */
         int T[] = new int[startTime.length];
         Job jobs[] = new Job[startTime.length];
         for (int nJob = 0 ; nJob < startTime.length; nJob++) {

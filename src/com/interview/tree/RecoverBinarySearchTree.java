@@ -2,12 +2,18 @@ package com.interview.tree;
 
 /*
  * https://leetcode.com/problems/recover-binary-search-tree/submissions/
- * Category: Medium
+ * https://www.youtube.com/watch?v=ZWGW7FminDM
+ * Category: Medium, Tricky
  * https://leetcode.com/problems/concatenated-words/ Hard
  * https://leetcode.com/problems/split-bst/ Medium
  * https://leetcode.com/problems/sum-of-distances-in-tree/ Hard
+ * https://leetcode.com/problems/find-mode-in-binary-search-tree/ Easy Imp
+ * https://leetcode.com/problems/swim-in-rising-water/ Hard VVImp
+ * https://leetcode.com/problems/find-all-groups-of-farmland/ Medium VImp
  */
 public class RecoverBinarySearchTree {
+    //Bruitforce like, take any order traversal then sort array, then do inorder and place value one by one
+    //So sortign will take NlogN TC so that is not good solution
     private void inorderTraversal(TreeNode root, List<TreeNode> inorder) {
         if (root == null) {
             return;
@@ -18,6 +24,13 @@ public class RecoverBinarySearchTree {
         
     }
     public void recoverTree(TreeNode root) {//runtime 86.23
+        /*
+         * 
+         * This is application of array in which two element is swapped
+         * TC: O(2N)
+         * 
+         * SC: O(N) auxaliry space, incase of moris inorder O(1)
+         */
         List<TreeNode> inorder = new ArrayList<>();
         inorderTraversal(root, inorder);
         
@@ -66,5 +79,49 @@ public class RecoverBinarySearchTree {
 
         
         
+    }
+    
+    private TreeNode first;
+    private TreeNode prev;
+    private TreeNode firstNext;
+    private TreeNode last; 
+    private void inorder(TreeNode root) {
+        if(root == null) return; 
+        
+        inorder(root.left);
+        
+        if (prev != null && (root.val < prev.val))
+        {
+           
+            // If this is first violation, mark these two nodes as
+            // 'first' and 'middle'
+            if ( first == null )
+            {
+                first = prev;
+                firstNext = root;
+            }
+ 
+            // If this is second violation, mark this node as last
+            else
+                last = root;
+        }
+ 
+        // Mark this node as previous
+        prev = root;
+        inorder(root.right); 
+    }
+    public void recoverTreeOptimized(TreeNode root) {
+        first = firstNext = last = null; 
+        inorder(root);
+        if(first!=null && last!=null) {//if both are not adjusant
+            int t = first.val;
+            first.val = last.val;
+            last.val = t; 
+        }
+        else if(first!=null && firstNext!=null)  {
+            int t = first.val;
+            first.val = firstNext.val;
+            firstNext.val = t; 
+        }
     }
 }

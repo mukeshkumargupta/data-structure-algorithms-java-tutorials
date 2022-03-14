@@ -73,7 +73,7 @@ public class NMeetingsInOneRoom {
         }
         
         Collections.sort(meet, (a, b) -> {
-            return a.end - b.end;
+            return a.end - b.end;//Tricky
         });
         int result = 0;
         ArrayList<Integer> answer = new ArrayList<>();

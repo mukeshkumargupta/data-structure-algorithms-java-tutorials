@@ -4,8 +4,28 @@ import java.util.*;
 /*
  * https://www.youtube.com/watch?v=S6rsAlj_iB4&list=PLgUwDviBIf0rBT8io74a95xT-hDFZonNs&index=6
  * https://leetcode.com/problems/reverse-pairs/
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Fundamental
  * video 5.50 count explanation is given
+ * Given an integer array nums, return the number of reverse pairs in the array.
+
+A reverse pair is a pair (i, j) where 0 <= i < j < nums.length and nums[i] > 2 * nums[j].
+
+ 
+
+Example 1:
+
+Input: nums = [1,3,2,3,1]
+Output: 2
+Example 2:
+
+Input: nums = [2,4,3,5,1]
+Output: 3
+ 
+
+Constraints:
+
+1 <= nums.length <= 5 * 104
+-231 <= nums[i] <= 231 - 1
  */
 public class ReversePairs {
     int merge(int[] nums, int start, int mid, int end) {
@@ -23,7 +43,7 @@ public class ReversePairs {
             }
             
         }
-        //above code code time limit
+        //above code time limit
         */ 
         for (int i = start; i <= mid; i++) {
             int j = mid+1;

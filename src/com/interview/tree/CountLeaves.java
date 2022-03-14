@@ -61,7 +61,7 @@ public class CountLeaves {
     
     // Reference: https://www.youtube.com/watch?v=gPj3Fhekys8
     // https://leetcode.com/problems/sum-of-left-leaves/submissions/
-    //Second variant
+    //Second variant, Solve by passing one argument like for left, true and right false and add check, that is other way to solve
     int sum = 0;
     public void sumOfLeftLeavesUtil_V1(TreeNode root) {
         if (root == null) {

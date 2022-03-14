@@ -1,4 +1,6 @@
-package com.interview.tree;
+package com.interview.bst;
+
+import com.interview.tree.TreeNode;
 
 /**
  * Date 10/06/2017

@@ -26,7 +26,7 @@ package com.interview.sort;
  * Saurabh School: https://www.youtube.com/watch?v=5GrJwDggoas
  * Leetcode: https://leetcode.com/problems/sort-an-array
  * Status: Done code taken from geeksfromgeeks
- * Category: Medium, Must Do, Tricky
+ * Category: Medium, Must Do, Tricky, Fundamental
  * Related: https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/254069/quick-sort-partition Medium
  * https://leetcode.com/problems/k-closest-points-to-origin/ Medium
  * Related: https://www.youtube.com/watch?v=VORIA407dB4 K Closest Points to Origin | Leetcode take mi  heak of size k and distance is crteria for sorting array sud have x, y and distance

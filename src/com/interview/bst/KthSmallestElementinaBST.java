@@ -1,4 +1,4 @@
-package com.interview.binarysearch;
+package com.interview.bst;
 
 /*
  * https://leetcode.com/problems/kth-smallest-element-in-a-bst/

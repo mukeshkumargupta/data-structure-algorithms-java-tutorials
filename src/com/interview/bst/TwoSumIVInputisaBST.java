@@ -1,8 +1,9 @@
-package com.interview.binarysearch;
+package com.interview.bst;
 
 import java.util.*;
 /*
  * https://leetcode.com/problems/two-sum-iv-input-is-a-bst/ 
+ * https://www.youtube.com/watch?v=ssL3sHwPeb4
  * Category: Easy, Must Do
  * Related: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/ Easy
  * https://leetcode.com/problems/two-sum-iii-val-structure-design/ Easy
@@ -116,7 +117,7 @@ Memory Usage: 49.2 MB, less than 19.77% of Java online submissions for Two Sum I
         }
         
     }
-    public boolean findTargetM2(TreeNode root, int k) {
+    public boolean findTargetM3(TreeNode root, int k) {
         /*
          * Note: any order you can use it, but first one is more elegant way to write code
          * Runtime: 2 ms, faster than 97.67% of Java online submissions for Two Sum IV - Input is a BST.

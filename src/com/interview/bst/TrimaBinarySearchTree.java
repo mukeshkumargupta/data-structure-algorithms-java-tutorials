@@ -1,4 +1,4 @@
-package com.interview.binarysearch;
+package com.interview.bst;
 
 /*
  * Trim a Binary Search Tree

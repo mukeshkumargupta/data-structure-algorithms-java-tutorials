@@ -1,4 +1,4 @@
-package com.interview.tree;
+package com.interview.bst;
 
 /**
  * http://www.geeksforgeeks.org/check-if-each-internal-TreeNode-of-a-bst-has-exactly-one-child/

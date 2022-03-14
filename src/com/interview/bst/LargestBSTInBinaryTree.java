@@ -1,4 +1,7 @@
-package com.interview.tree;
+package com.interview.bst;
+
+import com.interview.tree.ConstructTreeFromInOrderPreOrder;
+import com.interview.tree.TreeNode;
 
 /**
  * Date 07/20/2017
@@ -19,8 +22,8 @@ package com.interview.tree;
  * 
  * References: https://www.youtube.com/watch?v=4fiDs7CCxkc&list=PLIA-9QRQ0RqG6CNfSJSzT0h5Pc_HvwZG5&index=72
  * http://www.geeksforgeeks.org/find-the-largest-subtree-in-a-tree-that-is-also-a-bst/
- * https://leetcode.com/problems/largest-bst-subtree/
- * Category: Must Do
+ * https://leetcode.com/problems/largest-bst-subtree/Locked
+ * Category: Must Do, Fundamental
  * Note: This question is same as finding diameter of tree
  */
 public class LargestBSTInBinaryTree {

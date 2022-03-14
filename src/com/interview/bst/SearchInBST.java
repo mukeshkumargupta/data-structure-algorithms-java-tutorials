@@ -1,11 +1,11 @@
-package com.interview.binarysearch;
+package com.interview.bst;
 
 import com.interview.tree.TreeNode;
 
 /**
  * Regular binary search
  * https://leetcode.com/problems/search-in-a-binary-search-tree/
- * Category: Easy
+ * Category: Easy, Fundamental
  */
 public class SearchInBST {
 
