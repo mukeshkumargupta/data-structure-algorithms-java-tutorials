@@ -2,7 +2,9 @@ package com.interview.binarysearch;
 
 /*
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/ 100% runtime
- * Category: Medium, Must Do
+ * https://www.youtube.com/watch?v=r3pMQ8-Ad5s without pivot
+ * https://www.youtube.com/watch?v=oTfPJKGEHcc with help of pivot
+ * Category: Medium, Must Do, Top150
  * Related: https://leetcode.com/problems/search-in-rotated-sorted-array/ Medium
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/ Hard
  * 

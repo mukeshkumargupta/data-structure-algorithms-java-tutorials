@@ -46,6 +46,8 @@ Follow up: Could you implement a solution that runs in O(n) time complexity and 
 public class IncreasingTripletSubsequence {
     public boolean increasingTriplet(int[] nums) {
         /*
+         * Bruitforce: in N3, generate all sequence and check condition if found then return true
+         * Other optimization: Use LIS technics to find length of LIS if greater than tripple length then return true,
          * Runtime: 1 ms, faster than 100.00% of Java online submissions for Increasing Triplet Subsequence.
 Memory Usage: 80.5 MB, less than 78.22% of Java online submissions for Increasing Triplet Subsequence.
 Time complexity is O(n)

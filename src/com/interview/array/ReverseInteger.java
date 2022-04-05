@@ -2,7 +2,7 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/reverse-integer/
- * Category: Easy
+ * Category: Medium, Must Do, Top150
  */
 public class ReverseInteger {
     public int reverse(int x) {

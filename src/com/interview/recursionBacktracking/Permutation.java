@@ -10,7 +10,7 @@ import java.util.TreeMap;
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/permutations/
  * https://www.youtube.com/watch?v=f2ic2Rsc9pU&t=6s
- * Category: Medium, Must Do, Tricky
+ * Category: Medium, Must Do, Tricky, Top150
  * Related:
  * https://leetcode.com/problems/permutations-ii/ Medium
  * https://leetcode.com/problems/combinations/ Medium

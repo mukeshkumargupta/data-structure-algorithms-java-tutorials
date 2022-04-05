@@ -3,7 +3,7 @@ package com.interview.stackqueue;
 import java.util.*;
 /*
  * https://leetcode.com/problems/valid-parentheses/
- * Category: Easy, Must Do
+ * Category: Easy, Must Do, Top150
  * Related: https://leetcode.com/problems/longest-valid-parentheses/ Hard
  * https://leetcode.com/problems/remove-invalid-parentheses/ Hard
  * https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/ Medium

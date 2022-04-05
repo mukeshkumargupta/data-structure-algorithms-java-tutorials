@@ -11,7 +11,7 @@ package com.interview.binarysearch;
  * https://www.youtube.com/watch?v=OE7wUUpJw6I&list=PLIA-9QRQ0RqFaV3j0I4FMiPQQkG-jIouX&index=3
  * 
  * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ 100% runtime
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, Top150
  * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
 
 If target is not found in the array, return [-1, -1].

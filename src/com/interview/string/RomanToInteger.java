@@ -3,7 +3,7 @@ package com.interview.string;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/roman-to-integer/
- * Category: Easy
+ * Category: Easy, Top150, Tricky
  */
 
 
@@ -21,7 +21,7 @@ public class RomanToInteger {
         int length = s.length();
         int result = 0;
         for (int i = 0; i < length; i++) {
-            //Check if first  character is less than next then evaluate next two character
+            //Check if first  character is less than next then evaluate next two character,
             if ((i+1 < length) && valueLookUp.get(s.charAt(i)) < valueLookUp.get(s.charAt(i+1))) {
                 result = result - valueLookUp.get(s.charAt(i));
                 result = result + valueLookUp.get(s.charAt(i+1));

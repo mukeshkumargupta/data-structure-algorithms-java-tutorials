@@ -3,6 +3,8 @@ package com.interview.systemdesign.cabbookingsystem;
 /*
  * 
  * Reference: https://medium.com/@harsha007atmakuri/how-to-crack-machine-coding-round-2af59ede5f86
+ * Other good material
+ * https://abhishekdeb48.medium.com/all-about-machine-coding-round-8e56c866fe87
  */
 
 public class CabBookingService {

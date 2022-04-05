@@ -3,8 +3,15 @@ import java.util.*;
 
 /*
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
- * Category: Medium, Tricky, Amazon
+ * Category: Medium, Tricky, Amazon, Top150, VVImp
  * https://www.youtube.com/watch?v=qtVh-XEpsJo&t=1090s
+ * Related:
+ * https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/ mEDIUM
+ * https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/ Medium
+ * https://leetcode.com/problems/subarrays-with-k-different-integers/ Hard
+ * https://leetcode.com/problems/maximum-erasure-value/ Medium
+ * https://leetcode.com/problems/number-of-equal-count-substrings/ Medium
+ * Related: Find string also, so extract the string in result;
  * Given a string s, find the length of the longest substring without repeating characters.
 
  
@@ -33,6 +40,11 @@ Output: 0
  */
 public class LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
+        /*
+         * Runtime: 12 ms, faster than 53.09% of Java online submissions for Longest Substring Without Repeating Characters.
+Memory Usage: 46 MB, less than 30.60% of Java online submissions for Longest Substring Without Repeating Characters.
+Next challenges:
+         */
         Set<Character> set = new HashSet<>();
         int l =0;
         int r = 0;

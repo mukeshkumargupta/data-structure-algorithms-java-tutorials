@@ -2,8 +2,9 @@ package com.interview.binarysearch;
 
 /*
  * https://leetcode.com/problems/search-in-rotated-sorted-array/ runtime 100%
- * Category: Medium, Must Do
- * Related: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/ Medium
+ * Category: Medium, Must Do, Top150
+ * Related: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/ Medium VVImp
+ * https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/ Medium Locked
  * Tag: https://leetcode.com/tag/binary-search/
  * 
  * There is an integer array nums sorted in ascending order (with distinct values).
@@ -39,6 +40,34 @@ nums is an ascending array that is possibly rotated.
 -104 <= target <= 104
  */
 public class SearchinRotatedSortedArray {
+    //Without pivot solved it
+    public int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        while (start <= end) {
+            int mid = (start + end)>>1;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[start] <= nums[mid]){ //left is sorted or right part is sorted
+                //if left is sorted then check it is is found in sorted sorted part
+                if (target >= nums[start]  && target <= nums[mid]) {
+                    end = mid-1;
+                } else {
+                    start = mid +1;
+                }
+            } else {
+                if (target >= nums[mid] && target <= nums[end]) {
+                    start = mid +1;
+                } else {
+                    end = mid -1;
+                }
+            }
+            
+        }
+        return -1;
+        
+    }
+    
     //Note: This logic is exactly same as findining min value, resuse exactly same code for minvlaue, here index we need to return: Problem: FindMinimuminRotatedSortedArray
     int findPivot(int[] nums, int start, int end) {
         /*

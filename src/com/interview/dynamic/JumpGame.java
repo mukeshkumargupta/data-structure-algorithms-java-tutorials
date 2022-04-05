@@ -5,7 +5,7 @@ package com.interview.dynamic;
  * @author Mukesh Kumar Gupta
  *
  * https://leetcode.com/problems/jump-game/
- * Category: Tricky
+ * Category: Tricky, Top150
  * https://www.youtube.com/watch?v=muDPTDrpS28
  *
  *  Given an array of non-negative integers, you are initially positioned at the first index of the array.

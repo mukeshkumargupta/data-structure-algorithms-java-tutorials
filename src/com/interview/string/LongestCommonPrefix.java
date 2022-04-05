@@ -4,7 +4,7 @@ package com.interview.string;
  * Reference: https://leetcode.com/problems/longest-common-prefix/
  * Video: https://www.youtube.com/watch?v=fhyIORFDD0k
  * Other method try to solve using trie
- * Category: Easy
+ * Category: Easy, Top150
  * 
  */
 

@@ -4,13 +4,14 @@ package com.interview.binarysearch;
  * There are two sorted arrays nums1 and nums2 of size m and n respectively.
  * Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
  *https://www.youtube.com/watch?v=NTop3VTjmxk
- *Category: Must Do, Hard
+ *Category: Must Do, Hard, Top150
  *Related: https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/ Easy
  *https://leetcode.com/problems/escape-a-large-maze/ Hard,
  *https://leetcode.com/problems/shift-2d-grid/ Easy
  *https://leetcode.com/problems/word-abbreviation/ Hard
  *https://leetcode.com/problems/maximum-score-words-formed-by-letters/ Hard
  *https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/ Hard
+ *https://leetcode.com/problems/kth-smallest-product-of-two-sorted-arrays Must try VVImp
  * Solution
  * Take minimum size of two array. Possible number of partitions are from 0 to m in m size array.
  * Try every cut in binary search way. When you cut first array at i then you cut second array at (m + n + 1)/2 - i
@@ -38,7 +39,7 @@ Memory Usage: 40.3 MB, less than 67.80% of Java online submissions for Median of
         while(start <= end) {
             //int cut1 = (start+end) >> 1;
             int cut1 = start + (end - start)/2;
-            int cut2 = (l1 + l2 + 1) / 2 - cut1; 
+            int cut2 = (l1 + l2 + 1) / 2 - cut1; //Tricky
             
         
             int left1 = cut1 == 0 ? Integer.MIN_VALUE : nums1[cut1-1];
@@ -50,7 +51,7 @@ Memory Usage: 40.3 MB, less than 67.80% of Java online submissions for Median of
             
             if(left1 <= right2 && left2 <= right1) {
                 if( (l1 + l2) % 2 == 0 ) 
-                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0; 
+                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0; //Tricky
                 else 
                     return Math.max(left1, left2); 
             }

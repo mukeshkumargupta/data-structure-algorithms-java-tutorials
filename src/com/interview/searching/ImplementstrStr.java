@@ -2,7 +2,7 @@ package com.interview.searching;
 
 /*
  * https://leetcode.com/problems/implement-strstr/
- * Category: Easy, kmp, Must Do
+ * Category: Easy, kmp, Must Do, Top150
  */
 public class ImplementstrStr {
     // totalCharacterLength is the number of characters in the input alphabet 

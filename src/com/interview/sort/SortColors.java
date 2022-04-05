@@ -2,11 +2,13 @@ package com.interview.sort;
 
 /*
  * https://leetcode.com/problems/sort-colors
- * Category: Medium
+ * Sort an array of 0's 1's & 2's 
+ * Category: Medium, Must Do
+ * https://www.youtube.com/watch?v=oaVa-9wmpns
  * Related:
- * https://leetcode.com/problems/sort-list/ Medium
- * https://leetcode.com/problems/wiggle-sort/ Medium
- * https://leetcode.com/problems/wiggle-sort-ii/ Medium
+ * https://leetcode.com/problems/sort-list/ Medium done
+ * https://leetcode.com/problems/wiggle-sort/ Medium done
+ * https://leetcode.com/problems/wiggle-sort-ii/ Medium done
  */
 public class SortColors {
     void swap(int[] nums, int i, int j) {

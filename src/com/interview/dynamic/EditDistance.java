@@ -28,27 +28,27 @@ public class EditDistance {
 
         int C = word1.length() +1; // Make it column side
         int R = word2.length() +1; //Make it row side
-        int[][]T = new int[R][C];
-        T[0][0] = 0;
+        int[][]dp = new int[R][C];
+        dp[0][0] = 0;
         
         for ( int i =1; i < C ; i++) { //fill first row
-            T[0][i] = i;
+            dp[0][i] = i;
         }
         
         for (int i = 1; i <  R; i++) {//fill first column
-            T[i][0] = i;
+            dp[i][0] = i;
         }
         
         for (int i = 1; i < R ; i++) {
             for (int j = 1; j < C; j++ ) {
                 if (word2.charAt(i-1) == word1.charAt(j-1)) {
-                    T[i][j] = T[i-1][j-1];
+                    dp[i][j] = dp[i-1][j-1];
                 } else {
-                    T[i][j] = Math.min(Math.min(T[i-1][j-1], T[i][j-1]) , T[i-1][j]) +1;
+                    dp[i][j] = Math.min(Math.min(dp[i-1][j-1], dp[i][j-1]) , dp[i-1][j]) +1;
                 }
             }
         }
-        return T[R-1][C-1];
+        return dp[R-1][C-1];
         
     }
     

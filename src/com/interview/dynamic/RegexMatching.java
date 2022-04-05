@@ -7,7 +7,7 @@ package com.interview.dynamic;
  * 
  * References : https://leetcode.com/problems/regular-expression-matching/
  * https://www.youtube.com/watch?v=l3hda49XcDE
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Top150
  * Related: https://leetcode.com/problems/wildcard-matching/ Hard
  * 
  * Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:

@@ -3,7 +3,7 @@ package com.interview.twopointer;
 /*
  * https://leetcode.com/problems/squares-of-a-sorted-array/
  * Category: Easy, Tricky
- * Related: https://leetcode.com/problems/sort-transformed-array/ Medium
+ * Related: https://leetcode.com/problems/sort-transformed-array/ Medium, Locked
 Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
 
  

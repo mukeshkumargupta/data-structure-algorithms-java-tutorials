@@ -1,12 +1,11 @@
 package com.interview.array;
 /**
  * References
- * https://oj.leetcode.com/problems/trapping-rain-water/
  * https://leetcode.com/problems/trapping-rain-water/
  * Related: https://leetcode.com/problems/trapping-rain-water-ii/ Hard VVImp
  * https://leetcode.com/problems/pour-water/ Medium Locked
  * https://www.youtube.com/watch?v=m18Hntz4go8&t=1s
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Top150
  * Related: https://leetcode.com/problems/trapping-rain-water-ii/ Hard
  * https://leetcode.com/problems/pour-water/ Medium
  * 
@@ -34,6 +33,35 @@ n == height.length
  */
 public class TrappingWater {
 
+    public int trap(int[] height) {
+        /*
+         * Runtime: 1 ms, faster than 90.60% of Java online submissions for Trapping Rain Water.
+Memory Usage: 47.3 MB, less than 24.30% of Java online submissions for Trapping Rain Water.
+         */
+        int len = height.length;
+        int[] leftMax = new int[height.length];
+        int[] rightMax = new int[height.length];
+        
+        leftMax[0] = height[0];
+        for (int i = 1; i < len ; i++) {
+            leftMax[i] = Math.max(leftMax[i-1], height[i]);
+        }
+        rightMax[len-1] = height[len-1];
+        for (int i = len -2; i >= 0; i--) {
+
+            rightMax[i] = Math.max(rightMax[i+1], height[i]);
+        }
+        
+        int totalSum = 0;
+        for (int i = 0; i < len; i++) {
+            totalSum += Math.min(leftMax[i], rightMax[i]) - height[i];
+        }
+        return totalSum;
+        
+
+        
+    }
+    
     public int trap(int[] height) {
         /*
          * Runtime: 1 ms, faster than 91.78% of Java online submissions for Trapping Rain Water.

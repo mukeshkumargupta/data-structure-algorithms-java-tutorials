@@ -8,7 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Date 05/08/2020
  * 
  * @author Mukesh Kumar Gupta
- *
+ *          Very good article mentioned:
+ *          https://github.com/gopalbala/parkinglot
+ *          
  *         Reference:https://www.youtube.com/watch?v=eV5Xh6jNfmU (read from
  *         here) Other reference
  *         https://www.geeksforgeeks.org/design-parking-lot-using-object-oriented-principles/?ref=lbp

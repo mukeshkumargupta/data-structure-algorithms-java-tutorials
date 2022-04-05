@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://www.youtube.com/watch?v=pD2VNU2x8w8&list=PLIA-9QRQ0RqHYFNJc6zVT1_sJz0qCU9b0&index=8
  * https://leetcode.com/problems/generate-parentheses
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, Top150
  * Related:
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/ Medium
  */

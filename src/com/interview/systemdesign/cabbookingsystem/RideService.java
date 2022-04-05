@@ -50,7 +50,7 @@ public class RideService {
     
     
     public int distance(Location l1,Location l2) {
-        return Math.abs(l1.getX() - l2.getX()) + Math.abs(l1.getY() - l2.getY());//Calculation is wrong it seems Mukesh here
+        return Math.abs(l1.getX() - l2.getX()) + Math.abs(l1.getY() - l2.getY());//Calculation is wrong it seems Mukesh here, This is also correct, in case of int
         
         /*int xDistance = Math.abs(l1.getX() - l2.getX());
         int yDistance = Math.abs(l1.getY() - l2.getY();

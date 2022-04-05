@@ -3,7 +3,7 @@ package com.interview.linklist;
 /*
  * https://leetcode.com/problems/merge-two-sorted-lists
  * https://www.youtube.com/watch?v=yn6kTAkf9Mc
- * Category: Easy, Fundamental
+ * Category: Easy, Fundamental, Top150
  * Related: https://leetcode.com/problems/merge-k-sorted-lists/ Hard
  * https://leetcode.com/problems/merge-sorted-array/ Easy
  * https://leetcode.com/problems/sort-list/ Medium

@@ -2,7 +2,10 @@ package com.interview.matrix;
 
 /*
  * https://leetcode.com/problems/rotate-image/
- * Category: Medium, VImp
+ * Category: Medium, VImp, Top150
+ * Related: https://leetcode.com/problems/total-hamming-distance/ Medium, VVImp
+ * https://leetcode.com/problems/sum-of-floored-pairs/ Hard Imp
+ * https://leetcode.com/problems/stone-game-iii/ Hard , VVImp, Try all variant
  * You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
 
 You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
@@ -48,11 +51,15 @@ public class RotateImage {
         
     }
     public void rotate(int[][] matrix) {
+        /*
+         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Image.
+Memory Usage: 42.7 MB, less than 56.61% of Java online submissions for Rotate Image.
+         */
         int R = matrix.length;
         int C = matrix[0].length;
         for (int i = 0; i < R; i++) {
             for (int j= 0; j < C; j++) {
-                if (j > i) {
+                if (j > i) { //Here j >i to swap upper half with lower half or i < j swap lower to upper half, both condition will work
                     int temp = matrix[i][j];
                     matrix[i][j] = matrix[j][i];
                     matrix[j][i] = temp;

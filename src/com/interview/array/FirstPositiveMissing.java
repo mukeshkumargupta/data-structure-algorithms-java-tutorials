@@ -4,7 +4,7 @@ package com.interview.array;
  * https://leetcode.com/problems/first-missing-positive/
  * 
  * https://www.youtube.com/watch?v=L1u-R_s2Mok&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=39
- * Category: Hard, Google, Tricky, find-duplicate
+ * Category: Hard, Google, Tricky, find-duplicate, Top150
  * Related: https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/ Easy
  * https://leetcode.com/problems/couples-holding-hands/ Hard
  * 

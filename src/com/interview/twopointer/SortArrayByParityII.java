@@ -3,9 +3,13 @@ package com.interview.twopointer;
 /*
  * https://leetcode.com/problems/sort-array-by-parity-ii/
  * Category: Easy, Tricky
+ * Try with extension of parity 1 problem same approach like start and end
  * https://www.youtube.com/watch?v=pHRFRZGbK5s
  * Related: 
- * https://leetcode.com/problems/insertion-sort-list/ Medium
+ * https://leetcode.com/problems/rearrange-array-elements-by-sign/ Medium VVImp Hint take positive Index and negativeIndex, exactly same way
+ * https://leetcode.com/problems/sort-even-and-odd-indices-independently/ Easy VVImp Take in two group, sort and merge
+ * https://leetcode.com/problems/insertion-sort-list/ Medium, Hint this is insertion sort list, Use remove and add operation to arrange link list, but merge sort also works here to solve problem
+ * https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/ Medium Locked, Same as insertion-sort-list
  * https://leetcode.com/problems/reverse-words-in-a-string-iii/ Easy
  * https://leetcode.com/problems/smallest-range-ii/ Medium
  * 
@@ -39,8 +43,11 @@ Half of the integers in nums are even.
 Follow Up: Could you solve it in-place?
  */
 public class SortArrayByParityII {
-    public int[] sortArrayByParityII(int[] nums) {//faster than 51.10% of Java online submissions for Sort Array
-        
+    public int[] sortArrayByParityII(int[] nums) {
+        /*
+         * Runtime: 3 ms, faster than 85.00% of Java online submissions for Sort Array By Parity II.
+Memory Usage: 44.7 MB, less than 87.74% of Java online submissions for Sort Array By Parity II.
+         */
         int l = nums.length;
         int evenIndex = 0;
         int oddIndex = 1;

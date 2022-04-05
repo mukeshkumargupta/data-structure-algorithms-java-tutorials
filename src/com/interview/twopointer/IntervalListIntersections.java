@@ -4,8 +4,9 @@ import java.util.*;
 
 /*
  * https://leetcode.com/problems/interval-list-intersections/
- * Category: Medium
+ * Category: Medium, Must Do, Top150
  * https://www.youtube.com/watch?v=Qh8ZjL1RpLI
+ * Related
  * https://leetcode.com/problems/merge-intervals/ Medium
  * https://leetcode.com/problems/employee-free-time/ Hard
  * You are given two lists of closed intervals, firstList and secondList, where firstList[i] = [starti, endi] and secondList[j] = [startj, endj]. Each list of intervals is pairwise disjoint and in sorted order.

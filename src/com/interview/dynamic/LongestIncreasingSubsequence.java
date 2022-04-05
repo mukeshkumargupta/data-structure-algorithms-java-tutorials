@@ -13,7 +13,7 @@ package com.interview.dynamic;
  * 
  * Solution : 
  * Dynamic Programming is used to solve this question. DP equation is 
- * if(arr[i] > arr[j]) { T[i] = max(T[i], T[j] + 1 }
+ * if(arr[i] > arr[j]) { dp[i] = max(dp[i], dp[j] + 1 }
  * 
  * Time complexity is O(n^2).
  * Space complexity is O(n)
@@ -54,17 +54,17 @@ Follow up: Can you come up with an algorithm that runs in O(n log(n)) time compl
  */
 public class LongestIncreasingSubsequence {
     public int lengthOfLIS(int[] nums) {
-        int T[] = new int[nums.length];
+        int dp[] = new int[nums.length];
         for(int i=0; i < nums.length; i++){
-            T[i] = 1;
+            dp[i] = 1;
         }
-        int max = T[0];
+        int max = dp[0];
         for(int i=1; i < nums.length; i++){
             for(int j=0; j < i; j++){
                 if(nums[i] > nums[j]){
-                   T[i] =  Math.max(T[j] + 1 , T[i]);
-                    if (T[i] > max) {
-                       max = T[i] ;
+                   dp[i] =  Math.max(dp[j] + 1 , dp[i]);
+                    if (dp[i] > max) {
+                       max = dp[i] ;
                     }
                 }
             }

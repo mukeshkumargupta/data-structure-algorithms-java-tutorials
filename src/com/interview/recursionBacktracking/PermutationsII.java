@@ -5,6 +5,9 @@ import java.util.*;
  * https://leetcode.com/problems/permutations-ii/
  * 
  * Category: Medium, Must Do, Top150
+ * Related:
+ * https://leetcode.com/problems/number-of-squareful-arrays/ Hard
+ * https://leetcode.com/problems/palindrome-permutation-ii/ Medium
  * Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
 
  Other approach like duplicate element and apply tricky same as combination trick after sort but will fail, when you do dry run, so only hashing will help here

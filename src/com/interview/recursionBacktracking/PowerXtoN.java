@@ -2,8 +2,8 @@ package com.interview.recursionBacktracking;
 
 /*
  * https://leetcode.com/problems/powx-n/
- * Category: Medium, Tricky
- * Related: https://leetcode.com/problems/super-pow/ Medium
+ * Category: Medium, Tricky, Top150
+ * Related: https://leetcode.com/problems/super-pow/ Medium, Very Bad
  */
 public class PowerXtoN {
     public double myPowUtil(double x, int n) {

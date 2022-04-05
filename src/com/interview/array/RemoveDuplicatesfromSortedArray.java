@@ -2,7 +2,7 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
- * Category: Easy
+ * Category: Easy, Top150
  * https://www.youtube.com/watch?v=Fm_p9lJ4Z_8&t=24s
  * Related:
  * https://leetcode.com/problems/surface-area-of-3d-shapes/ Easy

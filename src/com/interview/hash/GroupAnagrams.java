@@ -4,8 +4,9 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/group-anagrams/
  * https://www.youtube.com/watch?v=0I6IL3TnIZs
- * https://leetcode.com/problems/group-shifted-strings/ Locked
- * Category: Medium, Must Do, Google
+ * 
+ * Category: Medium, Must Do, Google, Top150
+ * Related: https://leetcode.com/problems/group-shifted-strings/ Locked
  * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
 An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.

@@ -7,7 +7,7 @@ package com.interview.twopointer;
  * 
  * Category: Medium, Must Do
  * Related: https://leetcode.com/problems/4sum-ii/ Medium
- * https://leetcode.com/problems/count-special-quadruplets/ Easy
+ * https://leetcode.com/problems/count-special-quadruplets/ Easy, =Hint: Sort then check three sum is eual to target , target is element from last which is bigger one
  * Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
 
 0 <= a, b, c, d < n
@@ -30,6 +30,11 @@ Output: [[2,2,2,2]]
  */
 public class FourSum {
     public List<List<Integer>> fourSum(int[] nums, int target) {
+        /*
+         * Runtime: 32 ms, faster than 43.77% of Java online submissions for 4Sum.
+Memory Usage: 44.5 MB, less than 59.78% of Java online submissions for 4Sum.
+            Note: It is not optimized solution
+         */
         Arrays.sort(nums);
         int len = nums.length;
         

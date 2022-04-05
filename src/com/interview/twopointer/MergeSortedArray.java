@@ -2,7 +2,7 @@ package com.interview.twopointer;
 
 /*
  * https://leetcode.com/problems/merge-sorted-array/
- * Catergory: Easy
+ * Category: Easy, Tricky
  * Related:
  * https://leetcode.com/problems/squares-of-a-sorted-array/ Easy
  * https://leetcode.com/problems/interval-list-intersections/ Medium
