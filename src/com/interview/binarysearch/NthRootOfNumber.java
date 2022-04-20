@@ -2,7 +2,8 @@ package com.interview.binarysearch;
 
 /*
  * Category: Easy, Must Do
- * https://www.youtube.com/watch?v=WjpswYrS2nY
+ * https://www.youtube.com/watch?v=WjpswYrS2nY,
+ * This solution looks better solution because +1 and -1 we did in square root which might increase more iteration
  * https://www.geeksforgeeks.org/n-th-root-number/
  * Given two numbers N and A, find N-th root of A. In mathematics, Nth root of a number A is a real number that gives A, when we raise it to integer power N. These roots are used in Number Theory and other advanced branches of mathematics. 
 Refer Wiki page for more information. 
@@ -46,7 +47,8 @@ public class NthRootOfNumber {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         NthRootOfNumber nrn = new NthRootOfNumber();
-        nrn.getNthRoot( 4, 81);
+        //nrn.getNthRoot( 4, 81);
+        nrn.getNthRoot( 2, 9);
         
     }
     

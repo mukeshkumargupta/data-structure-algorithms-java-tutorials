@@ -120,8 +120,10 @@ public class ThreadDeadLockExapmle {
     void runExample2() {
         Object r1 = "Resouce 1";
         Object r2 = "Resouce 2";
-        Thread t1 = new Thread(new Thread1(r1, r2));
-        Thread t2 = new Thread(new Thread2(r1, r2));
+        //Thread t1 = new Thread(new Thread1(r1, r2));
+        //Thread t2 = new Thread(new Thread2(r1, r2));
+        Thread t1 =new Thread1(r1, r2);
+        Thread t2 = new Thread2(r1, r2);//Note both way it is working
         t1.start();
         t2.start();
     }

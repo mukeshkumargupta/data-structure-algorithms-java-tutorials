@@ -68,5 +68,9 @@ public class PrintZeroEvenOdd {
         
     }
     // 0 1 0 2 0 3 0 4 0 5  odd be 3 count while even is 2 count and 0 be five count
-    
+    public static void main(String[] args) {
+        PrintZeroEvenOdd instance = new PrintZeroEvenOdd();
+        instance.ZeroEvenOdd(10);
+        
+    }
 }

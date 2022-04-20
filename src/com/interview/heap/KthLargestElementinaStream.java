@@ -3,7 +3,9 @@ package com.interview.heap;
 import java.util.*;
 /* 
  * Reference:https://leetcode.com/problems/kth-largest-element-in-a-stream
- * Category: Easy
+ * Category: Easy, Must Do
+ * Related: https://leetcode.com/problems/finding-mk-average/ Hard Imp
+ * https://leetcode.com/problems/sequentially-ordinal-rank-tracker/ Hard VImp
  */
 public class KthLargestElementinaStream {
     Queue<Integer> pq = new PriorityQueue<>((a, b) -> {
@@ -12,6 +14,10 @@ public class KthLargestElementinaStream {
     int kthLargest;
     
     public KthLargestElementinaStream(int k, int[] nums) {
+        /*
+         * Runtime: 23 ms, faster than 45.37% of Java online submissions for Kth Largest Element in a Stream.
+Memory Usage: 52.7 MB, less than 40.51% of Java online submissions for Kth Largest Element in a Stream.
+         */
         for (int i = 0; i < nums.length ; i++) {
             if (pq.size() < k) {
                 //System.out.println(nums[i]);

@@ -2,7 +2,7 @@ package com.interview.recursionBacktracking;
 
 /*
  * https://leetcode.com/problems/climbing-stairs/submissions/
- * Category: Easy, Must Do, Google
+ * Category: Easy, Must Do, Google, Top150
  * Related: https://leetcode.com/problems/min-cost-climbing-stairs/ Easy
  * Try to solve using iterative
  * You are climbing a staircase. It takes n steps to reach the top.

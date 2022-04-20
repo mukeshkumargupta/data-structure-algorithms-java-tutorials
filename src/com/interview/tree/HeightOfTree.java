@@ -2,8 +2,11 @@ package com.interview.tree;
 
 /*
  * Category: https://leetcode.com/problems/maximum-depth-of-binary-tree/
- * Category: Easy, Must Do
+ * Category: Easy, Must Do, Top150
  * Related: https://leetcode.com/problems/time-needed-to-inform-all-employees/ Medium Imp
+ * https://leetcode.com/problems/smallest-common-region/ Medium Locked
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/ Medium Locked, VVImp
+ * https://leetcode.com/problems/operations-on-tree/ Medium
  */
 
 public class HeightOfTree {
@@ -48,6 +51,30 @@ Memory Usage: 43.8 MB, less than 6.89% of Java online submissions for Maximum De
         int[] depth = new int[1];
         maxDepthUtil(root, 1, depth);
         return depth[0];
+    }
+    
+    //other method
+    //similar to narray tree height
+    class Solution {
+        public int dfs(TreeNode root) {
+            if (root == null) return 0;
+            
+            int result = 1;//for root
+            int max = 0;
+            //Iterate all its adjucent
+            if (root.left != null) {
+                max = Math.max(max, dfs(root.left));
+            }
+            
+            if (root.right != null) {
+                max = Math.max(max, dfs(root.right));
+            }
+            return result + max;
+            
+        }
+        public int maxDepth(TreeNode root) {
+            return dfs(root);
+        }
     }
 
 }

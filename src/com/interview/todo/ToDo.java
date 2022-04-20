@@ -9,6 +9,9 @@ public class ToDo {
      * https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/
      * https://leetcode.com/problem-list/79h8rn6/?page=2 top 100 liked questions
      * https://leetcode.com/problem-list/wpwgkgt/ Top Interview questions
+     * 
+     * https://www.linkedin.com/in/aryanc403/ Topper profile in coder from india
+     * https://www.youtube.com/watch?v=ixE0KN_69EQ cometetive programmer
      */
     public static void main(String[] args) {
         // TODO Auto-generated method stub

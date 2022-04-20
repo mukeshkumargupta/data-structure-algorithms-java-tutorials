@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *Derived question like odd first up to five interval 1 3 5 7 9 then 0 2 4 6 8 then 11 13 and so on
  * Status: Done
  */
-public class PrintInSequence {
+public class PrintInSequenceUsingMultipleThread {
 
     private volatile int val = 0;
     private volatile boolean shouldPrint = true;
@@ -40,9 +40,16 @@ public class PrintInSequence {
     }
 
     //only one thread is calling print. So no contention in updating shouldPrint flag.
-    public void printVar() {
+    public void printVar()  {
         if (shouldPrint) {
-            System.out.println(val);
+            System.out.print(val + " ");
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+            
             shouldPrint = false;
         }
     }
@@ -67,7 +74,7 @@ public class PrintInSequence {
     
 
     public static void main(String args[]) {
-        PrintInSequence printInSequence = new PrintInSequence();
+        PrintInSequenceUsingMultipleThread printInSequence = new PrintInSequenceUsingMultipleThread();
         Thread t1 = new Thread(printInSequence::runIncrement);
         t1.start();
         Thread t2 = new Thread(printInSequence::runIncrement);

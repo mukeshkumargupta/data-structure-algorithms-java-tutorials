@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 
  * https://leetcode.com/problems/decode-ways/
- * Category: Medium, Facebook, Tricky, 
+ * Category: Medium, Facebook, Tricky, Top150, VImp
  * Related: https://leetcode.com/problems/decode-ways-ii/ Hard
  * https://leetcode.com/problems/number-of-ways-to-separate-numbers/ Hard
  * A message containing letters from A-Z can be encoded into numbers using the following mapping:

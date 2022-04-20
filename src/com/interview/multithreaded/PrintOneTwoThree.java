@@ -26,7 +26,7 @@ public class PrintOneTwoThree {
                         wait(); 
                     } 
                     catch ( 
-                        InterruptedException e) { 
+                            InterruptedException e) { 
                         e.printStackTrace(); 
                     } 
                 } 

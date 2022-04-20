@@ -3,13 +3,15 @@ package com.interview.recursionBacktracking;
 import java.util.*;
 /*
  * https://leetcode.com/problems/subsets/
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, Top150
  * Given an integer array nums of unique elements, return all possible subsets (the power set).
 
 The solution set must not contain duplicate subsets. Return the solution in any order.
 Related:
-https://leetcode.com/problems/generalized-abbreviation/ Medium
-https://leetcode.com/problems/letter-case-permutation/ Medium
+https://leetcode.com/problems/generalized-abbreviation/ Medium Locked
+https://leetcode.com/problems/letter-case-permutation/ Medium VVImp
+https://leetcode.com/problems/find-array-given-subset-sums/ VImp
+https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/ VImp
 
  
 

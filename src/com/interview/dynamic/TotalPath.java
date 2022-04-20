@@ -4,7 +4,7 @@ package com.interview.dynamic;
  * Reference: https://leetcode.com/problems/unique-paths/
  * https://www.youtube.com/watch?v=sdE0A2Oxofw
  * https://www.youtube.com/watch?v=rBAxUTqvlQA&list=PLIA-9QRQ0RqHEJBbNYo3KjeDzoc8bnkai&index=8
- * Category: Medium, Fundamental
+ * Category: Medium, Must Do, Top150
  * Related:https://leetcode.com/problems/unique-paths-ii/ Medium
  * https://leetcode.com/problems/dungeon-game/ Hard
  * https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/ Medium

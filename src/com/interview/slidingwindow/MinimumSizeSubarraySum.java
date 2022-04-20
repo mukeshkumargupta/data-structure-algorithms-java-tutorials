@@ -3,6 +3,7 @@ package com.interview.slidingwindow;
 /*
  * https://leetcode.com/problems/minimum-size-subarray-sum/ 99.98 runtime
  * Category: Medium, Tricky
+ * https://www.youtube.com/watch?v=S6Xg-0uaODc
  * Related:
  * https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/ Medium VVImp Locked
  * https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/ Medium VVImp
@@ -40,7 +41,7 @@ public class MinimumSizeSubarraySum {
 Memory Usage: 44.9 MB, less than 21.33% of Java online submissions for Minimum Size Subarray Sum.
 Complexity analysis
 
-Time complexity: O(n)O(n). Single iteration of O(n)O(n).
+Time complexity: O(n). Single iteration of O(n).
 Each element can be visited atmost twice, once by the right pointer(ii) and (atmost)once by the \text{left}left pointer.
 Space complexity: O(1)O(1) extra space. Only constant space required for \text{left}left, \text{sum}sum, \text{ans}ans and ii.
          */

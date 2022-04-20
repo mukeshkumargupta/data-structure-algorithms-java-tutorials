@@ -3,7 +3,7 @@ package com.interview.hash;
 /*
  * https://leetcode.com/problems/minimum-window-substring/submissions/
  * https://www.youtube.com/watch?v=e1HlptlipB0
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Top150
  * Related: https://leetcode.com/problems/substring-with-concatenation-of-all-words/ Hard Bad
  * https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/ Hard, VVImp Idserver refer this solution
  * https://leetcode.com/problems/minimum-window-subsequence/ Hard Locked

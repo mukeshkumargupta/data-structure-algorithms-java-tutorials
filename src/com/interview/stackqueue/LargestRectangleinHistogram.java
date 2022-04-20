@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/largest-rectangle-in-histogram/
  * https://www.youtube.com/watch?v=X0X6G-eWgQ8
- * Category: Hard, Must Do
+ * Category: Hard, Must Do, Top150
  * Related: https://leetcode.com/problems/maximal-rectangle/ Hard
  * https://leetcode.com/problems/maximum-score-of-a-good-subarray/ Hard
  * Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.

@@ -8,7 +8,7 @@ import java.util.*;
  * https://www.youtube.com/watch?v=Qh8ZjL1RpLI
  * Related
  * https://leetcode.com/problems/merge-intervals/ Medium
- * https://leetcode.com/problems/employee-free-time/ Hard
+ * https://leetcode.com/problems/employee-free-time/ Hard, Locked, Try Good Question
  * You are given two lists of closed intervals, firstList and secondList, where firstList[i] = [starti, endi] and secondList[j] = [startj, endj]. Each list of intervals is pairwise disjoint and in sorted order.
 
 Return the intersection of these two interval lists.

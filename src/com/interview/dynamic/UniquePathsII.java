@@ -3,7 +3,7 @@ package com.interview.dynamic;
 /*
  * https://leetcode.com/problems/unique-paths-ii/
  * https://www.youtube.com/watch?v=TmhpgXScLyY&t=196s
- * Category: Medium, next version of unique path https://leetcode.com/problems/unique-paths/
+ * Category: Medium, Must Do, next version of unique path https://leetcode.com/problems/unique-paths/
  * Related: https://leetcode.com/problems/unique-paths-iii/ Hard
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 

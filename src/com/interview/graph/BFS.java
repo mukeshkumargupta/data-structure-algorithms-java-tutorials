@@ -5,6 +5,13 @@ import java.util.*;
 //Reference: https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 //Category: Must DO
 //In this question not asking to print all TreeNode while asking print only grom starting index so trying all TreeNode is not mandatory
+/*
+ * Question related to connection component
+ * https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+ * you can solve suing bfs or dfs
+ * Reference:
+ * https://www.youtube.com/watch?v=I6v0itcISSY&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=5
+ */
 
 public class BFS {
 	static void bfsUtil(int s, ArrayList<ArrayList<Integer>> list, boolean vis[], int nov) {

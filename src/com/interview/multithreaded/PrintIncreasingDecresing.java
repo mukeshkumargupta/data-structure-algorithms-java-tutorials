@@ -92,7 +92,7 @@ public class PrintIncreasingDecresing {
         // Create an object of class 
         PrintIncreasingDecresing EvenOdd = new PrintIncreasingDecresing(); 
   
-        // Create thread t1 
+        /*// Create thread t1 
         Thread t1 = new Thread(new Runnable() { 
             public void run() 
             { 
@@ -106,7 +106,12 @@ public class PrintIncreasingDecresing {
             { 
                 EvenOdd.printIncreasing(); 
             } 
-        }); 
+        }); */
+        
+        //or
+        PrintIncreasingDecresing instance = new PrintIncreasingDecresing();
+        Thread t1 = new Thread(instance::printIncreasing);
+        Thread t2 = new Thread(instance::printDecresing);
   
         // Start both threads 
         t1.start(); 

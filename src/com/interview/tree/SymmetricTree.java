@@ -12,6 +12,9 @@ package com.interview.tree;
  * https://leetcode.com/problems/detect-cycles-in-2d-grid/ Medium , VVImp, cycle
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/ Medium, Locked, lca
  * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+ * https://leetcode.com/problems/inorder-successor-in-bst-ii/ Medium
+ * https://leetcode.com/problems/find-if-path-exists-in-graph/ Easy
+ * https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/ Hard
 
  
 

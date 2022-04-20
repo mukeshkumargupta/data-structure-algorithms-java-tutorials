@@ -4,6 +4,9 @@ package com.interview.matrix;
  * https://leetcode.com/problems/set-matrix-zeroes/submissions/
  * Category: Medium, Tricky
  * Related:https://leetcode.com/problems/game-of-life/
+ * https://leetcode.com/problems/number-of-laser-beams-in-a-bank/ Medium VVImp
+ * https://leetcode.com/problems/minimum-operations-to-remove-adjacent-ones-in-matrix/ Hard Locked
+ * https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/ Medium Locked
  * 
  * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's, and return the matrix.
 
