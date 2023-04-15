@@ -2,7 +2,7 @@ package com.interview.array;
 
 /*
  * https://leetcode.com/problems/pascals-triangle/
- * Category: Easy, Must Do
+ * Category: Easy, Must Do, Top150
  * https://www.youtube.com/watch?v=6FLvhQjZqvM
  * Related: https://leetcode.com/problems/pascals-triangle-ii/ Easy
  * Given an integer numRows, return the first numRows of Pascal's triangle.

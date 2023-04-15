@@ -6,7 +6,7 @@ import java.util.*;
  * https://www.youtube.com/watch?v=mIZJIuMpI2M&t=1s Good explanation
  * https://leetcode.com/problems/word-ladder-ii/submissions/
  * https://leetcode.com/problems/word-ladder-ii/discuss/1715172/Java-oror-Explained-in-detail-oror-DFS-%2B-BFS
- * Category: Hard
+ * Category: Hard, Must Do
  * 
  * A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
 

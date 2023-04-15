@@ -2,7 +2,7 @@ package com.interview.string;
 
 /*
  * Reference: https://leetcode.com/problems/valid-palindrome/
- * Category: Easy, Tricky, Facebook
+ * Category: Easy, Tricky, Facebook, Top150
  * 
  * Related: https://leetcode.com/problems/valid-palindrome-ii/ Easy
  * https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-subsequences/ Medium

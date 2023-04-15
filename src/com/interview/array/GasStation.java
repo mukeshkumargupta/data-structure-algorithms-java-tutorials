@@ -3,7 +3,8 @@ package com.interview.array;
 /*
  * https://leetcode.com/problems/gas-station/ 100% runtime
  * techdose solution given youtube
- * Category: Medium, Must Do, Google
+ * https://www.youtube.com/watch?v=zcnVaVJkLhY famous problem circular tour
+ * Category: Medium, Must Do, Google, Top150
  * Related;
  * https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/ Medium
  * https://leetcode.com/problems/lonely-pixel-ii/ Medium

@@ -2,10 +2,13 @@ package com.interview.bst;
 /*
  * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
  * https://www.youtube.com/watch?v=_Vo3cQ2xtqk
- * Category: Easy, Must Do
+ * Category: Easy, Must Do, Top150
  * Related: https://leetcode.com/problems/swim-in-rising-water/ Hard
  * https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/ Medium
  * https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/ Hard
+ * https://leetcode.com/problems/allocate-mailboxes/ Hard VVImp
+ * https://leetcode.com/problems/find-the-middle-index-in-array/ Easy, VImp
+ * https://leetcode.com/problems/minimum-operations-to-convert-number/ Medium VImp
  * 
  * Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
 

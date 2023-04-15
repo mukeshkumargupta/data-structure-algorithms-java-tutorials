@@ -3,7 +3,7 @@ package com.interview.array;
 /**
  * Date 03/04/2017
  * @author Mukesh Kumar Gupta
- *
+ * Category: Easy, Top150
  * Best time to buy and sell stocks.
  * 1) Only 1 transaction is allowed
  * 2) Infinite number transactions are allowed

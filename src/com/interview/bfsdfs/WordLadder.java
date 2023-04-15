@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/word-ladder/
  * https://www.youtube.com/watch?v=ZVJ3asMoZ18&t=34s
- * Category: Hard, Tricky
+ * Category: Hard, Tricky, Top150
  * Related: https://leetcode.com/problems/word-ladder-ii/ Hard
  * https://leetcode.com/problems/minimum-genetic-mutation/ Medium
  * A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:

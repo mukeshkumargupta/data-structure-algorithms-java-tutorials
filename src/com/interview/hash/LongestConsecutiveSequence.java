@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/longest-consecutive-sequence/
  * https://www.youtube.com/watch?v=qgizvmgeyUM&t=40s
- * Category: Medium, Tricky
+ * Category: Medium, Tricky, Top150
  * Time complexity O(n)
  * Space complexity O(n)
  * Related: https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ Medium

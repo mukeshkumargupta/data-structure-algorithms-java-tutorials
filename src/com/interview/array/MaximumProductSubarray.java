@@ -50,6 +50,8 @@ public class MaximumProductSubarray {
      */
     public int maxProduct(int[] nums) {//Little optimization, some comparision is reduced
         /*
+         * Time complexity is O(n)
+ * Space complexity is O(1)
          * Runtime: 1 ms, faster than 91.34% of Java online submissions for Maximum Product Subarray.
 Memory Usage: 41.5 MB, less than 5.60% of Java online submissions for Maximum Product Subarray.
          */
