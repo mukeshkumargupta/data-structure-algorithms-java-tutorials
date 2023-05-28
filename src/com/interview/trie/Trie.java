@@ -38,12 +38,12 @@ public class Trie {
         TrieTreeNode current = root;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-            TrieTreeNode TreeNode = current.children.get(ch);
-            if (TreeNode == null) {
-                TreeNode = new TrieTreeNode();
-                current.children.put(ch, TreeNode);
+            TrieTreeNode treeNode = current.children.get(ch);
+            if (treeNode == null) {
+                treeNode = new TrieTreeNode();
+                current.children.put(ch, treeNode);
             }
-            current = TreeNode;
+            current = treeNode;
         }
         //mark the current TreeNodes endOfWord as true
         current.endOfWord = true;
@@ -64,14 +64,14 @@ public class Trie {
             return;
         }
         char ch = word.charAt(index);
-        TrieTreeNode TreeNode = current.children.get(ch);
+        TrieTreeNode treeNode = current.children.get(ch);
 
         //if TreeNode does not exists in map then create one and put it into map
-        if (TreeNode == null) {
-            TreeNode = new TrieTreeNode();
-            current.children.put(ch, TreeNode);
+        if (treeNode == null) {
+            treeNode = new TrieTreeNode();
+            current.children.put(ch, treeNode);
         }
-        insertRecursive(TreeNode, word, index + 1);
+        insertRecursive(treeNode, word, index + 1);
     }
 
     /**
@@ -104,12 +104,12 @@ public class Trie {
             return current.endOfWord;
         }
         char ch = word.charAt(index);
-        TrieTreeNode TreeNode = current.children.get(ch);
+        TrieTreeNode treeNode = current.children.get(ch);
         //if TreeNode does not exist for given char then return false
-        if (TreeNode == null) {
+        if (treeNode == null) {
             return false;
         }
-        return searchRecursive(TreeNode, word, index + 1);
+        return searchRecursive(treeNode, word, index + 1);
     }
 
     /**
