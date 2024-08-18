@@ -4,15 +4,15 @@ package com.interview.bst;
  * https://www.youtube.com/watch?v=kouxiP_H5WE
  * https://leetcode.com/problems/delete-node-in-a-bst/submissions/
  * https://www.codingninjas.com/codestudio/problems/delete-node-in-bst_920381?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos
- * Category: Medium, Fundamental, VVImp
+ * Category: Medium, Fundamental, VVImp, Must Do
  * Related: https://leetcode.com/problems/split-bst/ Medium
  * 
  * Problem Statement
-You have been given a Binary Search Tree of integers with ‘N’ nodes. You are also given data of a node of this tree. Your task is to delete the given node from the BST.
+You have been given a Binary Search Tree of integers with ï¿½Nï¿½ nodes. You are also given data of a node of this tree. Your task is to delete the given node from the BST.
 A binary search tree (BST) is a binary tree data structure which has the following properties.
-• The left subtree of a node contains only nodes with data less than the node’s data.
-• The right subtree of a node contains only nodes with data greater than the node’s data.
-• Both the left and right subtrees must also be binary search trees.
+ï¿½ The left subtree of a node contains only nodes with data less than the nodeï¿½s data.
+ï¿½ The right subtree of a node contains only nodes with data greater than the nodeï¿½s data.
+ï¿½ Both the left and right subtrees must also be binary search trees.
 Example:
 For the given BST, if we want to delete the node with data 5 :
 
@@ -82,7 +82,7 @@ Constraint :
 1 <= N <= 5000
 0 <= data <= 10^5
 
-Where ‘N’ is the number of nodes in the binary search tree and ‘data' denotes data contained in the node of the binary search tree.
+Where ï¿½Nï¿½ is the number of nodes in the binary search tree and ï¿½data' denotes data contained in the node of the binary search tree.
 
 Time limit: 1 sec
 Sample Input 1:

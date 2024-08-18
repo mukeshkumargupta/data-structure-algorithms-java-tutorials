@@ -40,36 +40,48 @@ matrix[i].length == n
 -1000 <= matrix[i][j] <= 1000
  */
 public class RotateImage {
-    void swap(int[][] matrix, int i, int start, int end) {
-        while (start < end) {
-            int temp = matrix[i][start];
-            matrix[i][start] = matrix[i][end];
-            matrix[i][end] = temp;
-            start++;
-            end--;
-        }
-        
-    }
+
     public void rotate(int[][] matrix) {
-        /*
-         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Image.
-Memory Usage: 42.7 MB, less than 56.61% of Java online submissions for Rotate Image.
-         */
-        int R = matrix.length;
-        int C = matrix[0].length;
-        for (int i = 0; i < R; i++) {
-            for (int j= 0; j < C; j++) {
-                if (j > i) { //Here j >i to swap upper half with lower half or i < j swap lower to upper half, both condition will work
-                    int temp = matrix[i][j];
-                    matrix[i][j] = matrix[j][i];
-                    matrix[j][i] = temp;
-                }
+        int n = matrix.length;
+
+        // Transpose the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
         }
-        //Row by row reverse
-        for (int i = 0; i <R; i++) {
-            swap(matrix, i, 0, C-1);
+
+        // Reverse each row
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - j - 1];
+                matrix[i][n - j - 1] = temp;
+            }
         }
-        
+    }
+
+    public void rotateCounterclockwise(int[][] matrix) {
+        int n = matrix.length;
+
+        // Transpose the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+
+        // Reverse each column
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < n / 2; i++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - i - 1][j];
+                matrix[n - i - 1][j] = temp;
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.interview.bst;
 
 import com.interview.tree.TreeNode;
-import com.interview.tree.TreeTraversals;
+import com.interview.tree.PartATreeTraversal.TreeTraversals;
 
 class Index{
     int index;

@@ -46,17 +46,18 @@ Submissions
  */
 public class Triangle {
     public int minimumTotalUtil(List<List<Integer>> triangle, int i, int j, int[][] dp) {
-        if (i == triangle.size() -1) {
-           return triangle.get(i).get(j);
+        if (i == triangle.size() - 1) {
+            return triangle.get(i).get(j);
         }
-        
+
         if (dp[i][j] != 0) {
             return dp[i][j];
         }
-        int d=  triangle.get(i).get(j) + minimumTotalUtil(triangle, i+1, j, dp);
-        int dg =  triangle.get(i).get(j) + minimumTotalUtil(triangle, i+1, j+1, dp);
+        int d = triangle.get(i).get(j) + minimumTotalUtil(triangle, i + 1, j, dp);
+        int dg = triangle.get(i).get(j) + minimumTotalUtil(triangle, i + 1, j + 1, dp);
         return dp[i][j] = Math.min(d, dg);
     }
+
     public int minimumTotal(List<List<Integer>> triangle) {
         /*
          * TC: o(n2) since n cell and each cell two option so without memoization 2 power(n2) but with memoization just n sqaure cell you need to visit(most precise n sqware /2)
@@ -67,8 +68,8 @@ public class Triangle {
         int[][] dp = new int[R][R];
         return minimumTotalUtil(triangle, 0, 0, dp);
     }
-    
-    
+
+
     public int minimumTotalTabulation(List<List<Integer>> triangle) {
         /*
          * TC: o(R*C)
@@ -78,25 +79,25 @@ public class Triangle {
         int C = R;
         int[][] dp = new int[R][C];
         for (int j = 0; j < C; j++) {
-            dp[R-1][j] = triangle.get(R-1).get(j);
-            
+            dp[R - 1][j] = triangle.get(R - 1).get(j);
+
         }
-        
+
         //now try from R-2
-        for (int i = R-2; i >=0; i--) {
-            for (int j = i; j >=0; j--) {
+        for (int i = R - 2; i >= 0; i--) {
+            for (int j = i; j >= 0; j--) {
                 //int d=  triangle.get(i).get(j) + minimumTotalUtil(triangle, i+1, j, dp);
                 //int dg =  triangle.get(i).get(j) + minimumTotalUtil(triangle, i+1, j+1, dp);
                 //return dp[i][j] = Math.min(d, dg);
-                int d =  triangle.get(i).get(j) + dp[i+1][j];
-                int dg =  triangle.get(i).get(j) + dp[i+1][j+1];
+                int d = triangle.get(i).get(j) + dp[i + 1][j];
+                int dg = triangle.get(i).get(j) + dp[i + 1][j + 1];
                 dp[i][j] = Math.min(d, dg);
             }
-            
+
         }
         return dp[0][0];
     }
-    
+
     /*
      * Further optimized by space
      */
@@ -105,32 +106,33 @@ public class Triangle {
         int C = R;
         int[][] dp = new int[R][C];
         int[] prev = new int[C];
-        
+
         for (int j = 0; j < C; j++) {
             //dp[R-1][j] = triangle.get(R-1).get(j);
-            prev[j] = triangle.get(R-1).get(j); 
+            prev[j] = triangle.get(R - 1).get(j);
         }
-        
+
         //now try from R-2
-        for (int i = R-2; i >=0; i--) {
+        for (int i = R - 2; i >= 0; i--) {
             int[] curr = new int[C];
-            for (int j = i; j >=0; j--) {
-                
+            for (int j = i; j >= 0; j--) {
+
                 //int d =  triangle.get(i).get(j) + dp[i+1][j];
                 //int dg =  triangle.get(i).get(j) + dp[i+1][j+1];
-                int d =  triangle.get(i).get(j) + prev[j];
-                int dg =  triangle.get(i).get(j) + prev[j+1];
+                int d = triangle.get(i).get(j) + prev[j];
+                int dg = triangle.get(i).get(j) + prev[j + 1];
                 //dp[i][j] = Math.min(d, dg);
                 curr[j] = Math.min(d, dg);
             }
             prev = curr;
-            
+
         }
         return prev[0];
     }
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
 }

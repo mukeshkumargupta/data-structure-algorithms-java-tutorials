@@ -2,27 +2,28 @@ package com.interview.bst;
 
 /*
  * https://www.youtube.com/watch?v=FiFiNvM29ps
- * Category: Easy, Fundamental
+ * https://leetcode.com/problems/insert-into-a-binary-search-tree/description/
+ * Category: Easy, Fundamental, Must Do
  * Problem Statement
 You have been given a root node of the binary search tree and a positive integer value. You need to perform an insertion operation i.e. inserting a new node with the given value in the given binary search tree such that the resultant tree is also a binary search tree. If there can be more than one possible tree, then you can return any.
 Note :
 A binary search tree is a binary tree data structure, with the following properties :
-    a. The left subtree of any node contains nodes with the value less than the node’s value.
-    b. The right subtree of any node contains nodes with the value equal to or greater than the node’s value.
+    a. The left subtree of any node contains nodes with the value less than the nodeï¿½s value.
+    b. The right subtree of any node contains nodes with the value equal to or greater than the nodeï¿½s value.
     c. Right, and left subtrees are also binary search trees.
 It is guaranteed that,
     a. All nodes in the given tree are distinct positive integers.
     b. The given BST does not contain any node with a given integer value.
 Example, below the tree, is a binary search tree.
 
-Below the tree is not a BST as node ‘2’ is less than node ‘3’ but ‘2’ is the right child of ‘3’, and node ‘6’ is greater than node ‘5’ but it is in the left subtree of node ‘5’.
+Below the tree is not a BST as node ï¿½2ï¿½ is less than node ï¿½3ï¿½ but ï¿½2ï¿½ is the right child of ï¿½3ï¿½, and node ï¿½6ï¿½ is greater than node ï¿½5ï¿½ but it is in the left subtree of node ï¿½5ï¿½.
 
 Input Format :
 The first line contains an integer 'T' which denotes the number of test cases or queries to be run.
 
 The first line of each test case contains elements of the tree in the level order form. The line consists of values of nodes separated by a single space. In case a node is null, we take -1 in its place.
 
-The second line of each test case contains a positive integer value ‘val’, denoting the value of the node that is to be inserted in the given BST.
+The second line of each test case contains a positive integer value ï¿½valï¿½, denoting the value of the node that is to be inserted in the given BST.
 
 For example, the level order input for the tree depicted in the below image.
 
@@ -42,11 +43,11 @@ Level 3 :
 Left child of 13 = 3
 Right child of 13 = 25
 Left child of 72 = 66
-Right child of 72 =  ‘Null’
+Right child of 72 =  ï¿½Nullï¿½
 
 
 Level 4 :
-All children are ‘Null’
+All children are ï¿½Nullï¿½
 
 The first not-null node(of the previous level) is treated as the parent of the first two nodes of the current level. The second not-null node (of the previous level) is treated as the parent node for the next two nodes of the current level and so on.
 The input ends when all nodes at the last level are null(-1).
@@ -58,7 +59,7 @@ The sequence will be put together in a single line separated by a single space.
 Hence, for the above-depicted tree, the input will be given as:
 50 13 72 3 25 66 -1 -1 -1 -1 -1 -1 -1
 Output Format :
-For each test case, the output will be “1” if you have returned the correct answer, else it will be “0”.
+For each test case, the output will be ï¿½1ï¿½ if you have returned the correct answer, else it will be ï¿½0ï¿½.
 
 The output of each test case will be printed in a separate line.
 Note :
@@ -69,9 +70,9 @@ Constraints :
 1 <= data <= 10 ^ 9
 1 <= val <= 10 ^ 9
 
-Where ‘N’ is the total number of nodes in the given binary tree, ‘data’ is the value of the nodes of the given binary tree, and ‘val’ represents the value of node that is to be inserted in the given tree.
+Where ï¿½Nï¿½ is the total number of nodes in the given binary tree, ï¿½dataï¿½ is the value of the nodes of the given binary tree, and ï¿½valï¿½ represents the value of node that is to be inserted in the given tree.
 
-For a single test case, all given ‘data’ and ‘val’ are distinct from each other.
+For a single test case, all given ï¿½dataï¿½ and ï¿½valï¿½ are distinct from each other.
 
 Time Limit: 1sec
 Sample Input 1 :
@@ -88,7 +89,7 @@ For the first test case, the given tree is.
 
 One possible output tree is
 
-  The given tree in the second test case is ‘Null’ i.e. it doesn’t contain any node. Only one possible output tree is
+  The given tree in the second test case is ï¿½Nullï¿½ i.e. it doesnï¿½t contain any node. Only one possible output tree is
 
 Sample Input 2:
 1

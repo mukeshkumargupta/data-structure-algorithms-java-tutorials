@@ -18,7 +18,7 @@ enum Color{
     BLACK
 }
 
-class TreeNode{
+public class TreeNode{
     TreeNode left;
     TreeNode right;
     TreeNode next;

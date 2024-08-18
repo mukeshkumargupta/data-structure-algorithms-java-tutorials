@@ -3,6 +3,7 @@ package com.interview.stackqueue;
 import java.util.*;
 /*
  * https://leetcode.com/problems/evaluate-reverse-polish-notation/
+ * Derived: evalPN which is exactly same but iterate from last and num1 will first before num2
  * Category: Medium, Must Do, Top150
  * Related:
  * https://leetcode.com/problems/basic-calculator/ Hard VVImp
@@ -60,7 +61,7 @@ TC: O(d) where dis no of digit like 1,4,3, 6, so in worst case it can go upto th
         Stack<Integer> stack = new Stack<>();
         for(String temp : tokens){
             if(temp.equals("+")){
-                Integer num2 = stack.pop();
+                Integer num2 = stack.pop();//Imp num2 should be first
                 Integer num1 = stack.pop();
                 stack.add(num1 + num2);
             }else if(temp.equals("-")){
@@ -83,6 +84,34 @@ TC: O(d) where dis no of digit like 1,4,3, 6, so in worst case it can go upto th
         }
         return stack.peek();
         
+    }
+
+    public int evalPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+        for (int i = tokens.length - 1; i >= 0; i--) {
+            String temp = tokens[i];
+            if (temp.equals("+")) {
+                Integer num1 = stack.pop();
+                Integer num2 = stack.pop();
+                stack.add(num1 + num2);
+            } else if (temp.equals("-")) {
+                Integer num1 = stack.pop();
+                Integer num2 = stack.pop();
+                stack.add(num1 - num2);
+            } else if (temp.equals("*")) {
+                Integer num1 = stack.pop();
+                Integer num2 = stack.pop();
+                stack.add(num1 * num2);
+            } else if (temp.equals("/")) {
+                Integer num1 = stack.pop();
+                Integer num2 = stack.pop();
+                stack.add(num1 / num2);
+            } else {
+                Integer newNum = Integer.valueOf(temp); // Both Integer.parseInt(temp) and Integer.valueOf(temp) will work
+                stack.add(newNum);
+            }
+        }
+        return stack.peek();
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

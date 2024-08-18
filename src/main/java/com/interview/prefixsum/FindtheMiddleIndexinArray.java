@@ -64,34 +64,20 @@ Submissions
  */
 public class FindtheMiddleIndexinArray {
     public int findMiddleIndex(int[] nums) {
-        /*
-         * Bruitforce solution is take left sum array and right sum array then for each index compare but without left and right array below solution this is.
-         * Runtime: 1 ms, faster than 77.29% of Java online submissions for Find the Middle Index in Array.
-Memory Usage: 42.3 MB, less than 57.65% of Java online submissions for Find the Middle Index in Array.
-         */
-        //consider sum of left = 0, i.e. leftmost index is middle
-        int leftSum = 0;
-        //calculate sum of right
-        int rightSum = 0;
-        int l = nums.length;
-        for(int i=1; i<l; i++){
-            rightSum += nums[i];
+        int totalSum = 0;
+        for (int num : nums) {
+            totalSum += num;
         }
 
-        if(leftSum == rightSum) {
-            return 0;
-        }
-        
-        //check if sum of left == sum of right, otherwise move the middle by 1 and check again
-        // we don't need to calculate sum again, just reuse the one already calculated
-        //i.e. add prev middle to left sum and subtract new middle from right sum
-        for(int i=1; i<l; i++) {
-            leftSum += nums[i-1];
-            rightSum -= nums[i];
-            if(leftSum == rightSum) {
-                return i; // return the middle index if found
+        int leftSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int rightSum = totalSum - leftSum - nums[i];
+            if (leftSum == rightSum) {
+                return i;
             }
+            leftSum += nums[i];
         }
+
         return -1;
     }
     public static void main(String[] args) {

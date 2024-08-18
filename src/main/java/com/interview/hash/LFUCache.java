@@ -61,6 +61,90 @@ Constraints:
 0 <= value <= 109
 At most 2 * 105 calls will be made to get and put.
  */
+
+class LFUCache {
+    private final int capacity;
+    private int minFrequency;
+    private final Map<Integer, Integer> cache; // key to value
+    private final Map<Integer, Integer> keyFrequency; // key to frequency
+    private final Map<Integer, LinkedHashSet<Integer>> frequencyMap; // frequency to keys
+
+    public LFUCache(int capacity) {
+        this.capacity = capacity;
+        this.minFrequency = 0;
+        this.cache = new HashMap<>();
+        this.keyFrequency = new HashMap<>();
+        this.frequencyMap = new HashMap<>();
+    }
+
+    public int get(int key) {
+        if (!cache.containsKey(key)) {
+            return -1;
+        }
+        int value = cache.get(key);
+        updateFrequency(key);
+        return value;
+    }
+
+    public void put(int key, int value) {
+        if (capacity == 0) {
+            return;
+        }
+
+        if (cache.containsKey(key)) {
+            cache.put(key, value);
+            updateFrequency(key);
+            return;
+        }
+
+        if (cache.size() == capacity) {
+            evict();
+        }
+
+        cache.put(key, value);
+        keyFrequency.put(key, 1);
+        frequencyMap.computeIfAbsent(1, k -> new LinkedHashSet<>()).add(key);
+        minFrequency = 1;
+    }
+
+    private void updateFrequency(int key) {
+        int frequency = keyFrequency.get(key);
+        keyFrequency.put(key, frequency + 1);
+        frequencyMap.get(frequency).remove(key);
+
+        if (frequency == minFrequency && frequencyMap.get(frequency).isEmpty()) {
+            minFrequency++;
+        }
+
+        frequencyMap.computeIfAbsent(frequency + 1, k -> new LinkedHashSet<>()).add(key);
+    }
+
+    private void evict() {
+        int evictKey = frequencyMap.get(minFrequency).iterator().next();
+        frequencyMap.get(minFrequency).remove(evictKey);
+        if (frequencyMap.get(minFrequency).isEmpty()) {
+            frequencyMap.remove(minFrequency);
+        }
+        cache.remove(evictKey);
+        keyFrequency.remove(evictKey);
+    }
+
+    public static void main(String[] args) {
+        LFUCache lfuCache = new LFUCache(2);
+        lfuCache.put(1, 1); // Cache is {1=1}
+        lfuCache.put(2, 2); // Cache is {1=1, 2=2}
+        System.out.println(lfuCache.get(1)); // returns 1 and updates the frequency of key 1
+        lfuCache.put(3, 3); // Evicts key 2 and adds key 3, Cache is {1=1, 3=3}
+        System.out.println(lfuCache.get(2)); // returns -1 (not found)
+        System.out.println(lfuCache.get(3)); // returns 3
+        lfuCache.put(4, 4); // Evicts key 1 and adds key 4, Cache is {4=4, 3=3}
+        System.out.println(lfuCache.get(1)); // returns -1 (not found)
+        System.out.println(lfuCache.get(3)); // returns 3
+        System.out.println(lfuCache.get(4)); // returns 4
+    }
+}
+
+
 public class LFUCache {
     final int capacity;
     int curSize;

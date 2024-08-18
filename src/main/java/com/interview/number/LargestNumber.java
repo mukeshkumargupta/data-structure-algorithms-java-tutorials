@@ -79,6 +79,8 @@ Memory Usage: 38.5 MB, less than 77.22% of Java online submissions for Largest N
             return ji.compareTo(ij);
             
         });
+
+
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < input.length; i++) {
             result.append(input[i]);

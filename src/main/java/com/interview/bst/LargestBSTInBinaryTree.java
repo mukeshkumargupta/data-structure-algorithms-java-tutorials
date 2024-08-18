@@ -1,6 +1,6 @@
 package com.interview.bst;
 
-import com.interview.tree.ConstructTreeFromInOrderPreOrder;
+import com.interview.tree.PartFTreeConstruction.ConstructTreeFromInOrderPreOrder;
 import com.interview.tree.TreeNode;
 
 /**
