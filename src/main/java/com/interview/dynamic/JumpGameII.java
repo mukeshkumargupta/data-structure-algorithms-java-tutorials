@@ -1,7 +1,10 @@
 package com.interview.dynamic;
 
+import java.util.Arrays;
+
 /*
  * https://leetcode.com/problems/jump-game-ii/
+ * Category: Medium, VVImp
  * https://www.youtube.com/watch?v=BRnRPLNGWIo&t=338s
  * Category: Medium, Tricky, Must Do
  * Related: https://leetcode.com/problems/unique-morse-code-words/ Easy
@@ -37,7 +40,52 @@ Constraints:
  * 
  */
 public class JumpGameII {
-    public int jumpSlow(int[] nums) {//Tried from left
+    /*
+        TC: O[N][N]
+        SC: O[N][N] + O[N]
+     */
+    public int jumpUtil(int ind, int jump, int[] nums, int[][] dp) {
+        if (ind >= nums.length -1) {
+            return jump;
+        }
+
+        if (dp[ind][jump] != -1) {
+            return dp[ind][jump];
+        }
+
+        int mini = Integer.MAX_VALUE;
+        for (int i = 1; i <= nums[ind]; i++) {
+            mini = Math.min(mini, jumpUtil(ind+i, jump+1, nums, dp));
+        }
+
+        return dp[ind][jump] = mini;
+    }
+
+    public int jump(int[] nums) {//37 ms, faster than 37.16% of Java online submissions for Jump Game II.
+        int l = nums.length;
+        int[][] dp = new int[l][l];
+        for (int[] elm: dp) {
+            Arrays.fill(elm, -1);
+        }
+
+        return jumpUtil(0, 0, nums, dp);
+
+    }
+
+    public int jumpTabulation(int[] nums) {//Tried from left
+
+        int l = nums.length;
+        int[][] dp = new int[l][l];
+
+        for () {
+            for () {
+
+            }
+        }
+
+    }
+
+    public int jumpTabulationSlow(int[] nums) {//Tried from left
         /*
          * Runtime: 206 ms, faster than 13.03% of Java online submissions for Jump Game II.
 Memory Usage: 42.3 MB, less than 72.99% of Java online submissions for Jump Game II.
@@ -59,7 +107,7 @@ Memory Usage: 42.3 MB, less than 72.99% of Java online submissions for Jump Game
         return dp[l-1];
         
     }
-    public int jump(int[] nums) {//37 ms, faster than 37.16% of Java online submissions for Jump Game II.
+    public int jumpFast(int[] nums) {//37 ms, faster than 37.16% of Java online submissions for Jump Game II.
         int l = nums.length;
         int[] dp = new int[l];
         dp[l-1] = 0;
