@@ -49,62 +49,61 @@ There will be at least one element in the data structure when getRandom is calle
 
 
 public class InsertDeleteGetRandomO1 {
-    List<Integer> arrayList;
-    Map<Integer, Integer> map;
+    private List<Integer> arrayList;           // List to store elements
+    private Map<Integer, Integer> map;         // Map to store value and its index in the list
+    private Random random;                      // Random object for generating random numbers
 
-    /** Initialize your val structure here. */
+    /** Initialize your data structure here. */
     public InsertDeleteGetRandomO1() {
         arrayList = new ArrayList<>();
         map = new HashMap<>();
-        
+        random = new Random();
     }
-    
+
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
         if (map.containsKey(val)) {
-            return false;
+            return false; // Value already exists
         }
-        
-        arrayList.add(val);
-        map.put(val, arrayList.size()-1);
+        arrayList.add(val);                          // Add value to list
+        map.put(val, arrayList.size() - 1);        // Map value to its index
         return true;
-        
     }
-    
+
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
         if (!map.containsKey(val)) {
-            return false;
+            return false; // Value does not exist
         }
-        int index = map.get(val);
-        int size = arrayList.size();
-        int lastValue = arrayList.get(size-1);
-        if (index != size-1) {
-            Collections.swap(arrayList, index, size-1);
-            map.remove(val);
-            arrayList.remove(size-1);
 
-            //Update map for last swap element 
-            map.put(lastValue, index);
-            
-        } else {
-            map.remove(val);
-            arrayList.remove(index);
-        }
+        int index = map.get(val);                   // Get the index of the value to remove
+        int lastValue = arrayList.get(arrayList.size() - 1); // Get the last value
+
+        // Swap the value to be removed with the last value
+        arrayList.set(index, lastValue);
+        map.put(lastValue, index);                  // Update the map for the last value
+
+        arrayList.remove(arrayList.size() - 1);    // Remove the last element
+        map.remove(val);                             // Remove the value from the map
 
         return true;
     }
-    
+
     /** Get a random element from the set. */
     public int getRandom() {
-        Random rn = new Random();
-        int index = rn.nextInt(arrayList.size());//Give 0 to 1 index
-        return arrayList.get(index);
-        
+        int index = random.nextInt(arrayList.size()); // Generate random index
+        return arrayList.get(index);                   // Return the element at that index
     }
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
+        // Test the RandomizedSet
+        InsertDeleteGetRandomO1 randomizedSet = new InsertDeleteGetRandomO1();
+        System.out.println(randomizedSet.insert(1)); // Returns true
+        System.out.println(randomizedSet.remove(2)); // Returns false
+        System.out.println(randomizedSet.insert(2)); // Returns true
+        System.out.println(randomizedSet.getRandom()); // Returns either 1 or 2
+        System.out.println(randomizedSet.remove(1)); // Returns true
+        System.out.println(randomizedSet.insert(2)); // Returns false
+        System.out.println(randomizedSet.getRandom()); // Returns 2
     }
-    
 }

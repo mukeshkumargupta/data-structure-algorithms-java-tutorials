@@ -11,7 +11,7 @@ package com.interview.systemdesign;
  * Company: Google, Amazon, Facebook
  */
 
-public class SpecialStackvalStructureDesign {
+public class SpecialStackDataStructureDesign {
     class TreeNode {
         int value;
         int minValue;
@@ -29,7 +29,7 @@ public class SpecialStackvalStructureDesign {
     
 
     /** initialize your val structure here. */
-    public SpecialStackvalStructureDesign() {
+    public SpecialStackDataStructureDesign() {
         root = null;
 
     }
