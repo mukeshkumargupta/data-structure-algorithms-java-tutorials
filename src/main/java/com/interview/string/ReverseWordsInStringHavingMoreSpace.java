@@ -5,59 +5,35 @@ public class ReverseWordsInStringHavingMoreSpace {
 
 	// Reference: https://leetcode.com/problems/reverse-words-in-a-string/
 	// Category: Must Do
+	/*
+	Explanation of Improvements
+Removed Redundant Check for Empty Word: The check for an empty first element is unnecessary after using trim() and replacing spaces.
+Simplified Result Append: Using a single append operation avoids conditionally handling the last word.
+Used StringBuilder: StringBuilder is more efficient than StringBuffer for single-threaded operations.
+Concise Swapping and Reversing: Combined increment and decrement in the loop condition to streamline reverseString.
+	 */
 
-	public static void swap(char[] input, int i, int j) {
-		char temp = input[j];
-		input[j] = input[i];
-		input[i] = temp;
-	}
 
-	public static void reverseString(char[] input, int start, int end) {
-		while (start < end) {
-			swap(input, start, end);
-			start++;
-			end--;
-		}
-
-	}
-
+	// Reverses a portion of the character array from start to end
 	public String reverseWords(String s) {
-		// Reference:
-		// https://howtodoinjava.com/java/string/remove-extra-whitespaces-between-words/
-		String removedExtraSpace = s.replaceAll("\\s+", " ");
-		String[] word = removedExtraSpace.split(" ");
-		int j =0;
-		if (word.length > 0 && word[0].isEmpty()) {
-			//ignore first array
-			j =1;
-		}
-		StringBuffer sb = new StringBuffer();
-		for (; j < word.length; j++) {
-			char[] charArray = word[j].toCharArray();
-			reverseString(charArray, 0, word[j].length() - 1);
-			if (j < word.length - 1) {
-				sb.append(charArray);
-				sb.append(" ");
-			}
-			if (j == word.length - 1) {
-				// Dont put string otherwise it will append address
-				sb.append(charArray);
-			}
+		// Step 1: Trim extra spaces and split the string into words
+		String trimmedInput = s.trim().replaceAll("\\s+", " ");
+		String[] words = trimmedInput.split(" ");
 
+		// Step 2: Use a StringBuilder to append words in reverse order
+		StringBuilder result = new StringBuilder();
+		for (int i = words.length - 1; i >= 0; i--) {
+			result.append(words[i]);
+			if (i > 0) result.append(" ");
 		}
-		char[] output = sb.toString().toCharArray();
-		reverseString(output, 0, sb.length() - 1);
-		// Dont print toString otherwise it will print reference so pass array
-		StringBuffer returnOutput = new StringBuffer();
-		returnOutput.append(output);
-		
-		return returnOutput.toString();
+
+		// Return the final reversed words as a string
+		return result.toString();
 	}
-	
+
 	public static void main(String[] args) {
-		ReverseWordsInStringHavingMoreSpace rsw = new ReverseWordsInStringHavingMoreSpace();
-		System.out.println(rsw.reverseWords("  hello world!  ").toCharArray());
-		
+		ReverseWordsInString reverser = new ReverseWordsInString();
+		System.out.println(reverser.reverseWords("  hello world!  "));
 	}
 
 }

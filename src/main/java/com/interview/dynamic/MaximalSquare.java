@@ -6,6 +6,8 @@ package com.interview.dynamic;
  * Related:
  * https://leetcode.com/problems/maximal-rectangle/ Hard
  * https://leetcode.com/problems/largest-plus-sign/ Medium
+ *
+ * TC:
  * 
  */
 public class MaximalSquare {

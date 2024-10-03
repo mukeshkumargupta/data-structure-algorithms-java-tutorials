@@ -26,6 +26,16 @@ import java.util.List;
  * 
  */
 public class PathSum {
+
+    public static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+    }
     /*
      * Reference: https://leetcode.com/problems/path-sum-ii/
      * Category: Medium

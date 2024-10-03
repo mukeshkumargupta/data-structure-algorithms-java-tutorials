@@ -44,7 +44,6 @@ import java.util.*;
      * - You can reach any intersection from any other intersection.
      */
 public class NumberofWaystoArriveatDestination {
-    class Solution {
         private int dijkstra(int[][] roads,int n){
             /*
              * Runtime: 10 ms, faster than 86.04% of Java online submissions for Number of Ways to Arrive at Destination.
@@ -60,7 +59,7 @@ Memory Usage: 49.3 MB, less than 88.34% of Java online submissions for Number of
             //Distance array to store the minimum time taken to reach a vertex
             long[] dist=new long[n];
             //Filling dist array with infinite distance.
-           // Arrays.fill(dist,(long)1e18);
+            // Arrays.fill(dist,(long)1e18);
             Arrays.fill(dist,Long.MAX_VALUE);
             dist[0]=0;
             //Number of ways to reach 0 is 1.
@@ -80,9 +79,9 @@ Memory Usage: 49.3 MB, less than 88.34% of Java online submissions for Number of
                 //Node value we are on(Parent Node).
                 long node=ele[0];
                 for(long[] child:graph[(int)node]){
-                //Adjancent Node weight from parent.
+                    //Adjancent Node weight from parent.
                     long wt=child[1];
-                //Adjacent Node to parent
+                    //Adjacent Node to parent
                     long adjNode=child[0];
                     //If the wt+dis (i.e time here) is less than already time taken then will update dist[(int)adjNode] and number of ways will be equal to ways[(int)node]
                     if(wt+dis<dist[(int)adjNode]){
@@ -96,8 +95,9 @@ Memory Usage: 49.3 MB, less than 88.34% of Java online submissions for Number of
                     }
                 }
             }
-             return (int)ways[n-1];
+            return (int)ways[n-1];
         }
+
     
         public int countPaths(int n, int[][] roads) {
             return dijkstra(roads,n);        

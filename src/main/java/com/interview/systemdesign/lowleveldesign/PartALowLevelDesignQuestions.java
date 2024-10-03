@@ -7,6 +7,7 @@ public class PartALowLevelDesignQuestions {
      * (Facebook, Amazon, Apple, Netflix, Google) interviews. These questions
      * focus on designing small-scale systems, classes, or components, and
      * emphasize object-oriented design principles, data structures, and algorithms.
+     * Good resource link https://www.youtube.com/watch?v=B3zrIwz_t4M&list=PLTCrU9sGybupCpY20eked6blbHI4zZ55k
      */
 
     // 1. Design a Parking Lot System
@@ -233,6 +234,34 @@ public class PartALowLevelDesignQuestions {
      * - Real-time message delivery and acknowledgment.
      * - Message history storage and retrieval.
      */
+
+    // 16. Airline Management System,
+
+    // 17. ATM Design
+
+    // 18 DeckCardsDesign
+
+    // 19 CityGuideService like foursquare
+
+    // 20 HitCounterDesign
+
+    // 21 PartVHotelManagementSystem
+
+    // 22 LogisticsSystemDesign
+
+    // 23 MediaSharingSocialNetworkingSystemDesign
+
+    // 24 OnlineBookReaderSystemDesign
+
+    // 25 MultilevelCacheOrganisationDesign
+
+    // 26 PartZAonlineshopping
+
+    // 27 TicTacToeDesign
+
+    // 28 OnlineStockBrokerageSystemDesign
+    // 29 OnlineShoppingApp
+    // 30 VideoSharingServiceSystemlikeYoutubeDesign
 
     /*
      * General Tips for Low-Level Design Interviews:

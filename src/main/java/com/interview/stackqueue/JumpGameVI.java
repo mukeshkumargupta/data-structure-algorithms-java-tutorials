@@ -5,7 +5,6 @@ import java.util.*;
  * https://leetcode.com/problems/jump-game-vi/
  * https://www.youtube.com/watch?v=LiEcBMK5PQs
  https://chatgpt.com/c/d1d41ac9-e43d-42c4-b11b-ae0e5f033115 stet by step explanation
- */
  * Category: Medium, Fundamental, Must Do
  * Related: https://leetcode.com/problems/jump-game-vii/
  * You are given a 0-indexed integer array nums and an integer k.
@@ -45,7 +44,6 @@ public class JumpGameVI {
     /*
 Approach 1 Bruitforce
  */
-     */
     public int maxResult(int[] nums, int k) {
         return maxResultHelper(nums, k, 0);
     }

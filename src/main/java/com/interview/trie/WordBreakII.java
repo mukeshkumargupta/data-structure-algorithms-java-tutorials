@@ -2,11 +2,10 @@ package com.interview.trie;
 
 import java.util.*;
 
-import com.interview.trie.WordBreak2MakeMyTrip.TrieNode;
 /*
  * https://leetcode.com/problems/word-break-ii/
  * https://www.youtube.com/watch?v=fNVs1J2KCyo
- * Category: Hard, tricky, VImp
+ * Category: Hard, tricky, VImp, MakeMyTrip, Google
  * Related: https://leetcode.com/problems/concatenated-words/ Hard
  * Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
 

@@ -31,7 +31,6 @@ Constraints:
 words[i] consists of lowercase English letters.
  */
 public class LongestWordinDictionary {
-    final int ALPHABET_SIZE = 26;
     
     // trie TreeNode
     class TrieTreeNode {
@@ -39,7 +38,7 @@ public class LongestWordinDictionary {
         String str;
         
         TrieTreeNode() {
-            children = new TrieTreeNode[ALPHABET_SIZE];
+            children = new TrieTreeNode[26];
             str = null;
         }
     };

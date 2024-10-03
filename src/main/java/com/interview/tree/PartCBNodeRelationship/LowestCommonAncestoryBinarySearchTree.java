@@ -1,7 +1,5 @@
 package com.interview.tree.PartCBNodeRelationship;
 
-import com.interview.tree.TreeNode;
-
 /**
  * Date 05/04/2017
  * @author Mukesh Kumar Gupta
@@ -13,10 +11,21 @@ import com.interview.tree.TreeNode;
  * 
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * Reference: https://www.youtube.com/watch?v=TIoCCStdiFo
- * Category: Easy, Must Do
+ * Category: Medium, Must Do
  * Company: Groupon
  */
 public class LowestCommonAncestoryBinarySearchTree {
+
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) {
+            this.val = val;
+
+        }
+    }
+
 
     public TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
         if (root.val > Math.max(p, q)) {

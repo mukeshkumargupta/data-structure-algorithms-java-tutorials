@@ -2,7 +2,7 @@ package com.interview.trie;
 
 /*
  * https://www.youtube.com/watch?v=AWnBa91lThI
- * Category: Medium, Must Do
+ * Category: Hard, Must Do
  * https://leetcode.com/problems/longest-word-with-all-prefixes/ Locked
  * Code submitted: https://www.codingninjas.com/codestudio/problems/complete-string_2687860?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_tries_videos&leftPanelTab=1
  */
