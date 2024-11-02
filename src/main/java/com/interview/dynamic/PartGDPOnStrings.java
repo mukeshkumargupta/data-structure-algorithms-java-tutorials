@@ -3,7 +3,7 @@ package com.interview.dynamic;
 import java.util.Arrays;
 
 public class PartGDPOnStrings {
-    /**
+    /*
      * https://leetcode.com/problems/longest-common-subsequence/
      * Category: Medium, Must Do
      * Reference: Takeyouforward
@@ -351,7 +351,7 @@ Reason: We are using an auxiliary recursion stack space(O(N+M)) (see the recursi
     }
 
 
-    /**
+    /*
      * Date 08/01/2017
      * @author Mukesh Kumar Gupta
      * https://www.youtube.com/watch?v=6i_T5kkfv4A&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=29
@@ -865,7 +865,7 @@ Reason: We are using an auxiliary recursion stack space(O(N+M)) (see the recursi
         https://www.youtube.com/watch?v=fJaKO8FbDdo&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=34
      */
 
-    /**
+    /*
      * Date 07/07/2017
      * @author Mukesh Kumar Gupta
      * Reference: https://leetcode.com/problems/edit-distance/submissions/
@@ -1071,7 +1071,7 @@ Reason: We are using an auxiliary recursion stack space(O(N+M)) (see the recursi
     /*
     https://www.youtube.com/watch?v=ZmlQ3vgAOMo&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=35
      */
-    /**
+    /*
      * Date 02/11/2017
      * @author Mukesh Kumar Gupta
      *

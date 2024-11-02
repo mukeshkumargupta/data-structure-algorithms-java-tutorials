@@ -1,6 +1,6 @@
 package com.interview.binarysearch;
 
-/**
+/*
  *
  * https://leetcode.com/problems/sqrtx/
  * Very good explanation is given
@@ -14,137 +14,119 @@ package com.interview.binarysearch;
  */
 //Working code for https://leetcode.com/problems/sqrtx/ but difivult to understand
 public class SquareRootOfNumber {
-    public int mySqrt(int x) {
+
+
+    public static class Bruitforce {
         /*
-         * Runtime: 2 ms, faster than 79.01% of Java online submissions for Sqrt(x).
-Memory Usage: 40.9 MB, less than 75.17% of Java online submissions for Sqrt(x).
-TC: Log(N)
+         * Brute Force Solution
+         *
+         * A straightforward approach is to try each integer from 1 up to x, squaring each integer
+         * until the square exceeds x. This is simple but inefficient for large values of x.
+         *
+         * Time Complexity: O(x) – We iterate up to the square root of x, so in the worst case,
+         *                  we may perform x checks.
+         *
+         * Explanation:
+         * - We incrementally check each integer starting from 1, squaring it to see if it is less
+         *   than or equal to x.
+         * - The first integer whose square exceeds x gives us the floor value of the square root.
+         *
+         * Division Instead of Multiplication:
+         * - To avoid overflow, instead of checking `result * result <= x`, we use `result <= x / result`.
+         * - This method remains within the `int` range, even for large values of x.
+         *
+         * Example for Large Values:
+         * - For large inputs like x = 2147395600, this approach correctly avoids overflow by comparing
+         *   within the `int` range, yielding the correct result of 46340.
          */
-        if (x == 0) {
-            return 0;
-        }
-        //if x is not 0 then probable ans is 1 so start from x
-        //so range is 1 to x
-        int start = 1;
-        int end = x;
-        int result = 1;
-        while (start <= end) {
-            int mid = start + (end - start)/2; //to avoud overflow no (start + end)/2
-            if (mid <= x/mid) {//no mid*mid to avoid over flow
-                result = mid; //probable ans
-                start = mid+1;
-            } else {
-                end = mid -1;
-            }
-        }
-        return result;
+        public int mySqrt(int x) {
+            if (x == 0 || x == 1) return x; // handle edge cases
 
+            int result = 1;
+            while (result <= x / result) { // avoid overflow by using division
+                result++;
+            }
+            return result - 1; // subtract 1 as we go one step beyond the result
+        }
+    }
 
-    }
-    
-    //Real code for square root, Mine trying and working with real example
-    private static String findSquareRoot_realbinarySearch(int number) {
-        
-        Boolean isNegative = false;
-        if(number < 0) {
-            number = -number;
-            isNegative = true;
-        }
- 
-        if(number == 1) {
-            return number + (isNegative ? "i" : "");
-        }
- 
-        double start = 0;
-        double end = number;
-        double precision = 0.0005;
-        double mid = (start + end )/2;
-        
-        //while(start <= end) {//here this condition will not work, so we need to keep trying until we get result
-          while(true) {
-            mid = (start + end )/2;
-            if(Math.abs(mid*mid - number) <= precision) {
-                break; 
-            } else if (mid*mid > number) {
-                end = mid -1;
-            } else {
-                start = mid +1;
+    /*
+     * Binary Search Solution (Optimized)
+     *
+     * We can optimize the square root calculation using binary search. Since the square root of x will lie
+     * between 1 and x, we can treat this range as our search space. By calculating the midpoint of this range,
+     * squaring it, and comparing it with x, we can decide whether to continue searching in the lower or upper half.
+     *
+     * Time Complexity: O(log x) – Binary search reduces the search range by half with each iteration,
+     * resulting in a logarithmic time complexity.
+     *
+     * Explanation:
+     * - Initialize the search range with `left = 1` and `right = x`.
+     * - Calculate the midpoint, `mid`, and check if `mid * mid` is less than, equal to, or greater than x.
+     * - If `mid * mid` is equal to x, then mid is the square root of x.
+     * - If `mid * mid` is less than x, move the search to the right half (`left = mid + 1`).
+     * - If `mid * mid` is greater than x, move the search to the left half (`right = mid - 1`).
+     * - Continue narrowing down the range until `left` exceeds `right`, and return the largest integer `mid`
+     *   that satisfies `mid * mid <= x`.
+     */
+
+    public static class BetterApproach {
+        public static int mySqrt(int x) {
+            if (x == 0 || x == 1) return x; // edge cases
+
+            int left = 1, right = x, result = 0;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (mid <= x / mid) { // equivalent to mid * mid <= x, but prevents overflow
+                    result = mid; // mid is a candidate
+                    left = mid + 1; // search right half
+                } else {
+                    right = mid - 1; // search left half
+                }
             }
+            return result;
         }
-         
-        return mid + (isNegative ? "i" : "");//either start or end
+
+        public static void main(String[] args) {
+            int number = 9;
+            //int number = 1;
+            System.out.println("Square root of " + number + " = " + mySqrt(number));
+            System.out.println("Square root of " + number + " = " + mySqrt(number));
+            //System.out.println("Square root of " + number + " = " + mySqrt_v1(number));
+        }
     }
-    
-    //Real code for square root
-    //https://www.youtube.com/watch?v=H7WymG3gab0
-    private static String findSquareRoot(int number) {
-        
-        Boolean isNegative = false;
-        if(number < 0) {
-            number = -number;
-            isNegative = true;
-        }
- 
-        if(number == 1) {
-            return number + (isNegative ? "i" : "");
-        }
- 
-        double start = 0;
-        double end = number;
-        double mid = (start+end)/2;
-        double prevMid = 0;
-        double diff = Math.abs(mid - prevMid);
-        double precision = 0.0005;
- 
-        while((mid*mid != number) && (diff > precision)) {
-            if(mid*mid > number) {
-                end = mid -1; //Earlier it was mid, normal mid -1 is also wroking that is as usual binary search
-            } else {
-                start = mid +1;//Earlier it was mid, normal mid -1 is also wroking that is as usual binary search
+
+    /*
+     * Newton's Method (Most Optimized Approach)
+     *
+     * Newton's method is an iterative approach to approximate the square root using a mathematical formula.
+     * It starts with an initial guess and refines this guess until it converges to an integer value close to the square root of x.
+     *
+     * Time Complexity: O(log x) – Although it has a logarithmic complexity, it often converges faster in practice than binary search.
+     *
+     * Explanation:
+     * - Start with x as an initial approximation.
+     * - Repeatedly refine this approximation by taking the average of `approx` and `x / approx`.
+     * - This process continues until approx squared is less than or equal to x.
+     *
+     * Summary of Time Complexities:
+     * - Brute Force: O(x) – Linear complexity, not efficient for large x.
+     * - Binary Search: O(log x) – Faster, divides the search space in half each step.
+     * - Newton’s Method: O(log x) – Even faster convergence in practice.
+     */
+    public static class OptimizedAPproach {
+        public int mySqrt(int x) {
+            if (x == 0) return 0;
+
+            long approx = x;
+            while (approx * approx > x) {
+                approx = (approx + x / approx) / 2;
             }
-            prevMid = mid;
-            mid = (start+end)/2;
-            diff = Math.abs(mid - prevMid);
+            return (int) approx;
         }
-         
-        return mid + (isNegative ? "i" : "");
     }
     
 
-    
-    //Note this code will not work for some cases
-    //https://leetcode.com/problems/sqrtx/
-    public static int mySqrt_v1(int x) {
-        double start = 0;
-        double end = x;
-        double mid = (start+end)/2;
-        double prevMid = 0;
-        double diff = Math.abs(mid - prevMid);
-        double precision = 0.0005;
- 
-        while((mid*mid != x) && (diff > precision)) {
-            if(mid*mid > x) {
-                end = mid;
-            } else {
-                start = mid;
-            }
-            prevMid = mid;
-            mid = (start+end)/2;
-            diff = Math.abs(mid - prevMid);
-        }
-        int result = (int) mid;
-        if (result + 1 - mid < .001)  {
-            return result + 1;
-        } else return result;
-    }
-    
-    public static void main(String[] args) {
-        int number = 9;
-        //int number = 1;
-        System.out.println("Square root of " + number + " = " + findSquareRoot(number));
-        System.out.println("Square root of " + number + " = " + findSquareRoot_realbinarySearch(number));
-        //System.out.println("Square root of " + number + " = " + mySqrt_v1(number));
-    }
     
 }
 

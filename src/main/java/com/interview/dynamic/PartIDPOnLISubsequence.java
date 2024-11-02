@@ -494,7 +494,7 @@ words[i] only consists of lowercase English letters.
         }
     }
 
-    /**
+    /*
      * http://www.geeksforgeeks.org/dynamic-programming-set-15-longest-bitonic-subsequence/
      * https://www.youtube.com/watch?v=y4vN0WNdrlg&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=47
      *

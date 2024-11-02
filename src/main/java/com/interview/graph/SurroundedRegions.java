@@ -1,36 +1,39 @@
 package com.interview.graph;
 
 /*
- * https://leetcode.com/problems/surrounded-regions/submissions/
- * https://www.youtube.com/watch?v=0ZJViJEdtEc
+ * Problem: https://leetcode.com/problems/surrounded-regions/
+ * Video Explanation: https://www.youtube.com/watch?v=0ZJViJEdtEc
  * Category: Medium, Top150, Must Do
- * Related: https://leetcode.com/problems/walls-and-gates/ Medium
- * Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
-
-A region is captured by flipping all 'O's into 'X's in that surrounded region.
-
-
-
-Example 1:
-
-
-Input: board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
-Output: [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
-Explanation: Surrounded regions should not be on the border, which means that any 'O' on the border of the board are not flipped to 'X'. Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'. Two cells are connected if they are adjacent cells connected horizontally or vertically.
-Example 2:
-
-Input: board = [["X"]]
-Output: [["X"]]
-
-
-Constraints:
-
-m == board.length
-n == board[i].length
-1 <= m, n <= 200
-board[i][j] is 'X' or 'O'.
+ * Related Problem: https://leetcode.com/problems/walls-and-gates/ (Medium)
+ *
+ * Problem Statement:
+ * Given an `m x n` matrix `board` containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
+ * A region is "captured" by flipping all 'O's into 'X's in that surrounded region.
+ *
+ * Key Rules:
+ * - Surrounded regions must not include any 'O' cells on the border of the board.
+ * - Any 'O' on the border, or connected to a border 'O', will not be flipped.
+ * - Two cells are connected if they are adjacent horizontally or vertically.
+ *
+ * Example 1:
+ * Input: board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+ * Output: [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+ * Explanation:
+ * - 'O's on the border or connected to the border are left as 'O'.
+ * - All other 'O's not connected to the border are flipped to 'X'.
+ *
+ * Example 2:
+ * Input: board = [["X"]]
+ * Output: [["X"]]
+ *
+ * Constraints:
+ * - `m == board.length`
+ * - `n == board[i].length`
+ * - `1 <= m, n <= 200`
+ * - `board[i][j]` is either 'X' or 'O'.
+ */
 public class SurroundedRegions {
-    public boolean isNotVisited(char[][] grid, int i, int j) {
+    private boolean isNotVisited(char[][] grid, int i, int j) {
         int r1 = grid.length;
         int c1 = grid[0].length;
         if( (i >= 0 && i < r1) && (j>=0 && j < c1) && (grid[i][j] =='O')) {
@@ -42,7 +45,6 @@ public class SurroundedRegions {
     
     public void DFS(char[][] grid, int i, int j) {
 
-         */
         grid[i][j] = '1';
         
         if(isNotVisited(grid, i, j+1)) {

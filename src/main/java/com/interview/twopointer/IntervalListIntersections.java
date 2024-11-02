@@ -6,7 +6,7 @@ import java.util.*;
  * Problem: Interval List Intersections
  * Link: https://leetcode.com/problems/interval-list-intersections/
  *
- * Category: Medium, Must Do, Top 150
+ * Category: Medium, Must Do, Top150
  * Video Explanation: https://www.youtube.com/watch?v=Qh8ZjL1RpLI
  *
  * Related Problems:

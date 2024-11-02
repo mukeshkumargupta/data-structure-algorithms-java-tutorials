@@ -2,39 +2,43 @@ package com.interview.hash;
 
 import java.util.*;
 /*
- * https://leetcode.com/problems/4sum-ii/
- * Category: Medium, Top150, Tricky
- * Related: https://leetcode.com/problems/walls-and-gates/ Medium
- * https://leetcode.com/problems/dice-roll-simulation/ Hard
- * https://leetcode.com/problems/find-the-winner-of-the-circular-game/ Medium
- * Given four integer arrays nums1, nums2, nums3, and nums4 all of length n, return the number of tuples (i, j, k, l) such that:
-    Derived question: Here in place of 0, it could be 1, 2 3 sum as well etc, 
-0 <= i, j, k, l < n
-nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0
- 
-
-Example 1:
-
-Input: nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
-Output: 2
-Explanation:
-The two tuples are:
-1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
-2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
-Example 2:
-
-Input: nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
-Output: 1
- 
-
-Constraints:
-
-n == nums1.length
-n == nums2.length
-n == nums3.length
-n == nums4.length
-1 <= n <= 200
--228 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 228
+ * Problem: https://leetcode.com/problems/4sum-ii/
+ * Category: Medium, Top150, Tricky, VVImp
+ * Author: Mukesh Kumar Gupta
+ *
+ * Related Problems:
+ * - Walls and Gates: https://leetcode.com/problems/walls-and-gates/ (Medium)
+ * - Dice Roll Simulation: https://leetcode.com/problems/dice-roll-simulation/ (Hard)
+ * - Find the Winner of the Circular Game: https://leetcode.com/problems/find-the-winner-of-the-circular-game/ (Medium)
+ *
+ * Problem Statement:
+ * Given four integer arrays nums1, nums2, nums3, and nums4, each of length n,
+ * return the number of tuples (i, j, k, l) such that:
+ *    0 <= i, j, k, l < n
+ *    nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0
+ *
+ * Note: This problem can be generalized for target sums other than 0.
+ *
+ * Examples:
+ *
+ * Example 1:
+ * Input: nums1 = [1, 2], nums2 = [-2, -1], nums3 = [-1, 2], nums4 = [0, 2]
+ * Output: 2
+ * Explanation:
+ * The two tuples are:
+ * 1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
+ * 2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
+ *
+ * Example 2:
+ * Input: nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
+ * Output: 1
+ * Explanation:
+ * There is only one tuple that sums to zero: (0, 0, 0, 0).
+ *
+ * Constraints:
+ * - n == nums1.length == nums2.length == nums3.length == nums4.length
+ * - 1 <= n <= 200
+ * - -2^28 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 2^28
  */
 public class FourSumII {
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {

@@ -4,55 +4,49 @@ import java.util.Arrays;
 
 public class PartDJumpGamePattern {
 
-    /**
-     * Date 07/31/2017
-     * @author Mukesh Kumar Gupta
+    /*
+     * Problem: https://leetcode.com/problems/jump-game/
+     * Video Explanation: https://www.youtube.com/watch?v=tZAa_jJ3SwQ
+     * Related Video: https://www.youtube.com/watch?v=muDPTDrpS28
+     * Category: Medium, Tricky, Top150
+     * Author: Mukesh Kumar Gupta
+     * Date: 07/31/2017
      *
-     * https://www.youtube.com/watch?v=tZAa_jJ3SwQ&list=PLgUwDviBIf0rF1w2Koyh78zafB0cz7tea&index=5
-     * https://leetcode.com/problems/jump-game/
-     * Category: Tricky, Top150
-     * https://www.youtube.com/watch?v=muDPTDrpS28
-     *
-     *  Given an array of non-negative integers, you are initially positioned at the first index of the array.
+     * Problem Statement:
+     * Given an array of non-negative integers, you are initially positioned at the first index of the array.
      * Each element in the array represents your maximum jump length at that position.
-     * Your goal is to reach the last index in the minimum number of jumps.
+     * Your goal is to determine if you can reach the last index.
      *
-     * Time complexity O(n)
-     * Space complexity O(1)
-     * You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
-
-    Return true if you can reach the last index, or false otherwise.
-
-
-
-    Example 1:
-
-    Input: nums = [2,3,1,1,4]
-    Output: true
-    Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
-    Example 2:
-
-    Input: nums = [3,2,1,0,4]
-    Output: false
-    Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
-
-
-    Constraints:
-
-    1 <= nums.length <= 104
-    0 <= nums[i] <= 105
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
-     * https://leetcode.com/problems/jump-game-ii/ Medium
-     * https://leetcode.com/problems/jump-game-iii/ Medium
-     * https://leetcode.com/problems/jump-game-vii/ Medium
-     * Related:
-     * https://leetcode.com/problems/intersection-of-three-sorted-arrays/ Easy locked
-     * https://leetcode.com/problems/reduce-array-size-to-the-half/ Medium  VImp
-     * Hint: Take map to count frequency then take put value and fre in priority queue then reduce one by one and check criteria if criterial fulpul then add in result set
-     * Like this: https://leetcode.com/problems/reduce-array-size-to-the-half/discuss/1731840/Java-easy-Solution-oror-HashMap-oror-PriorityQueue
-     * https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/ Medium
+     * Examples:
      *
-     * Other version is not mentioned related but try to solve all version, All are good question
+     * Example 1:
+     * Input: nums = [2,3,1,1,4]
+     * Output: true
+     * Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+     *
+     * Example 2:
+     * Input: nums = [3,2,1,0,4]
+     * Output: false
+     * Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, making it impossible to reach the last index.
+     *
+     * Constraints:
+     * - 1 <= nums.length <= 10^4
+     * - 0 <= nums[i] <= 10^5
+     *
+     * Additional Related Problems:
+     * - https://leetcode.com/problems/jump-game-ii/ (Medium)
+     * - https://leetcode.com/problems/jump-game-iii/ (Medium)
+     * - https://leetcode.com/problems/jump-game-vii/ (Medium)
+     * - https://leetcode.com/problems/intersection-of-three-sorted-arrays/ (Easy, locked)
+     * - https://leetcode.com/problems/reduce-array-size-to-the-half/ (Medium, Very Important)
+     * - Priority Queue Hint: To reduce array size to half, use a map to count frequency and prioritize removal by frequency.
+     * Example Solution: https://leetcode.com/problems/reduce-array-size-to-the-half/discuss/1731840/Java-easy-Solution-oror-HashMap-oror-PriorityQueue
+     * - https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/ (Medium)
+     *
+     * Note: There are multiple versions of the Jump Game problem. Try solving all variations, as each offers valuable problem-solving experience.
      */
     public static class JumpGame {
 

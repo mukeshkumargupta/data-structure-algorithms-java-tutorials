@@ -5,79 +5,53 @@ import java.util.Arrays;
 public class PartHDPOnStock {
     public static class BestTimetoBuyandSellStock {
         /*
-        https://www.youtube.com/watch?v=excAOvwF_Wk&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=37
-        https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
-        Category: Easy
-         */
-        /**
-         * Date 03/04/2017
-         * @author Mukesh Kumar Gupta
-         * Category: Easy, Top150
-         * Best time to buy and sell stocks.
-         * 1) Only 1 transaction is allowed
-         * 2) Infinite number transactions are allowed
+         * Problem: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+         * Video Explanation: https://www.youtube.com/watch?v=excAOvwF_Wk&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=37
+         * Category: Easy, Top150, Tricky
+         * Author: Mukesh Kumar Gupta
+         * Date: 03/04/2017
          *
-         * Time complexity O(n)
-         * Space complexity O(1)
+         * Problem Statement:
+         * You are given an array `prices` where prices[i] is the price of a stock on the i-th day.
+         * You want to maximize your profit by selecting a single day to buy one stock and a different future day to sell it.
+         * Return the maximum profit possible from this transaction. If no profit can be achieved, return 0.
          *
-         * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-         * Category: Easy, Tricky
-         * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+         * Example 1:
+         * Input: prices = [7, 1, 5, 3, 6, 4]
+         * Output: 5
+         * Explanation:
+         * - Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6 - 1 = 5.
+         * - Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
          *
-         * You are given an array prices where prices[i] is the price of a given stock on the ith day.
-
-        You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
-
-        Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
-
-
-
-        Example 1:
-
-        Input: prices = [7,1,5,3,6,4]
-        Output: 5
-        Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-        Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
-        Example 2:
-
-        Input: prices = [7,6,4,3,1]
-        Output: 0
-        Explanation: In this case, no transactions are done and the max profit = 0.
-
-
-        Constraints:
-
-        1 <= prices.length <= 105
-        0 <= prices[i] <= 104
-        Accepted
-        1,691,213
-        Submissions
-        3,186,754
-         */
-
-        /*
-            Output:
-
-            The maximum profit by selling the stock is 5
-
-            Time Complexity: O(N)
-
-            Reason: We are performing a single iteration
-
-            Space Complexity: O(1)
-
-            Reason: No extra space is used.
+         * Example 2:
+         * Input: prices = [7, 6, 4, 3, 1]
+         * Output: 0
+         * Explanation: In this case, no transactions are made, so max profit = 0.
+         *
+         * Constraints:
+         * - 1 <= prices.length <= 10^5
+         * - 0 <= prices[i] <= 10^4
+         *
+         * Key Notes:
+         * 1. Only one transaction is allowed.
+         * 2. Infinite transactions are allowed if solving the problem variation.
+         *
+         * Complexity:
+         * - Time Complexity: O(N) - Single pass through the array.
+         * - Space Complexity: O(1) - Only a few extra variables used.
+         *
+         * Code:
          */
 
         static int maximumProfit(int []Arr){
             // Write your code here.
             int maxProfit = 0;
-            int mini = Arr[0];
+            int buy = Arr[0];
 
             for(int i=1;i<Arr.length;i++){
-                int curProfit = Arr[i] - mini;
+                int curProfit = Arr[i] - buy;
                 maxProfit = Math.max(maxProfit,curProfit);
-                mini = Math.min(mini,Arr[i]);
+                buy = Math.min(buy,Arr[i]);
             }
             return maxProfit;
         }
@@ -92,52 +66,50 @@ public class PartHDPOnStock {
     }
 
     /*
-    https://www.youtube.com/watch?v=nGJmxkUJQGs&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=37
-    https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/
+     * Problem: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+     * Category: Medium, Facebook, Tricky, Buy-and-Sell Stock, Top150
+     *
+     * Related Problems:
+     * - Best Time to Buy and Sell Stock III (Hard): https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+     * - Best Time to Buy and Sell Stock IV (Hard): https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+     * - Best Time to Buy and Sell Stock with Cooldown (Medium): https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+     *      Explanation Video: https://www.youtube.com/watch?v=GY0O57llkKQ
+     * - Best Time to Buy and Sell Stock with Transaction Fee (Medium): https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+     *      Explanation Video: https://www.youtube.com/watch?v=pTQB9wbIpfU
+     *
+     * Problem Statement:
+     * You are given an integer array `prices` where prices[i] represents the price of a stock on the i-th day.
+     * On each day, you may choose to buy and/or sell the stock. You can only hold one share at a time,
+     * but you may buy and sell multiple times as long as you only hold one share at any given time.
+     * The goal is to maximize your profit.
+     *
+     * Example 1:
+     * Input: prices = [7, 1, 5, 3, 6, 4]
+     * Output: 7
+     * Explanation:
+     * - Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5 - 1 = 4.
+     * - Buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6 - 3 = 3.
+     * - Total profit is 4 + 3 = 7.
+     *
+     * Example 2:
+     * Input: prices = [1, 2, 3, 4, 5]
+     * Output: 4
+     * Explanation:
+     * - Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5 - 1 = 4.
+     * - Total profit is 4.
+     *
+     * Example 3:
+     * Input: prices = [7, 6, 4, 3, 1]
+     * Output: 0
+     * Explanation: No profitable transactions are possible.
+     *
+     * Constraints:
+     * - 1 <= prices.length <= 3 * 10^4
+     * - 0 <= prices[i] <= 10^4
+     *
+     * Video Explanation:
+     * - https://www.youtube.com/watch?v=nGJmxkUJQGs&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=37
      */
-    /*
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
- * Category: Medium, Facebook, Tricky, buy-and-sell, Top150
- *
- * Related: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/ Hard
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/ Hard
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/ Medium  well explained: https://www.youtube.com/watch?v=GY0O57llkKQ
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/ Medium well explained: https://www.youtube.com/watch?v=pTQB9wbIpfU
- *
- * You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
-
-On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
-
-Find and return the maximum profit you can achieve.
-
-
-
-Example 1:
-
-Input: prices = [7,1,5,3,6,4]
-Output: 7
-Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
-Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
-Total profit is 4 + 3 = 7.
-Example 2:
-
-Input: prices = [1,2,3,4,5]
-Output: 4
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
-Total profit is 4.
-Example 3:
-
-Input: prices = [7,6,4,3,1]
-Output: 0
-Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
-
-
-Constraints:
-
-1 <= prices.length <= 3 * 104
-0 <= prices[i] <= 104
- */
-
     public static class BuyandSellStockSecond {
         /*
             Complexity Analysis

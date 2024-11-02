@@ -64,6 +64,7 @@ public class Part_A_E_LongestCommonPrefix {
         // Insert all words into the Trie
         for (String word : strs) {
             insert(root, word);
+
         }
 
         // Traverse the Trie to find the longest common prefix

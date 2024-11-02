@@ -1,37 +1,39 @@
 package com.interview.binarysearch;
 
-/**
- * Date 07/31/2017
- * @author Mukesh Kumar Gupta
+/*
+ * Date: 07/31/2017
+ * Author: Mukesh Kumar Gupta
  *
- * Given a sorted array of integers, find the starting and ending position of a given target value.
+ * Problem:
+ * Given a sorted array of integers, find the starting and ending position of a specified target value.
  *
- * Time complexity O(logn)
- * Space complexity O(1)
- * https://www.youtube.com/watch?v=OE7wUUpJw6I&list=PLIA-9QRQ0RqFaV3j0I4FMiPQQkG-jIouX&index=3
- * 
- * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ 100% runtime
- * Category: Medium, Must Do, Top150
- * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
-
-If target is not found in the array, return [-1, -1].
-
-You must write an algorithm with O(log n) runtime complexity.
-
- 
-
-Example 1:
-
-Input: nums = [5,7,7,8,8,10], target = 8
-Output: [3,4]
-Example 2:
-
-Input: nums = [5,7,7,8,8,10], target = 6
-Output: [-1,-1]
-Example 3:
-
-Input: nums = [], target = 0
-Output: [-1,-1]
+ * Constraints:
+ * - Array `nums` is sorted in ascending order.
+ * - The solution must have a runtime complexity of O(log n).
+ * - If the target is not found, return [-1, -1].
+ *
+ * Complexity:
+ * - Time Complexity: O(log n) due to binary search.
+ * - Space Complexity: O(1) as no additional space is used.
+ *
+ * Source:
+ * - https://www.youtube.com/watch?v=OE7wUUpJw6I&list=PLIA-9QRQ0RqFaV3j0I4FMiPQQkG-jIouX&index=3
+ * - LeetCode problem link: https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ *
+ * Tags: Medium, Must Do, Top150
+ *
+ * Examples:
+ * Example 1:
+ * Input: nums = [5,7,7,8,8,10], target = 8
+ * Output: [3, 4]
+ *
+ * Example 2:
+ * Input: nums = [5,7,7,8,8,10], target = 6
+ * Output: [-1, -1]
+ *
+ * Example 3:
+ * Input: nums = [], target = 0
+ * Output: [-1, -1]
  */
 public class FindFirstandLastPositionofElementinSortedArray {
     public int[] searchRange(int[] nums, int target) {
