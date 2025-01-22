@@ -1,75 +1,108 @@
 package com.interview.linklist;
 
 /*
- * 
- * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+ * Problem: https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  * Category: Medium, Top150
- * Related:
- * https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/ Easy
- * Given the head of a linked list, remove the nth node from the end of the list and return its head.
-
- 
-
-Example 1:
-
-
-Input: head = [1,2,3,4,5], n = 2
-Output: [1,2,3,5]
-Example 2:
-
-Input: head = [1], n = 1
-Output: []
-Example 3:
-
-Input: head = [1,2], n = 1
-Output: [1]
- 
-
-Constraints:
-
-The number of nodes in the list is sz.
-1 <= sz <= 30
-0 <= Node.val <= 100
-1 <= n <= sz
- 
-
-Follow up: Could you do this in one pass?
+ * Related Problems:
+ * - https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/ (Easy)
+ *
+ * Description:
+ * Given the head of a linked list, remove the nth node from the end of the list
+ * and return its head.
+ *
+ * Example 1:
+ * Input: head = [1,2,3,4,5], n = 2
+ * Output: [1,2,3,5]
+ *
+ * Example 2:
+ * Input: head = [1], n = 1
+ * Output: []
+ *
+ * Example 3:
+ * Input: head = [1,2], n = 1
+ * Output: [1]
+ *
+ * Constraints:
+ * - The number of nodes in the list is `sz`.
+ * - 1 <= sz <= 30
+ * - 0 <= Node.val <= 100
+ * - 1 <= n <= sz
+ *
+ * Follow-up:
+ * Can you solve this in one pass?
  */
 public class RemoveNthNodeFromEndofList {
+    /*
+     * Problem: Remove the nth node from the end of a linked list in one pass.
+     * Solution: We use a two-pointer technique to efficiently locate and remove the nth node from the end.
+     *
+     * Approach:
+     *
+     * 1. Initialize a Dummy Node:
+     *    - Create a dummy node pointing to the head of the list to handle edge cases (e.g., removing the head node).
+     *    - Set dummy.next to head, making dummy the starting point of our traversal.
+     *
+     * 2. Set Up Two Pointers:
+     *    - Start both `first` and `second` pointers at the dummy node.
+     *    - Move the `first` pointer `n + 1` steps forward to maintain a gap of `n` nodes between `first` and `second`.
+     *
+     * 3. Traverse Until End:
+     *    - Move both pointers one step at a time until `first` reaches the end.
+     *    - By then, `second` points to the node just before the one to remove.
+     *
+     * 4. Remove the Target Node:
+     *    - Set `second.next` to `second.next.next` to skip the nth node from the end.
+     *
+     * 5. Return the New Head:
+     *    - Return `dummy.next` as the head of the modified list, which works even if the head was removed.
+     *
+     * Example:
+     * Given linked list: 1 -> 2 -> 3 -> 4 -> 5, n = 2.
+     * Goal: Remove the second node from the end (node 4).
+     *
+     * Steps:
+     * - Initialize dummy pointing to head, with both `first` and `second` at dummy.
+     * - Move `first` forward by `n + 1 = 3` steps, placing `first` at node 3.
+     * - Move both pointers forward until `first` reaches the end:
+     *   - Now, `second` points to the node just before the one we want to remove (node 3).
+     * - Update `second.next` to `second.next.next` to remove node 4.
+     * - Final list: 1 -> 2 -> 3 -> 5.
+     *
+     * Time Complexity: O(L), where L is the list length, as we make a single pass.
+     * Space Complexity: O(1), as we only use pointers.
+     */
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+           this.val = val;
+        }
+    }
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        /*
-         * Runtime: 1 ms, faster than 63.70% of Java online submissions for Remove Nth Node From End of List.
-Memory Usage: 42.1 MB, less than 60.67% of Java online submissions for Remove Nth Node From End of List.
-         */
-        
-        ListNode p1 = head;
-        ListNode p2 = head;
-        
-        
-        int c = 0;
-        while (p1 != null) {
-            c++;
-            if (c == n) {
-               break; 
-            }
-            p1 = p1.next;
+        // Create a dummy node that points to the head
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        // Initialize two pointers, both starting at the dummy node
+        ListNode first = dummy;
+        ListNode second = dummy;
+
+        // Move the first pointer n+1 steps forward
+        for (int i = 0; i <= n; i++) {
+            first = first.next;
         }
-        ListNode prev = null;
-        while (p1.next != null) {//Check last element
-            prev = p2;
-            p1 = p1.next;
-            p2 = p2.next;
+
+        // Move both pointers until the first pointer reaches the end
+        while (first != null) {
+            first = first.next;
+            second = second.next;
         }
-        //System.out.println(prev.val);
-        if (prev == null) { //means removing first element
-            head = head.next;
-            return head;
-        } else {
-            prev.next = p2.next;//Break link
-        }
-        
-        return head;
-        
+
+        // Remove the nth node from the end
+        second.next = second.next.next;
+
+        // Return the head of the modified list
+        return dummy.next;
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
