@@ -50,28 +50,25 @@ Submissions
  */
 public class MaximumSumCircularSubarray {
     public int maxSubarraySumCircular(int[] nums) {
-        int totalSum = 0;
-        int maxSum = nums[0];
-        int currentMax = nums[0];
-        int minSum = nums[0];
-        int currentMin = nums[0];
+        int totalSum = nums[0];
+        int maxSum = nums[0], currentMax = nums[0];
+        int minSum = nums[0], currentMin = nums[0];
 
         for (int i = 1; i < nums.length; i++) {
             int num = nums[i];
             totalSum += num;
 
+            // Kadane’s Algorithm for Maximum Subarray Sum
             currentMax = Math.max(num, currentMax + num);
             maxSum = Math.max(maxSum, currentMax);
 
+            // Kadane’s Algorithm for Minimum Subarray Sum
             currentMin = Math.min(num, currentMin + num);
             minSum = Math.min(minSum, currentMin);
         }
 
-        if (maxSum > 0) {
-            return Math.max(maxSum, totalSum - minSum);
-        } else {
-            return maxSum; // This handles the case where all elements are negative
-        }
+        // If all elements are negative, return maxSum directly
+        return (totalSum != minSum) ? Math.max(maxSum, totalSum - minSum) : maxSum;
     }
 
     public static void main(String[] args) {

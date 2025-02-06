@@ -44,35 +44,42 @@ Output: 0
  *
  */
 public class PartCLongestSubstringWithoutRepeatingCharacters {
-    /*
-    Output: The length of the longest substring without repeating characters is 9
+  private static class bruitforce {
+      /*
+ Output: The length of the longest substring without repeating characters is 9
 
-Time Complexity: O( N2 )
+ Time Complexity: O(N^2)
+ Space Complexity: O(N) where N is the size of HashSet used for storing elements
+ */
+      static int solve(String str) {
+          if (str.length() == 0) {
+              return 0;
+          }
 
-Space Complexity: O(N) where N is the size of HashSet taken for storing the elements
-     */
-    static int solve(String str) {
+          int maxLength = Integer.MIN_VALUE;
 
-        if(str.length()==0)
-            return 0;
-        int maxans = Integer.MIN_VALUE;
-        for (int i = 0; i < str.length(); i++) // outer loop for traversing the string
-        {
-            Set< Character > se = new HashSet< >();
-            for (int j = i; j < str.length(); j++) // nested loop for getting different
-                string starting with str[i]
-            {
-                if (se.contains(str.charAt(j))) // if element if found so mark it as ans
-                    and break from the loop
-                {
-                    maxans = Math.max(maxans, j - i);
-                    break;
-                }
-                se.add(str.charAt(j));
-            }
-        }
-        return maxans;
-    }
+          // Outer loop for traversing the string
+          for (int i = 0; i < str.length(); i++) {
+              Set<Character> set = new HashSet<>();
+
+              // Inner loop to consider substrings starting at index 'i'
+              for (int j = i; j < str.length(); j++) {
+                  if (set.contains(str.charAt(j))) {
+                      // If the character is repeated, break the loop
+                      break;
+                  }
+                  set.add(str.charAt(j)); // Add current character to the set
+                  maxLength = Math.max(maxLength, j - i + 1); // Update max length
+              }
+          }
+          return maxLength;
+      }
+
+      public static void main(String[] args) {
+          String str = "abcabcbb";
+          System.out.println("The length of the longest substring without repeating characters is " + solve(str));
+      }
+  }
 
     /*
     Output: The length of the longest substring without repeating characters is 9

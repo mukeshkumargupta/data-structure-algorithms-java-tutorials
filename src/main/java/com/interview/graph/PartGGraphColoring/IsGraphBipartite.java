@@ -1,80 +1,62 @@
-/**
- * 
- */
 package com.interview.graph.PartGGraphColoring;
 
 import java.util.*;
+
 /**
  * @author Mukesh Kumar Gupta
- *https://leetcode.com/problems/is-graph-bipartite/
+ * https://leetcode.com/problems/is-graph-bipartite/
  * Reference: https://www.youtube.com/watch?v=-vu34sct1g8&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=10
  * Example: LeetCode 785 - Is Graph Bipartite?
- *Other way to solver
- *Many method mention(bfs, dfs, union find)
- *https://leetcode.com/problems/is-graph-bipartite/discuss/1941723/Clean-Java-Coloring%2BUnionFind-solutions
- *Category: Medium, Must Do
- *Related:
- * https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/ Hard
- *https://leetcode.com/problems/redundant-connection-ii/ Hard, VVImp
- *https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/ Hard VImp
- *https://leetcode.com/problems/gcd-sort-of-an-array/ Hard VVImp
+ * Other methods include BFS, DFS, and Union Find.
+ * https://leetcode.com/problems/is-graph-bipartite/discuss/1941723/Clean-Java-Coloring%2BUnionFind-solutions
+ * Category: Medium, Must Do
+ * Related Problems:
+ * - https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/ (Hard)
+ * - https://leetcode.com/problems/redundant-connection-ii/ (Hard, VVImp)
+ * - https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/ (Hard, VImp)
+ * - https://leetcode.com/problems/gcd-sort-of-an-array/ (Hard, VVImp)
  *
- *785. Is Graph Bipartite?
-Medium
-
-4053
-
-261
-
-Add to List
-
-Share
-There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1. You are given a 2D array graph, where graph[u] is an array of nodes that node u is adjacent to. More formally, for each v in graph[u], there is an undirected edge between node u and node v. The graph has the following properties:
-
-There are no self-edges (graph[u] does not contain u).
-There are no parallel edges (graph[u] does not contain duplicate values).
-If v is in graph[u], then u is in graph[v] (the graph is undirected).
-The graph may not be connected, meaning there may be two nodes u and v such that there is no path between them.
-A graph is bipartite if the nodes can be partitioned into two independent sets A and B such that every edge in the graph connects a node in set A and a node in set B.
-
-Return true if and only if it is bipartite.
-
- 
-
-Example 1:
-
-
-Input: graph = [[1,2,3],[0,2],[0,1,3],[0,2]]
-Output: false
-Explanation: There is no way to partition the nodes into two independent sets such that every edge connects a node in one and a node in the other.
-Example 2:
-
-
-Input: graph = [[1,3],[0,2],[1,3],[0,2]]
-Output: true
-Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3}.
- 
-
-Constraints:
-
-graph.length == n
-1 <= n <= 100
-0 <= graph[u].length < n
-0 <= graph[u][i] <= n - 1
-graph[u] does not contain u.
-All the values of graph[u] are unique.
-If graph[u] contains v, then graph[v] contains u.
-Accepted
-275,933
-Submissions
-547,383
- 
+ * Problem: 785. Is Graph Bipartite?
+ * Medium
  *
+ * There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1.
+ * You are given a 2D array graph, where graph[u] is an array of nodes that node u is adjacent to.
+ * More formally, for each v in graph[u], there is an undirected edge between node u and node v.
+ * The graph has the following properties:
+ * - No self-edges (graph[u] does not contain u).
+ * - No parallel edges (graph[u] does not contain duplicate values).
+ * - If v is in graph[u], then u is in graph[v] (the graph is undirected).
+ * - The graph may not be connected.
+ *
+ * A graph is bipartite if the nodes can be partitioned into two independent sets A and B such
+ * that every edge in the graph connects a node in set A and a node in set B.
+ *
+ * Return true if and only if it is bipartite.
+ *
+ * Example 1:
+ * Input: graph = [[1,2,3],[0,2],[0,1,3],[0,2]]
+ * Output: false
+ *
+ * Example 2:
+ * Input: graph = [[1,3],[0,2],[1,3],[0,2]]
+ * Output: true
+ *
+ * Constraints:
+ * - graph.length == n
+ * - 1 <= n <= 100
+ * - 0 <= graph[u].length < n
+ * - 0 <= graph[u][i] <= n - 1
+ * - graph[u] does not contain u.
+ * - All the values of graph[u] are unique.
+ * - If graph[u] contains v, then graph[v] contains u.
  */
 public class IsGraphBipartite {
-    /*
-    DFS Approach:
-In the DFS approach, we will use a recursive function to traverse the graph, coloring the nodes. The idea is to color the current node with one color and all its adjacent nodes with the opposite color. If we find a conflict where a node and its adjacent node have the same color, the graph is not bipartite.
+
+    /**
+     * DFS Approach:
+     * In the DFS approach, we use a recursive function to traverse the graph,
+     * coloring the nodes. If a conflict occurs (a node and its neighbor have the
+     * same color), the graph is not bipartite.
      */
     public boolean isBipartite(int[][] graph) {
         int n = graph.length;
@@ -96,17 +78,17 @@ In the DFS approach, we will use a recursive function to traverse the graph, col
                 if (!dfs(graph, colors, neighbor, -color)) {
                     return false;
                 }
-            } else if (colors[neighbor] == color) {  // If the neighbor has the same color
+            } else if (colors[neighbor] == color) {  // Conflict: same color
                 return false;
             }
         }
         return true;
     }
 
-
-    /*
-    BFS Approach:
-In the BFS approach, we will use a queue to traverse the graph level by level, coloring nodes alternately. If we detect a conflict where a node and its adjacent node have the same color, the graph is not bipartite.
+    /**
+     * BFS Approach:
+     * In the BFS approach, we use a queue to traverse the graph level by level,
+     * coloring nodes alternately. If a conflict occurs, the graph is not bipartite.
      */
     public boolean isBipartiteBfs(int[][] graph) {
         int n = graph.length;
@@ -123,8 +105,8 @@ In the BFS approach, we will use a queue to traverse the graph level by level, c
                     for (int neighbor : graph[node]) {
                         if (colors[neighbor] == 0) {  // If the neighbor is uncolored
                             queue.offer(neighbor);
-                            colors[neighbor] = -colors[node];  // Color with the opposite color
-                        } else if (colors[neighbor] == colors[node]) {  // If the neighbor has the same color
+                            colors[neighbor] = -colors[node];  // Opposite color
+                        } else if (colors[neighbor] == colors[node]) {  // Conflict
                             return false;
                         }
                     }
@@ -133,11 +115,9 @@ In the BFS approach, we will use a queue to traverse the graph level by level, c
         }
         return true;
     }
-    /*
-    Explanation:
-DFS Approach: The graph is traversed recursively, and each node is colored. If a conflict is detected (a node and its neighbor have the same color), we return false.
-BFS Approach: The graph is traversed level by level, coloring nodes alternately. If a conflict is detected, we return false.
-Both approaches have a time complexity of O(V + E), where V is the number of vertices and E is the number of edges in the graph. These solutions are readable and align with standard graph traversal practices.
+
+    /**
+     * Check if the graph is three-colorable using DFS.
      */
     public boolean isThreeColorableDfs(int[][] graph) {
         int n = graph.length;
@@ -151,30 +131,26 @@ Both approaches have a time complexity of O(V + E), where V is the number of ver
         return true;
     }
 
-    /*
-DFS Approach:
- */
     private boolean threeColorableDfs(int[][] graph, int[] colors, int node, int color) {
         colors[node] = color;
 
         for (int neighbor : graph[node]) {
-            if (colors[neighbor] == 0) {  // If the neighbor is uncolored
-                // Try all 3 colors for the next node
+            if (colors[neighbor] == 0) {  // Uncolored neighbor
                 for (int nextColor = 1; nextColor <= 3; nextColor++) {
-                    if (nextColor != color && dfs(graph, colors, neighbor, nextColor)) {
+                    if (nextColor != color && threeColorableDfs(graph, colors, neighbor, nextColor)) {
                         return true;
                     }
                 }
                 return false;
-            } else if (colors[neighbor] == color) {  // If the neighbor has the same color
+            } else if (colors[neighbor] == color) {  // Conflict
                 return false;
             }
         }
         return true;
     }
 
-    /*
-    BFS Approach:
+    /**
+     * Check if the graph is three-colorable using BFS.
      */
     public boolean isThreeColorableBfs(int[][] graph) {
         int n = graph.length;
@@ -189,15 +165,24 @@ DFS Approach:
                 while (!queue.isEmpty()) {
                     int node = queue.poll();
                     for (int neighbor : graph[node]) {
-                        if (colors[neighbor] == 0) {  // If the neighbor is uncolored
-                            for (int nextColor = 1; nextColor <= 3; nextColor++) {
-                                if (nextColor != colors[node]) {
-                                    queue.offer(neighbor);
-                                    colors[neighbor] = nextColor;
-                                    break;
-                                }
-                            }
-                        } else if (colors[neighbor] == colors[node]) {  // If the neighbor has the same color
+                        if (colors[neighbor] == 0) {  // Uncolored neighbor
+                            queue.offer(neighbor);
+                            colors[neighbor] = colors[node] % 3 + 1;  // Next color
+                            /*
+                            BFS Logic for Finding the Next Color
+                            In BFS:
+
+                            Instead of testing all colors explicitly, you derive the next color based on the current color using the formula:
+                            colors[neighbor] = colors[node] % 3 + 1;
+                            Here's what happens:
+                            If colors[node] is 1 (Color A), the next color will be 1 % 3 + 1 = 2 (Color B).
+                            If colors[node] is 2 (Color B), the next color will be 2 % 3 + 1 = 3 (Color C).
+                            If colors[node] is 3 (Color C), the next color will be 3 % 3 + 1 = 1 (Color A).
+                            This cycle ensures you always pick a different color than the current one, and it works because you're not brute-forcing
+                            like DFS. BFS processes nodes level-by-level and assigns colors sequentially, relying on the fact that no conflict occurs as
+                            long as graph properties are maintained
+                             */
+                        } else if (colors[neighbor] == colors[node]) {  // Conflict
                             return false;
                         }
                     }
@@ -206,12 +191,4 @@ DFS Approach:
         }
         return true;
     }
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }

@@ -2,7 +2,7 @@ package com.interview.bfsdfs;
 
 import java.util.*;
 
-import com.interview.graph.KnightTour.cell;
+import com.interview.bfsdfs.KnightTour.cell;
 
 /**
  * Date 05/08/2020
@@ -183,103 +183,145 @@ Non-Reversed Row: If the row index is odd (when counting from the bottom) and do
 Reversed Row: If the row index matches the board size modulo 2 (both even or both odd), the column index is reversed.
 This adjustment ensures that the coordinates match the boustrophedon (zigzag) order of filling the board.
  */
+
+/*
+    Explanation
+    Flatten the Board:
+
+    The 2D board is transformed into a 1D array flattenedBoard for easier indexing.
+    Handles the zigzag traversal by alternating row directions.
+    Breadth-First Search (BFS):
+
+    Start at square 1 with 0 dice rolls.
+    For each square, simulate dice rolls (1 to 6) and check where they land.
+    Use visited to avoid revisiting squares, ensuring BFS terminates quickly.
+    Ladders and Snakes:
+
+    If a square contains a ladder or snake (flattenedBoard[nextSquare] != -1), jump to its destination.
+    Return the Result:
+
+    If the last square (n^2) is reached, return the number of dice rolls.
+    If all possibilities are exhausted without reaching the end, return -1.
+    Time Complexity
+    Flattening the Board: O(n²), where n is the board's dimension.
+    BFS Traversal: O(n²), since each square is visited at most once.
+    Overall: O(n²).
+
+    Space Complexity
+    Visited Array: O(n²).
+    Queue: O(n²) in the worst case (all squares are queued).
+    Overall: O(n²).
+
+    Example
+    Input:
+    css
+    Copy
+    Edit
+    [ [-1, -1, -1, -1, -1, -1],
+     [-1, -1, -1, -1, -1, -1],
+     [-1, -1, -1, -1, -1, -1],
+     [-1, 35, -1, -1, 13, -1],
+     [-1, -1, -1, -1, -1, -1],
+     [-1, 15, -1, -1, -1, -1]
+    ]
+    Output:
+    4 (Minimum number of dice rolls to reach the last square).
+
+    Let me know if you need further improvements or clarifications!
+ */
 public class SnakeLadderGameDesign {
+    // Represents the player's state during BFS traversal
+    private static class PlayerState {
+        int position; // Current square position
+        int steps;    // Number of dice rolls to reach this position
 
-    // Point class to hold the current position and the number of steps taken to reach there
-    class Point {
-        int pos;
-        int steps;
-
-        Point(int pos, int steps) {
-            this.pos = pos;
+        public PlayerState(int position, int steps) {
+            this.position = position;
             this.steps = steps;
         }
     }
 
-    // BFS method to find the minimum number of moves to reach the last cell
     public int snakesAndLadders(int[][] board) {
-        int n = board.length;
-        boolean[] visited = new boolean[n * n + 1];
-        Queue<Point> queue = new LinkedList<>();
-        queue.offer(new Point(1, 0));
+        int boardSize = board.length;
+        int[] flattenedBoard = flattenBoard(board); // Flatten the 2D board into 1D
+        boolean[] visited = new boolean[flattenedBoard.length]; // Visited squares tracking
+
+        Queue<PlayerState> queue = new LinkedList<>();
+        queue.offer(new PlayerState(1, 0)); // Start from square 1 with 0 steps
         visited[1] = true;
 
         while (!queue.isEmpty()) {
-            Point point = queue.poll();
-            int curr = point.pos;
-            int steps = point.steps;
+            PlayerState currentState = queue.poll();
+            int currentSquare = currentState.position;
+            int currentSteps = currentState.steps;
 
-            // If the last cell is reached, return the number of steps
-            if (curr == n * n) {
-                return steps;
+            // Check if we've reached the final square
+            if (currentSquare == flattenedBoard.length - 1) {
+                return currentSteps;
             }
 
-            // Try all possible moves with a 6-sided dice
-            for (int i = 1; i <= 6; i++) {
-                int next = curr + i;
-                if (next > n * n) break; // Skip if next move goes beyond the board
+            // Explore all dice rolls (1 to 6)
+            for (int diceRoll = 1; diceRoll <= 6; diceRoll++) {
+                int nextSquare = currentSquare + diceRoll;
 
-                // Get the 2D coordinates of the next position
-                int[] coordinates = findCoordinates(next, n);
-                int row = coordinates[0];
-                int col = coordinates[1];
-
-                // Skip if already visited
-                if (visited[next]) continue;
-
-                visited[next] = true;
-
-                // Check for snake or ladder
-                if (board[row][col] != -1) {
-                    next = board[row][col];
+                if (nextSquare >= flattenedBoard.length) {
+                    break; // Skip if the roll exceeds the board size
                 }
 
-                // Add the next position to the queue
-                queue.offer(new Point(next, steps + 1));
+                // If the square has a ladder or snake, jump to its destination
+                int destinationSquare = (flattenedBoard[nextSquare] == -1) ? nextSquare : flattenedBoard[nextSquare];
+
+                // Process the square if not already visited
+                if (!visited[destinationSquare]) {
+                    visited[destinationSquare] = true;
+                    queue.offer(new PlayerState(destinationSquare, currentSteps + 1));
+                }
             }
         }
 
-        // If it's not possible to reach the last cell, return -1
+        // If we exhaust the queue without reaching the final square, return -1
         return -1;
     }
 
-    // Method to convert 1D board position to 2D coordinates
-    private int[] findCoordinates(int curr, int n) {
-        // Calculate the row index from the bottom upwards
-        int row = n - 1 - (curr - 1) / n;
+    // Helper method to flatten the 2D board into a 1D array
+    private int[] flattenBoard(int[][] board) {
+        int size = board.length;
+        int[] flattened = new int[size * size + 1];
+        Arrays.fill(flattened, -1); // Default to -1 for squares without ladders/snakes
 
-        // Calculate the column index
-        int col = (curr - 1) % n;
+        boolean leftToRight = true;
+        int index = 1;
 
-        // Adjust column for boustrophedon order
-        if (row % 2 == n % 2) {
-            col = n - 1 - col;
+        // Traverse the board in zigzag order (bottom to top, alternating directions)
+        for (int row = size - 1; row >= 0; row--) {
+            if (leftToRight) {
+                for (int col = 0; col < size; col++) {
+                    flattened[index++] = board[row][col];
+                }
+            } else {
+                for (int col = size - 1; col >= 0; col--) {
+                    flattened[index++] = board[row][col];
+                }
+            }
+            leftToRight = !leftToRight; // Alternate row direction
         }
 
-        return new int[] { row, col };
+        return flattened;
     }
 
     public static void main(String[] args) {
-        SnakeLadderGameDesign slgd = new SnakeLadderGameDesign();
+        SnakeLadderGameDesign solution = new SnakeLadderGameDesign();
 
-        // Test case 1
-        int[][] board1 = {
-                { -1, -1, -1, -1, -1, -1 },
-                { -1, -1, -1, -1, -1, -1 },
-                { -1, -1, -1, -1, -1, -1 },
-                { -1, 35, -1, -1, 13, -1 },
-                { -1, -1, -1, -1, -1, -1 },
-                { -1, 15, -1, -1, -1, -1 }
+        int[][] board = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, 35, -1, -1, 13, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, 15, -1, -1, -1, -1}
         };
-        System.out.println(slgd.snakesAndLadders(board1)); // Output: 4
 
-        // Test case 2
-        int[][] board2 = {
-                { -1, -1 },
-                { -1, 3 }
-        };
-        System.out.println(slgd.snakesAndLadders(board2)); // Output: 1
+        System.out.println(solution.snakesAndLadders(board)); // Output: 4
     }
-}
     
 }

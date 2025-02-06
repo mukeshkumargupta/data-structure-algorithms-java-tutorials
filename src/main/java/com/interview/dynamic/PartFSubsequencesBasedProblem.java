@@ -68,6 +68,7 @@ public class PartFSubsequencesBasedProblem {
             Space Complexity: O(N*K)
 
             Reason: We are using an external array of size ‘N*K’. Stack Space is eliminated.
+            https://www.youtube.com/watch?v=s6FhG--P7z0
          */
         // Function to check if there exists a subset with a given target sum
         static boolean subsetSumToKTabulation(int n, int k, int[] arr) {
@@ -569,12 +570,12 @@ public class PartFSubsequencesBasedProblem {
             // Create a 2D DP array to store the number of ways to achieve each target sum
             int[][] dp = new int[n][k + 1];
 
-            // Initialize the first row of the DP array
+            // Initialize the first column of the DP array
             for (int i = 0; i < n; i++) {
                 dp[i][0] = 1;
             }
 
-            // Initialize the first column of the DP array
+            // Initialize the first row of the DP array
             if (num[0] <= k) {
                 dp[0][num[0]] = 1;
             }
@@ -894,6 +895,7 @@ public class PartFSubsequencesBasedProblem {
         }
 
         /*
+                 https://www.youtube.com/watch?v=8LusJS5-AGo Tishar video  looks intutive to me
             Time Complexity: O(N*W)
 
             Reason: There are two nested loops
@@ -1204,9 +1206,10 @@ public class PartFSubsequencesBasedProblem {
         Count no of ways pattern based, including zero
         You are given an integer array nums and an integer target.
         Category: Medium, Top100, Must Do
+                https://leetcode.com/problems/target-sum/description/ it is grouping problem (so group is done by plus or minus so u can do grouping by other was as well
         Related: https://leetcode.com/problems/expression-add-operators/description/ Hard
         https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/description/ Medium
-        https://leetcode.com/problems/target-sum/description/ it is grouping problem (so group is done by plus or minus so u can do grouping by other was as well
+
         Video: https://www.youtube.com/watch?v=b3GD8263-PQ&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=22
 
         You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
@@ -1935,7 +1938,7 @@ public class PartFSubsequencesBasedProblem {
             int n = wt.length;
 
             // Call the unboundedKnapsack function and print the result
-            System.out.println("The Maximum value of items, the thief can steal is " + unboundedKnapsack(n, W, val, wt));
+            //System.out.println("The Maximum value of items, the thief can steal is " + sol.unboundedKnapsack(n, W, val, wt));
         }
     }
 }

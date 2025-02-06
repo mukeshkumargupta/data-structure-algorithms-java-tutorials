@@ -61,7 +61,7 @@ Memory Usage: 41.5 MB, less than 5.60% of Java online submissions for Maximum Pr
         int minTillProduct = nums[0];
         for (int i = 1; i < l; i++) {
             //Just the slight modification of previous approach. As we know that on multiplying with negative number max will become min and min will become max, so why not as soon as we encounter negative element, we swap the max and min already.
-            if (nums[i] < 0) {
+            if (nums[i] < 0) {//Swap
                 int temp = maxTillProduct;
                 maxTillProduct = minTillProduct;
                 minTillProduct = temp;

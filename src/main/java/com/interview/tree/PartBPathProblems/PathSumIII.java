@@ -50,7 +50,8 @@ public class PathSumIII {
 
         }
 
-        public void findPathSum(TreeNode root, int targetSum, int currentSum, Map<Integer, Integer> lookup ) {
+
+        public void findPathSum(TreeNode root, int targetSum, long currentSum, Map<Long, Integer> lookup ) {
             //O(N)
             if (root == null) {
                 return;
@@ -77,7 +78,7 @@ public class PathSumIII {
                 return 0;
             }
 
-            Map<Integer, Integer> lookup = new HashMap<>();
+            Map<Long, Integer> lookup = new HashMap<>();
             findPathSum(root, targetSum, 0, lookup);
             return totalCount;
 

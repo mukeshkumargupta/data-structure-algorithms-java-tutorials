@@ -2,9 +2,12 @@ package com.interview.tree.PartBPathProblems;
 
 import com.interview.tree.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
  * https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
- * Category: Medium, VImp, bfs
+ * Category: Medium, VImp, bfs, top75
  * Related:https://leetcode.com/problems/cheapest-flights-within-k-stops/ Medium VVImp
  * https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/ Medium, VVImp, Hint: Not slved bit thinking, find all path and then in each map find max size of palindrom if size of each path equal to max palindrom then include in ans, Application of path and max size of palindrome
  * https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/ Medium, Locked
@@ -13,84 +16,53 @@ import com.interview.tree.TreeNode;
  * https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/ Hard, VImp
  */
 public class MaximumLevelSumofaBinaryTree {
-    public int maxLevelSum(TreeNode root) {
-        /*
-         * Runtime: 6 ms, faster than 97.46% of Java online submissions for Maximum Level Sum of a Binary Tree.
-Memory Usage: 45.5 MB, less than 82.95% of Java online submissions for Maximum Level Sum of a Binary Tree.
-         */
-        if(root==null) return 0;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        int maxSum = root.val;
-        int level = 1, maxLevel=1;
-        while(!queue.isEmpty()){
-            int size = queue.size();
-            int nodeValSum = 0;
-            for(int i=0; i<size; i++){
-                TreeNode node = queue.remove();
-                nodeValSum += node.val;
-                if(node.left!=null) queue.add(node.left);
-                if(node.right!=null) queue.add(node.right);
-            }
-            if(nodeValSum>maxSum){
-                maxLevel = Math.max(level, maxLevel);
-                maxSum=nodeValSum;
-            }
-            level++;
-        }
-        return maxLevel;
-        
+    public static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }
     }
+
     public int maxLevelSum(TreeNode root) {
-        /*
-         * Runtime: 19 ms, faster than 17.67% of Java online submissions for Maximum Level Sum of a Binary Tree.
-Memory Usage: 71.7 MB, less than 39.02% of Java online submissions for Maximum Level Sum of a Binary Tree.
-         * Find better solution
-         */
         if (root == null) {
-            return 0;
+            return 0; // If the tree is empty, there's no level to process
         }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        int maxSum = root.val;
-        int result = 1;
-        int level = 1;
 
-        while(!q.isEmpty()) {
-            int size = q.size();
-            int tempSum = 0;
-            boolean childFound = false;
-            for (int i = 0; i < size; i++) {
-                TreeNode currentTreeNode = q.remove();
- 
-                if (currentTreeNode.left != null) {
-                    q.add(currentTreeNode.left);
-                    tempSum += currentTreeNode.left.val;
-                    if (!childFound) {
-                        childFound = true;
-                    }
-                }
-                
-                if (currentTreeNode.right != null) {
-                    q.add(currentTreeNode.right);
-                    tempSum += currentTreeNode.right.val;
-                     if (!childFound) {
-                        childFound = true;
-                    }
-                } 
+        // Queue to hold nodes at each level
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int maxSum = Integer.MIN_VALUE;
+        int maxLevel = 1;
+        int currentLevel = 1;
+
+        // Process the tree level by level
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();  // Number of nodes at the current level
+            int levelSum = 0;
+
+            // Process all nodes at the current level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                levelSum += node.val; // Add node's value to the sum of the current level
+
+                // Add child nodes to the queue for the next level
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
-            level++;
-            if (childFound && tempSum > maxSum) {
-                maxSum = tempSum;
-                result = level;
+
+            // Check if the current level has a larger sum
+            if (levelSum > maxSum) {
+                maxSum = levelSum;
+                maxLevel = currentLevel;  // Update the level with the maximum sum
             }
-            
 
-            
-        } 
+            currentLevel++; // Move to the next level
+        }
 
-        return result;
-        
+        return maxLevel;  // Return the level with the maximum sum
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

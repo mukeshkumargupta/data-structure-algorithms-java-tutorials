@@ -183,6 +183,7 @@ Space Complexity: O(n) (stack space for recursion).
     }
 
     /*
+    min jump to reach end
     Time Complexity: O(n), as we traverse the array once.
     Space Complexity: O(1), as we only use a few variables for tracking.
     Summary of Approaches:

@@ -1,8 +1,8 @@
-package com.interview.array;
+package com.interview.bits;
 
 /*
  * https://leetcode.com/problems/single-number
- * Category: Easy, xor
+ * Category: Easy, xor, Must Do
  */
 public class SingleNumber {
     public int singleNumber(int[] nums) {

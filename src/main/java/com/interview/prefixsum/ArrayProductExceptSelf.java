@@ -1,4 +1,4 @@
-package com.interview.array;
+package com.interview.prefixsum;
 
 /**
  * Date 04/28/2020

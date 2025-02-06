@@ -117,43 +117,32 @@ A more efficient solution uses a deque (double-ended queue) to keep track of ind
      */
 
     public static class SlidingWindowMaximumBetter {
-        public static class Element {
-            int index;
-            int value;
-
-            public Element(int index, int value) {
-                this.index = index;
-                this.value = value;
-            }
-        }
-
         public static int[] maxSlidingWindow(int[] nums, int k) {
-            int n = nums.length;
-            if (n == 0) return new int[0];
+            if (nums == null || k <= 0) return new int[0];
 
-            int[] result = new int[n - k + 1];
-            Deque<Element> deque = new LinkedList<>();
+            int n = nums.length;
+            int[] result = new int[n - k + 1]; // Output array
+            Deque<Integer> deque = new LinkedList<>(); // Stores indices
 
             for (int i = 0; i < n; i++) {
                 // Remove elements that are out of this window
-                if (!deque.isEmpty() && deque.peekFirst().index <= i - k) {
+                while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
                     deque.pollFirst();
                 }
 
-                // Remove smaller elements in deque, as they are not needed
-                while (!deque.isEmpty() && deque.peekLast().value < nums[i]) {
+                // Remove elements that are smaller than the current one
+                while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
                     deque.pollLast();
                 }
 
-                // Add current element to deque
-                deque.addLast(new Element(i, nums[i]));
+                // Add the current element index
+                deque.offerLast(i);
 
-                // Add the maximum element (front of the deque) to the result
+                // Store the maximum for the first valid window
                 if (i >= k - 1) {
-                    result[i - k + 1] = deque.peekFirst().value;
+                    result[i - k + 1] = nums[deque.peekFirst()];
                 }
             }
-
             return result;
         }
     }
@@ -189,45 +178,32 @@ A more efficient solution uses a deque (double-ended queue) to keep track of ind
     O(n).
      */
 
-    public int[] minSlidingWindow(int[] array, int k) {
-        // A deque to store indices of array elements
-        LinkedList<Integer> list = new LinkedList<>();
-        // Result array to store minimums of each window
-        int[] result = new int[array.length - k + 1];
+    public int[] minSlidingWindow(int[] nums, int k) {
+        if (nums == null || k <= 0) return new int[0];
 
-        // Initialize the deque for the first window
-        for (int i = 0; i < k; i++) {
-            // Remove elements from the deque that are greater than the current element
-            while (!list.isEmpty() && array[list.getLast()] > array[i]) {
-                list.removeLast();
+        int n = nums.length;
+        int[] result = new int[n - k + 1]; // Output array
+        Deque<Integer> deque = new LinkedList<>(); // Stores indices
+
+        for (int i = 0; i < n; i++) {
+            // Remove elements that are out of this window
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                deque.pollFirst();
             }
-            // Add the current element's index at the back
-            list.addLast(i);
+
+            // Remove elements that are greater than the current one (maintain increasing order)
+            while (!deque.isEmpty() && nums[deque.peekLast()] > nums[i]) {
+                deque.pollLast();
+            }
+
+            // Add the current element index
+            deque.offerLast(i);
+
+            // Store the minimum for the first valid window
+            if (i >= k - 1) {
+                result[i - k + 1] = nums[deque.peekFirst()];
+            }
         }
-
-        // Index to track the position in result array
-        int resultIndex = 0;
-        // The first element of deque is the min for the first window
-        result[resultIndex++] = array[list.getFirst()];
-
-        // Process the rest of the array
-        for (int i = k; i < array.length; i++) {
-            // Remove elements not in the current window
-            while (!list.isEmpty() && list.getFirst() < (i - k + 1)) {
-                list.removeFirst();
-            }
-
-            // Remove elements from the deque that are greater than the current element
-            while (!list.isEmpty() && array[list.getLast()] > array[i]) {
-                list.removeLast();
-            }
-
-            // Add the current element's index at the back
-            list.addLast(i);
-            // The first element of deque is the min for the current window
-            result[resultIndex++] = array[list.getFirst()];
-        }
-
         return result;
     }
 

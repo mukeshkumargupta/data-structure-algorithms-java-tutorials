@@ -1,11 +1,13 @@
 package com.interview.twopointersliddingwindow;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 /*
 https://www.youtube.com/watch?v=e3bs0uA1NhQ&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=5
+https://leetcode.com/problems/fruit-into-baskets/description/
 Category: Medium
 Related:
 https://leetcode.com/problems/longest-nice-subarray/description/

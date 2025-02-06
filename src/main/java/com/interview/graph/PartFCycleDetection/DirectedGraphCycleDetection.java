@@ -30,6 +30,11 @@ Here’s a Java implementation of cycle detection in a directed graph using DFS:
 
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
 /*
 Explanation
 Adjacency List Construction:
@@ -112,7 +117,7 @@ public class DirectedGraphCycleDetection {
     }
 
     public static void main(String[] args) {
-        CourseScheduleIIDFS scheduler = new CourseScheduleIIDFS();
+        DirectedGraphCycleDetection scheduler = new DirectedGraphCycleDetection();
 
         int numCourses1 = 2;
         int[][] prerequisites1 = {{1, 0}};

@@ -2,13 +2,14 @@ package com.interview.twopointersliddingwindow;
 
 /*
 https://www.youtube.com/watch?v=3E4JBHSLpYk&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=4
+https://leetcode.com/problems/max-consecutive-ones-iii/description/
 Category: Medium
 Related:
-https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/
+https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/ Locked
 https://leetcode.com/problems/longest-repeating-character-replacement/description/ Medium
 https://leetcode.com/problems/max-consecutive-ones-ii/description/ Medium
  */
-public class PartDMaxConsecutiveOnesIII {
+public class PartD_A_MaxConsecutiveOnesIII {
 
     public int longestOnesBruteForce(int[] nums, int k) {
         int maxLen = 0;

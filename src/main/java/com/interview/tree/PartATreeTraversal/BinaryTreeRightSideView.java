@@ -5,7 +5,7 @@ import com.interview.tree.TreeNode;
 /*
  * Reference:
  * https://leetcode.com/problems/binary-tree-right-side-view
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, top75
  */
 public class BinaryTreeRightSideView {
     List<Integer> result = new ArrayList<>();

@@ -8,6 +8,7 @@ public class PartAAssignCookiesPattern {
 
         https://www.youtube.com/playlist?list=PLgUwDviBIf0rF1w2Koyh78zafB0cz7tea
         https://leetcode.com/problems/assign-cookies/
+        Category: Easy
         Related:
         https://leetcode.com/problems/get-the-maximum-score/description/ Hard
         https://leetcode.com/problems/count-triplets-with-even-xor-set-bits-ii/description/  Medium

@@ -1,9 +1,6 @@
 package com.interview.graph.PartFCycleDetection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Given n TreeNodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of TreeNodes),

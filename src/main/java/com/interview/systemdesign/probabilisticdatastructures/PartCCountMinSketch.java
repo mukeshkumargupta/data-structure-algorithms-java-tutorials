@@ -57,83 +57,76 @@ package com.interview.systemdesign.probabilisticdatastructures;
     Real-World Example:
     In systems like Twitter or Reddit, Count-Min Sketch can be used to count the number of times a hashtag or keyword appears in a real-time data stream. By using CMS, these systems can track trends without needing to store every keyword in memory, thereby saving a huge amount of space.
 */
-import java.util.function.Function;
 
-public class PartCCountMinSketch<T> {
+public class PartCCountMinSketch {
 
-    private final int[][] sketch;   // The 2D array to store counts
-    private final int width;        // Number of columns (w) in the sketch
-    private final int depth;        // Number of rows (d) in the sketch
-    private final Function<T, Integer>[] hashFunctions;  // Hash functions
+    private final int[][] sketch; // 2D array to store counts
+    private final int columns; // Number of columns (width)
+    private final int rows; // Number of rows (depth)
 
     /**
-     * Constructor to initialize the Count-Min Sketch with specified width and depth.
+     * Constructor to initialize the Count-Min Sketch with specified columns and rows.
      *
-     * @param width         The width (number of columns) of the sketch.
-     * @param depth         The depth (number of rows) of the sketch.
-     * @param hashFunctions The array of hash functions.
+     * @param columns The number of columns in the sketch.
+     * @param rows The number of rows in the sketch.
      */
-    @SafeVarargs
-    public PartCCountMinSketch(int width, int depth, Function<T, Integer>... hashFunctions) {
-        this.width = width;
-        this.depth = depth;
-        this.hashFunctions = hashFunctions;
-        this.sketch = new int[depth][width];  // Initialize the 2D sketch array
+    public PartCCountMinSketch(int columns, int rows) {
+        this.columns = columns;
+        this.rows = rows;
+        this.sketch = new int[rows][columns]; // Initialize the 2D array
     }
 
     /**
-     * Adds an element to the Count-Min Sketch by incrementing the counters.
+     * Adds an element to the Count-Min Sketch.
      *
      * @param element The element to be added.
      */
-    public void add(T element) {
-        /*
-         * For each hash function, compute the column index for the given element.
-         * Increment the corresponding counter in each row of the sketch.
-         */
-        for (int i = 0; i < depth; i++) {
-            int index = Math.abs(hashFunctions[i].apply(element) % width);  // Compute column index
-            sketch[i][index]++;  // Increment the counter
+    public void add(String element) {
+        for (int i = 0; i < rows; i++) {
+            int index = getHash(element, i) % columns; // Compute column index
+            sketch[i][index]++; // Increment the counter
         }
     }
 
     /**
-     * Estimates the count of an element by taking the minimum of the counters.
+     * Estimates the count of an element in the sketch.
      *
      * @param element The element to estimate.
      * @return The estimated count of the element.
      */
-    public int estimateCount(T element) {
-        /*
-         * For each hash function, compute the column index and check the counter.
-         * Return the minimum value across all rows for the given element.
-         */
+    public int estimateCount(String element) {
         int minCount = Integer.MAX_VALUE;
-        for (int i = 0; i < depth; i++) {
-            int index = Math.abs(hashFunctions[i].apply(element) % width);  // Compute column index
-            minCount = Math.min(minCount, sketch[i][index]);  // Take the minimum value
+        for (int i = 0; i < rows; i++) {
+            int index = getHash(element, i) % columns; // Compute column index
+            minCount = Math.min(minCount, sketch[i][index]); // Take the minimum value
         }
-        return minCount;  // Return the estimated count
+        return minCount; // Return the estimated count
+    }
+
+    /**
+     * A simple hash function that combines the element and the row index.
+     *
+     * @param element The element to hash.
+     * @param seed    The seed to vary the hash.
+     * @return A hash value for the element.
+     */
+    private int getHash(String element, int seed) {
+        return Math.abs((element.hashCode() ^ (seed * 31)));
     }
 
     public static void main(String[] args) {
-        /*
-         * Create a CountMinSketch with a width of 100 and depth of 3.
-         * Use simple variations of hash functions (hashCode) for demonstration.
-         */
-        PartCCountMinSketch<String> cms = new PartCCountMinSketch<>(100, 3,
-                s -> s.hashCode(),
-                s -> s.hashCode() * 31,
-                s -> s.hashCode() * 17);
+        // Create a Count-Min Sketch with 100 columns and 3 rows
+        PartCCountMinSketch cms = new PartCCountMinSketch(100, 3);
 
-        /* Add "apple" and "banana" to the Count-Min Sketch */
+        // Add elements to the Count-Min Sketch
         cms.add("apple");
         cms.add("banana");
-        cms.add("apple");  // Add "apple" again to increase its count
+        cms.add("apple"); // Add "apple" again
 
-        /* Estimate the count of elements */
-        System.out.println("Estimated count of apple: " + cms.estimateCount("apple"));   // Likely 2
+        // Estimate counts of elements
+        System.out.println("Estimated count of apple: " + cms.estimateCount("apple")); // Likely 2
         System.out.println("Estimated count of banana: " + cms.estimateCount("banana")); // Likely 1
         System.out.println("Estimated count of cherry: " + cms.estimateCount("cherry")); // Likely 0
     }
 }
+

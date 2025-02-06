@@ -19,10 +19,10 @@ enum Color{
 }
 
 public class TreeNode{
-    TreeNode left;
-    TreeNode right;
+    public TreeNode left;
+    public TreeNode right;
     TreeNode next;
-    int val;
+    public int val;
     int lis;
     int height;
     int size;

@@ -8,7 +8,7 @@ package com.interview.stackqueue;
  * Reference: 2 Order of 1 time and Space https://www.youtube.com/watch?v=QMlDCR9xyd8&t=156s
  * Reference: https://www.geeksforgeeks.org/design-and-implement-special-stack-val-structure/?ref=rp
  * https://leetcode.com/problems/min-stack/
- * Category: Easy
+ * Category: Medium, Must Do
  * Company: Google, Amazon, Facebook
  */
 

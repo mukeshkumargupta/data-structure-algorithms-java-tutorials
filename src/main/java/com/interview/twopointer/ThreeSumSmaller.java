@@ -16,20 +16,18 @@ import java.util.Arrays;
  */
 
 public class ThreeSumSmaller {
-    
-/*
-Approach 1: Brute Force
-The brute force approach involves checking all possible triplets, which results in a time complexity of
-𝑂
-(
-𝑛
-3
-)
-O(n
-3
- ).
- */
 
+
+
+    /*
+     * Approach 1: Brute Force
+     * This approach checks all possible triplets (i, j, k) such that:
+     * - 0 <= i < j < k < nums.length
+     * - nums[i] + nums[j] + nums[k] < target
+     *
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(1)
+     */
     public int threeSumSmallerBruteForce(int[] nums, int target) {
         int count = 0;
         for (int i = 0; i < nums.length - 2; i++) {
@@ -44,33 +42,25 @@ O(n
         return count;
     }
 
-    /*
-    Approach 2: Sorting and Two Pointers
-An improved approach involves sorting the array first and then using a two-pointer technique. By fixing one element, we can apply the two-pointer technique to find valid pairs for each triplet combination.
 
-Sort the Array: Sorting allows us to use a two-pointer strategy effectively.
-Two-Pointer Technique: For each fixed element, use two pointers to find pairs that add up to less than target.
-This approach has a time complexity of
-𝑂
-(
-𝑛
-2
-)
-O(n
-2
- ).
- Explanation of the Optimal Solution
-Sorting helps to quickly eliminate combinations that exceed the target by ensuring that when sum >= target, we only need to adjust the pointers without recalculating sums for already checked pairs.
-Counting Valid Combinations: For each fixed i, if nums[i] + nums[left] + nums[right] < target, then all elements between left and right will also form valid pairs with i, adding to the count efficiently.
-This solution achieves an optimal time complexity of
-𝑂
-(
-𝑛
-2
-)
-O(n
-2
- ), significantly faster than the brute-force approach.
+    /*
+     * Approach 2: Sorting and Two Pointers
+     *
+     * The idea is to sort the array and use a two-pointer technique to efficiently find
+     * all valid triplets where the sum is less than the target.
+     *
+     * Steps:
+     * 1. Sort the array in ascending order. Sorting enables us to use the two-pointer strategy.
+     * 2. Fix the first element of the triplet (nums[i]) and use two pointers (`left` and `right`)
+     *    to find pairs such that nums[i] + nums[left] + nums[right] < target.
+     * 3. If nums[i] + nums[left] + nums[right] < target, then all elements between `left` and `right`
+     *    will also form valid triplets, because the array is sorted.
+     * 4. Count the number of valid triplets for the current i and move the pointers accordingly.
+     *
+     * Time Complexity: O(n^2)
+     * - Sorting takes O(n log n).
+     * - The two-pointer loop runs O(n^2) in the worst case.
+     * Space Complexity: O(1) (In-place sorting).
      */
     public int threeSumSmaller(int[] nums, int target) {
         if (nums.length < 3) {

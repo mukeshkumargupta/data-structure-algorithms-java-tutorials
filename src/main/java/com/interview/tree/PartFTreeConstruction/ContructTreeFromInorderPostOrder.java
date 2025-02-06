@@ -2,6 +2,9 @@ package com.interview.tree.PartFTreeConstruction;
 
 import com.interview.tree.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Given inorder and postorder traversal of a tree, construct the binary tree.
  * Reference: https://www.youtube.com/watch?v=0r_cx1c8Z1A
@@ -10,10 +13,24 @@ import com.interview.tree.TreeNode;
  * Category: Medium, Must Do, VImp
  */
 class ContructTreeFromInorderPostOrder {
+
+    private static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+
+        }
+
+    }
 private int postOrderIndex;
 private Map<Integer, Integer> inorderIndexMap;
 
 public TreeNode buildTree(int[] inorder, int[] postorder) {
+
     // Initialize the postorder index to the last element in the postorder array.
     postOrderIndex = postorder.length - 1;
     // Create a hashmap to store the value to index mappings for inorder traversal.

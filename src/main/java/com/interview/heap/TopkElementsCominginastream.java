@@ -2,8 +2,9 @@ package com.interview.heap;
 
 import java.util.*;
 /*
- * https://leetcode.com/problems/top-k-frequent-elements/discuss/628413/solution-to-get-top-k-elements-coming-in-a-streamjava-instead-of-knowing-array-earlier
- * Category: Hard, Tricky
+  TopkElementsCominginastream
+ * Derived https://leetcode.com/problems/top-k-frequent-elements/discuss/628413/solution-to-get-top-k-elements-coming-in-a-streamjava-instead-of-knowing-array-earlier
+ * Category: Medium, Tricky
  * 
  * Explanation: Let's assume we have a stream of arrays, and the following assumption still holds true that k will always be within the range [1,unique number of elements in the array].
 
@@ -46,54 +47,81 @@ One minor correction : It seems we are adding the entire nums at once, but we ca
  * 
  */
 public class TopkElementsCominginastream {
+        private Map<Integer, Integer> frequencyMap; // To store frequency of elements
+        private PriorityQueue<Element> minHeap; // Min-Heap to track top K frequent elements
+        private int k; // The number of top frequent elements to track
 
-    public int[] topKFrequent(int[] nums, int k) {
-        
-        Map<Integer,Integer> presentInHeap = new HashMap<>();
-        Map<Integer,Integer> notInHeap = new HashMap<>();
-        
-        PriorityQueue<Integer> heap = new PriorityQueue<>(
-            (a,b) -> presentInHeap.getOrDefault(a,0) - presentInHeap.getOrDefault(b,0) );
-        
-        for(int i=0;i<nums.length;i++){
-             addInHeap(presentInHeap,notInHeap,heap, k,nums[i]);
-        }
-        return getTopKElementsFromHeap(heap);
-    }
-    
-   
-    public void addInHeap(Map<Integer,Integer> presentInHeap,
-                          Map<Integer,Integer> notInHeap,
-                          PriorityQueue<Integer> heap,
-                          int k,
-                          int element){
-        
-        if(presentInHeap.containsKey(element)){
-            presentInHeap.put(element,presentInHeap.get(element)+1);
-            heap.remove(element);
-            heap.add(element);
-        }else{
-            presentInHeap.put(element,notInHeap.getOrDefault(element,0) + 1);
-            heap.add(element);
-            if(heap.size() > k){
-                int poppedElement = heap.poll();
-                notInHeap.put(poppedElement,presentInHeap.get(poppedElement));
-                presentInHeap.remove(poppedElement);
+        // Custom class to represent a number and its frequency
+        static class Element {
+            int value;
+            int frequency;
+
+            Element(int value, int frequency) {
+                this.value = value;
+                this.frequency = frequency;
             }
         }
-    }
-    
-    public int[] getTopKElementsFromHeap(PriorityQueue<Integer> heap){
-        int i=0;
-        int topKElements[] = new int[heap.size()];
-        for(Integer element: heap){
-            topKElements[i++] = element;
+
+        // Constructor to initialize with stream and K
+        public TopkElementsCominginastream(int[] stream, int k) {
+            this.k = k;
+            this.frequencyMap = new HashMap<>();
+            this.minHeap = new PriorityQueue<>((a, b) -> a.frequency - b.frequency); // Min-Heap based on frequency
+
+            // Process the stream to fill the frequency map and heap
+            for (int num : stream) {
+                add(num); // Add each number from stream
+            }
         }
-        return topKElements;
-    }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
+
+        // Method to add a number to the frequency map and update the heap
+        public void add(int num) {
+            // Update the frequency of the number
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+
+            // Create a new Element with the updated frequency
+            Element newElement = new Element(num, frequencyMap.get(num));
+
+            // Add the element to the heap
+            minHeap.offer(newElement);
+
+            // If heap exceeds size k, remove the element with the lowest frequency
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        // Method to return the top K frequent elements
+        public List<Integer> getTopK() {
+            List<Integer> result = new ArrayList<>();
+
+            // Extract elements from the heap and sort by frequency
+            List<Element> heapList = new ArrayList<>(minHeap);
+            heapList.sort((a, b) -> b.frequency - a.frequency); // Sort in descending order of frequency
+
+            // Add sorted elements to the result list
+            for (Element entry : heapList) {
+                result.add(entry.value);
+            }
+
+            return result;
+        }
+
+        public void main(String[] args) {
+            // Example stream and k value
+            int[] stream = {1, 1, 2, 3, 2, 1};
+            int k = 2;
+
+            // Create the tracker and process the stream
+            TopkElementsCominginastream tracker = new TopkElementsCominginastream(stream, k);
+
+            // Print the top K frequent elements after initial stream processing
+            System.out.println("Top " + k + " Frequent Elements: " + tracker.getTopK()); // Output: [1, 2]
+
+            // Add more elements and print updated top K
+            tracker.add(3);
+            tracker.add(3);
+            System.out.println("Updated Top " + k + " Frequent Elements: " + tracker.getTopK()); // Output: [3, 1]
+        }
     
 }

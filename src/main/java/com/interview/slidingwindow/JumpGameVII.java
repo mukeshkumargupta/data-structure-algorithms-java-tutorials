@@ -1,5 +1,8 @@
 package com.interview.slidingwindow;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
  * https://leetcode.com/problems/jump-game-vii/
  * https://www.youtube.com/watch?v=bZxWLuiqHes&t=212s

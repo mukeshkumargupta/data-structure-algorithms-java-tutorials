@@ -43,95 +43,6 @@ Accepted
 
 Certainly! Let's adapt the given pattern for detecting cycles in a directed graph using DFS and use it in the context of the CourseScheduleIIDFS problem. We will integrate cycle detection with topological sorting, ensuring that the code is structured and easy to understand. Here's how you can implement this pattern:
 
-java
-Copy code
-package com.interview.graph.PartFCycleDetection;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
-
-public class CourseScheduleIIDFS {
-
-    // Stack to hold the course order
-    private Stack<Integer> courseOrderStack = new Stack<>();
-
-    // Method to perform DFS and detect cycles
-    private boolean dfs(int course, List<Integer>[] adjacencyList, boolean[] visited, boolean[] recStack) {
-        // Mark the current course as visited and add it to the recursion stack
-        visited[course] = true;
-        recStack[course] = true;
-
-        // Recur for all the courses dependent on this course
-        for (int dependentCourse : adjacencyList[course]) {
-            if (!visited[dependentCourse]) {
-                if (dfs(dependentCourse, adjacencyList, visited, recStack)) {
-                    return true; // Cycle detected
-                }
-            } else if (recStack[dependentCourse]) {
-                return true; // Cycle detected
-            }
-        }
-
-        // Remove the course from recursion stack and add to the order
-        recStack[course] = false;
-        courseOrderStack.push(course);
-        return false;
-    }
-
-    // Method to detect a cycle in the graph and find the course order
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<Integer>[] adjacencyList = new ArrayList[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            adjacencyList[i] = new ArrayList<>();
-        }
-
-        // Build the adjacency list
-        for (int[] prerequisite : prerequisites) {
-            int course = prerequisite[0];
-            int prerequisiteCourse = prerequisite[1];
-            adjacencyList[prerequisiteCourse].add(course);
-        }
-
-        boolean[] visited = new boolean[numCourses];
-        boolean[] recStack = new boolean[numCourses];
-
-        // Check for cycles and perform DFS
-        for (int course = 0; course < numCourses; course++) {
-            if (!visited[course]) {
-                if (dfs(course, adjacencyList, visited, recStack)) {
-                    return new int[0]; // Return an empty array if a cycle is detected
-                }
-            }
-        }
-
-        // Construct the course order from the stack
-        int[] order = new int[numCourses];
-        int index = 0;
-        while (!courseOrderStack.isEmpty()) {
-            order[index++] = courseOrderStack.pop();
-        }
-
-        return order;
-    }
-
-    public static void main(String[] args) {
-        CourseScheduleIIDFS scheduler = new CourseScheduleIIDFS();
-
-        int numCourses1 = 2;
-        int[][] prerequisites1 = {{1, 0}};
-        System.out.println(Arrays.toString(scheduler.findOrder(numCourses1, prerequisites1))); // Output: [0, 1]
-
-        int numCourses2 = 4;
-        int[][] prerequisites2 = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
-        System.out.println(Arrays.toString(scheduler.findOrder(numCourses2, prerequisites2))); // Output: [0, 2, 1, 3] or [0, 1, 2, 3]
-
-        int numCourses3 = 1;
-        int[][] prerequisites3 = {};
-        System.out.println(Arrays.toString(scheduler.findOrder(numCourses3, prerequisites3))); // Output: [0]
-    }
-}
 Explanation
 Adjacency List Construction:
 
@@ -152,7 +63,7 @@ This implementation uses a cycle detection pattern similar to the one used in un
 
 public class PartBBCourseScheduleIIDFS {
     // Stack to hold the course order
-    private Stack<Integer> courseOrderStack = new Stack<>();
+    private final Stack<Integer> courseOrderStack = new Stack<>();
 
     // Method to perform DFS and detect cycles
     private boolean dfs(int course, List<Integer>[] adjacencyList, boolean[] visited, boolean[] recStack) {

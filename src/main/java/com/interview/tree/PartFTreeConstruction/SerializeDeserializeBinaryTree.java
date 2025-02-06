@@ -4,6 +4,7 @@ import com.interview.tree.PartATreeTraversal.TreeTraversals;
 
 import javax.swing.tree.TreeNode;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Date 03/12/2017
@@ -56,62 +57,157 @@ The number of nodes in the tree is in the range [0, 104].
  * https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/ Hard
  */
 public class SerializeDeserializeBinaryTree {
-    //Using level order but any traversal can be used to do this problem
-    /*
-     * Runtime: 15 ms, faster than 60.94% of Java online submissions for Serialize and Deserialize Binary Tree.
-Memory Usage: 41.5 MB, less than 60.46% of Java online submissions for Serialize and Deserialize Binary Tree.
+    /**
+     * Understanding Serialization and Deserialization
+     *
+     * Serialization (Converting a tree into a string):
+     * - Traverse the tree in level order (BFS) using a queue.
+     * - Store null for missing (leaf) children.
+     * - Convert the sequence into a comma-separated string.
+     *
+     * Deserialization (Reconstructing the tree from the string):
+     * - Read the string and split it into an array.
+     * - Use a queue to process nodes level by level.
+     * - Attach children nodes to their parents accordingly.
+     *
+     * Dry Run
+     * Step 1: Serialize the Tree
+     *
+     * Tree structure:
+     *
+     *        1
+     *       / \
+     *      2   3
+     *         / \
+     *        4   5
+     *
+     * BFS Level-Order Serialization:
+     * - Start with root (1), queue = [1]
+     * - Process 1, add 2, 3 → "1,"
+     * - Queue = [2, 3]
+     * - Process 2, add null, null → "1,2,"
+     * - Queue = [3, null, null]
+     * - Process 3, add 4, 5 → "1,2,3,"
+     * - Queue = [null, null, 4, 5]
+     * - Process null, "1,2,3,null,"
+     * - Process null, "1,2,3,null,null,"
+     * - Process 4, add null, null → "1,2,3,null,null,4,"
+     * - Queue = [5, null, null]
+     * - Process 5, add null, null → "1,2,3,null,null,4,5,"
+     * - Queue = [null, null, null, null]
+     * - Process remaining nulls
+     *
+     * Final serialized string: "1,2,3,null,null,4,5,null,null,null,null,"
+     *
+     * Step 2: Deserialize the Tree
+     * - Split "1,2,3,null,null,4,5,null,null,null,null," → ["1", "2", "3", "null", "null", "4", "5", "null", "null", "null", "null"]
+     * - Start with root = TreeNode(1), queue = [1]
+     * - Process 1, add 2 and 3 → queue = [2, 3]
+     * - Process 2, add null, null → queue = [3]
+     * - Process 3, add 4, 5 → queue = [4, 5]
+     * - Process 4, add null, null → queue = [5]
+     * - Process 5, add null, null → queue = []
+     *
+     * Final tree is reconstructed.
+     *
+     * Time & Space Complexity Analysis
+     *
+     * Serialization (BFS):
+     * - Time Complexity: O(N), where N is the number of nodes.
+     * - Space Complexity: O(N) (queue for BFS traversal).
+     *
+     * Deserialization (BFS):
+     * - Time Complexity: O(N) (processing each node).
+     * - Space Complexity: O(N) (storing nodes in the queue).
      */
+    private static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        TreeNode(int val) {
+            this.val = val;
+            this.left = this.right = null;
+        }
+    }
+
+    // Serialize a binary tree to a string using BFS
     public String serialize(TreeNode root) {
-        if (root == null) return "";
-        Queue<TreeNode> q = new LinkedList<>();
-        StringBuilder res = new StringBuilder();
-        q.add(root);
-        while (!q.isEmpty()) {
-            TreeNode node = q.poll();
+        if (root == null) return "null"; // Edge case
+
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+
             if (node == null) {
-                res.append("n ");
+                sb.append("null,");
                 continue;
             }
-            res.append(node.val + " ");
-            q.add(node.left);
-            q.add(node.right);
+
+            sb.append(node.val).append(",");
+            queue.offer(node.left);
+            queue.offer(node.right);
         }
-        return res.toString();
+
+        return sb.toString();
     }
 
+    // Deserialize a string back to a binary tree using BFS
     public TreeNode deserialize(String data) {
-        if (data == "") return null;
-        Queue<TreeNode> q = new LinkedList<>();
-        String[] values = data.split(" ");
+        if (data.equals("null")) return null; // Edge case
+
+        String[] values = data.split(",");
         TreeNode root = new TreeNode(Integer.parseInt(values[0]));
-        q.add(root);
-        for (int i = 1; i < values.length; i++) {
-            TreeNode parent = q.poll();
-            if (!values[i].equals("n")) {
-                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
-                parent.left = left;
-                q.add(left);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int i = 1;
+        while (!queue.isEmpty()) {
+            TreeNode parent = queue.poll();
+
+            if (!values[i].equals("null")) {
+                parent.left = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(parent.left);
             }
-            if (!values[++i].equals("n")) {
-                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
-                parent.right = right;
-                q.add(right);
+            i++;
+
+            if (!values[i].equals("null")) {
+                parent.right = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(parent.right);
             }
+            i++;
         }
+
         return root;
     }
-    
 
+    public static void main(String[] args) {
+        SerializeDeserializeBinaryTree codec = new SerializeDeserializeBinaryTree();
 
+        // Construct the example tree:
+        //         1
+        //        / \
+        //       2   3
+        //          / \
+        //         4   5
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
 
-    public static void main(String args[]) {
-        SerializeDeserializeBinaryTree sd = new SerializeDeserializeBinaryTree();
-        TreeNode TreeNode = sd.deserialize("10,$,30,15,$,%,20,$,21,16,$,%,18");
-        TreeTraversals tt = new TreeTraversals();
-        tt.inOrder(TreeNode);
-        String serializedTree= sd.serializeLevelOrder(TreeNode);
-        TreeNode root = sd.deserializeLevelOrder("1,2");
-        tt.inOrder(root);
+        // Serialize
+        String serialized = codec.serialize(root);
+        System.out.println("Serialized: " + serialized);
+
+        // Deserialize
+        TreeNode newRoot = codec.deserialize(serialized);
+        System.out.println("Deserialized (Root): " + newRoot.val);
     }
+
+
+
 }
 

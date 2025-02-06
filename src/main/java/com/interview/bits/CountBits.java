@@ -45,24 +45,20 @@ Follow up: If this function is called many times, how would you optimize it?
  */
 public class CountBits {
 
-    public int hammingWeight(int n) {//Working 
-        /*
-         * Runtime: 0 ms, faster than 100.00% of Java online submissions for Number of 1 Bits.
-Memory Usage: 36 MB, less than 62.52% of Java online submissions for Number of 1 Bits.
-         */
+/*
+    Complexity Analysis:
+    ---------------------
+    Time Complexity: O(log n)
+    - Each number takes O(log n) time to count bits,
+
+    Space Complexity: O(1)
+*/
+
+    public int hammingWeight(int n) {
         int count = 0;
-        for(int i = 0; i < 32; ++i){
-            if((n&1) == 1) count++;
-            n >>= 1;
-        }
-        return count;
-        
-    }
-    public int countBits(int num){//this will fail for negative number list msb is 1
-        int count=0;
-        while(num > 0){
-            num &= num-1;
-            count++;
+        while (n > 0) {
+            count += (n & 1);  // Check if the last bit is 1
+            n >>= 1;  // Right shift to check the next bit
         }
         return count;
     }

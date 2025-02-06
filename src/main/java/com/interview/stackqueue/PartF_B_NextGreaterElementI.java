@@ -2,6 +2,7 @@ package com.interview.stackqueue;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /*
@@ -54,6 +55,38 @@ public class PartF_B_NextGreaterElementI {
             int[] nums2 = {1, 3, 4, 2};
             NextGreaterElementBruteForce solution = new NextGreaterElementBruteForce();
             System.out.println(Arrays.toString(solution.nextGreaterElement(nums1, nums2)));
+        }
+    }
+    public static class  NextGreaterElementStackRightToLeftIteration {
+        public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+            // Stack to store the elements for which we are finding the next greater element
+            Stack<Integer> stack = new Stack<>();
+
+            // Map to store the next greater element for each value in nums2
+            Map<Integer, Integer> nextGreaterMap = new HashMap<>();
+
+            // Traverse nums2 from right to left
+            for (int i = nums2.length - 1; i >= 0; i--) {
+                // Pop elements from stack that are smaller or equal to the current element
+                while (!stack.isEmpty() && stack.peek() <= nums2[i]) {
+                    stack.pop();
+                }
+
+                // If stack is empty, no greater element found, otherwise peek the top element
+                nextGreaterMap.put(nums2[i], stack.isEmpty() ? -1 : stack.peek());
+
+                // Push current element to stack
+                stack.push(nums2[i]);
+            }
+
+            // Prepare result for nums1 based on the map
+            int[] result = new int[nums1.length];
+            int index = 0;
+            for (int num : nums1) {
+                result[index++] = nextGreaterMap.get(num);
+            }
+
+            return result;
         }
     }
 

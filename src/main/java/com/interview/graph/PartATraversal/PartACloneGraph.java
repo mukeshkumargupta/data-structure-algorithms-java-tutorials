@@ -107,110 +107,114 @@ The Graph is connected and all nodes can be visited starting from the given node
     This approach ensures that the entire graph is cloned correctly, with each node and its relationships preserved. The use of a visited map prevents infinite recursion and ensures that each node is cloned only once.
  */
 public class PartACloneGraph {
- // Definition for a TreeNode.
-    class TreeNode {
-        public int val;
-        public List<TreeNode> neighbors;
-        public TreeNode() {
-            val = 0;
-            neighbors = new ArrayList<TreeNode>();
-        }
-        public TreeNode(int _val) {
-            val = _val;
-            neighbors = new ArrayList<TreeNode>();
-        }
-        public TreeNode(int _val, ArrayList<TreeNode> _neighbors) {
-            val = _val;
-            neighbors = _neighbors;
-        }
-    }
-    // Map to store cloned nodes
-    private Map<Node, Node> visited = new HashMap<>();
-
-    public Node cloneGraph(Node node) {
-        if (node == null) {
-            return null;
-        }
-
-        // If the node was already cloned, return the cloned node
-        if (visited.containsKey(node)) {
-            return visited.get(node);
-        }
-
-        // Clone the node
-        Node cloneNode = new Node(node.val, new ArrayList<>());
-        // Save the clone to the visited map
-        visited.put(node, cloneNode);
-
-        // Iterate through the neighbors to clone them recursively
-        for (Node neighbor : node.neighbors) {
-            cloneNode.neighbors.add(cloneGraph(neighbor));
-        }
-
-        return cloneNode;
-    }
-
-    /* this code is also there but not standard and readable, in first u are doing precpmute and returning if found
-    Map<Node, Node> visited = new HashMap<>();
-    public Node cloneGraph(Node node) {
-        if (node == null) {
-            return null;
-        }
-
-        Node newNode = new Node(node.val);
-        visited.put(node, newNode);
-        for (Node neighbor: node.neighbors) {
-            if (!visited.containsKey(neighbor)) {
-                Node clonedNode = cloneGraph(neighbor);
-                newNode.neighbors.add(clonedNode);
-            } else {
-                newNode.neighbors.add(visited.get(neighbor));
+    public static class DFSApproach {
+        // Definition for a TreeNode.
+        private static class Node {
+            public int val;
+            public List<Node> neighbors;
+            public Node() {
+                val = 0;
+                neighbors = new ArrayList<Node>();
+            }
+            public Node(int _val) {
+                val = _val;
+                neighbors = new ArrayList<Node>();
+            }
+            public Node(int _val, ArrayList<Node> _neighbors) {
+                val = _val;
+                neighbors = _neighbors;
             }
         }
-        return newNode;
+        // Map to store cloned nodes
+        private Map<Node, Node> visited = new HashMap<>();
+
+        public Node cloneGraph(Node node) {
+            if (node == null) {
+                return null;
+            }
+
+            // If the node was already cloned, return the cloned node
+            if (visited.containsKey(node)) {
+                return visited.get(node);
+            }
+
+            // Clone the node
+            Node cloneNode = new Node(node.val, new ArrayList<>());
+            // Save the clone to the visited map
+            visited.put(node, cloneNode);
+
+            // Iterate through the neighbors to clone them recursively
+            for (Node neighbor : node.neighbors) {
+                cloneNode.neighbors.add(cloneGraph(neighbor));
+            }
+
+            return cloneNode;
+        }
     }
-     */
+
+
+    public static class BFSApproach {
 
     /*
     BFS Approach
      */
-
-    public Node cloneGraph(Node node) {
-        if (node == null) {
-            return null;
+    // Definition for a TreeNode.
+    private static class Node {
+        public int val;
+        public List<DFSApproach.Node> neighbors;
+        public Node() {
+            val = 0;
+            neighbors = new ArrayList<DFSApproach.Node>();
         }
-
-        // Map to store cloned nodes
-        Map<Node, Node> visited = new HashMap<>();
-        // Initialize the queue for BFS
-        Queue<Node> queue = new LinkedList<>();
-
-        // Clone the root node
-        Node cloneNode = new Node(node.val, new ArrayList<>());
-        // Put the cloned node in the visited map
-        visited.put(node, cloneNode);
-        // Enqueue the original node
-        queue.add(node);
-
-        while (!queue.isEmpty()) {
-            // Dequeue a node
-            Node currentNode = queue.poll();
-
-            // Iterate through its neighbors
-            for (Node neighbor : currentNode.neighbors) {
-                if (!visited.containsKey(neighbor)) {
-                    // Clone the neighbor
-                    Node neighborClone = new Node(neighbor.val, new ArrayList<>());
-                    // Put the cloned neighbor in the visited map
-                    visited.put(neighbor, neighborClone);
-                    // Enqueue the original neighbor
-                    queue.add(neighbor);
-                }
-                // Link the cloned current node to the cloned neighbor
-                visited.get(currentNode).neighbors.add(visited.get(neighbor));
-            }
+        public Node(int _val) {
+            val = _val;
+            neighbors = new ArrayList<DFSApproach.Node>();
         }
-
-        return cloneNode;
+        public Node(int _val, ArrayList<DFSApproach.Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
     }
+
+        public Node cloneGraph(Node node) {
+            if (node == null) {
+                return null;
+            }
+
+            // Map to store cloned nodes
+            Map<Node, Node> visited = new HashMap<>();
+            // Initialize the queue for BFS
+            Queue<Node> queue = new LinkedList<>();
+
+            // Clone the root node
+            Node cloneNode = new Node(node.val, new ArrayList<>());
+            // Put the cloned node in the visited map
+            visited.put(node, cloneNode);
+            // Enqueue the original node
+            queue.add(node);
+
+            while (!queue.isEmpty()) {
+                // Dequeue a node
+                Node currentNode = queue.poll();
+
+                // Iterate through its neighbors
+                for (Node neighbor : currentNode.neighbors) {
+                    if (!visited.containsKey(neighbor)) {
+                        // Clone the neighbor
+                        Node neighborClone = new Node(neighbor.val, new ArrayList<>());
+                        // Put the cloned neighbor in the visited map
+                        visited.put(neighbor, neighborClone);
+                        // Enqueue the original neighbor
+                        queue.add(neighbor);
+                    }
+                    // Link the cloned current node to the cloned neighbor
+                    visited.get(currentNode).neighbors.add(visited.get(neighbor));
+                }
+            }
+
+            return cloneNode;
+        }
+    }
+
+
 }

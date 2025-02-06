@@ -184,6 +184,7 @@ Follow up: Can you come up with an algorithm that runs in O(n log(n)) time compl
         The length of the longest increasing subsequence is 4
 
         Time Complexity: O(N*N)
+        https://youtu.be/CE2b_-XfVDk  Most Easy
 
         Reason: There are two nested loops.
 

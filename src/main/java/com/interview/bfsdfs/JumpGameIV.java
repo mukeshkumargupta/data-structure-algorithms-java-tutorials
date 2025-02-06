@@ -47,176 +47,74 @@ Constraints:
 -108 <= arr[i] <= 108
  */
 public class JumpGameIV {
-    public int minJumpsSlow(int[] arr) {//Slow but can solve this problem
-        //This approach is little slow because for equal value you are iteration again from 0 to l-1 to check it is equal better you build list of having same value
-        int l = arr.length; 
-        Queue<Integer> q = new LinkedList<>();
-        q.add(0);
-        boolean[] visisted = new boolean[l];
-        visisted[0] = true;
-        
-        int level = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                int curr = q.remove();
+    /*
+        Optimized BFS Approach
+        Explanation:
+        Since the problem asks for the minimum number of jumps, BFS is a natural fit. BFS explores level by level and guarantees the shortest path is found first.
+        For each index, you can jump to:
+        The previous index (i - 1).
+        The next index (i + 1).
+        All indices with the same value as arr[i].
+        To optimize:
+        Use a Map to group indices by their values. This allows you to jump to all indices with the same value efficiently.
+        Once a value is processed, remove its indices from the map to avoid revisiting.
 
-                if (curr == l-1) return level;   // reached the target index
+        You're correct—DFS in its naive form often does not work properly for the "Jump Game IV" problem because it can revisit indices excessively or get stuck in recursion depth issues. Additionally, finding the minimum number of jumps is naturally a BFS-type problem since BFS explores all nodes at the current "level" before moving to the next, ensuring the shortest path is found.
+     */
 
+    public int minJumps(int[] arr) {
+        int n = arr.length;
+        if (n == 1) return 0;
 
-                if (curr + 1 < l && !visisted[curr + 1]) {
-                    if (curr + 1 == l-1) {
-                        return level+1;
-                    }
-                    q.add(curr + 1);
-                    visisted[curr + 1] = true;
-                }
-
-                if (curr - 1 >= 0 && !visisted[curr - 1]) {
-                    q.add(curr - 1);
-                    visisted[curr - 1] = true;
-                    
-                }
-                   
-                for (int j = 0; j < l; j++) {
-                    if (curr != j) {
-                        if (arr[curr] == arr[j] &&  !visisted[j]) {
-                            q.add(j);
-                            visisted[j] = true;
-                        }
-                    }
-                    
-                }
-                
-            }
-            level++;
+        // Map to store indices for each value
+        Map<Integer, List<Integer>> valueToIndices = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            valueToIndices.computeIfAbsent(arr[i], k -> new ArrayList<>()).add(i);
         }
-        
-        return -1;
-        
-    }
-    
-    public int minJumps(int[] arr) {//Just replica of previous method but optimization is done
-            /*
-             * Runtime: 71 ms, faster than 84.84% of Java online submissions for Jump Game IV.
-Memory Usage: 100.5 MB, less than 73.34% of Java online submissions for Jump Game IV.
-             */
-            int l = arr.length; 
-            Queue<Integer> q = new LinkedList<>();
-            q.add(0);
-            boolean[] visisted = new boolean[l];
-            visisted[0] = true;
-            Map<Integer, List<Integer> > map = new HashMap<>();
-            for (int i = 0; i < l; i++) {
-                //map.computeIfAbsent(arr[i], (key) -> new ArrayList<>()).add(i);
-                map.computeIfAbsent(arr[i], (key)->new ArrayList<Integer>()).add(i);
-            }
-            
-            int level = 0;
-            while (!q.isEmpty()) {
-                int size = q.size();
-                for (int i = 0; i < size; i++) {
-                    int curr = q.remove();
 
-                    if (curr == l-1) return level;   // reached the target index
-
-
-                    if (curr + 1 < l && !visisted[curr + 1]) {
-                        if (curr + 1 == l-1) {
-                            return level+1;
-                        }
-                        q.add(curr + 1);
-                        visisted[curr + 1] = true;
-                    }
-
-                    if (curr - 1 >= 0 && !visisted[curr - 1]) {
-                        q.add(curr - 1);
-                        visisted[curr - 1] = true;
-                        
-                    }
-                    List<Integer> temp = map.getOrDefault(arr[curr], null);
-                    //for (int j = 0; j < l; j++) {
-                    if (temp == null) {
-                        continue;
-                    }
-                    for (int j : temp) {
-                        if (!visisted[j]) {
-                            q.add(j);
-                            visisted[j] = true;
-                        }
-                        
-                    }
-                   map.remove(arr[curr]);
-                    
-                }
-                level++;
-            }
-            
-            return -1;
-        }
-    public int minJumps(int[] arr) {//Working
-        /*
-         * Runtime: 47 ms, faster than 97.84% of Java online submissions for Jump Game IV.
-Memory Usage: 57.9 MB, less than 84.48% of Java online submissions for Jump Game IV.
-         */
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        // BFS setup
         Queue<Integer> queue = new LinkedList<>();
-        int l = arr.length;
-        
-        for(int i = 0; i < l; i ++){
-            //ComputeIfAbsentIs slow
-            map.computeIfAbsent(arr[i], (key)->new ArrayList<Integer>()).add(i);
-            /*List<Integer> list = map.getOrDefault(arr[i], new ArrayList<>());
-            list.add(i);
-            map.put(arr[i], list);*/
-        }
-        
-        int[] dist = new int[l];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        
-        queue.add(0);
-        dist[0] = 0;
-        while(! queue.isEmpty()){
-           int index = queue.remove(); 
-            int step = dist[index];
-            if(index == l - 1)
-                return step;
-            
-            if(index + 1 < l && dist[index + 1] == Integer.MAX_VALUE){
-                if (index + 1 == l-1) {
-                    return step + 1;
-                }
-                queue.add(index + 1);
-                dist[index + 1] = step + 1;
-            }
-            
-            if(index - 1 >= 0 && dist[index - 1] == Integer.MAX_VALUE)
-            {  
-                queue.add(index - 1);
-                dist[index - 1] = step + 1;
-            }
-            
-            List<Integer> temp = map.getOrDefault(arr[index], new ArrayList<>());
-            for(int i = 0; i < temp.size(); i ++){
-                int index1 = temp.get(i); 
-                if(dist[index1] == Integer.MAX_VALUE){
-                    queue.add(index1);
-                    dist[index1] = step + 1;
-                }
-            }
-            
-            map.remove(arr[index]);
-        }
-        
-        return -1;
-    }
-    
+        queue.offer(0); // Start at index 0
+        boolean[] visited = new boolean[n];
+        visited[0] = true;
+        int steps = 0;
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        JumpGameIV instance = new JumpGameIV();
-        instance.minJumpsTrying(new int[] {100,-23,-23,404,100,23,23,23,3,404});
-        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int curr = queue.poll();
+
+                // If we reach the last index
+                if (curr == n - 1) return steps;
+
+                // Jump to the previous index
+                if (curr - 1 >= 0 && !visited[curr - 1]) {
+                    queue.offer(curr - 1);
+                    visited[curr - 1] = true;
+                }
+
+                // Jump to the next index
+                if (curr + 1 < n && !visited[curr + 1]) {
+                    queue.offer(curr + 1);
+                    visited[curr + 1] = true;
+                }
+
+                // Jump to all indices with the same value
+                if (valueToIndices.containsKey(arr[curr])) {
+                    for (int next : valueToIndices.get(arr[curr])) {
+                        if (!visited[next]) {
+                            queue.offer(next);
+                            visited[next] = true;
+                        }
+                    }
+                    // Remove the value from the map to avoid revisiting
+                    valueToIndices.remove(arr[curr]);
+                }
+            }
+            steps++;
+        }
+
+        return -1; // If no path is found (shouldn't happen)
     }
     
 }

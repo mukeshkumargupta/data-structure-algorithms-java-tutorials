@@ -2,7 +2,7 @@ package com.interview.linklist;
 
 import org.junit.Test;
 
-public class DeleteDuplicateTreeNodesTest {
+public class DeleteDuplicateNodesTest {
 
     @Test
     public void testDifferentCases() {

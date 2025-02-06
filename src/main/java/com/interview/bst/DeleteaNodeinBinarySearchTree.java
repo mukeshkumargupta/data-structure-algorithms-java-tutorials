@@ -1,10 +1,12 @@
 package com.interview.bst;
 
+import com.interview.tree.TreeNode;
+
 /*
  * https://www.youtube.com/watch?v=kouxiP_H5WE
  * https://leetcode.com/problems/delete-node-in-a-bst/submissions/
  * https://www.codingninjas.com/codestudio/problems/delete-node-in-bst_920381?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos
- * Category: Medium, Fundamental, VVImp, Must Do
+ * Category: Medium, Fundamental, VVImp, Must Do, top75
  * Related: https://leetcode.com/problems/split-bst/ Medium
  * 
  * Problem Statement

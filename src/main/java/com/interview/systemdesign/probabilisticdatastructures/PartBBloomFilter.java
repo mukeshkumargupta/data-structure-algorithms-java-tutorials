@@ -66,47 +66,91 @@ package com.interview.systemdesign.probabilisticdatastructures;
 import java.util.BitSet;
 import java.util.function.Function;
 
-public class PartBBloomFilter<T> {
-    private final BitSet bitSet;
-    private final int bitArraySize;
-    private final Function<T, Integer>[] hashFunctions;
+public class PartBBloomFilter {
 
-    @SafeVarargs
-    public PartBBloomFilter(int bitArraySize, Function<T, Integer>... hashFunctions) {
+    private final boolean[] bitArray; // Boolean array to store the bits
+    private final int bitArraySize; // Size of the bit array
+    private final int hashCount; // Number of hash functions
+
+    /**
+     * Constructor to initialize the Bloom Filter.
+     *
+     * @param bitArraySize The size of the bit array.
+     * @param hashCount    The number of hash functions to use.
+     */
+    public PartBBloomFilter(int bitArraySize, int hashCount) {
         this.bitArraySize = bitArraySize;
-        this.hashFunctions = hashFunctions;
-        this.bitSet = new BitSet(bitArraySize);
+        this.hashCount = hashCount;
+        this.bitArray = new boolean[bitArraySize]; // Initialize the boolean array
     }
 
-    public void add(T element) {
-        for (Function<T, Integer> hashFunction : hashFunctions) {
-            int index = Math.abs(hashFunction.apply(element) % bitArraySize);
-            bitSet.set(index);
+    /**
+     * Adds an element to the Bloom Filter.
+     *
+     * @param element The element to add (as a String).
+     */
+    public void add(String element) {
+        for (int i = 0; i < hashCount; i++) {
+            int index = getHash(element, i) % bitArraySize; // Compute bit index
+            bitArray[index] = true; // Set the bit
         }
     }
 
-    public boolean mightContain(T element) {
-        for (Function<T, Integer> hashFunction : hashFunctions) {
-            int index = Math.abs(hashFunction.apply(element) % bitArraySize);
-            if (!bitSet.get(index)) {
-                return false; // Definitely not in the set
+    /**
+     * Checks if an element might be in the Bloom Filter.
+     *
+     * @param element The element to check (as a String).
+     * @return True if the element might be in the set; False if definitely not.
+     */
+    public boolean mightContain(String element) {
+        for (int i = 0; i < hashCount; i++) {
+            int index = getHash(element, i) % bitArraySize; // Compute bit index
+            if (!bitArray[index]) {
+                return false; // Element is definitely not in the set
             }
         }
-        return true; // Might be in the set (false positive possible)
+        return true; // Element might be in the set (false positive possible)
+    }
+
+    /**
+     * A simple hash function that combines the element's hash code with a seed.
+     *
+     * @param element The element to hash (as a String).
+     * @param seed    The seed to vary the hash.
+     * @return A hash value for the element.
+     */
+    /*
+        The reason for using the expression element.hashCode() ^ (seed * 31) in the getHash method is to create a more customized and varied hash, especially when using it in contexts like hash tables or distributed systems. Here's a breakdown of the key components and why they are used:
+
+    element.hashCode():
+
+    The hashCode() method is a standard method in Java that returns an integer hash value for an object. It provides a way to represent an object as an integer for quick comparisons, but by itself, it might not be sufficient to avoid collisions in some situations (e.g., when used in hash-based collections or hashing algorithms).
+    ^ (seed * 31) (XOR with a seed):
+
+    XOR (^): The XOR operation is used to combine the original hash code with a modified value. This helps to distribute the hash values more evenly and reduce the likelihood of collisions. XOR is often used because it tends to scramble the bits in a way that makes the result more unpredictable and resistant to patterns.
+
+    Multiplying the seed by 31: Multiplying the seed by 31 ensures that the seed is large enough to affect the final hash value. Using a constant like 31 is common because it’s a small prime number, and primes help in creating more evenly distributed hash values when used in hashing functions. It's often used in hashing algorithms (like in Java's String.hashCode() method itself).
+
+    The Purpose:
+
+    The combination of XOR with a seeded value and the original hashCode() helps mitigate potential weaknesses of using hashCode() alone, particularly in hash-based structures like hash maps, sets, or when used in more complex distributed systems like consistent hashing.
+    The use of a seed allows for introducing randomness to the hash function, making it less predictable and reducing the risk of hash collisions in a broader context (e.g., for different elements or systems)
+     */
+    private int getHash(String element, int seed) {
+        return Math.abs((element.hashCode() ^ (seed * 31)));
     }
 
     public static void main(String[] args) {
-        // Example usage of BloomFilter with 3 hash functions
-        PartBBloomFilter<String> partBBloomFilter = new PartBBloomFilter<>(1000,
-                s -> s.hashCode(),
-                s -> s.hashCode() * 31,
-                s -> s.hashCode() * 17);
+        // Create a Bloom Filter with 1000 bits and 3 hash functions
+        PartBBloomFilter bloomFilter = new PartBBloomFilter(1000, 3);
 
-        partBBloomFilter.add("hello");
-        partBBloomFilter.add("world");
+        // Add elements to the Bloom Filter
+        bloomFilter.add("hello");
+        bloomFilter.add("world");
 
-        System.out.println(partBBloomFilter.mightContain("hello")); // True
-        System.out.println(partBBloomFilter.mightContain("world")); // True
-        System.out.println(partBBloomFilter.mightContain("openai")); // False (no false negatives)
+        // Check for elements in the Bloom Filter
+        System.out.println("Might contain 'hello': " + bloomFilter.mightContain("hello")); // Likely true
+        System.out.println("Might contain 'world': " + bloomFilter.mightContain("world")); // Likely true
+        System.out.println("Might contain 'openai': " + bloomFilter.mightContain("openai")); // Likely false
     }
 }

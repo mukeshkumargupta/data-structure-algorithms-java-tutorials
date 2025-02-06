@@ -79,30 +79,20 @@ public class RemoveNthNodeFromEndofList {
         }
     }
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        // Create a dummy node that points to the head
-        ListNode dummy = new ListNode(0);
+        ListNode dummy = new ListNode(-1);
         dummy.next = head;
-
-        // Initialize two pointers, both starting at the dummy node
-        ListNode first = dummy;
-        ListNode second = dummy;
-
-        // Move the first pointer n+1 steps forward
-        for (int i = 0; i <= n; i++) {
-            first = first.next;
+        ListNode p2 = dummy;
+        ListNode p1 = dummy;
+        for (int i =0; i <=n ;i++) {
+            p2 = p2.next;
         }
-
-        // Move both pointers until the first pointer reaches the end
-        while (first != null) {
-            first = first.next;
-            second = second.next;
+        while (p2 != null) {
+            p2 = p2.next;
+            p1 = p1.next;
         }
-
-        // Remove the nth node from the end
-        second.next = second.next.next;
-
-        // Return the head of the modified list
+        p1.next = p1.next.next;
         return dummy.next;
+
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

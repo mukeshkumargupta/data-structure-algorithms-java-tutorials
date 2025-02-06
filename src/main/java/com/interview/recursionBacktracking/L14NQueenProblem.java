@@ -14,6 +14,7 @@ import java.util.List;
  * on the board.
  *
  * Solution for https://leetcode.com/problems/n-queens/
+ * https://www.youtube.com/watch?v=i05Ju7AftcM
  * Category: Hard, Must Do
  * Related: 
  * https://leetcode.com/problems/n-queens-ii/ Hard
@@ -47,7 +48,7 @@ Accepted
 Submissions
 581,60
  */
-public class NQueenProblem {
+public class L14NQueenProblem {
     public List<List<String>> solveNQueens(int n) {
         char[][] board = new char[n][n];
         for(int i = 0; i < n; i++)

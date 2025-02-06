@@ -8,7 +8,6 @@ import com.interview.tree.TreeNode;
  * Category: Easy, Fundamental
  */
 public class SearchInBST {
-
     public TreeNode searchRecursive(TreeNode root, int key){
         if(root == null){
             return null;

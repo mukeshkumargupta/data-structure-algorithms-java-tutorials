@@ -38,43 +38,47 @@ Submissions
 2,579,697
  */
 public class MergeIntervals {
+    private static class Interval {
+        int start;
+        int end;
+        Interval(int start, int end) {
+            this.start = start;
+            this.end = end;
+
+        }
+    }
     public int[][] merge(int[][] intervals) {
-        /*
-         * Runtime: 5 ms, faster than 96.19% of Java online submissions for Merge Intervals.
-Memory Usage: 41.6 MB, less than 75.81% of Java online submissions for Merge Intervals.
-            TC: NLOGN + N
-            SC: N i worst case if no merge interval
-            
-         */
-        
-        Arrays.sort(intervals, (arr1, arr2) -> {//sort by start time
+        List<Interval> result = new ArrayList<>();
+
+        Arrays.sort(intervals, (arr1, arr2) -> {
             return arr1[0] - arr2[0];
         });
-        List<int[]> result = new ArrayList<>();
+
         int start = intervals[0][0];
         int end = intervals[0][1];
-        for (int[] interval : intervals) {
-            if (interval[0] <= end) {
-                end = Math.max(end, interval[1]);
+        int len = intervals.length;
+        for (int i = 1; i < len; i++) {
+            if (end >= intervals[i][0]) {
+                end = Math.max(end, intervals[i][1]);
+
             } else {
-                /*int[] temp = new int[2];
-                temp[0] = start;
-                temp[1] = end;
-                result.add(temp);*/
-                //Remove boiler plat code
-                result.add(new int[]{start, end});
-                start = interval[0];
-                end = interval[1];
+                result.add(new Interval(start, end));
+                start = intervals[i][0];
+                end = intervals[i][1];
             }
-            
+
         }
-        /*int[] temp = new int[2];
-        temp[0] = start;
-        temp[1] = end;
-        result.add(temp);*/
-        result.add(new int[]{start, end});
-        return result.toArray(new int[result.size()][]);
-        
+        result.add(new Interval(start, end));
+        int size = result.size();
+        int[][] finalResult = new int[size][2];
+        for (int i = 0; i < size; i++) {
+            finalResult[i][0] = result.get(i).start;
+            finalResult[i][1] = result.get(i).end;
+        }
+        return finalResult;
+
+
+
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
