@@ -10,6 +10,7 @@ public class PathSumIII {
     /*
      * Problem: Path Sum III
      * URL: https://leetcode.com/problems/path-sum-iii/
+     * Same pattern question: https://leetcode.com/problems/subarray-sum-equals-k/
      * Video Explanation: https://www.youtube.com/watch?v=yyZA4v0x16w
      * Category: Medium, Must Do, Tricky, Prefixsum
      * Related Problems:

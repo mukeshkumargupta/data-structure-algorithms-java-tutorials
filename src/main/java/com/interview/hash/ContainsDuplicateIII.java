@@ -5,7 +5,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/contains-duplicate-iii/
  * https://www.youtube.com/watch?v=Cu7g9ovYHNI
- * Category: Medium, Google, Tricky, Sliding window
+ * Category: Hard, Google, Tricky, Sliding window
  * Related:
  * https://leetcode.com/problems/sliding-puzzle/ Hard
  * https://leetcode.com/problems/maximize-distance-to-closest-person/ Medium

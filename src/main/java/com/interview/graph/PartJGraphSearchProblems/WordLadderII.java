@@ -42,166 +42,161 @@ beginWord != endWord
 All the words in wordList are unique.
  */
 public class WordLadderII {
-    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        List<List<String>> res = new ArrayList<>(); // to store result
-        Map<String, List<String>> graph = new HashMap<>(); // key -> word, value -> List of neighbors of 'word'
-        Set<String> dict = new HashSet<>(wordList);
-        buildGraph(beginWord, endWord, dict, graph); // BFS step tp form the graph
-        shortestPath(beginWord, endWord, graph, res, new ArrayList<>()); // DFS step to find res
-        return res;
-    }
-    
-    // build graph - BFS
-    // TC : O(N * W*26 + N * (N-1))
-    private void buildGraph(String begin, String end, Set<String> dict, Map<String, List<String>> graph) {
-        Queue<String> q = new LinkedList<>();
-        Set<String> visited = new HashSet<>();
-        Set<String> toBeVisited = new HashSet<>(); // contains word at a level which needs to be executed at next level
-        
-        boolean foundEnd = false;
-        
-        q.add(begin);
-        toBeVisited.add(begin);
-        
-        while(!q.isEmpty()) {
-            visited.addAll(toBeVisited);
-            toBeVisited.clear();
-            
-            int size = q.size();
-            
-            // TC : O(N)
-            for(int i = 0; i < size; i++) {
-                String currWord = q.poll();
-                
-                // TC : O(W * 26)
-                List<String> currWordNeighbors = getNeighbor(currWord, dict); // find all the neighboring words (with exactly 1 char different than the currWord)
-                
-                // TC : O(N - 1)
-                for(String neighbor : currWordNeighbors) { // we need to do BFS for all the neighboring words
-                    if(end.equals(neighbor)) foundEnd = true;
-                    if(!visited.contains(neighbor)) { // if neighbor has not been visited yet
-                        graph.putIfAbsent(currWord, new ArrayList<>());
-                        graph.get(currWord).add(neighbor);
-                    }
-                    if(!visited.contains(neighbor) && !toBeVisited.contains(neighbor)) {
-                        q.add(neighbor);
-                        toBeVisited.add(neighbor);
-                    }
-                }
-            }
-            
-            if(foundEnd) break; // we do not need to find any more neighbors of other words since we know we can find the path from existing words in graph so break out of while loop
-        }
-    }
-    
-    // find the shortest path to endWord - DFS
-    // TC : O(N) -> N = wordList.length
-    // SC : O(N) -> recursion stack
-    private void shortestPath(String currWord, String endWord, Map<String, List<String>> graph, List<List<String>> res, ArrayList<String> temp) {
-        temp.add(currWord);
-        
-        if(currWord.equals(endWord)) {
-            res.add(new ArrayList<>(temp));
-        } else if(graph.containsKey(currWord)) { // only if currWord exists in the map other wise it will be removed from temp
-            for(String neighbor : graph.get(currWord)) {
-                shortestPath(neighbor, endWord, graph, res, temp);
-            }
-        }
-        
-        temp.remove(temp.size() - 1);
-    }
-    
-    // TC : O(W * 26)
-    // SC : O(W) -> W = word.length
-    private List<String> getNeighbor(String word, Set<String> dict) {
-        List<String> res = new ArrayList<>();
-        char[] charWord = word.toCharArray();
-        
-        int size = charWord.length;
-        
-        for(int i = 0; i < size; i++) {
-            for(char k = 'a'; k <= 'z'; k++) {
-                if(charWord[i] == k) continue;
-                char ch = charWord[i];
-                charWord[i] = k;
-                String newWord = String.valueOf(charWord);
-                if(dict.contains(newWord)) {
-                    res.add(newWord);
-                }
-                charWord[i] = ch;
-            }
-        }
-        return res;
-    }
-    
-    List<List<String>>  ans = new ArrayList<>();    //Stores all possible paths
-    void DFS(String beginWord, String endWord, Map<String, Set<String>> adj, List<String> path) {
-        path.add(beginWord);  //Push current word
-        if(beginWord.equals(endWord))
-        {
-            ans.add(new ArrayList<>(path));
-            path.remove(path.size()-1);
-            return;
-        }
-        if (adj.containsKey(beginWord)) {
-           for(String x : adj.get(beginWord)) {
-               DFS(x, endWord, adj, path); 
-           }
-                
-        }
-        
-        
-        path.remove(path.size()-1);    //Pop current word to Backtrack
-    }
-    //TODO: to see what went wrong
-    public List<List<String>> findLaddersGettingTLE(String beginWord, String endWord, List<String> wordList) {
-        Map<String, Set<String>> adj = new HashMap<>();   //Adjacency List
-        //unordered_set<string> dict(wordList.begin(),wordList.end()); 
-        Set<String> dict = new HashSet(wordList);//Insert WordList in SET
-        
-        //STEP-1: Find min-depth using BFS
-        Queue<String> Q = new LinkedList<>();    //For BFS traversal
-        Q.add(beginWord);  //Push start node (beginWord)
-        Map<String, Integer> visited = new HashMap<>(); //Key->String (Node)...Value->Level (Depth of traversal)
-        visited.put(beginWord, 0); //Start node will always be at level 0
-        while(!Q.isEmpty())
-        {
-            String curr = Q.remove();
-            char[] temp = curr.toCharArray();
-            for(int i = 0; i < curr.length(); ++i)    //For all characters
-            {
-                for(char x = 'a'; x <= 'z'; ++x)    //Try all possible 26 letters
-                {
-                    if(temp[i] == x)    //Skip if letter is same as in original word
-                        continue;
+    /*
+     * 1. Brute Force Approach - DFS (Exponential)
+     *
+     * Approach:
+     * - Explore all possible sequences using Depth First Search (DFS).
+     * - Each transformation step checks all words in `wordList`.
+     * - If a transformation is valid (one-letter change), we continue recursively.
+     * - Once `endWord` is reached, we compare its length with the shortest found so far.
+     *
+     * Complexity Analysis:
+     * - Time Complexity: O(N!)
+     *   - In the worst case, all permutations of words are explored.
+     */
+    private static class BruitForce {
+        private List<List<String>> result = new ArrayList<>();
+        private int minLength = Integer.MAX_VALUE;
 
-                    temp[i] = x; 
-                    String newWord = new String(temp);
-                    if(dict.contains(newWord))    //Check if new word is present in wordList
-                    {
-                        if(visited.getOrDefault(newWord, 0) == 0)    //check if the new word was already visited
-                        {
-                            visited.put(newWord, visited.get(curr)  + 1);
-                            Q.add(newWord);
-                            adj.computeIfAbsent(curr, (key) -> new HashSet<String>() ).add(newWord);
-                            //adj[curr].insert(temp);
-                        } 
-                        else if(visited.get(newWord) == visited.get(curr) + 1) //If already visited and new word is the child (We should always move down)
-                            adj.computeIfAbsent(curr, (key) -> new HashSet<String>() ).add(newWord);
-                    }
+        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+            Set<String> wordSet = new HashSet<>(wordList);
+            if (!wordSet.contains(endWord)) return result; // Early exit if endWord is not in dictionary
+
+            List<String> path = new ArrayList<>();
+            path.add(beginWord);
+            dfs(beginWord, endWord, wordSet, path);
+            return result;
+        }
+
+        private void dfs(String current, String endWord, Set<String> wordSet, List<String> path) {
+            // If the path length exceeds minLength, stop further recursion
+            if (path.size() > minLength) return;
+
+            if (current.equals(endWord)) {
+                if (path.size() < minLength) {
+                    result.clear();
+                    minLength = path.size();
                 }
-                temp[i] = curr.charAt(i);  //Revert back temp to curr
+                result.add(new ArrayList<>(path));
+                return;
+            }
+
+            for (String neighbor : getNeighbors(current, wordSet)) {
+                if (!path.contains(neighbor)) {
+                    path.add(neighbor);
+                    dfs(neighbor, endWord, wordSet, path);
+                    path.remove(path.size() - 1);
+                }
             }
         }
-        //STEP-2: Find all possible paths at min-depth using DFS
-        List<String> path = new ArrayList<>();
-        DFS(beginWord, endWord, adj, path); //Find all possible paths with min-depth
-        return ans; 
-        
+
+        private List<String> getNeighbors(String word, Set<String> wordSet) {
+            List<String> neighbors = new ArrayList<>();
+            char[] chars = word.toCharArray();
+
+            for (int i = 0; i < chars.length; i++) {
+                char originalChar = chars[i];
+                for (char c = 'a'; c <= 'z'; c++) {
+                    if (c == originalChar) continue;
+                    chars[i] = c;
+                    String newWord = new String(chars);
+                    if (wordSet.contains(newWord)) {
+                        neighbors.add(newWord);
+                    }
+                }
+                chars[i] = originalChar;
+            }
+            return neighbors;
+        }
     }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
+
+    /*
+     * 2. Better Approach - BFS + Backtracking
+     *
+     * Optimized Idea:
+     * - Instead of exploring all paths, BFS finds the shortest path.
+     * - Graph Construction: We build a map `adjList` where each word is linked to its neighbors.
+     * - Backtracking: After BFS, we reconstruct paths using DFS.
+     *
+     * Time Complexity:
+     * - O(N × M²)
+     *   - N: Number of words in the dictionary.
+     *   - M: Length of each word.
+     * - BFS runs in O(NM), and backtracking takes O(NM²).
+     */
+
+    private static class Better {
+        private Map<String, List<String>> adjList = new HashMap<>();
+        private List<List<String>> result = new ArrayList<>();
+        private int minLength = Integer.MAX_VALUE;
+
+        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+            Set<String> wordSet = new HashSet<>(wordList);
+            if (!wordSet.contains(endWord)) return result;
+
+            // BFS to build adjacency list
+            Map<String, Integer> distance = new HashMap<>();
+            bfs(beginWord, endWord, wordSet, distance);
+
+            List<String> path = new ArrayList<>();
+            path.add(beginWord);
+            backtrack(beginWord, endWord, distance, path);
+            return result;
+        }
+
+        private void bfs(String beginWord, String endWord, Set<String> wordSet, Map<String, Integer> distance) {
+            Queue<String> queue = new LinkedList<>();
+            queue.add(beginWord);
+            distance.put(beginWord, 0);
+
+            while (!queue.isEmpty()) {
+                String word = queue.poll();
+                int currentDistance = distance.get(word);
+
+                for (String neighbor : getNeighbors(word, wordSet)) {
+                    adjList.computeIfAbsent(neighbor, k -> new ArrayList<>()).add(word);
+
+                    if (!distance.containsKey(neighbor)) {
+                        distance.put(neighbor, currentDistance + 1);
+                        queue.add(neighbor);
+                    }
+                }
+            }
+        }
+
+        private void backtrack(String current, String endWord, Map<String, Integer> distance, List<String> path) {
+            if (current.equals(endWord)) {
+                result.add(new ArrayList<>(path));
+                return;
+            }
+
+            for (String neighbor : adjList.getOrDefault(current, new ArrayList<>())) {
+                if (distance.get(neighbor) == distance.get(current) + 1) {
+                    path.add(neighbor);
+                    backtrack(neighbor, endWord, distance, path);
+                    path.remove(path.size() - 1);
+                }
+            }
+        }
+
+        private List<String> getNeighbors(String word, Set<String> wordSet) {
+            List<String> neighbors = new ArrayList<>();
+            char[] chars = word.toCharArray();
+
+            for (int i = 0; i < chars.length; i++) {
+                char originalChar = chars[i];
+                for (char c = 'a'; c <= 'z'; c++) {
+                    if (c == originalChar) continue;
+                    chars[i] = c;
+                    String newWord = new String(chars);
+                    if (wordSet.contains(newWord)) {
+                        neighbors.add(newWord);
+                    }
+                }
+                chars[i] = originalChar;
+            }
+            return neighbors;
+        }
     }
-    
 }

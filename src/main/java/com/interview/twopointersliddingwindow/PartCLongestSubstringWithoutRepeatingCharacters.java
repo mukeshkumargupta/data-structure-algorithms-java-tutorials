@@ -89,7 +89,7 @@ Time Complexity: O( 2*N ) (sometimes left and right both have to travel complete
 Space Complexity: O(N) where N is the size of HashSet taken for storing the elements
      */
 
-    static int solveOptimize1(String str) {
+    static int solveBetter(String str) {
 
         if(str.length()==0)
             return 0;
@@ -111,7 +111,7 @@ Space Complexity: O(N) where N is the size of HashSet taken for storing the elem
         return maxans;
     }
 
-    static int solveOptimize2(String s) {
+    static int solveOptimize(String s) {
         HashMap < Character, Integer > mpp = new HashMap< Character, Integer >();
 
         int left = 0, right = 0;

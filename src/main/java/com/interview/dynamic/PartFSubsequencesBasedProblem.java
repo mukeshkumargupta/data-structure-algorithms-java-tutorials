@@ -1884,6 +1884,32 @@ public class PartFSubsequencesBasedProblem {
             return dp[n - 1][n]; // Return the maximum value that can be obtained
         }
 
+        //Both are same i means same as above
+        //https://www.youtube.com/watch?v=IRwVmTmN6go, but practive takeyouforward solution , optimization2DP to 1 DP
+        public static int cutRodRedableCode(int price[], int n) {
+            int R = n;  // Number of different rod lengths (0-based index)
+            int C = n + 1;  // Rod length from 0 to n
+            int[][] dp = new int[R][C];
+
+            // Initialize base case: Only using length 1 rods (first row)
+            for (int j = 0; j < C; j++) {
+                dp[0][j] = price[0] * j;  // Fill first row
+            }
+
+            // Fill DP table
+            for (int i = 1; i < R; i++) {
+                for (int j = 0; j < C; j++) { // j is the rod length
+                    int notTake = dp[i - 1][j]; // Exclude current length
+                    int take = 0;
+                    if (j >= (i + 1)) { // If we can include length i+1
+                        take = price[i] + dp[i][j - (i + 1)];
+                    }
+                    dp[i][j] = Math.max(notTake, take);
+                }
+            }
+            return dp[R - 1][C - 1]; // Maximum profit
+        }
+
         /*
             Complexity Analysis
             Time Complexity: O(N*N+1)

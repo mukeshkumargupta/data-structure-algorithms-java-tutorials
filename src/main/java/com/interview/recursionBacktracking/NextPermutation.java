@@ -95,5 +95,3 @@ public class NextPermutation {
         nextGreaterElement(nums);
     }
 }
-    
-}

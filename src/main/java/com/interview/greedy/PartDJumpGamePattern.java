@@ -92,8 +92,10 @@ public class PartDJumpGamePattern {
 
 
     /*
-    Time Complexity: O(2^n) (exponential), as we explore all paths.
-Space Complexity: O(n) (stack space for recursion).
+         Time Complexity: O(2^n) (exponential), as we explore all paths.
+        Space Complexity: O(n) (stack space for recursion).
+        Tricky
+        Medium, VVImp
      */
     public static class JumpGameII {
         public int jumpRecursion(int[] nums) {
@@ -183,6 +185,7 @@ Space Complexity: O(n) (stack space for recursion).
     }
 
     /*
+    https://www.youtube.com/watch?v=7SBVnw7GSTk
     min jump to reach end
     Time Complexity: O(n), as we traverse the array once.
     Space Complexity: O(1), as we only use a few variables for tracking.

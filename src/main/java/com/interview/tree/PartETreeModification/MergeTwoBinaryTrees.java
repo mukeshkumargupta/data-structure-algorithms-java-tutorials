@@ -12,6 +12,15 @@ import com.interview.tree.TreeNode;
  * https://leetcode.com/problems/binary-search-tree-iterator-ii/ Medium
  */
 public class MergeTwoBinaryTrees {
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) { //65% runtime
         if (root1 == null && root2 == null) { //if both are null
             return null;

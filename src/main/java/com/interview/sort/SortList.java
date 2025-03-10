@@ -15,61 +15,71 @@ Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. 
 Related: https://leetcode.com/problems/insertion-sort-list/
  */
 public class SortList {
-    private ListNode middle(ListNode head) {
-        
-        ListNode slow = head;
-        ListNode fast = head.next;
-        
+    private static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        // Step 1: Split the list into two halves
+        ListNode mid = getMiddle(head);
+        ListNode rightHalf = mid.next;
+        mid.next = null; // Break the list
+
+        // Step 2: Recursively sort both halves
+        ListNode left = sortList(head);
+        ListNode right = sortList(rightHalf);
+
+        // Step 3: Merge the sorted halves
+        return mergeTwoLists(left, right);
+    }
+
+    private ListNode getMiddle(ListNode head) {
+        ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        
-        ListNode temp = slow.next;
-        //break link
-        slow.next = null;
-        return temp;//for next list to merge
-        
+        return slow;
     }
-    
-    public ListNode mergeTwoLists(ListNode p1, ListNode p2) {
-        if(p1 == null) return p2;
-        if(p2 == null) return p1;
-        
-        ListNode head = p1;
-        if(p1.val > p2.val){//First decide which one is head
-            head = p2;
-            p2 = p2.next;
-        } else
-            p1 = p1.next;
-        
-        ListNode curr = head;
-        while(p1 != null && p2 != null){
-            if(p1.val <= p2.val){
-                curr.next = p1;
-                p1 = p1.next;
+
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(-1), curr = dummy;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                curr.next = l1;
+                l1 = l1.next;
             } else {
-                curr.next = p2;
-                p2 = p2.next;
+                curr.next = l2;
+                l2 = l2.next;
             }
             curr = curr.next;
         }
-        if(p1 != null) curr.next = p1;
-        else curr.next = p2;
-        
-        return head;
+
+        curr.next = (l1 != null) ? l1 : l2;
+        return dummy.next;
     }
-    
-    public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) {//If signel node or node null then return
-            return head;
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(4);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(1);
+        head.next.next.next = new ListNode(3);
+
+        SortList sorter = new SortList();
+        ListNode sortedHead = sorter.sortList(head);
+
+        while (sortedHead != null) {
+            System.out.print(sortedHead.val + " ");
+            sortedHead = sortedHead.next;
         }
-        
-        //find mid
-        ListNode mid = middle(head);
-        ListNode left = sortList(head);
-        ListNode right = sortList(mid);
-        return mergeTwoLists(left, right);
     }
     
 }

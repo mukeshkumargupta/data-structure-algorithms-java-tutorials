@@ -2,11 +2,17 @@ package com.interview.array;
 
 import java.util.Arrays;
 
-/**
+/*
  * Date 03/06/2017
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/increasing-triplet-subsequence/
  * Category: Medium, Tricky, Top150, triplet, lis
+ * Related Problems
+ * Longest Increasing Subsequence (LeetCode 300) - Extends to finding a longer increasing subsequence.
+ * Find and Replace Pattern (LeetCode 890) - Uses pattern matching ideas.
+ * Next Greater Element (LeetCode 496) - Uses a monotonic stack.
+ * Partition Array for Maximum Sum (LeetCode 1043) - Uses dynamic programming.
+ * Number of Longest Increasing Subsequences (LeetCode 673) - Similar concept.
  * Bruitforce soln is n3 must tell then proceed optimization
  * Derived question make four or five increasing sequence make three, four variable and do, lis logic can be also applied but not optimized
  * Related: https://leetcode.com/problems/count-special-quadruplets/ Easy
@@ -114,43 +120,88 @@ U can use this approach not for triplet and more than triplet
         }
         return false;
     }
-    /*
+/*
     Optimized Approach (Using Two Variables)
-Approach:
-Maintain two variables, first and second, to track the smallest and second smallest elements in the increasing triplet.
-Traverse the array:
-If the current element is smaller than or equal to first, update first.
-Else if the current element is smaller than or equal to second, update second.
-Else, if the current element is greater than second, we have found an increasing triplet. Return true.
-If the loop completes without finding a triplet, return false.
-Time Complexity:
-O(n): Single traversal of the array.
-Space Complexity:
-O(1): Only two variables used.
 
-Explanation of Optimized Approach:
-The key observation is that we don’t need the exact subsequence, just a way to track its existence.
-By keeping track of the smallest (first) and second smallest (second) values seen so far, we can efficiently determine whether a third element exists that forms the triplet.
-Example Walkthrough:
-Input:
-nums = [1, 2, 3, 4, 5]
+    Approach:
+    - Maintain two variables, `first` and `second`, to track the smallest and second smallest elements in the increasing triplet.
+    - Traverse the array:
+        1. If the current element is smaller than or equal to `first`, update `first`.
+        2. Else if the current element is smaller than or equal to `second`, update `second`.
+        3. Else, if the current element is greater than `second`, we have found an increasing triplet. Return `true`.
+    - If the loop completes without finding a triplet, return `false`.
 
-Optimized Approach Execution:
-first = Integer.MAX_VALUE, second = Integer.MAX_VALUE.
-Iterate through the array:
-num = 1: Update first = 1.
-num = 2: Update second = 2.
-num = 3: Since 3 > second, return true.
-Output:
-true
+    Time Complexity:
+    - O(n): Single traversal of the array.
 
-Comparison of Approaches:
-Approach	Time Complexity	Space Complexity	Notes
-Brute Force	O(n³)	O(1)	Extremely slow for large inputs.
-Better (DP)	O(n²)	O(n)	Improvement, but still not scalable.
-Optimized	O(n)	O(1)	Best solution, handles large inputs well.
-If you'd like, I can help further by explaining edge cases or testing specific inputs!
-     */
+    Space Complexity:
+    - O(1): Only two variables used.
+
+    Explanation of Optimized Approach:
+    - The key observation is that we don’t need the exact subsequence, just a way to track its existence.
+    - By keeping track of the smallest (`first`) and second smallest (`second`) values seen so far, we can efficiently
+      determine whether a third element exists that forms the triplet.
+
+    Example Walkthrough:
+
+    Input:
+    nums = [1, 2, 3, 4, 5]
+
+    Optimized Approach Execution:
+    first = Integer.MAX_VALUE, second = Integer.MAX_VALUE.
+
+    Iterate through the array:
+    - num = 1: Update first = 1.
+    - num = 2: Update second = 2.
+    - num = 3: Since 3 > second, return true.
+
+    Output:
+    true
+
+    Comparison of Approaches:
+    --------------------------------------------------------
+    | Approach      | Time Complexity | Space Complexity | Notes                    |
+    --------------------------------------------------------
+    | Brute Force   | O(n³)           | O(1)             | Extremely slow for large inputs. |
+    | Better (DP)   | O(n²)           | O(n)             | Improvement, but still not scalable. |
+    | Optimized     | O(n)            | O(1)             | Best solution, handles large inputs well. |
+    --------------------------------------------------------
+
+    Dry Run:
+
+    Example 1: nums = [2, 1, 5, 0, 4, 6]
+
+    --------------------------------------------------------
+    | Step | num | first | second | Condition Met?       |
+    --------------------------------------------------------
+    | 1    | 2   | 2     | ∞      | No                   |
+    | 2    | 1   | 1     | ∞      | No                   |
+    | 3    | 5   | 1     | 5      | No                   |
+    | 4    | 0   | 0     | 5      | No                   |
+    | 5    | 4   | 0     | 4      | No                   |
+    | 6    | 6   | 0     | 4      | ✅ Yes (triplet found) |
+    --------------------------------------------------------
+
+    Why `first` and `second`?
+    - `first` tracks the smallest number seen so far.
+    - `second` tracks the second smallest number seen so far.
+    - If a number greater than `second` appears, we have found our triplet.
+
+    Time Complexity:
+    - O(n): We iterate through `nums` once.
+
+    Space Complexity:
+    - O(1): Only two extra variables `first` and `second` are used.
+
+    Final Comparison:
+    --------------------------------------------------------
+    | Approach    | Time Complexity | Space Complexity | Notes |
+    --------------------------------------------------------
+    | Brute Force | O(n³)           | O(1)             | Very slow |
+    | Better      | O(n²)           | O(1)             | Still inefficient |
+    | Optimal     | O(n)            | O(1)             | 🚀 Best approach |
+    --------------------------------------------------------
+*/
 
     public boolean increasingTriplet(int[] nums) {
         /*
