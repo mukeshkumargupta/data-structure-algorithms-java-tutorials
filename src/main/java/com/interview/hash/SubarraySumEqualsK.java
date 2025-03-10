@@ -3,6 +3,8 @@ import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/subarray-sum-equals-k/
  * Category: Medium, Tricky, VVImp, SubarraySumEqualsK, Must Do
+ * Related:
+ * https://leetcode.com/problems/path-sum-iii/
  * Video: https://www.youtube.com/watch?v=HbbYPQc-Oo4
  */
 public class SubarraySumEqualsK {

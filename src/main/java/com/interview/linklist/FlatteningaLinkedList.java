@@ -1,224 +1,237 @@
 package com.interview.linklist;
 
-import java.util.List;
-
-import javax.xml.soap.Node;
-
-import com.interview.sort.ListNode;
-import com.interview.sort.PriorityQueue;
-import com.interview.sort.Queue;
+import java.util.*;
 
 /*
+ * Problem Link:
  * https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
+ * Video Explanation:
  * https://www.youtube.com/watch?v=ysytSSXpAI0&t=1088s
+ *
  * Category: Medium, Must Do, Fundamental
- * Related:
+ * Related Problem:
  * https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
- * iven a Linked List of size N, where every node represents a sub-linked-list and contains two pointers:
-(i) a next pointer to the next node,
-(ii) a bottom pointer to a linked list where this node is head.
-Each of the sub-linked-list is in sorted order.
-Flatten the Link List such that all the nodes appear in a single level while maintaining the sorted order. 
-Note: The flattened list will be printed using the bottom pointer instead of next pointer.
-
-Note: There are many solution: Iterative and recursive, merge two sorted list or merge k sorted list is the problem, (Priority Queue is more optimized solution)
-1. Take two list vertically and merge it, that is bruitforce solution, I think we can do same as K srted merge list
-and try to solve using priority queue where number of point is no of vertical list, so first convert to k sorted merge list problem
-and then do merging. this is iterative solution.
-2. Recursive solution:
- 
-
-Example 1:
-
-Input:
-5 -> 10 -> 19 -> 28
-|     |     |     | 
-7     20    22   35
-|           |     | 
-8          50    40
-|                 | 
-30               45
-Output:  5-> 7-> 8- > 10 -> 19-> 20->
-22-> 28-> 30-> 35-> 40-> 45-> 50.
-Explanation:
-The resultant linked lists has every 
-node in a single level.
-(Note: | represents the bottom pointer.)
- 
-
-Example 2:
-
-Input:
-5 -> 10 -> 19 -> 28
-|          |                
-7          22   
-|          |                 
-8          50 
-|                           
-30              
-Output: 5->7->8->10->19->20->22->30->50
-Explanation:
-The resultant linked lists has every
-node in a single level.
-
-(Note: | represents the bottom pointer.)
- 
-
-Your Task:
-You do not need to read input or print anything. Complete the function flatten() that takes the head of the linked list as input parameter and returns the head of flattened link list.
-
- 
-
-Expected Time Complexity: O(N*M)
-Expected Auxiliary Space: O(1)
-
- 
-
-Constraints:
-0 <= N <= 50
-1 <= Mi <= 20
-1 <= Element of linked list <= 103
-
-View Bookmarked Problems
-Company Tags
-Topic Tags
-Related Courses
+ *
+ * Problem Statement:
+ * Given a linked list of size N, where each node contains:
+ * (i) A `next` pointer to the next node in the main list.
+ * (ii) A `bottom` pointer to a sorted sub-linked-list where this node is the head.
+ *
+ * The objective is to flatten the linked list into a single sorted list while preserving the order.
+ * The flattened list should use the `bottom` pointer instead of `next`.
+ *
+ * Approaches:
+ * 1. **Brute Force (Iterative Merge)**:
+ *    - Merge two vertical lists iteratively.
+ *    - This can be extended to a K-sorted merge list problem.
+ *    - Using a **priority queue (min-heap)** optimizes merging multiple sorted lists efficiently.
+ *
+ * 2. **Recursive Solution**:
+ *    - Flatten the right sublist first.
+ *    - Merge the flattened right list with the current node.
+ *    - Uses divide-and-conquer approach.
+ *
+ * Example 1:
+ * Input:
+ *   5 -> 10 -> 19 -> 28
+ *   |     |     |     |
+ *   7     20    22    35
+ *   |           |      |
+ *   8          50     40
+ *   |                 |
+ *   30               45
+ *
+ * Output:
+ *   5 -> 7 -> 8 -> 10 -> 19 -> 20 -> 22 -> 28 -> 30 -> 35 -> 40 -> 45 -> 50
+ *
+ * Explanation:
+ *   The entire linked list is flattened into a single sorted list.
+ *   (Here, `|` represents the `bottom` pointer).
+ *
+ * Constraints:
+ * - `0 <= N <= 50`
+ * - `1 <= Mi <= 20`
+ * - `1 <= Node Value <= 1000`
+ *
+ * Expected Complexity:
+ * - **Time Complexity**: `O(N * M)`
+ * - **Auxiliary Space**: `O(1)`
  */
 public class FlatteningaLinkedList {
-    public Node mergeTwoLists(Node l1, Node l2) {
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        
-        Node head = l1;
-        if(l1.val > l2.val){//First decide which one is head
-            head = l2;
-            l2 = l2.bottom;
-        } else
-            l1 = l1.bottom;
-        
-        Node curr = head;
-        while(l1 != null && l2 != null){
-            if(l1.val <= l2.val){
-                curr.bottom = l1;
-                l1 = l1.bottom;
-            } else {
-                curr.bottom = l2;
-                l2 = l2.bottom;
-            }
-            curr = curr.bottom;
+
+    private static class Node {
+        int data;
+        Node next, bottom;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+            this.bottom = null;
         }
-        if(l1 != null) curr.bottom = l1;
-        else curr.bottom = l2;
-        
-        return head;
     }
-    
-    Node flattenRecursive(Node root)
-    {
-    // Your code here
-        if (root == null || root.next == null) {//if null or first node
-            return root;
-        }
-        root.next = flatten(root.next);
-        root = mergeTwoLists(root, root.next);
-        return root;
-    }
-    Node flattenRecursiveMineVersion(Node root)
-    {
-    // Your code here
-        if (root == null || root.next == null) {//if null or first node
-            return root;
-        }
-        Node next = flatten(root.next);
-        root = mergeTwoLists(root, next);
-        return root;
-    }
-    
-    Node flattenIterativeMineVersion(Node root)
-    {
-        // Your code here
-        if (root == null || root.next == null) {//if null or first node
-            return root;
-        }
-        //Process first two and 
-        Node head = root;
-        Node current = root.next;
-        while (current != null) {
-            head = mergeTwoLists(head, current);
-            current = current.next;
-        }
-        return head;
-    }
-    
-    //This is iterative solution, two list is merge at a time that is not optimized, use priority queue to solve it
-    Node flatten(Node root)
-    {
-    // Your code here
-        if (root == null || root.next == null) {//if null or first node
-            return root;
-        }
-        Node next = root.next;
-        while (next != null) {
-            root = mergeTwoLists(root, next);
-            next = next.next;
-        }
-        
-        return root;
-    }
-    
-    /*Using ksorted list
-     * Working code now
-     * https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
+    /*
+     * Flattening a Linked List
+     *
+     * Given a linked list where each node has two pointers:
+     * - next (points to the next node in the main list).
+     * - bottom (points to the head of a sorted sub-linked-list).
+     *
+     * Goal:
+     * Flatten this linked list into a single-level sorted linked list.
+     *
+     * Approaches to Solve the Problem:
+     *
+     * 1. Brute Force (Collect and Sort) - O(N*M log(N*M))
+     *
+     * Approach:
+     * - Traverse the linked list and store all nodes in an array.
+     * - Sort the array.
+     * - Reconstruct a single-level linked list from the sorted array.
+     *
+     * Time Complexity:
+     * - Collecting nodes: O(N * M)
+     * - Sorting: O(N * M log(N * M))
+     * - Reconstructing: O(N * M)
+     * - Overall Complexity: O(N*M log(N*M))
      */
-    public Node mergeKLists(List<Node> lists) {
-        Queue<Node> pq = new PriorityQueue<>((Node a, Node b) -> {
-            return a.data - b.data;
-        });
-        for (Node listNode : lists) {
-            if (listNode != null) {
-              pq.add(listNode);  
-            } 
+    private static class Bruitforce {
+        public Node flatten(Node head) {
+            if (head == null) return null;
+
+            List<Node> nodeList = new ArrayList<>();
+
+            // Collect all nodes
+            Node temp = head;
+            while (temp != null) {
+                Node bottomNode = temp;
+                while (bottomNode != null) {
+                    nodeList.add(bottomNode);
+                    bottomNode = bottomNode.bottom;
+                }
+                temp = temp.next;
+            }
+
+            // Sort nodes by data
+            Collections.sort(nodeList, (a, b) -> a.data - b.data);
+
+            // Reconstruct flattened list
+            for (int i = 0; i < nodeList.size() - 1; i++) {
+                nodeList.get(i).bottom = nodeList.get(i + 1);
+                nodeList.get(i).next = null;
+            }
+            nodeList.get(nodeList.size() - 1).bottom = null;
+            nodeList.get(nodeList.size() - 1).next = null;
+
+            return nodeList.get(0);
         }
-        Node head = null;
-        Node currentNode = null;
-        while (!pq.isEmpty()) {
-            Node tempNode = pq.remove();
-            
-            if (head == null) {
-                head = tempNode;
-                currentNode = tempNode;
-                //System.out.println(currentNode.data);
-                
+    }
+
+    /*
+     * 2. Better Approach (Merge Two Lists at a Time) - O(N*M)
+     *
+     * Approach:
+     * - Use the "merge two sorted lists" approach.
+     * - Recursively flatten the next lists.
+     * - Merge the current bottom list with the recursively flattened list.
+     *
+     * Time Complexity:
+     * - Merging takes O(M) per call.
+     * - We merge for each of N nodes.
+     * - Total Complexity: O(N * M).
+     */
+
+    private static class Better {
+
+        public Node flatten(Node head) {
+            if (head == null || head.next == null) return head;
+
+            // Recursively flatten the next sublist
+            head.next = flatten(head.next);
+
+            // Merge current list with next flattened list
+            head = merge(head, head.next);
+
+            return head;
+        }
+
+        private Node merge(Node a, Node b) {
+            if (a == null) return b;
+            if (b == null) return a;
+
+            Node result;
+
+            if (a.data < b.data) {
+                result = a;
+                result.bottom = merge(a.bottom, b);
             } else {
-                currentNode.bottom = tempNode;
-                //System.out.println(currentNode.data);
-                currentNode = currentNode.bottom;
-                
+                result = b;
+                result.bottom = merge(a, b.bottom);
             }
-            if (tempNode.bottom != null) {
-                pq.add(tempNode.bottom);
+
+            result.next = null;
+            return result;
+        }
+
+    }
+
+    /*
+     * 3. Optimal Approach (Using Min-Heap / Priority Queue) - O(N*M log N)
+     *
+     * Approach:
+     * - Use a Min Heap (PriorityQueue) to always fetch the smallest element.
+     * - Insert the head nodes of each vertical list into the heap.
+     * - Extract the minimum node, add its bottom node to the heap, and maintain a sorted order.
+     *
+     * Time Complexity:
+     * - Insertion into Min-Heap: O(log N) per insertion.
+     * - Each node (N*M) is inserted once: O(N*M log N).
+     * - Overall Complexity: O(N*M log N).
+     *
+     * Comparison of Approaches:
+     * --------------------------------------------------------------
+     * | Approach                   | Time Complexity | Space Complexity | Method                     |
+     * --------------------------------------------------------------
+     * | Brute Force                | O(N*M log(N*M)) | O(N*M)           | Store and sort nodes       |
+     * | Merge Two Lists Recursively | O(N*M)         | O(1)             | Recursively flatten        |
+     * | Priority Queue (Min Heap)   | O(N*M log N)   | O(N)             | Use Min Heap for merging   |
+     * --------------------------------------------------------------
+     *
+     * Conclusion:
+     * - If N and M are small, the brute force method works fine.
+     * - The recursive merge approach is better with O(N*M).
+     * - The optimal approach using a priority queue is ideal when N is large.
+     *
+     * 🚀 Best Choice: Priority Queue (Min Heap) O(N*M log N)
+     */
+
+    public static class Optimal {
+        public Node flatten(Node head) {
+            if (head == null) return null;
+
+            PriorityQueue<Node> minHeap = new PriorityQueue<>((a, b) -> a.data - b.data);
+
+            // Insert all head nodes of vertical lists into heap
+            while (head != null) {
+                minHeap.offer(head);
+                head = head.next;
             }
+
+            Node dummy = new Node(0);
+            Node current = dummy;
+
+            // Extract the minimum node and push its bottom nodes into the heap
+            while (!minHeap.isEmpty()) {
+                Node minNode = minHeap.poll();
+                current.bottom = minNode;
+                current = current.bottom;
+
+                if (minNode.bottom != null) {
+                    minHeap.offer(minNode.bottom);
+                }
+            }
+
+            return dummy.bottom;
         }
-        return head;
-        
-    }
-    Node flatten(Node root)
-    {
-        List<Node> kSortedListHead = new ArrayList<>();
-    // Your code here
-        if (root == null || root.next == null) {//if null or first node
-            return root;
-        }
-        Node current = root;
-        while (current != null) {
-            kSortedListHead.add(current);
-            current = current.next;
-        }
-        return mergeKLists(kSortedListHead);
-    }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
     }
     
 }

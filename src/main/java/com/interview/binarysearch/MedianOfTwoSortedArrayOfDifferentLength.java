@@ -5,7 +5,9 @@ package com.interview.binarysearch;
  * Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
  *https://www.youtube.com/watch?v=NTop3VTjmxk
  *Category: Must Do, Hard, Top150
- *Related: https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/ Easy
+ *Related:
+ * https://leetcode.com/problems/median-of-a-row-wise-sorted-matrix/description/ Medium
+ * https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/ Easy
  *https://leetcode.com/problems/escape-a-large-maze/ Hard,
  *https://leetcode.com/problems/shift-2d-grid/ Easy
  *https://leetcode.com/problems/word-abbreviation/ Hard
@@ -72,52 +74,124 @@ package com.interview.binarysearch;
  * Calculate cut2 = (2 + 1 + 1) / 2 - 1 = 1.
  */
 public class MedianOfTwoSortedArrayOfDifferentLength {
+    /**
+     * Brute Force Approach (Merge and Sort)
+     *
+     * Idea:
+     * 1. Merge both arrays into a single sorted array.
+     * 2. Find the median directly from the merged array.
+     *
+     * Steps:
+     * - Use a two-pointer merge (like in merge sort) to combine both sorted arrays into a new sorted array.
+     * - Compute the median:
+     *   - If the length is odd → return the middle element.
+     *   - If the length is even → return the average of the two middle elements.
+     *
+     * Time Complexity:
+     * - Merging takes O(m + n).
+     * - Finding the median takes O(1).
+     * - Overall Complexity: O(m + n).
+     *
+     * Code (Brute Force - Merge and Sort)
+     */
+    private static class bruitforce {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int m = nums1.length, n = nums2.length;
+            int[] merged = new int[m + n];
+            int i = 0, j = 0, k = 0;
 
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        /*
-         * Runtime: 2 ms, faster than 99.90% of Java online submissions for Median of Two Sorted Arrays.
-Memory Usage: 40.3 MB, less than 67.80% of Java online submissions for Median of Two Sorted Arrays.
-    TC: log(min(l1, l2)
-         */
-        if(nums2.length < nums1.length) return findMedianSortedArrays(nums2, nums1);
-        int l1 = nums1.length;
-        int l2 = nums2.length; 
-        int start = 0, end = l1;
-        
-        while(start <= end) {
-            //int cut1 = (start+end) >> 1;
-            int cut1 = start + (end - start)/2;
-            int cut2 = (l1 + l2 + 1) / 2 - cut1; //Tricky
-            
-        
-            int left1 = cut1 == 0 ? Integer.MIN_VALUE : nums1[cut1-1];
-            int left2 = cut2 == 0 ? Integer.MIN_VALUE : nums2[cut2-1]; 
-            
-            int right1 = cut1 == l1 ? Integer.MAX_VALUE : nums1[cut1];
-            int right2 = cut2 == l2 ? Integer.MAX_VALUE : nums2[cut2]; 
-            
-            
-            if(left1 <= right2 && left2 <= right1) {
-                if( (l1 + l2) % 2 == 0 ) 
-                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0; //Tricky
-                else 
-                    return Math.max(left1, left2); 
+            // Merge two sorted arrays
+            while (i < m && j < n) {
+                if (nums1[i] < nums2[j]) {
+                    merged[k++] = nums1[i++];
+                } else {
+                    merged[k++] = nums2[j++];
+                }
             }
-            else if(left1 > right2) {
-                end = cut1 - 1; 
-            }
-            else {
-                start = cut1 + 1; 
-            }
+            while (i < m) merged[k++] = nums1[i++];
+            while (j < n) merged[k++] = nums2[j++];
+
+            // Find median
+            int len = merged.length;
+            if (len % 2 == 1) return merged[len / 2];  // Odd case
+            return (merged[len / 2] + merged[len / 2 - 1]) / 2.0;  // Even case
         }
-        return 0.0; 
     }
 
-    public static void main(String[] args) {
-        int[] x = {1, 3, 8, 9, 15};
-        int[] y = {7, 11, 19, 21, 18, 25};
+    /**
+     * Example Input:
+     * -------------------
+     * nums1 = [1, 3, 8]
+     * nums2 = [7, 9, 10, 11]
+     * Total elements: 7 (odd)
+     * Required left partition size: (3 + 4 + 1) / 2 = 4
+     * (We ensure nums1 is smaller for efficiency)
+     *
+     * Binary Search Iterations:
+     * ---------------------------------------------------------------------------------------
+     * | Iteration | cut1 (Partition in nums1) | cut2 (Partition in nums2) | Left Partition (nums1 & nums2) | Right Partition (nums1 & nums2) | Condition Met? | Action Taken               |
+     * |-----------|--------------------------|--------------------------|--------------------------------|--------------------------------|----------------|----------------------------|
+     * | 1         | 1                        | 3                        | [1] (nums1), [7, 9, 10] (nums2) | [3, 8] (nums1), [11] (nums2)  | ❌ (left2 > right1) | Move right (low = cut1 + 1 = 2) |
+     * | 2         | 2                        | 2                        | [1, 3] (nums1), [7, 9] (nums2) | [8] (nums1), [10, 11] (nums2) | ❌ (left2 > right1) | Move right (low = cut1 + 1 = 3) |
+     * | 3         | 3                        | 1                        | [1, 3, 8] (nums1), [7] (nums2) | [] (nums1 empty), [9, 10, 11] (nums2) | ✅ (Correct partition) | Median found |
+     *
+     * Checking Partition Conditions:
+     * ---------------------------------------------------------------------------------------------------
+     * | Iteration | left1 (nums1[cut1-1]) | left2 (nums2[cut2-1]) | right1 (nums1[cut1]) | right2 (nums2[cut2]) | Partition Condition (left1 ≤ right2 & left2 ≤ right1)? |
+     * |-----------|----------------------|----------------------|----------------------|----------------------|---------------------------------------------------------|
+     * | 1         | 1                    | 10                   | 3                    | 11                   | ❌ (left2 > right1, wrong partition)                  |
+     * | 2         | 3                    | 9                    | 8                    | 10                   | ❌ (left2 > right1, wrong partition)                  |
+     * | 3         | 8                    | 7                    | ∞ (out of bounds)    | 9                    | ✅ (Correct partition found)                           |
+     *
+     * Step 3: Compute Median
+     * ------------------------------------
+     * Since total elements = 7 (odd) → Median is max(left1, left2)
+     * median = max(8, 7) = **8**
+     *
+     * Final Output:
+     * -------------------
+     * findMedianSortedArrays([1, 3, 8], [7, 9, 10, 11]) → Output: **8.0**
+     */
+    private static class Optimized {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            if (nums1.length > nums2.length) return findMedianSortedArrays(nums2, nums1); // Ensure nums1 is smaller
 
-        MedianOfTwoSortedArrayOfDifferentLength mm = new MedianOfTwoSortedArrayOfDifferentLength();
-        mm.findMedianSortedArrays(x, y);
+            int m = nums1.length, n = nums2.length;
+            int low = 0, high = m;
+
+            while (low <= high) {
+                int cut1 = (low + high) / 2;
+                int cut2 = (m + n + 1) / 2 - cut1;  // Ensures left half is larger
+
+                int left1 = (cut1 == 0) ? Integer.MIN_VALUE : nums1[cut1 - 1];
+                int left2 = (cut2 == 0) ? Integer.MIN_VALUE : nums2[cut2 - 1];
+                int right1 = (cut1 == m) ? Integer.MAX_VALUE : nums1[cut1];
+                int right2 = (cut2 == n) ? Integer.MAX_VALUE : nums2[cut2];
+
+                if (left1 <= right2 && left2 <= right1) {  // Correct partition found
+                    if ((m + n) % 2 == 0) { // Even case
+                        return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0;
+                    } else { // Odd case
+                        return Math.max(left1, left2);
+                    }
+                } else if (left1 > right2) { // Too far right, move left
+                    high = cut1 - 1;
+                } else { // Too far left, move right
+                    low = cut1 + 1;
+                }
+            }
+            return 0.0;
+        }
+
+        public static void main(String[] args) {
+            int[] x = {1, 3, 8, 9, 15};
+            int[] y = {7, 11, 19, 21, 18, 25};
+
+            Optimized mm = new Optimized();
+            mm.findMedianSortedArrays(x, y);
+        }
     }
+
+
+
 }

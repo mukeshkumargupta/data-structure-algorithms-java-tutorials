@@ -35,59 +35,109 @@ s consists of only lowercase English letters.
  * 
  */
 public class FirstUniqueCharacterinaString {
-    public int firstUniqChar(String s) {//runtime 65.5 but optimize maintaining queue to get order of 1 like get first unique in running stream 
-        Map<Character, Integer> lookup = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            Character ch = s.charAt(i);
-            if (!lookup.containsKey(ch)) {
-                lookup.put(ch, i);
-            } else {
-                lookup.put(ch, -1);
-            }  
-        }
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < 26; i++) {
-            char ch = (char)('a' + i);
-            if (lookup.containsKey(ch)) {
-                
-                if (lookup.get(ch) != -1) {
-                   if (min > lookup.get(ch)) {
-                       min = lookup.get(ch);
-                   } 
+    /*
+     * 1. Brute Force Approach (Nested Loops)
+     *
+     * Approach:
+     * For each character in the string, check if it appears again in the string.
+     * If it appears only once, return its index.
+     *
+     * Time & Space Complexity:
+     * - Time Complexity: O(N^2)
+     *   (Due to nested loops)
+     * - Space Complexity: O(1)
+     *   (No extra data structures)
+     *
+     * ✅ Easy to understand but inefficient for large inputs.
+     */
+    private static class BruitForce {
+        public int firstUniqChar(String s) {
+            for (int i = 0; i < s.length(); i++) {
+                boolean unique = true;
+                for (int j = 0; j < s.length(); j++) {
+                    if (i != j && s.charAt(i) == s.charAt(j)) {
+                        unique = false;
+                        break;
+                    }
                 }
+                if (unique) return i;
             }
-        }
-        if (min != Integer.MAX_VALUE) {
-            return min;
-        } else {
             return -1;
         }
     }
-    
-    
-    public int firstUniqChar_P1(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        int l = s.length();
 
-        for (int i = 0; i < l; i++) {
-            char ch = s.charAt(i);
-            if (!map.containsKey(ch)) {
-                map.put(ch, i);
-            } else {
-                map.put(ch, -1);
+    /*
+     * 2. Better Approach (Using HashMap)
+     *
+     * Approach:
+     * Use a HashMap to store the frequency of each character.
+     * Then, iterate the string again to find the first character with a frequency of 1.
+     *
+     * Time & Space Complexity:
+     * - Time Complexity: O(N)
+     *   (Two passes: one to count, one to find the unique character)
+     * - Space Complexity: O(1)
+     *   (At most 26 distinct characters, constant space)
+     *
+     * ✅ More efficient than brute force, but uses extra space.
+     */
+    private static class Better {
+
+        public int firstUniqChar(String s) {
+            HashMap<Character, Integer> freq = new HashMap<>();
+
+            // Count frequency of each character
+            for (char ch : s.toCharArray()) {
+                freq.put(ch, freq.getOrDefault(ch, 0) + 1);
             }
-            
-        }
-        
-        //find min index
-        int minIndex = Integer.MAX_VALUE;
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            if (map.containsKey(ch) && map.get(ch) != -1) {
-                //System.out.println(ch);
-                minIndex = Math.min(minIndex, map.get(ch));
+
+            // Find the first unique character
+            for (int i = 0; i < s.length(); i++) {
+                if (freq.get(s.charAt(i)) == 1) {
+                    return i;
+                }
             }
+
+            return -1;
         }
-        return minIndex != Integer.MAX_VALUE ? minIndex : -1;
-        
+
+    }
+
+    /*
+     * 3. Optimal Approach (Using Fixed-Size Array)
+     *
+     * Approach:
+     * Instead of using a HashMap, we use a fixed-sized int array (int[26]) since we only deal with lowercase letters.
+     *
+     * 1st pass: Count occurrences of each character.
+     * 2nd pass: Find the first character with a count of 1.
+     *
+     * Time & Space Complexity:
+     * - Time Complexity: O(N)
+     *   (Same as HashMap, but faster lookup due to array indexing)
+     * - Space Complexity: O(1)
+     *   (Fixed int[26] array, constant space)
+     *
+     * ✅ Best approach: Faster and more memory-efficient!
+     */
+
+    private static class Optimal {
+        public int firstUniqChar(String s) {
+            int[] freq = new int[26];
+
+            // Count frequency of each character
+            for (char ch : s.toCharArray()) {
+                freq[ch - 'a']++;
+            }
+
+            // Find the first character with frequency 1
+            for (int i = 0; i < s.length(); i++) {
+                if (freq[s.charAt(i) - 'a'] == 1) {
+                    return i;
+                }
+            }
+
+            return -1; // No unique character found
+        }
     }
 }

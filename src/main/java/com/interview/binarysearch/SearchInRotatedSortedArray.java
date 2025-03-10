@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Video Explanations:
  *   - Without pivot: https://www.youtube.com/watch?v=r3pMQ8-Ad5s
  *   - With pivot: https://www.youtube.com/watch?v=oTfPJKGEHcc
- * Category: Medium, Must Do, Top150
+ * Category: Medium, Must Do, Top150, Tricky
  * Related Problems:
  *   - Search in Rotated Sorted Array: https://leetcode.com/problems/search-in-rotated-sorted-array/
  *   - Find Minimum in Rotated Sorted Array II: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/

@@ -447,6 +447,8 @@ public class PartHDPOnStock {
         https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
         https://www.youtube.com/watch?v=IV1dHbk5CDc&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=39
         Category: Hard
+        Related:
+        2291. Maximum Profit From Trading Stocks
         You are given an integer array prices where prices[i] is the price of a given stock on the ith day, and an integer k.
 
         Find the maximum profit you can achieve. You may complete at most k transactions: i.e. you may buy at most k times and sell at most k times.
@@ -610,6 +612,7 @@ public class PartHDPOnStock {
 
     public static class BuyandSellStocksWithCooldown {
         /*
+        https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/
         https://www.youtube.com/watch?v=IGIe46xw3YY&list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY&index=40
         Category: Medium
         Related:
@@ -619,6 +622,10 @@ public class PartHDPOnStock {
         https://leetcode.com/problems/paint-house-ii/ Hard
          * https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/ Hard
          * https://leetcode.com/problems/find-the-winner-of-the-circular-game/ Medium
+         More challenges
+        712. Minimum ASCII Delete Sum for Two Strings
+        2403. Minimum Time to Kill All Monsters
+        3357. Minimize the Maximum Adjacent Element Difference
          * You are given an array prices where prices[i] is the price of a given stock on the ith day.
         You are given an array prices where prices[i] is the price of a given stock on the ith day.
 

@@ -62,7 +62,7 @@ Memory Usage: 41.3 MB, less than 48.18% of Java online submissions for Iterator 
         
     }
 
-    public CombinationIterator(String characters, int combinationLength) {
+    public void CombinationIterator(String characters, int combinationLength) {
         s = characters;
         k = combinationLength;
         q = new LinkedList<>();
