@@ -21,7 +21,7 @@ import java.util.*;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class AllTreeNodesDistanceKInBinaryTree {
+public class AllNodesDistanceKInBinaryTree {
     /*
      * Runtime: 19 ms, faster than 46.35% of Java online submissions for All Nodes Distance K in Binary Tree.
 Memory Usage: 43.3 MB, less than 25.69% of Java online submissions for All Nodes Distance K in Binary Tree.

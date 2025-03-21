@@ -3,7 +3,7 @@ package com.interview.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  * Date 03/08/2017
  * @author Mukesh Kumar Gupta
  *Category: Medium, Tricky
@@ -53,7 +53,7 @@ public class MorrisTraversal {
         
     }
 
-    public void preorder(TreeNode root) {
+    public List<Integer> preorder(TreeNode root) {
         /*
          * Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Tree Preorder Traversal.
 Memory Usage: 42.6 MB, less than 14.93% of Java online submissions for Binary Tree Preorder Traversal.
@@ -100,7 +100,7 @@ Memory Usage: 42.6 MB, less than 14.93% of Java online submissions for Binary Tr
         root = bt.addTreeNode(-20, root);
         root = bt.addTreeNode(30, root);
         MorrisTraversal mt = new MorrisTraversal();
-        mt.inorder(root);
+        mt.inorderTraversal(root);
         System.out.println();
         mt.preorder(root);
     }

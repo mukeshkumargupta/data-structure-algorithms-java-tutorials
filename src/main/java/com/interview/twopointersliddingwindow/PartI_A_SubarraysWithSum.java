@@ -87,12 +87,14 @@ public class PartI_A_SubarraysWithSum {
         int count = 0;
         int sum = 0;
         HashMap<Integer, Integer> prefixSumMap = new HashMap<>();
-        prefixSumMap.put(0, 1);  // To handle subarrays starting from index 0
 
         for (int num : nums) {
             sum += num;
             if (prefixSumMap.containsKey(sum - goal)) {
                 count += prefixSumMap.get(sum - goal);
+            }
+            if (sum == goal) {
+                count += 1;
             }
             prefixSumMap.put(sum, prefixSumMap.getOrDefault(sum, 0) + 1);
         }

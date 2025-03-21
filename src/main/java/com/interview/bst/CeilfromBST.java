@@ -60,6 +60,14 @@ Sample Output 2:
 50
  */
 public class CeilfromBST {
+    private static class TreeNode <T> {
+        T data;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(T data) {
+            this.data = data;
+        }
+    }
     public  static int findCeil(TreeNode<Integer> node, int x) {
 
         // Write your code here

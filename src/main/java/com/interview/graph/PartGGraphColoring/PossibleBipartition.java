@@ -26,7 +26,7 @@ These solutions ensure consistency with 0-based indexing, making it easier to un
     public boolean possibleBipartitionDfs(int n, int[][] dislikes) {
         int[] colors = new int[n];  // 0: uncolored, 1: color A, -1: color B
         List<List<Integer>> adjacencyList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < n; i++) {
             adjacencyList.add(new ArrayList<>());
         }
 

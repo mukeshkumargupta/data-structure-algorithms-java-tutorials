@@ -1,7 +1,6 @@
 package com.interview.tree.PartGTreeConversion;
 
 import com.interview.tree.TreeNode;
-import com.interview.tree.PartFTreeConstruction.ContructTreeFromInorderPostOrder;
 
 import java.util.*;
 /*
@@ -94,18 +93,5 @@ TC: O(N)
         
         
     }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int[] inorder = {8,3, 5, 2, 1, 9};
-        int[] postorder = {8, 3, 1, 2, 9,5};
-        ContructTreeFromInorderPostOrder instanceContructTreeFromInorderPostOrder = new ContructTreeFromInorderPostOrder();
-        TreeNode root = instanceContructTreeFromInorderPostOrder.buildTree(inorder, postorder);
-        instanceContructTreeFromInorderPostOrder.inorder(root);
-        FlattenBinaryTreetoLinkedListReverse flattenBinaryTreetoLinkedListReverseInstance = new FlattenBinaryTreetoLinkedListReverse();
-        flattenBinaryTreetoLinkedListReverseInstance.flattenRecursive(root);
-        instanceContructTreeFromInorderPostOrder.inorder(root);
-        
-    }
-    
 }
 

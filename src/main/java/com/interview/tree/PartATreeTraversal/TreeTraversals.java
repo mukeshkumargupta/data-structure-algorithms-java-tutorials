@@ -230,8 +230,8 @@ https://leetcode.com/problems/correct-a-binary-tree/ Medium Locked
         TreeTraversals tt = new TreeTraversals();
         tt.postOrder(head);
         System.out.println();
-        tt.postOrderItr(head);
+        tt.postorderTraversal(head);
         System.out.println();
-        tt.postOrderItrOneStack(head);
+        tt.postorderTraversalOneStack(head);
     }
 }

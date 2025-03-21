@@ -339,9 +339,14 @@ public class PartHDPOnStock {
                 int[][][] dp = new int[n][2][3];
 
                 // Initialize the dp array with -1
-                for (int i = 0; i < n; i++) {
+                /*for (int i = 0; i < n; i++) {
                     for (int j = 0; j < 2; j++) {
                         Arrays.fill(dp[i][j], -1);
+                    }
+                }*/ //This also way to initialized
+                for (int[][] elm: dp) {
+                    for (int[] el: elm) {
+                        Arrays.fill(el, -1);
                     }
                 }
 

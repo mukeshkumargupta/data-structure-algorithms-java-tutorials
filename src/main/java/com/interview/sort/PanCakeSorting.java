@@ -1,43 +1,49 @@
 package com.interview.sort;
 
-/**
- * 
+import java.util.ArrayList;
+import java.util.List;
+
+/*
  * https://leetcode.com/problems/pancake-sorting/
  * Category: Medium, Facebook, Tricky
- * https://www.youtube.com/watch?v=AFtXLUn_TZg&list=PL1w8k37X_6L_24-tbM6l0AGEaHoLFEtQv&index=30 Facebook
- * Algo: start from last, first find element, then flip till that and put it in found index +1, then flip firsts to last element then put last first element i.e. i+1 (because value start from 1)
- * https://leetcode.com/problems/24-game/ Hard
- * https://leetcode.com/problems/maximum-element-after-decreasing-and-rearranging/ Medium
- * https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/ Hard
-Given an array of integers arr, sort the array by performing a series of pancake flips.
-
-In one pancake flip we do the following steps:
-
-Choose an integer k where 1 <= k <= arr.length.
-Reverse the sub-array arr[0...k-1] (0-indexed).
-For example, if arr = [3,2,1,4] and we performed a pancake flip choosing k = 3, we reverse the sub-array [3,2,1], so arr = [1,2,3,4] after the pancake flip at k = 3.
-
-Return an array of the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.
-
- 
-
-Example 1:
-
-Input: arr = [3,2,4,1]
-Output: [4,2,4,3]
-Explanation: 
-We perform 4 pancake flips, with k values 4, 2, 4, and 3.
-Starting state: arr = [3, 2, 4, 1]
-After 1st flip (k = 4): arr = [1, 4, 2, 3]
-After 2nd flip (k = 2): arr = [4, 1, 2, 3]
-After 3rd flip (k = 4): arr = [3, 2, 1, 4]
-After 4th flip (k = 3): arr = [1, 2, 3, 4], which is sorted.
-Example 2:
-
-Input: arr = [1,2,3]
-Output: []
-Explanation: The input is already sorted, so there is no need to flip anything.
-Note that other answers, such as [3, 3], would also be accepted.
+ *
+ * Reference:
+ * https://www.youtube.com/watch?v=AFtXLUn_TZg&list=PL1w8k37X_6L_24-tbM6l0AGEaHoLFEtQv&index=30 (Facebook)
+ *
+ * Algorithm:
+ * 1. Start from the last index and find the maximum element in the unsorted part.
+ * 2. Flip the array to bring that element to the first position.
+ * 3. Flip the array again to move it to its correct sorted position.
+ * 4. Repeat this process for the remaining elements.
+ *
+ * Key Observations:
+ * - Pancake flips allow reversing only a prefix of the array.
+ * - The goal is to sort the array using a sequence of these flips.
+ * - Each number in the array is unique and ranges from 1 to n.
+ *
+ * Constraints:
+ * - The solution must work within 10 * arr.length flips.
+ * - Multiple valid outputs are possible.
+ *
+ * Example 1:
+ * Input: arr = [3,2,4,1]
+ * Output: [4,2,4,3]
+ * Explanation:
+ * We perform 4 pancake flips:
+ * - Flip k=4 → [1,4,2,3]
+ * - Flip k=2 → [4,1,2,3]
+ * - Flip k=4 → [3,2,1,4]
+ * - Flip k=3 → [1,2,3,4] (Sorted)
+ *
+ * Example 2:
+ * Input: arr = [1,2,3]
+ * Output: []
+ * Explanation: Already sorted, no flips needed.
+ *
+ * Related Problems:
+ * - https://leetcode.com/problems/24-game/ (Hard)
+ * - https://leetcode.com/problems/maximum-element-after-decreasing-and-rearranging/ (Medium)
+ * - https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/ (Hard)
  */
 public class PanCakeSorting {
 
