@@ -5,7 +5,7 @@ import java.util.List;
 
     /*
          * https://leetcode.com/problems/insert-interval/
-         * Category: Tricky, Medium , Google
+         * Category: Tricky, Medium , Google, Facebook, FAANG
          *
          * Related: If second input is having  ore than one array asize then think how to merge it
          *

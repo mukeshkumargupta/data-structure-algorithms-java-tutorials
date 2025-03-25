@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 /*
-Category: Medium
+Category: Medium, Tricky, Facebook, FAANG
 https://leetcode.com/problems/binary-search-tree-iterator/description/
 Related:
 https://leetcode.com/problems/binary-tree-inorder-traversal/ Easy

@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * https://leetcode.com/problems/flatten-nested-list-iterator/ 
  * https://www.youtube.com/watch?v=V-gPWPOyq8I
- * Category: Medium, Tricky, Top150
+ * Category: Medium, Tricky, Top150, Facebook
  * Related: https://leetcode.com/problems/flatten-2d-vector/ Medium
  * https://leetcode.com/problems/zigzag-iterator/ Medium
  * https://leetcode.com/problems/mini-parser/ Medium

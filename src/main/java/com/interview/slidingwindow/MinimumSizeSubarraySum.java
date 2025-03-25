@@ -9,7 +9,8 @@ package com.interview.slidingwindow;
  * https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/ Medium VVImp
  * https://leetcode.com/problems/k-radius-subarray-averages/ Medium VImp
  * 
- * Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+ * Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of
+ * which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 
  
 

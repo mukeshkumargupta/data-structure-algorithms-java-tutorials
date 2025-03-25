@@ -5,7 +5,7 @@ import java.util.Collections;
 
 /*
     https://leetcode.com/problems/split-array-largest-sum/description/
-    Category: Hard
+    Category: Hard, Facebook, FAANG, Trcky
     Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized.
 
     Return the minimized largest sum of the split.

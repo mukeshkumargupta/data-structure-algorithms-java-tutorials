@@ -6,7 +6,7 @@ import java.util.Arrays;
 https://www.youtube.com/watch?v=37E9ckMDdTk&t=27s
 https://www.geeksforgeeks.org/problems/largest-element-in-array4009/0?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=largest-element-in-array
  */
-public class PartA_A_LargestElementinanArray {
+public class LargestElementinanArray {
     /*
             Complexity Analysis
 

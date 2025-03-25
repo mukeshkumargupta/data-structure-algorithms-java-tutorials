@@ -1,4 +1,4 @@
-package com.interview.bits;
+package com.interview.array;
 /*
  * Reference: https://leetcode.com/problems/missing-number/
  * Category: Easy
@@ -32,7 +32,7 @@ package com.interview.bits;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class MissingNumbers {
+public class PartC_A_MissingNumbers {
 /*
     1. Brute Force Approach (Using Sorting)
 

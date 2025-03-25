@@ -1,5 +1,7 @@
 package com.interview.hash;
-/*
+
+import java.util.HashSet;
+import java.util.Set;/*
  * https://leetcode.com/problems/number-of-different-integers-in-a-string/
  * Category: Easy
  * https://leetcode.com/problems/score-of-parentheses/ Medium
@@ -64,10 +66,4 @@ public class NumberofDifferentIntegerinaString {
         while(index < s.length() && s.charAt(index++) == '0');
         return s.substring(index-1, s.length());
     }
-}
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }

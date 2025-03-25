@@ -1,112 +1,89 @@
 package com.interview.string;
 
 /**
- * https://leetcode.com/discuss/questions/oj/multiply-strings
+ * https://leetcode.com/problems/multiply-strings/description/
+ * https://www.youtube.com/watch?v=cgPqbpcIgoc
+ * Category: Medium, Facebook, FAANG, Tricky
+ * Related:
+ * https://leetcode.com/problems/add-two-numbers/ Medium
+ * https://leetcode.com/problems/plus-one/ Easy
+ * https://leetcode.com/problems/add-binary/ Easy
+ * https://leetcode.com/problems/add-strings/ Easy
+ * https://leetcode.com/problems/apply-discount-to-prices/ Medium
+ * Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+ *
+ * Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+ *
+ *
+ *
+ * Example 1:
+ *
+ * Input: num1 = "2", num2 = "3"
+ * Output: "6"
+ * Example 2:
+ *
+ * Input: num1 = "123", num2 = "456"
+ * Output: "56088"
+ *
+ *
+ * Constraints:
+ *
+ * 1 <= num1.length, num2.length <= 200
+ * num1 and num2 consist of digits only.
+ * Both num1 and num2 do not contain any leading zero, except the number 0 itself.
  */
 public class MultiplyStrings {
+    /*
+    🟡 Approach 2: Better (Using Intermediate Array)
+    💡 Idea:
 
-    public String multiply(String num1, String num2) {
-        String output = multiply(num1, num2, 0, num1.length() - 1, 0, num2.length() - 1);
-        return output;
+    Instead of summing up partial results separately, store them directly in an array.
+
+    🔹 Steps:
+    1. Create an array `product` of size `m + n` (max possible length).
+    2. Multiply each digit from `num1[i]` with `num2[j]` and store it at `i + j`.
+    3. Handle carry properly.
+    4. Convert the array to a string, removing leading zeros.
+
+    🔵 Time Complexity: O(m × n)
+    🔵 Space Complexity: O(m + n)
+
+    ✅ Why This is Better?
+    - Efficient storage: Uses a single array for calculations.
+    - Avoids repeated string addition (which is expensive).
+    - Directly builds the result, eliminating unnecessary steps.
+    */
+    private static class Solution {
+        public static String multiply(String num1, String num2) {
+            if (num1.equals("0") || num2.equals("0")) return "0";
+
+            int m = num1.length(), n = num2.length();
+            int[] product = new int[m + n];
+
+            // Multiply each digit of num1 with each digit of num2
+            for (int i = m - 1; i >= 0; i--) {
+                for (int j = n - 1; j >= 0; j--) {
+                    int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                    int sum = mul + product[i + j + 1];
+
+                    product[i + j] += sum / 10;
+                    product[i + j + 1] = sum % 10;
+                }
+            }
+
+            // Convert product array to string
+            StringBuilder sb = new StringBuilder();
+            for (int num : product) {
+                if (!(sb.length() == 0 && num == 0)) { // Skip leading zeros
+                    sb.append(num);
+                }
+            }
+            return sb.length() == 0 ? "0" : sb.toString();
+        }
+
+        public static void main(String[] args) {
+            System.out.println(multiply("123", "456")); // Output: "56088"
+        }
     }
 
-    private String multiply(String num1, String num2, int start1, int end1, int start2, int end2) {
-        if (end1 - start1 == 0 || end2 - start2 == 0) {
-            return simpleMultiply(num1.substring(start1, end1 + 1), num2.substring(start2, end2 + 1));
-        }
-
-        int mid1 = (start1 + end1)/2;
-        int mid2 = (start2 + end2)/2;
-
-        int count1 = end1 - mid1;
-        int count2 = end2 - mid2;
-
-        String v1 = multiply(num1, num2, start1, mid1, start2, mid2);
-        String v2 = multiply(num1, num2, start1, mid1, mid2 + 1, end2);
-        String v3 = multiply(num1, num2, mid1 + 1, end1, start2, mid2);
-        String v4 = multiply(num1, num2, mid1 + 1, end1, mid2 + 1, end2);
-
-        v1 = append0s(v1, count1 + count2);
-        v2 = append0s(v2, count1);
-        v3 = append0s(v3, count2);
-
-        v1 = add(v1.toCharArray(), v2.toCharArray());
-        v3 = add(v3.toCharArray(), v4.toCharArray());
-        return add(v1.toCharArray(), v3.toCharArray());
-    }
-
-    private String simpleMultiply(String num1, String num2) {
-        String smaller;
-        String larger;
-        if (num1.length() == 1) {
-            smaller = num1;
-            larger = num2;
-        } else {
-            smaller = num2;
-            larger = num1;
-        }
-        int r2 = smaller.charAt(0) - '0';
-        if (r2 == 0) {
-            return "0";
-        }
-        int carry = 0;
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = larger.length() - 1; i >= 0; i--) {
-            int r1 = larger.charAt(i) - '0';
-            int r = r1 * r2 + carry;
-            stringBuffer.append(r%10);
-            carry = r / 10;
-        }
-        if (carry != 0) {
-            stringBuffer.append(carry);
-        }
-        return stringBuffer.reverse().toString();
-    }
-
-    private String append0s(String v1, int count ) {
-        StringBuffer buff = new StringBuffer(v1);
-        for (int i = 0; i < count; i++) {
-            buff.append("0");
-        }
-        return buff.toString();
-    }
-
-    public String add(char[] num1,char[] num2){
-        int index1 = num1.length -1;
-        int index2 = num2.length -1;
-        int carry = 0;
-        StringBuffer buffer = new StringBuffer();
-        while(index1 >= 0 && index2 >= 0){
-            int r1 = num1[index1] - '0';
-            int r2 = num2[index2] - '0';
-            int r = r1 + r2 + carry;
-            buffer.append(r%10);
-            carry = r/10;
-            index1--;
-            index2--;
-        }
-        while(index1 >= 0){
-            int r1 = num1[index1] - '0';
-            int r = r1 + carry;
-            buffer.append(r%10);
-            carry = r/10;
-            index1--;
-        }
-        while(index2 >= 0){
-            int r2 = num2[index2] - '0';
-            int r = r2 + carry;
-            buffer.append(r%10);
-            carry = r/10;
-            index2--;
-        }
-        if (carry != 0) {
-            buffer.append(carry);
-        }
-        return buffer.reverse().toString();
-    }
-
-    public static void main(String args[]) {
-        MultiplyStrings ms = new MultiplyStrings();
-        System.out.print(ms.multiply("6752716719037375654442652725945722915786612669126862029212","2840271321219335147"));
-    }
 }

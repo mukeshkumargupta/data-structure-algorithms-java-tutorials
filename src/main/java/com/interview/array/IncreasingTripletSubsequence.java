@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Date 03/06/2017
  * @author Mukesh Kumar Gupta
  * https://leetcode.com/problems/increasing-triplet-subsequence/
- * Category: Medium, Tricky, Top150, triplet, lis
+ * Category: Medium, Tricky, Top150, triplet, lis, Facebook, FAANG
  * Related Problems
  * Longest Increasing Subsequence (LeetCode 300) - Extends to finding a longer increasing subsequence.
  * Find and Replace Pattern (LeetCode 890) - Uses pattern matching ideas.

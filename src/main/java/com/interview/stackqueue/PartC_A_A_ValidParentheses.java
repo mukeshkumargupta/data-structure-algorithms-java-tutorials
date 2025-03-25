@@ -47,7 +47,7 @@ Accepted
 Submissions
 4,310,724
  */
-public class PartC_A_ValidParentheses {
+public class PartC_A_A_ValidParentheses {
     /*
      * Runtime: 3 ms, faster than 28.22% of Java online submissions for Valid Parentheses.
 Memory Usage: 38.8 MB, less than 23.76% of Java online submissions for Valid Parentheses.

@@ -29,7 +29,7 @@ Constraints:
 1 <= nums.length <= 105
 nums[i] is either 0 or 1.
  */
-public class MaxConsecutiveOnes {
+public class PartC_B_MaxConsecutiveOnes {
     public int findMaxConsecutiveOnes(int[] nums) {
         /*
          * Runtime: 1 ms, faster than 100.00% of Java online submissions for Max Consecutive Ones.

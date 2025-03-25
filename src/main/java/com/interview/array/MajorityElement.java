@@ -3,7 +3,14 @@ package com.interview.array;
 /*
  * https://leetcode.com/problems/majority-element/
  * https://www.youtube.com/watch?v=AoX3BPWNnoE&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2
- * Category: Medium, Must DO
+ * Category: Medium, Must DO,
+ * Related:
+ * https://leetcode.com/problems/majority-element-ii/ Medium
+ * https://leetcode.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array/ Medium
+ * https://leetcode.com/problems/most-frequent-even-element/ Easy
+ * https://leetcode.com/problems/minimum-index-of-a-valid-split/ Medium
+ * https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-i/ Easy
+ * https://leetcode.com/problems/find-valid-pair-of-adjacent-digits-in-string/ Easy
  *Note: In this case input is always given in form of majority element if not given then need to check count and ensure it is really majority element, that part is not added here because it is not part of question
  */
 public class MajorityElement {
@@ -28,7 +35,7 @@ public class MajorityElement {
         
     }
     
-    public int majorityElement(int[] nums) {
+    public int majorityElementOtherApproach(int[] nums) {
         /*
          * Runtime: 1 ms, faster than 99.95% of Java online submissions for Majority Element.
 Memory Usage: 56.5 MB, less than 17.31% of Java online submissions for Majority Element.

@@ -56,7 +56,7 @@ Constraints:
 -100 <= nums[i] <= 100
 nums is sorted in non-decreasing order.
  */
-public class PartA_D_RemoveDuplicatesfromSortedArray {
+public class RemoveDuplicatesfromSortedArray {
     /*
     Complexity Analysis
 

@@ -1,11 +1,11 @@
-package com.interview.binarysearch;
+package com.interview.binarysearch.PartDLearnEliminationSearch;
 
 import java.util.*;
 
 /*
  * https://leetcode.com/problems/random-pick-with-weight/
  * https://www.youtube.com/watch?v=3Ky9ZlI95cY
- * Category: Medium, Must Do,
+ * Category: Medium, Must Do, Facebook
  * Related: https://leetcode.com/problems/random-pick-index/ Medium
  * https://leetcode.com/problems/random-pick-with-blacklist/ Hard
  * https://leetcode.com/problems/random-point-in-non-overlapping-rectangles/ Medium

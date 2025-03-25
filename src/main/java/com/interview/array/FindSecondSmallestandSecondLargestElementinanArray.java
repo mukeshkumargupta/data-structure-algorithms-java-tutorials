@@ -23,7 +23,7 @@ import java.util.Arrays;
     2 ≤ arr.size() ≤ 105
     1 ≤ arr[i] ≤ 105
  */
-public class PartA_B_FindSecondSmallestandSecondLargestElementinanArray {
+public class FindSecondSmallestandSecondLargestElementinanArray {
     /*
     Complexity Analysis
 

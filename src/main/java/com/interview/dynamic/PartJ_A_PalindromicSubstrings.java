@@ -3,7 +3,7 @@ package com.interview.dynamic;
 
 /*
  * 🔗 Problem: https://leetcode.com/problems/palindromic-substrings/
- * 📌 Category: Must Do, Top 100
+ * 📌 Category: Must Do, Top100, Facebook, FAANG
  * 🔗 Related Problems:
  *   - https://leetcode.com/problems/stone-game/ (Medium)
  *   - https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/ (Hard)

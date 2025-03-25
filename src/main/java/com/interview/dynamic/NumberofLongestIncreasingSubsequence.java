@@ -2,7 +2,7 @@ package com.interview.dynamic;
 
 /*
  * https://leetcode.com/problems/number-of-longest-increasing-subsequence/
- * Category: Medium, lis, Must Do
+ * Category: Medium, lis, Must Do, Facebook, FAANG
  * Related:
  * https://leetcode.com/problems/longest-continuous-increasing-subsequence/ 
  * https://leetcode.com/problems/longest-continuous-increasing-subsequence/ Easy

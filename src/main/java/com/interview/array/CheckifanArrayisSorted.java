@@ -4,7 +4,7 @@ package com.interview.array;
 https://www.youtube.com/watch?v=37E9ckMDdTk&list=PLgUwDviBIf0rENwdL0nEH0uGom9no0nyB
 https://www.naukri.com/code360/problems/ninja-and-the-sorted-check_6581957?leftPanelTabValue=SUBMISSION
  */
-public class PartA_C_CheckifanArrayisSorted {
+public class CheckifanArrayisSorted {
 
     /*
 

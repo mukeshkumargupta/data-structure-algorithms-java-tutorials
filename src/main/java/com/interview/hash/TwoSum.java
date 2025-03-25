@@ -71,29 +71,4 @@ Memory Usage: 42.6 MB, less than 18.54% of Java online submissions for Two Sum.
         
     }
     
-    public int[] twoSum_P1(int[] nums, int target) {
-        /*
-         * Runtime: 6 ms, faster than 54.73% of Java online submissions for Two Sum.
-Memory Usage: 47.6 MB, less than 5.39% of Java online submissions for Two Sum.
-         */
-        Map<Integer, Integer> map = new HashMap<>();
-        int l = nums.length;
-        int[] result = new int[2];
-        for (int i = 0; i < l; i++) {
-            if (map.containsKey(target - nums[i])) {
-                result[0] = map.get(target - nums[i]);
-                result[1] = i;
-            } else {
-                map.put(nums[i], i);
-            }
-        }
-        return result;
-        
-    }
-}
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }

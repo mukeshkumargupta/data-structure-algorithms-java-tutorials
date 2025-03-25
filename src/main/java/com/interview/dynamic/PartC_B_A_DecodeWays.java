@@ -55,7 +55,7 @@ import java.util.Arrays;
  * - s contains only digits and may contain leading zeros.
  */
 
-public class PartC_B_DecodeWays {
+public class PartC_B_A_DecodeWays {
 
     /*
     1. Brute Force Approach

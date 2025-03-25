@@ -20,7 +20,7 @@ import java.util.*;
  * [5,5]]
  * Reference
  * https://leetcode.com/problems/combination-sum/
- * Category: Medium, Tricky, Must Do, VVImp
+ * Category: Medium, Tricky, Must Do, VVImp, Facebook, FAANG
  * Related:
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/ Medium
  * https://leetcode.com/problems/combination-sum-ii/ Medium

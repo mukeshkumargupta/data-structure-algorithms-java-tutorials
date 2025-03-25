@@ -1,7 +1,7 @@
 package com.interview.mathematical;
 /*
  * Problem Link: https://leetcode.com/problems/count-and-say/
- * Difficulty: Medium | Leetcode Top150
+ * Difficulty: Medium | Leetcode Top150, Facebook, FAANG
  * Video Explanation: https://www.youtube.com/watch?v=1YUqtoT9YoE&t=42s
  *
  * Related Problems:

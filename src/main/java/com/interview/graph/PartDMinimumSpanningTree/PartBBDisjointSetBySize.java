@@ -338,7 +338,7 @@ class PartBBDisjointSetBySize {
 
     /*
         Problem: LeetCode 721 - Accounts Merge
-        Problem Category: Disjoint Set (Union-Find)
+        Problem Category: Disjoint Set (Union-Find), Facebook, FAANG
         Problem Link: https://leetcode.com/problems/accounts-merge/
         YouTube Explanation: NeetCode - Accounts Merge
         Video: https://www.youtube.com/watch?v=FMwpt_aQOGw&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=50

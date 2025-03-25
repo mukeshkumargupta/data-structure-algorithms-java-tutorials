@@ -40,7 +40,53 @@ Constraints:
 1 <= n <= 231 - 1
  */
 public class HappyNumber {
-    /*
+
+
+    private static class Better {
+        public boolean isHappy(int n) {
+        /*
+         * Runtime: 3 ms, faster than 25.04% of Java online submissions for Happy Number.
+Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Number.
+         */
+            Set<Integer> set = new HashSet<>();
+
+
+            while (n > 0) {
+                if (!set.contains(n)) {
+                    set.add(n);
+                } else {
+                    return false;
+                }
+
+                //Get all number and square it
+                int sum = 0;
+                while (n > 0) {
+                    int num = n % 10;
+                    sum += num * num;
+                    //System.out.println(sum);
+                    n = n/10;
+                }
+
+                if (sum == 1) {
+                    return true;
+                } else {
+                    n = sum;
+                }
+
+
+            }
+            return false;
+
+
+        }
+        public static void main(String[] args) {
+            // TODO Auto-generated method stub
+
+        }
+    }
+
+    private static class Optimised {
+        /*
 1
 ms
 Beats
@@ -52,74 +98,36 @@ MB
 Beats
 13.80%
 of users with Java
-     */
-    public boolean isHappy(int n) {
-        if (n == 1) {
-            return true;
-        }
-        Set<Integer> set = new HashSet<>();
-        while (!set.contains(n)) {
-            set.add(n);
-            n = sumOfSquaresOfItsDigits(n);
-
+ */
+        public boolean isHappy(int n) {
             if (n == 1) {
                 return true;
             }
-        }
-        return false;
-    }
-
-    int sumOfSquaresOfItsDigits(int n) {
-        int sum = 0;
-        int input = n;
-        while (input > 0 ) {
-            int digit = input%10;
-            sum += digit * digit;
-            input /= 10;
-        }
-        return sum;
-
-    }
-
-    public boolean isHappy(int n) {
-        /*
-         * Runtime: 3 ms, faster than 25.04% of Java online submissions for Happy Number.
-Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Number.
-         */
-        Set<Integer> set = new HashSet<>();
-        
-        
-        while (n > 0) {
-            if (!set.contains(n)) {
+            Set<Integer> set = new HashSet<>();
+            while (!set.contains(n)) {
                 set.add(n);
-            } else {
-                return false;
+                n = sumOfSquaresOfItsDigits(n);
+
+                if (n == 1) {
+                    return true;
+                }
             }
-            
-            //Get all number and square it
-            int sum = 0;
-            while (n > 0) {
-                int num = n % 10;
-                sum += num * num;
-                //System.out.println(sum);
-                n = n/10;
-            }
-            
-            if (sum == 1) {
-                return true;
-            } else {
-                n = sum;
-            }
-            
-            
+            return false;
         }
-        return false;
-        
-        
+
+        int sumOfSquaresOfItsDigits(int n) {
+            int sum = 0;
+            int input = n;
+            while (input > 0 ) {
+                int digit = input%10;
+                sum += digit * digit;
+                input /= 10;
+            }
+            return sum;
+
+        }
     }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
+
+
     
 }

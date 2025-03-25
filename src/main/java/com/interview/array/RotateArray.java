@@ -2,6 +2,8 @@ package com.interview.array;
 
 /*
  * Reference: https://leetcode.com/problems/rotate-array/
+ * http://naukri.com/code360/problems/left-rotate-an-array-by-one_5026278
+ * https://www.youtube.com/watch?v=wvcQg43_V8U&list=PLgUwDviBIf0rENwdL0nEH0uGom9no0nyB&index=2
  * Category: Medium
  * Given an array, rotate the array to the right by k steps, where k is non-negative.
 
@@ -89,9 +91,13 @@ O(n) for both time and space since we use an auxiliary array.
     }
 
     /*
-    3. Optimal Solution: Using Reversal
-Idea: Reverse the entire array, then reverse the first k elements, and finally reverse the remaining elements. This effectively rotates the array in place.
-
+        3. Optimized In-Place Rotation (O(N) time, O(1) space)
+        Step 1: Reverse the entire array.
+        Step 2: Reverse the first k elements.
+        Step 3: Reverse the remaining n - k elements.
+        ✅ Efficient O(N) time
+        ✅ No extra space O(1)
+        ✅ Best for large inputs
      */
 
     public void rotateOptimal(int[] nums, int k) {

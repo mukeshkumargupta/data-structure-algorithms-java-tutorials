@@ -4,7 +4,7 @@ package com.interview.linklist.PartBLinkedListwithSortingandReordering;
  * Problem: Reverse Nodes in k-Group
  *
  * Source: https://leetcode.com/problems/reverse-nodes-in-k-group/
- * Category: Hard, Must Do, Fundamental
+ * Category: Hard, Must Do, Fundamental, Facebook, FAANG
  * Related Problem: https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ (Medium)
  * Video Explanation: https://www.youtube.com/watch?v=BfQeP6XEXEc
  *
