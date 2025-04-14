@@ -14,6 +14,54 @@ import java.util.*;
  * https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs-ii/description/ Medium
  * https://leetcode.com/problems/task-scheduler-ii/description/ Medium
  *
+ * 1. Task Scheduling & CPU Scheduling
+621. Task Scheduler 🔥 (This problem itself)
+
+358. Rearrange String k Distance Apart
+
+767. Reorganize String
+
+1054. Distant Barcodes
+
+1405. Longest Happy String
+
+1668. Maximum Repeating Substring
+
+2. Greedy + Priority Queue (Max Heap)
+253. Meeting Rooms II
+
+759. Employee Free Time
+
+621. Task Scheduler (same problem)
+
+1353. Maximum Number of Events That Can Be Attended
+
+1481. Least Number of Unique Integers after k Removals
+
+1834. Single-Threaded CPU 🔥 (CPU scheduling problem using Priority Queue)
+
+846. Hand of Straights (Heap + Frequency Map)
+
+3. Job Scheduling & Sequencing
+630. Course Schedule III
+
+502. IPO
+
+1235. Maximum Profit in Job Scheduling
+
+1005. Maximize Sum Of Array After K Negations
+
+1801. Number of Orders in the Backlog
+
+4. Interval Scheduling & Merging
+56. Merge Intervals
+
+435. Non-overlapping Intervals
+
+452. Minimum Number of Arrows to Burst Balloons
+
+981. Time Based Key-Value Store (Heap-based scheduling)
+ *
  *
  * Description:
  * Given an array of tasks where each character represents a different task, the CPU must execute them in any order.

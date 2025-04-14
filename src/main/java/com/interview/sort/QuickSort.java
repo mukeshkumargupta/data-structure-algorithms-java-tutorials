@@ -1,6 +1,6 @@
 package com.interview.sort;
 
-/**
+/*
  * Reference: https://www.youtube.com/watch?v=COk73cpQbFQ&t=946s
  * https://leetcode.com/problems/sort-an-array
  * It is getting time out when element is same using quick sort but in case of merge sort it is working

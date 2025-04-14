@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /*
  * https://leetcode.com/problems/range-sum-of-bst/submissions/
- * Category: Easy
+ * Category: Easy, Facebook, FAANG, Must Do
  * Related: 
  * https://leetcode.com/problems/binary-tree-vertical-order-traversal/ Medium
  * https://leetcode.com/problems/find-leaves-of-binary-tree/ Medium

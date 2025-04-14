@@ -5,23 +5,22 @@ package com.interview.matrix;
  * Category: Easy
  */
 public class MatrixDiagonalSum {
-    public int diagonalSum(int[][] mat) {//100 runtime
-        int R = mat.length;
-        
+    public int diagonalSum(int[][] mat) {
+        int n = mat.length;
         int sum = 0;
-        for (int i = 0; i < R; i++) {
-            sum += mat[i][i];
+
+        // Traverse the primary and secondary diagonals
+        for (int i = 0; i < n; i++) {
+            sum += mat[i][i]; // Primary diagonal
+            sum += mat[i][n - 1 - i]; // Secondary diagonal
         }
-        int c = 0;
-        for (int i = R-1; i >=0; i--) {
-            sum += mat[i][c++];
+
+        // If matrix size is odd, subtract the middle element (counted twice)
+        if (n % 2 == 1) {
+            sum -= mat[n / 2][n / 2];
         }
-        
-        if (R % 2 != 0) {
-           sum -=  mat[R/2][R/2];
-        }
+
         return sum;
-        
     }
     public static void main(String[] args) {
         // TODO Auto-generated method stub

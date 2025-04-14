@@ -1,6 +1,6 @@
 package com.interview.linklist;
 
-/**
+/*
  * Date 03/24/2017
  * @author Mukesh Kumar Gupta
  *
@@ -12,7 +12,7 @@ package com.interview.linklist;
  *
  * https://leetcode.com/problems/copy-list-with-random-pointer/
  * https://www.youtube.com/watch?v=VNf6VynfpdM
- * Category: Must Do, Medium
+ * Category: Must Do, Medium, Facebook, FAANG
  * Related: https://leetcode.com/problems/clone-binary-tree-with-random-pointer/ Medium
  * https://leetcode.com/problems/clone-n-ary-tree/ Medium
  * 

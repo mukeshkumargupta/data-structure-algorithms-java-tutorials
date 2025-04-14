@@ -44,10 +44,6 @@ public class HappyNumber {
 
     private static class Better {
         public boolean isHappy(int n) {
-        /*
-         * Runtime: 3 ms, faster than 25.04% of Java online submissions for Happy Number.
-Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Number.
-         */
             Set<Integer> set = new HashSet<>();
 
 
@@ -64,7 +60,7 @@ Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Num
                     int num = n % 10;
                     sum += num * num;
                     //System.out.println(sum);
-                    n = n/10;
+                    n = n / 10;
                 }
 
                 if (sum == 1) {
@@ -79,6 +75,7 @@ Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Num
 
 
         }
+
         public static void main(String[] args) {
             // TODO Auto-generated method stub
 
@@ -86,19 +83,6 @@ Memory Usage: 38.3 MB, less than 10.13% of Java online submissions for Happy Num
     }
 
     private static class Optimised {
-        /*
-1
-ms
-Beats
-64.74%
-of users with Java
-Memory
-41.01
-MB
-Beats
-13.80%
-of users with Java
- */
         public boolean isHappy(int n) {
             if (n == 1) {
                 return true;
@@ -118,8 +102,8 @@ of users with Java
         int sumOfSquaresOfItsDigits(int n) {
             int sum = 0;
             int input = n;
-            while (input > 0 ) {
-                int digit = input%10;
+            while (input > 0) {
+                int digit = input % 10;
                 sum += digit * digit;
                 input /= 10;
             }

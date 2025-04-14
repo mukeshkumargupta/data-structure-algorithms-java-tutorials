@@ -1,9 +1,11 @@
 package com.interview.hash;
 
+import java.util.*;
+
 /*
  * https://leetcode.com/problems/count-common-words-with-one-occurrence/
  * Category: Medium
- * Derived: Try eaxctly two occurance:
+ * Derived: Try exactly two occurrence:
  * Related: https://leetcode.com/problems/uncommon-words-from-two-sentences/ Easy Good Question
  * https://leetcode.com/problems/kth-distinct-string-in-an-array/ Easy Good Question
  * Given two string arrays words1 and words2, return the number of strings that appear exactly once in each of the two arrays.
@@ -39,71 +41,118 @@ Constraints:
 words1[i] and words2[j] consists only of lowercase English letters.
  */
 public class CountCommonWordsWithOneOccurrence {
-    public int countWordsM2(String[] words1, String[] words2) {
-        /*
-         * Runtime: 8 ms, faster than 31.39% of Java online submissions for Count Common Words With One Occurrence.
-Memory Usage: 42.7 MB, less than 39.57% of Java online submissions for Count Common Words With One Occurrence.
-         */
-        Map<String , Integer> map = new HashMap<>();
-        for (String word: words1) {
-            map.put(word, map.getOrDefault(word, 0) +1);
-        }
-        for (String word: words2) {
-            if (map.containsKey(word)) {
-                if (map.get(word) <= 1) {
-                   map.put(word, map.get(word) -1); 
+    /*
+        🔹 Approach 1: Brute Force (Two Hash Maps)
+
+        🚀 Idea:
+        - Use two separate hash maps to count occurrences of words in both arrays.
+        - Iterate over words1 and check if the word appears exactly once in both maps.
+
+        🔹 Complexity Analysis:
+        - Building Frequency Map: O(n + m)
+        - Checking for Valid Words: O(n)
+        - Total Time Complexity: O(n + m)
+        - Space Complexity: O(n + m) (storing frequency maps)
+    */
+    private static class BruitForce {
+        public int countWords(String[] words1, String[] words2) {
+            Map<String, Integer> frequencyMap1 = new HashMap<>();
+            Map<String, Integer> frequencyMap2 = new HashMap<>();
+
+            // Count word occurrences in words1
+            for (String word : words1) {
+                frequencyMap1.put(word, frequencyMap1.getOrDefault(word, 0) + 1);
+            }
+
+            // Count word occurrences in words2
+            for (String word : words2) {
+                frequencyMap2.put(word, frequencyMap2.getOrDefault(word, 0) + 1);
+            }
+
+            int commonWordCount = 0;
+
+            // Check for words that appear exactly once in both arrays
+            for (String word : frequencyMap1.keySet()) {
+                if (frequencyMap1.get(word) == 1 && frequencyMap2.getOrDefault(word, 0) == 1) {
+                    commonWordCount++;
                 }
-                
             }
-            
+
+            return commonWordCount;
         }
-        int count = 0;
-        for (String word: words1) {
-           if (map.get(word) == 0) {
-               count++;
-           }
-            
+
+        public static void main(String[] args) {
+            BruitForce solver = new BruitForce();
+            String[] words1 = {"apple", "banana", "apple", "orange"};
+            String[] words2 = {"banana", "orange", "grape", "orange"};
+            System.out.println(solver.countWords(words1, words2)); // Output: 1 ("banana")
         }
-        return count;
-        
     }
-    
-    public int countWordsMoreOtipizedButTricky(String[] words1, String[] words2) {
-        //By seeing observation: Reference: https://leetcode.com/problems/count-common-words-with-one-occurrence/discuss/1641859/JAVA-%3A-Simple-or-2-Ways-or-Faster-than-100-or-Single-HashMap-or-Brief-Explanation
-        /*
-         * Runtime: 7 ms, faster than 38.28% of Java online submissions for Count Common Words With One Occurrence.
-Memory Usage: 43.2 MB, less than 30.70% of Java online submissions for Count Common Words With One Occurrence.
-         */
-        Map<String , Integer> map = new HashMap<>();
-        for (String word: words1) {
-            map.put(word, map.getOrDefault(word, 0) +1);
-        }
-        int count = 0;
-        for (String word: words2) {
-            if (map.containsKey(word)) {
-                int fr = map.get(word);
-                if (fr <=1) {
-                    if (fr ==1) {
-                        count++;
 
-                    } else if (fr ==0) {
-                        count--;
-                    }
+/*
+     🔹 Optimized Approach (Using Single Hash Map)
 
-                    map.put(word, map.get(word) -1); 
+🚀 Idea
+Instead of using two separate hash maps, we:
 
-                    }
+✅ Use one map (`wordCount`) to track occurrences across both arrays.
+✅ Use another set (`uniqueWords`) to track words appearing only once in each array.
+✅ Iterate once to filter words that appear exactly once.
 
-                
+🔹 Complexity Analysis
+   - **Time Complexity:** O(n + m)
+   - **Space Complexity:** O(n + m) (stores words)
+
+🔹 Summary
+
+| Approach     | Time Complexity | Space Complexity | Explanation |
+|-------------|----------------|------------------|-------------|
+| **Brute Force** | O(n + m) | O(n + m) | Uses two separate hash maps. |
+| **Optimized**  | O(n + m) | O(n + m) | Uses a single map with special marking. |
+
+*/
+
+    private static class Optimized {
+        public int countWords(String[] words1, String[] words2) {
+            // Step 1: Use a map to track occurrences
+            Map<String, Integer> wordCount = new HashMap<>();
+
+            // Step 2: Count occurrences from words1
+            for (String word : words1) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
             }
-            
+
+            // Step 3: Count occurrences from words2
+            for (String word : words2) {
+                // If already in the map, update its count
+                if (wordCount.containsKey(word)) {
+                    if (wordCount.get(word) == 1) {
+                        wordCount.put(word, -1); // Mark as appearing once in both
+                    } else {
+                        wordCount.put(word, -2); // More than once in words1
+                    }
+                } else {
+                    wordCount.put(word, -2); // Appears multiple times or only in words2
+                }
+            }
+
+            // Step 4: Count words that appeared exactly once in both arrays
+            int commonCount = 0;
+            for (int count : wordCount.values()) {
+                if (count == -1) { // Appears exactly once in both
+                    commonCount++;
+                }
+            }
+
+            return commonCount;
         }
-        return count;
-        
-    }
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
+
+        public static void main(String[] args) {
+            Optimized solver = new Optimized();
+            String[] words1 = {"apple", "banana", "apple", "orange"};
+            String[] words2 = {"banana", "orange", "grape", "orange"};
+            System.out.println(solver.countWords(words1, words2)); // Output: 1 ("banana")
+        }
     }
     
 }

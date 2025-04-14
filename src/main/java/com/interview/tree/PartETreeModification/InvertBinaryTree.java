@@ -4,7 +4,7 @@ import com.interview.tree.TreeNode;
 
 /*
  * https://leetcode.com/problems/invert-binary-tree/
- * Category: Easy, Must Do
+ * Category: Easy, Must Do, Facebook, FAANG
  * Related: https://leetcode.com/problems/number-of-distinct-islands/ Medium apply dfs or bfs , Locked
  * https://leetcode.com/problems/maximum-average-subtree/ Medium, VImp,  Locked, I think using postorder + prefix sum + size we can get in O(N)
  * https://leetcode.com/problems/move-sub-tree-of-n-ary-tree/ Hard

@@ -2,7 +2,7 @@ package com.interview.greedy;
 
 import java.util.*;
 
-/**
+/*
  * Date 05/01/2017
  *
  * @author Mukesh Kumar Gupta
@@ -20,6 +20,16 @@ import java.util.*;
  * Derived Question:
  * Find all meeting running when given meeting running(Sol: size of priority queue), find all those meeting when only two meeting running (Soln: (size of priority queue comapre and return result)
  * Find meeting when max meeting will be running(Return all those meeting), populate pq in ArrayList when even ever max pq is found,
+ *
+ * Greedy + Sorting + Heap (Priority Queue)
+ *
+ * Meeting Rooms II
+ *
+ * Car Pooling
+ *
+ * Minimum Platforms Required
+ *
+ * Maximum Events Attended
  */
 public class PartHMinimumMeetingRoomsPatterns {
     /*
@@ -105,7 +115,7 @@ Constraints:
             return minRoom;
         }
 
-        public int minMeetingRoomsUsingPQ(ArrayList<ArrayList<Integer>> A) {
+        public int minMeetingRoomsUsingPQ(ArrayList<ArrayList<Integer>> A) {//Readable code
             Collections.sort(A, (a, b) -> a.get(0) - b.get(0));//sort by start
             PriorityQueue<ArrayList<Integer>> pq = new PriorityQueue<>((a, b) -> a.get(1) - b.get(1));//sort fo end
             int rooms = 0;

@@ -5,7 +5,7 @@ import java.util.Stack;
 /*
  * https://leetcode.com/problems/basic-calculator/description/
  * https://www.youtube.com/watch?v=3AEKyHx3tzU Very good channel
- * Category: Hard
+ * Category: Hard, Facebook, FAANG
  * Related: https://leetcode.com/problems/evaluate-reverse-polish-notation/ Medium
  * https://leetcode.com/problems/basic-calculator-ii/ Medium
  * https://leetcode.com/problems/expression-add-operators/Hard

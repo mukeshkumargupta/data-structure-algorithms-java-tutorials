@@ -3,7 +3,7 @@ package com.interview.hash;
 import java.util.*;
 /*
  * https://leetcode.com/problems/two-sum/
- * Category: Easy, Must Do, Facebook, Top150
+ * Category: Easy, Must Do, Facebook, Top150, FAANG
  * Related: 
  * https://leetcode.com/problems/4sum/ Medium
  * https://leetcode.com/problems/two-sum-iii-data-structure-design/ Easy Locked

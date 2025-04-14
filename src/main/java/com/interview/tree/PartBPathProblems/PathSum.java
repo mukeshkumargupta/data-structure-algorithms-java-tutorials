@@ -256,7 +256,7 @@ Output: ["1"]
             path.remove(path.size() -1);
         }  
     }
-    public List<String> binaryTreePaths(TreeNode root) {
+    public List<String> binaryTreePathsApproach(TreeNode root) {
         /*
          * Runtime: 1 ms, faster than 99.87% of Java online submissions for Binary Tree Paths.
 Memory Usage: 39.1 MB, less than 85.86% of Java online submissions for Binary Tree Paths.

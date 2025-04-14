@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/daily-temperatures/
  * https://www.youtube.com/watch?v=WGm4Kj3lhRI
- * Category: Medium, Top100, Tricky, Google, Facebook
+ * Category: Medium, Top100, Tricky, Google, Facebook, FAANG
  * Related:https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/ Medium
  * https://leetcode.com/problems/longest-word-in-dictionary/ Medium
  * https://leetcode.com/problems/next-greater-element-i/ done

@@ -1,12 +1,10 @@
 package com.interview.misc;
 
-import java.util.Deque;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-/**
+/*
  * https://leetcode.com/problems/flatten-nested-list-iterator/ 
  * https://www.youtube.com/watch?v=V-gPWPOyq8I
  * Category: Medium, Tricky, Top150, Facebook

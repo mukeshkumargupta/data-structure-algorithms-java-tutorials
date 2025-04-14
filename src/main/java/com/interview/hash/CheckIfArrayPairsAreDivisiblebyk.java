@@ -1,9 +1,17 @@
 package com.interview.hash;
 
+import java.util.HashMap;
+
 /*
  * https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/
  * Category: Tricky, Divisiblebyk pattern, 
  * https://www.youtube.com/watch?v=BvKv-118twg
+ *
+ * Related:
+ * https://leetcode.com/problems/count-array-pairs-divisible-by-k/ Hard
+ * https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/ Hard
+ * https://leetcode.com/problems/count-pairs-that-form-a-complete-day-ii/ Medium
+ * https://leetcode.com/problems/count-pairs-that-form-a-complete-day-i/ Medium
  * 
  * 1497. Check If Array Pairs Are Divisible by k
 Medium

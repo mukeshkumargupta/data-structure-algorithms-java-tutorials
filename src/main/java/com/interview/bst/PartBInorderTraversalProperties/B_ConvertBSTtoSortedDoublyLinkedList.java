@@ -5,9 +5,11 @@ import java.util.List;
 
 /*
     Convert BST to Sorted Doubly Linked List (Leetcode #426)
+    https://www.youtube.com/watch?v=l1hSUOaXLxc&list=PLUPSMCjQ-7od5IVz8ug6D-apxFLkDTsoy&index=1
+    All facebook playlist questions
     https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/description/
 
-    Category: Medium
+    Category: Medium, Facebook, FAANG
 
     Problem:
     Given a Binary Search Tree (BST), convert it into a sorted doubly linked list in-place (left as previous, right as next).

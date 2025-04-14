@@ -5,7 +5,11 @@ import java.util.*;
  * Problem: https://leetcode.com/problems/longest-consecutive-sequence/
  * Video Explanation: https://www.youtube.com/watch?v=qgizvmgeyUM&t=40s
  * Category: Medium, Tricky, Top 150, Facebook, FAANG
- * Related Problem: https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ (Medium)
+ * Related Problem: https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ (Medium) Locked
+ * https://leetcode.com/problems/find-three-consecutive-integers-that-sum-to-a-given-number/ Medium
+ * https://leetcode.com/problems/maximum-consecutive-floors-without-special-floors/ Medium
+ * https://leetcode.com/problems/length-of-the-longest-alphabetical-continuous-substring/ Medium
+ * https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/ Medium
  *
  * Time Complexity: O(n)
  * Space Complexity: O(n)
@@ -146,7 +150,7 @@ public class LongestConsecutiveSequence {
      *
      * The optimal hash set approach is ideal for its linear time complexity and simplicity, ensuring each element is only checked once, leading to efficient and concise code.
      */
-    public static class OptimizedApproach {
+    public static class OptimizedApproachOptimized1WithoutDuplicate {
         public int longestConsecutive(int[] nums) {
             HashSet<Integer> numSet = new HashSet<>();
             for (int num : nums) {
@@ -171,6 +175,36 @@ public class LongestConsecutiveSequence {
                 }
             }
             return maxLength;
+        }
+
+
+    }
+
+    public static class OptimizedApproachOptimized1WithDuplicate {
+
+
+        public int longestConsecutive(int[] nums) {
+            Set<Integer> seen = new HashSet<>();
+            for (int num: nums) {
+                seen.add(num);
+            }
+
+            int max = 0;
+            for (int num: seen) {//Tricky iterate over set not array
+
+                if (!seen.contains(num-1)) {
+                    int curMax = 1;
+                    int current = num;
+                    while (seen.contains(++current)) {
+                        curMax++;
+                    }
+                    max = Math.max(curMax, max);
+                }
+
+
+            }
+            return max;
+
         }
 
     }

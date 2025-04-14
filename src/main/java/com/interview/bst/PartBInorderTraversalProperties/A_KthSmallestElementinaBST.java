@@ -8,7 +8,7 @@ import java.util.List;
  * Problem: Kth Smallest Element in a BST
  * Link: https://leetcode.com/problems/kth-smallest-element-in-a-bst/
  *
- * Difficulty: Medium | Must-Do | Asked in: Facebook
+ * Difficulty: Medium | Must-Do | Asked in: Facebook, FAANG
  * Related Problems:
  * - Find Kth Largest (Reverse Inorder) - Google
  * - Second Minimum Node in a Binary Tree (Easy) - https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/

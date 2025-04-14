@@ -2,7 +2,7 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
 
 /*
     https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
-    Category: Medium
+    Category: Medium, Facebook, Tricky, FAANG
     Related:
     https://leetcode.com/problems/split-array-largest-sum/ Hard
     https://leetcode.com/problems/divide-chocolate/ Hard

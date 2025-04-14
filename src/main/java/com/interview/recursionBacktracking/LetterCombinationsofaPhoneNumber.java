@@ -6,6 +6,12 @@ import java.util.*;
  * Category: Medium, Must Do, Top150, Facebook, FAANG
  * https://www.youtube.com/watch?v=Ydur1aYALc4
  * Related: https://leetcode.com/problems/binary-watch/ Easy
+ * https://leetcode.com/problems/generate-parentheses/ Medium
+ * https://leetcode.com/problems/combination-sum/ Medium
+ * https://leetcode.com/problems/binary-watch/ Easy
+ * https://leetcode.com/problems/count-number-of-texts/ Medium
+ * https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/ Easy
+ * https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-ii/ Medium
  * Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
 
 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.

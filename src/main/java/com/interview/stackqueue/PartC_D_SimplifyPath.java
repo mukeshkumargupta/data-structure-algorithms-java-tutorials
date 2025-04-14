@@ -6,6 +6,7 @@ import java.util.Stack;
 
 /*
 Category: Medium, Facebook, FAANG
+https://leetcode.com/problems/simplify-path/
 You are given an absolute path for a Unix-style file system, which always begins with a slash '/'. Your task is to transform this absolute path into its simplified canonical path.
 
 The rules of a Unix-style file system are as follows:
@@ -159,4 +160,5 @@ public class PartC_D_SimplifyPath {
             System.out.println(simplifyPath(path)); // Output: "/usr/bin"
         }
     }
+
 }

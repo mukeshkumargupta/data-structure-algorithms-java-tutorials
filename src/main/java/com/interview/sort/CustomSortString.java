@@ -6,7 +6,7 @@ import java.util.Map;
 
 /*
 🔗 Problem: https://leetcode.com/problems/custom-sort-string/description/
-📌 Category: Medium, Facebook
+📌 Category: Medium, Facebook, FAANG
 https://www.youtube.com/watch?v=eAU3snVZs5Q
 🔗 Related: https://leetcode.com/problems/sort-the-students-by-their-kth-score/ (Medium)
 

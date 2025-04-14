@@ -2,7 +2,7 @@ package com.interview.tree.PartCATreeProperties;
 
 import com.interview.tree.TreeNode;
 
-/**
+/*
  * Date 04/11/2017
  * @author Mukesh Kumar Gupta
  * 
@@ -10,7 +10,7 @@ import com.interview.tree.TreeNode;
  * 
  * Given a binary tree, return true if it is binary search tree else return false.
  * https://leetcode.com/problems/validate-binary-search-tree/submissions/ 100% runtime
- * Category: Medium, Must Do
+ * Category: Medium, Must Do, FAANG, Facebook
  * Related
  * https://leetcode.com/problems/find-mode-in-binary-search-tree/ Easy
  * 

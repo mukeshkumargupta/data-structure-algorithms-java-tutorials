@@ -73,12 +73,12 @@ public class PartFNMeetingsInOneRoom {
         Collections.sort(meetings, (a, b) -> a.end - b.end);
 
         int result = 0;
-        int limit = meetings.get(0).end; // The end time of the last selected meeting
+        int endingTime = meetings.get(0).end; // The end time of the last selected meeting
         result++;
 
         for (int i = 1; i < start.length; i++) {
-            if (meetings.get(i).start > limit) {
-                limit = meetings.get(i).end;
+            if (meetings.get(i).start > endingTime) {
+                endingTime = meetings.get(i).end;
                 result++;
             }
         }

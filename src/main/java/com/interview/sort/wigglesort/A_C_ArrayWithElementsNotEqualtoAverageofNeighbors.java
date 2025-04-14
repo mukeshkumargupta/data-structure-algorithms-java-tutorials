@@ -180,18 +180,23 @@ public class A_C_ArrayWithElementsNotEqualtoAverageofNeighbors {
      * - Optimal (Sort & Merge in Zig-Zag Order): O(N log N) → Efficient for N ≤ 10⁵
      */
     private static class Optimal {
+        //Note: https://leetcode.com/problems/wiggle-sort-ii/ this can also works as its is here
         public int[] rearrangeArray(int[] nums) {
             Arrays.sort(nums);
-            int n = nums.length;
-            int[] result = new int[n];
-            int left = 0, right = (n + 1) / 2; // Two pointers
 
-            for (int i = 0; i < n; i++) {
-                if (i % 2 == 0) {
-                    result[i] = nums[left++];
-                } else {
-                    result[i] = nums[right++];
-                }
+            int l = nums.length;
+            int i = 1; int j = l-1;
+            int[] result = new int[l];
+            while (i < l ) {
+                result[i] = nums[j];
+                i +=2;
+                j--;
+            }
+            i = 0;
+            while (i < l) {
+                result[i] = nums[j];
+                i +=2;
+                j--;
             }
             return result;
         }

@@ -2,7 +2,7 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
 
 /*
     https://leetcode.com/problems/koko-eating-bananas/description/
-    Category:Medium
+    Category:Medium, Facebook, FAANG
     https://www.youtube.com/watch?v=qyfekrNni90&list=PLgUwDviBIf0pMFMWuuvDNMAkoQFi-h0ZF&index=13
     Related:
     https://leetcode.com/problems/minimize-max-distance-to-gas-station/ Hard

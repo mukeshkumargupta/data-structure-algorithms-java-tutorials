@@ -30,15 +30,13 @@ s consists only of printable ASCII characters.
  */
 public class ValidPalindromeHavingSpecialCharacter {
     boolean isLetterOrDigit(Character ch) {
-        int smallCharIndex = ch - 'a';
-        int bigCharIndex = ch - 'A';
-        int intCharIndex = ch - '0';
-        if ((smallCharIndex <= 25 && smallCharIndex >=0) || (bigCharIndex <= 25 && bigCharIndex >=0) || (intCharIndex <= 9 && intCharIndex >=0) ) {
+
+        if ((ch <= 'z' && ch >='a') || (ch <= 'Z' && ch >='A') || (ch <= '9' && ch >='0') ) {
             return true;
-            
+
         }
         return false;
-        
+
     }
     public boolean isPalindrome(String s) {
         /*
@@ -57,7 +55,7 @@ Memory Usage: 40.4 MB, less than 32.00% of Java online submissions for Valid Pal
                 end--;
                 continue;
             }
-            
+
             if (Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) {
                 return false;
             } else {

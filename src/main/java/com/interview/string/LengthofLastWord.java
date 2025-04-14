@@ -1,31 +1,30 @@
 package com.interview.string;
 
 /*
+ * Related Problems:
+ *
  * https://www.youtube.com/watch?v=E8r1N8wNR0A&list=PL1w8k37X_6L-bCZ3m0FFBZmRv4onE7Zjl&index=37
- * Category: Easy, Google, Easy, Tricky
- * https://leetcode.com/problems/length-of-last-word/
- * 
- * https://leetcode.com/problems/interleaving-string/ Medium
- * https://leetcode.com/problems/encode-number/ Medium
- * https://leetcode.com/problems/palindrome-partitioning-iii/ Medium
- * 
- * Given a string s consisting of some words separated by some number of spaces, return the length of the last word in the string.
-
-A word is a maximal substring consisting of non-space characters only.
-
- 
-
-Example 1:
-
-Input: s = "Hello World"
-Output: 5
-Explanation: The last word is "World" with length 5.
-
-Example 2:
-
-Input: s = "   fly me   to   the moon  "
-Output: 4
-Explanation: The last word is "moon" with length 4.
+ * Category: Easy, Google, Tricky
+ *
+ * https://leetcode.com/problems/length-of-last-word/ (Easy)
+ * https://leetcode.com/problems/interleaving-string/ (Medium)
+ * https://leetcode.com/problems/encode-number/ (Medium)
+ * https://leetcode.com/problems/palindrome-partitioning-iii/ (Medium)
+ *
+ * Problem Statement:
+ * Given a string `s` consisting of words separated by spaces, return the length of the last word in the string.
+ *
+ * A word is a maximal substring consisting of non-space characters only.
+ *
+ * Example 1:
+ * Input: s = "Hello World"
+ * Output: 5
+ * Explanation: The last word is "World" with length 5.
+ *
+ * Example 2:
+ * Input: s = "   fly me   to   the moon  "
+ * Output: 4
+ * Explanation: The last word is "moon" with length 4.
  */
 public class LengthofLastWord {
     

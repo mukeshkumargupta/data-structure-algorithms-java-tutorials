@@ -49,8 +49,6 @@ public class PartitionArrayIntoThreePartsWithEqualSum {
        If you have 3 segments but your i has not reached the end, then you cannot have 3 but 3 and something.
 */
 public boolean canThreePartsEqualSum(int[] arr) {
-    
-    public boolean canThreePartsEqualSum(int[] arr) {
         /*
          * Runtime: 1 ms, faster than 100.00% of Java online submissions for Partition Array Into Three Parts With Equal Sum.
 Memory Usage: 50.7 MB, less than 79.90% of Java online submissions for Partition Array Into Three Parts With Equal Sum.
@@ -80,35 +78,7 @@ Memory Usage: 50.7 MB, less than 79.90% of Java online submissions for Partition
         }
         return false;
     }
-    
-    /*
-     * Runtime: 1 ms, faster than 100.00% of Java online submissions for Partition Array Into Three Parts With Equal Sum.
-Memory Usage: 56.6 MB, less than 71.79% of Java online submissions for Partition Array Into Three Parts With Equal Sum.
-     */
-    int sum = 0;
-    for (int elm : arr) {
-        sum += elm;
-    }
-    if (sum % 3 != 0) {
-        return false;
-    }
-    int third = sum / 3, partialSum = 0, chunks =0;
-    for(int i = 0; i < arr.length; i++) {
-        partialSum += arr[i];
-        if (partialSum == third) {
-            sum -= partialSum;
-            partialSum = 0;
-            chunks++;
-            if (chunks == 2 && sum == third && i != arr.length -1) {
-                return true;
-            }
-            if (chunks == 3 && i != arr.length -1) {
-                return false;
-            }
-        }
-    }
-    return false;
-}
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         

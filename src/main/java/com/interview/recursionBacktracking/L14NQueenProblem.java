@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/**
+/*
  * Date 02/20/2017
  * @author Mukesh Kumar Gupta
  *
@@ -15,7 +15,7 @@ import java.util.List;
  *
  * Solution for https://leetcode.com/problems/n-queens/
  * https://www.youtube.com/watch?v=i05Ju7AftcM
- * Category: Hard, Must Do
+ * Category: Hard, Must Do,
  * Related: 
  * https://leetcode.com/problems/n-queens-ii/ Hard
  * https://leetcode.com/problems/grid-illumination/ Hard

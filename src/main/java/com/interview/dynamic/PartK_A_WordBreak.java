@@ -5,7 +5,7 @@ import java.util.*;
 /*
  * LeetCode: https://leetcode.com/problems/word-break/
  * Video Explanation: https://www.youtube.com/watch?v=th4OnoGasMU
- * Category: Medium, Tricky, Very Important (VVImp)
+ * Category: Medium, Tricky, Very Important (VVImp), Facebook FAANG
  * Related Problem: https://leetcode.com/problems/word-break-ii/ (Hard)
  *
  * Problem Statement:

@@ -3,10 +3,18 @@ package com.interview.linklist;
 
 /*
  * Reference: https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ * Category: Easy, Tricky
+ * Related:
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/ Medium
+ * https://leetcode.com/problems/remove-duplicates-from-an-unsorted-linked-list/ Medium Locked
  * STtaus: Done
  */
 public class DeleteDuplicates {
-
+    private static class TreeNode {
+        int val;
+        TreeNode next;
+        TreeNode(int x) { val = x; }
+    }
     public TreeNode deleteDuplicates(TreeNode head) {
         TreeNode currentTreeNode = head;
 
@@ -33,18 +41,6 @@ public class DeleteDuplicates {
         
         return head;
     }
-    
-    public static void main(String[] args) {
-        DeleteDuplicates dd = new DeleteDuplicates();
-        LinkList ll = new LinkList();
-        TreeNode head = null;
-        head = ll.addTreeNode(1, head);
-        head = ll.addTreeNode(1, head);
-        head = ll.addTreeNode(2, head);
-        dd.deleteDuplicates(head);
 
-        ll.printList(head);
-        
-    }
     
 }

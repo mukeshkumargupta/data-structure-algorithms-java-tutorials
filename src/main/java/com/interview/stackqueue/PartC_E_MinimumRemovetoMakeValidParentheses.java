@@ -8,7 +8,7 @@ import java.util.Stack;
 🔗 Problem Link:
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/description/?envType=problem-list-v2&envId=7p59281&utm_source=chatgpt.com
 
-📌 Category: Medium, Facebook, FAANG
+📌 Category: Medium, Facebook, FAANG, VVImp
 
 🔗 Related Problems:
 - https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/ (Medium)

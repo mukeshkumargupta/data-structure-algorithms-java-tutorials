@@ -4,7 +4,7 @@ import java.util.*;
 /*
  * https://leetcode.com/problems/next-permutation/
  * it is application of nextGreaterElement |||
- * Category: Medium
+ * Category: Medium, Facebook, FAANG
  * Related: https://leetcode.com/problems/palindrome-permutation-ii/ Medium locked
  * https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ Medium
  * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.

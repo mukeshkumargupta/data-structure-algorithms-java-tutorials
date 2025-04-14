@@ -1,9 +1,9 @@
 package com.interview.string;
 
-/**
+/*
  * https://leetcode.com/problems/multiply-strings/description/
- * https://www.youtube.com/watch?v=cgPqbpcIgoc
- * Category: Medium, Facebook, FAANG, Tricky
+ * https://www.youtube.com/watch?v=rUVg2Vewbo8
+ * Category: Medium, Facebook, FAANG, Tricky, Google
  * Related:
  * https://leetcode.com/problems/add-two-numbers/ Medium
  * https://leetcode.com/problems/plus-one/ Easy
@@ -62,23 +62,25 @@ public class MultiplyStrings {
 
             // Multiply each digit of num1 with each digit of num2
             for (int i = m - 1; i >= 0; i--) {
-                for (int j = n - 1; j >= 0; j--) {
+                for (int j = n - 1; j >= 0; j--) {//upper string visualise this
                     int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
-                    int sum = mul + product[i + j + 1];
+                    int sum = mul + product[i + j + 1]; //Tricky
 
                     product[i + j] += sum / 10;
-                    product[i + j + 1] = sum % 10;
+                    product[i + j + 1] = sum % 10; //Tricky since already its previous value added in mul
                 }
             }
 
             // Convert product array to string
             StringBuilder sb = new StringBuilder();
-            for (int num : product) {
-                if (!(sb.length() == 0 && num == 0)) { // Skip leading zeros
-                    sb.append(num);
+            for (int i = 0; i < product.length; i++) {
+                if (i == 0 && product[i] == 0) {
+                    continue;
                 }
+                sb.append(product[i]);
+
             }
-            return sb.length() == 0 ? "0" : sb.toString();
+            return sb.toString();
         }
 
         public static void main(String[] args) {

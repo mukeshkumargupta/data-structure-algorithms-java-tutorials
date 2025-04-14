@@ -6,13 +6,18 @@ import java.util.TreeMap;
 /*
  * Reference: https://www.youtube.com/watch?v=cr6Ip0J9izc
  * https://www.youtube.com/watch?v=LjPx4wQaRIs&list=PLgUwDviBIf0pmWCl2nepwGDO05a0-7EfJ&index=3 See this video
- * Category: Medium, VVImp, Must Do, Fundamental
+ * Category: Medium, VVImp, Must Do, Fundamental, Tricky
  * https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  * https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#
  * Derived Question: Given total time get max profit then knapsack we can use
  * Derived: Find all job index also then i think below optimization might not work
  * Related : https://leetcode.com/problems/maximum-earnings-from-taxi/ Medium Imp
  * https://leetcode.com/problems/two-best-non-overlapping-events/ Medium Imp
+ * 📌 3. DP + Sorting + Binary Search (Weighted Job Scheduling)
+1️⃣4️⃣ Leetcode 1751 - Maximum Number of Events That Can Be Attended II
+1️⃣5️⃣ Leetcode 2008 - Maximum Earnings From Taxi 🚖
+1️⃣6️⃣ Leetcode 2054 - Two Best Non-Overlapping Events
+1️⃣7️⃣ Leetcode 2402 - Meeting Rooms III
  * 
  * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 
@@ -321,6 +326,6 @@ public class PartLWeightedJobSchedulingMaximumProfit {
         jobs[4] = new Job(5, 8, 11);
         jobs[5] = new Job(7, 9, 2);
         PartLWeightedJobSchedulingMaximumProfit mp = new PartLWeightedJobSchedulingMaximumProfit();
-        System.out.println(mp.jobScheduling(jobs));
+        //System.out.println(mp.jobScheduling(jobs));
     }
 }

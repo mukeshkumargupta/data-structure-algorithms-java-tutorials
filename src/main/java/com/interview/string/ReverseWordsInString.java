@@ -11,51 +11,32 @@ import java.util.*;
 
 
 public class ReverseWordsInString {
-    public static void swap(char[] input, int i, int j) {
-        char temp = input[j];
-        input[j] = input[i];
-        input[i] = temp;
-    }
-    
-    public static void reverseString(char[] input, int start, int end) {
-        while (start < end) {
-            swap(input, start, end);
-            start++;
-            end--;
-        }
-        
-    }
-    
+    /*
+    Explanation:
+    Trim removes extra spaces at the start and end.
+
+    Split breaks the string into words using \\s+, ensuring multiple spaces are handled correctly.
+
+    Reverse iteration appends words to StringBuilder, maintaining correct order.
+
+    Trim the final result to remove any trailing spaces.
+     */
+
     public String reverseWords(String s) {
-        // Reference:
-        // https://howtodoinjava.com/java/string/remove-extra-whitespaces-between-words/
-        String removedExtraSpace = s.replaceAll("\\s+", " ");
-        String[] word = removedExtraSpace.split(" ");
-        StringBuffer sb = new StringBuffer();
-        int j = 0;
-        if (word.length > 0 && word[0].isEmpty()) {
-            // ignore first array
-            j = 1;
+        String[] words = s.trim().split("\\s+"); // Split by one or more spaces
+        StringBuilder result = new StringBuilder();
+
+        for (int i = words.length - 1; i >= 0; i--) {
+            result.append(words[i]).append(" ");
         }
-        for (; j < word.length; j++) {
-            char[] charArray = word[j].toCharArray();
-            reverseString(charArray, 0, word[j].length() - 1);
-            if (j < word.length - 1) {
-                sb.append(charArray);
-                sb.append(" ");
-            }
-            if (j == word.length - 1) {
-                // Dont put string otherwise it will append address
-                sb.append(charArray);
-            }
-            
-        }
-        char[] ouput = sb.toString().toCharArray();
-        reverseString(ouput, 0, sb.length() - 1);
-        // Dont print toString otherwise it will print reference so pass array
-        StringBuffer returnOutput = new StringBuffer();
-        returnOutput.append(ouput);
-        return returnOutput.toString();
+
+        return result.toString().trim(); // Remove trailing space
+    }
+    public static void main(String[] args) {
+        ReverseWordsInString solution = new ReverseWordsInString();
+        System.out.println(solution.reverseWords("  the sky is blue  ")); // "blue is sky the"
+        System.out.println(solution.reverseWords(" hello world  "));      // "world hello"
+        System.out.println(solution.reverseWords("a good   example"));    // "example good a"
     }
     
 }

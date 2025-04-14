@@ -1,8 +1,10 @@
 package com.interview.linklist;
 
-/**
+/*
  * Date 04/17/2017
  * @author Mukesh Kumar Gupta
+ * https://www.youtube.com/watch?v=R6-PnHODewY
+ * Category: Medium, top150, Tricky
  * 
  * Given a sorted linked list, delete all TreeNodes that have duplicate numbers, leaving only distinct
  * numbers from the original list.
@@ -14,30 +16,31 @@ package com.interview.linklist;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  * Status: Tried, VImp, Medium
  */
-public class DeleteDuplicateTreeNodes {
-    public TreeNode deleteDuplicates(TreeNode head) {
-        TreeNode dummyTreeNode = new TreeNode();
-        dummyTreeNode.next = head;
-        TreeNode current = head;
-        TreeNode prev = dummyTreeNode;
-        while (current != null) {
-            while(current.next != null && current.val == current.next.val) {
-                current = current.next;
-            }
-            if (prev.next == current) {
-                prev = current;
-            } else {
-                prev.next = current.next;
-            }
-            current = current.next;
-        }
-        return dummyTreeNode.next;
+public class DeleteDuplicateNodes {
+    private static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
     }
-    
-    public TreeNode deleteDuplicates_V1(TreeNode head) {
-        //Take previous and change previous only when curent and current next is not same  otherwise
-        //previous next point to current netx
-        return null;
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        ListNode curr = head;
 
+        while(curr != null) {
+            if(curr.next != null && curr.val == curr.next.val){
+                //skip the nodes whose values are equal to head.
+                while(curr.next != null && curr.val == curr.next.val){
+                    curr = curr.next;
+                }
+                prev.next = curr.next;
+            }
+            else{
+                prev = prev.next;
+            }
+            curr = curr.next;
+        }
+        return dummy.next;
     }
 }
