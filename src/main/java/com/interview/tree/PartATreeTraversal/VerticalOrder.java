@@ -5,7 +5,7 @@ import com.interview.tree.PartFTreeConstruction.ConstructTreeFromInOrderPreOrder
 
 import java.util.*;
 
-/**
+/*
  * Reference concept: Good explanation using bfs:
  * https://www.youtube.com/watch?v=XiVhlOye0V0 dfs:
  * https://www.youtube.com/watch?v=kqHNP6NTzME&list=PLIA-9QRQ0RqG6CNfSJSzT0h5Pc_HvwZG5&index=110&t=13s
@@ -370,7 +370,7 @@ Memory Usage: 39.5 MB, less than 36.20% of Java online submissions for Vertical 
     //////////////////////////////////////////////////////////////////////////////////
     
     public static void main(String[] args) {
-        int inorder[] = { 2, 4, 7, 8, 5, 1, 3, 6 };
+        /*int inorder[] = { 2, 4, 7, 8, 5, 1, 3, 6 };
         int preorder[] = { 1, 2, 7, 4, 5, 8, 6, 3 };
         ConstructTreeFromInOrderPreOrder ctf = new ConstructTreeFromInOrderPreOrder();
         TreeNode root = ctf.createTree(inorder, preorder);
@@ -432,6 +432,6 @@ Memory Usage: 39.5 MB, less than 36.20% of Java online submissions for Vertical 
         vo.printLeaf(root);
         
         // Just to ensure sorting part
-        // vo.buildEmployeeSort();
+        // vo.buildEmployeeSort();*/
     }
 }

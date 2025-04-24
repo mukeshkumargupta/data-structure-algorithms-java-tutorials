@@ -41,9 +41,22 @@ public class PathSum {
      * Category: Medium
      * Derived question: print all list of path, there is no criteria of sum
      */
+    /*
+    💡 Approach:
+    Traverse the tree using Depth-First Search (DFS).
+
+    At each node, add its value to the path.
+
+    If it's a leaf node and the remaining target equals the node's value, add the current path to the result.
+
+     Backtrack to explore other paths.
+    🕒 Time & Space Complexity:
+        Time: O(N), where N is the number of nodes.
+
+        Space: O(H) for the recursion stack (H = height of the tree), and O(N) if storing all paths in result.
+     */
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> result = new ArrayList<>();
-        if (root == null) return result;
         dfs(root, targetSum, new ArrayList<>(), result);
         return result;
     }
@@ -52,18 +65,16 @@ public class PathSum {
         if (node == null) return;
 
         path.add(node.val);
+        remainingSum -= node.val;
 
-        // Check if it's a leaf node and the path sum equals targetSum
-        if (node.left == null && node.right == null && remainingSum == node.val) {
-            result.add(new ArrayList<>(path));
-        } else {
-            // Continue the search on the left and right children
-            dfs(node.left, remainingSum - node.val, path, result);
-            dfs(node.right, remainingSum - node.val, path, result);
+        if (node.left == null && node.right == null && remainingSum == 0) {
+            result.add(new ArrayList<>(path)); // Found valid path
         }
 
-        // Backtrack to explore other paths
-        path.remove(path.size() - 1);
+        dfs(node.left, remainingSum, path, result);
+        dfs(node.right, remainingSum, path, result);
+
+        path.remove(path.size() - 1); // Backtrack
     }
     
     private void sumNumbersUtil(TreeNode root, int number, int[] sum) {
@@ -81,7 +92,7 @@ public class PathSum {
     //Reference: https://leetcode.com/problems/sum-root-to-leaf-numbers
     /*
      * Category: Medium, Must Do
-     * Derived, Minum sum , maximum sum, average out of all
+     * Derived, Minium sum , maximum sum, average out of all
      */
     private int sumNumbers(TreeNode root) {
         if (root == null) {

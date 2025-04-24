@@ -1,6 +1,6 @@
 package com.interview.array;
 
-import com.interview.twopointer.ThreeSumSmaller;
+import com.interview.twopointer.twopointersumpattern.ThreeSumSmaller;
 import junit.framework.Assert;
 import org.junit.Test;
 

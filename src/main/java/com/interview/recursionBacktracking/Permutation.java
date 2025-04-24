@@ -34,7 +34,47 @@ Input: nums = [1]
 Output: [[1]]
  */
 public class Permutation {
+    /*
+        ✅ Permutations (Distinct Elements)
 
+        🔗 Problem: https://leetcode.com/problems/permutations/
+        🎥 Video: https://www.youtube.com/watch?v=f2ic2Rsc9pU
+
+        📌 Idea:
+        - Generate all permutations of the input array using backtracking and swapping.
+        - At each recursive call, swap the current element with the rest and recurse on the remaining array.
+        - Restore the array back to its previous state after recursion (backtrack step).
+
+        🔄 Total Number of Permutations for n distinct elements = n!
+
+        ⏱ Time Complexity: O(n * n!)
+        🧮 Why?
+        - There are n! permutations of an array of size n.
+        - For each permutation, a copy of the array is added to the result using `new ArrayList<>()`, which takes O(n) time.
+
+        👉 So:
+        Time = O(n!) [for generating permutations] * O(n) [for copying each] = O(n * n!)
+
+        📦 Space Complexity: O(n) (excluding output)
+        🧮 Why?
+        - No extra data structures are used apart from the recursion stack.
+        - The recursion goes n levels deep → O(n) call stack.
+        - `result` holds the output, not part of auxiliary space.
+
+        📝 Output Space:
+        - result contains n! permutations.
+        - Each permutation is a list of n elements.
+        - So output space = O(n * n!)
+
+        ✅ Summary:
+        +------------------+------------------+---------------------------------------------+
+        |     Metric       |   Complexity     |                  Reasoning                  |
+        +------------------+------------------+---------------------------------------------+
+        | Time             |   O(n * n!)      | n! permutations, each copied in O(n) time   |
+        | Space            |   O(n)           | Recursion stack depth                       |
+        | Output Space     |   O(n * n!)      | Final result list with all permutations     |
+        +------------------+------------------+---------------------------------------------+
+    */
     List<List<Integer>> result = new ArrayList<>();
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];

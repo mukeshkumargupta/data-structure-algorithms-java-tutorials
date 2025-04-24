@@ -2,7 +2,7 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
 
 /*
     https://leetcode.com/problems/kth-missing-positive-number/description/
-    Category: Easy, Tricky
+    Category: Easy, Tricky, FAANG, Google, Facebook, Amazon
     https://www.youtube.com/watch?v=uZ0N_hZpyps&list=PLgUwDviBIf0pMFMWuuvDNMAkoQFi-h0ZF&index=17
     Related:
     https://leetcode.com/problems/append-k-integers-with-minimal-sum/ Medium

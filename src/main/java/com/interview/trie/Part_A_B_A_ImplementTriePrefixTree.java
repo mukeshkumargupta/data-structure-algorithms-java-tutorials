@@ -5,14 +5,50 @@ import java.util.*;
  * https://leetcode.com/problems/implement-trie-prefix-tree
  * https://www.youtube.com/watch?v=dBGUmUQhjaM&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=1 Taken form takeyouforward
  * Note: Insertion recursive and search iterative is fast
- * Category: Medium, Fundamental
- * Related: https://leetcode.com/problems/design-add-and-search-words-val-structure/
- * https://leetcode.com/problems/design-search-autocomplete-system/
- * https://leetcode.com/problems/replace-words/
- * https://leetcode.com/problems/implement-magic-dictionary/
- * https://leetcode.com/problems/implement-trie-ii-prefix-tree/
+ * Category: Medium, Fundamental, Must Do
+ * Related:
+ * https://leetcode.com/problems/design-add-and-search-words-data-structure/ Medium
+ * https://leetcode.com/problems/design-search-autocomplete-system/ Hard
+ * https://leetcode.com/problems/replace-words/ Medium
+ * https://leetcode.com/problems/implement-magic-dictionary/ Medium
+ * https://leetcode.com/problems/encrypt-and-decrypt-strings/ Hard
+ * https://leetcode.com/problems/implement-trie-ii-prefix-tree/ Medium Locked
+ * https://leetcode.com/problems/count-prefix-and-suffix-pairs-ii/ Hard
+ * https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/ Easy
  * 
- * 
+ * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+
+Implement the Trie class:
+
+Trie() Initializes the trie object.
+void insert(String word) Inserts the string word into the trie.
+boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
+boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
+
+
+Example 1:
+
+Input
+["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+[[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+Output
+[null, null, true, false, true, null, true]
+
+Explanation
+Trie trie = new Trie();
+trie.insert("apple");
+trie.search("apple");   // return True
+trie.search("app");     // return False
+trie.startsWith("app"); // return True
+trie.insert("app");
+trie.search("app");     // return True
+
+
+Constraints:
+
+1 <= word.length, prefix.length <= 2000
+word and prefix consist only of lowercase English letters.
+At most 3 * 104 calls in total will be made to insert, search, and startsWith.
  * 
  */
 public class Part_A_B_A_ImplementTriePrefixTree {

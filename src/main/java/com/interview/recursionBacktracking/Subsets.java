@@ -32,6 +32,43 @@ Constraints:
 All the numbers of nums are unique.
  */
 public class Subsets {
+    /*
+        ✅ Total Number of Subsets:
+        For an array of size n, the number of possible subsets = 2^n.
+
+        ⏱ Time Complexity: O(2^n * n)
+        🧮 Why?
+        - There are 2^n subsets for a set of n elements.
+        - For each subset, you’re copying the current 'ds' into the result: new ArrayList<>(ds) → which takes O(k) time,
+          where k is the size of the current subset.
+        - In the worst case, a subset can be of size n. So copying each subset into the result costs up to O(n).
+
+        👉 Hence:
+        Time = O(2^n) [for generating subsets] * O(n) [to copy each subset] = O(2^n * n)
+
+        📦 Space Complexity: O(n) (excluding output)
+        🧮 Why?
+        - Auxiliary Space includes Recursion Stack + temp list 'ds':
+            • 'ds' holds up to n elements at any point → O(n)
+            • Recursion call stack depth is also O(n)
+
+        So, overall auxiliary space used at any given time (excluding result list) is O(n).
+
+        📝 Note on Result List:
+        - If you include the output:
+            • The result contains 2^n subsets
+            • Each subset can have up to n elements
+        - So total space used = O(2^n * n) for the result list
+
+        ✅ Summary:
+        +------------------+------------------+--------------------------------------------+
+        |     Metric       |   Complexity     |                 Reasoning                  |
+        +------------------+------------------+--------------------------------------------+
+        | Time             |   O(2^n * n)     | 2^n subsets, each copied in O(n)           |
+        | Space            |   O(n)           | Recursion + temp list (ds)                 |
+        | Output Space     |   O(2^n * n)     | If you include result list in calculation  |
+        +------------------+------------------+--------------------------------------------+
+    */
     private void subsets(int[] nums, int start, int end, List<Integer> ds, List<List<Integer>> result) {
         result.add(new ArrayList<>(ds));
         

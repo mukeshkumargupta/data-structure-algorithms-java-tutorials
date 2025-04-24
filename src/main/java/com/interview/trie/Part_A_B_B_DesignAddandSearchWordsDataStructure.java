@@ -1,13 +1,36 @@
 package com.interview.trie;
 
 /*
- * https://leetcode.com/problems/design-add-and-search-words-data-structure/submissions/
+ * https://leetcode.com/problems/design-add-and-search-words-data-structure/
  * Category: Medium, Google, Facebook, Must Do
- * https://www.youtube.com/watch?v=4OyefqK-LDA&list=PL1w8k37X_6L_24-tbM6l0AGEaHoLFEtQv&index=22
- * Runtime: 50 ms, faster than 66.10% of Java online submissions for Design Add and Search Words Data Structure.
-Memory Usage: 49.5 MB, less than 95.21% of Java online submissions for Design Add and Search Words Data Structure.
-https://leetcode.com/problems/prefix-and-suffix-search/ Hard
+ * Video Explanation: https://www.youtube.com/watch?v=4OyefqK-LDA&list=PL1w8k37X_6L_24-tbM6l0AGEaHoLFEtQv&index=22
+ * Runtime: 50 ms, faster than 66.10% of Java online submissions.
+ * Memory Usage: 49.5 MB, less than 95.21% of Java online submissions.
+ *
+ * Related Problems:
+ * - https://leetcode.com/problems/implement-trie-prefix-tree/ (Medium)
+ * - https://leetcode.com/problems/prefix-and-suffix-search/ (Hard)
+ * - https://leetcode.com/problems/match-substring-after-replacement/ (Hard)
+ * - https://leetcode.com/problems/sum-of-prefix-scores-of-strings/ (Hard)
+ * - https://leetcode.com/problems/count-prefix-and-suffix-pairs-ii/ (Hard)
+ * - https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/ (Easy)
+ *
+ * Problem Statement:
+ * Design a data structure that supports adding new words and finding if a string matches any previously added string.
+ *
+ * WordDictionary() => Initializes the object.
+ * void addWord(word) => Adds word to the data structure, it can be matched later.
+ * boolean search(word) => Returns true if there is any string in the data structure that matches word or false otherwise.
+ *   The word may contain dots '.' where dots can be matched with any letter.
+ *
+ * Example:
+ * Input:
+ * ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+ * [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+ * Output:
+ * [null,null,null,null,false,true,true,true]
  */
+
 import java.util.*;
 public class Part_A_B_B_DesignAddandSearchWordsDataStructure {
     class TrieNode {

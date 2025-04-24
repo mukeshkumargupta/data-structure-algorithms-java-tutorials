@@ -2,9 +2,9 @@ package com.interview.twopointersliddingwindow;
 
 import java.util.HashMap;
 
-/**
+/*
  * https://leetcode.com/problems/binary-subarrays-with-sum/submissions/1533300182/
- * Category: Medium
+ * Category: Medium, Must Do, Tricky
  * Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
  *
  * A subarray is a contiguous part of the array.

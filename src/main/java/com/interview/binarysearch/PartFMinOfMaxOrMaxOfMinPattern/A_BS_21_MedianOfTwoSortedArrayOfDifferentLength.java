@@ -153,6 +153,10 @@ public class A_BS_21_MedianOfTwoSortedArrayOfDifferentLength {
      * findMedianSortedArrays([1, 3, 8], [7, 9, 10, 11]) → Output: **8.0**
      */
     private static class Optimized {
+        /*
+         * Time complexity is O(log(min(m,n))
+         * Space complexity is O(1)
+         */
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             if (nums1.length > nums2.length) return findMedianSortedArrays(nums2, nums1); // Ensure nums1 is smaller
 

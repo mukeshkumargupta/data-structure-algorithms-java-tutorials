@@ -62,7 +62,7 @@ public class A_BS_19_PaintersPartitionandSplitArrayLargestSum {
     private static class BruitForce {
         public static int countPainters(ArrayList<Integer> boards, int time) {
             int n = boards.size(); // size of array.
-            int painters = 1;
+            int painters = 0;
             long boardsPainter = 0;
             for (int i = 0; i < n; i++) {
                 if (boardsPainter + boards.get(i) <= time) {
@@ -73,6 +73,9 @@ public class A_BS_19_PaintersPartitionandSplitArrayLargestSum {
                     painters++;
                     boardsPainter = boards.get(i);
                 }
+            }
+            if (boardsPainter > 0) {
+                painters++;
             }
             return painters;
         }
@@ -108,7 +111,7 @@ public class A_BS_19_PaintersPartitionandSplitArrayLargestSum {
     private static class Optimized {//Exactly same as book pages allocations
         public static int countPainters(ArrayList<Integer> boards, int time) {
             int n = boards.size(); // size of array.
-            int painters = 1;
+            int painters = 0;
             long boardsPainter = 0;
             for (int i = 0; i < n; i++) {
                 if (boardsPainter + boards.get(i) <= time) {
@@ -119,6 +122,9 @@ public class A_BS_19_PaintersPartitionandSplitArrayLargestSum {
                     painters++;
                     boardsPainter = boards.get(i);
                 }
+            }
+            if (boardsPainter > 0) {
+                painters++;
             }
             return painters;
         }

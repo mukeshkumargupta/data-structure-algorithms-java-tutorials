@@ -3,9 +3,11 @@ package com.interview.trie;
 /*
  * https://leetcode.com/problems/longest-common-prefix/
  * Category: Easy, Must Do, Fundamental
- * Related: https://leetcode.com/problems/similar-rgb-color/ Easy
- * https://leetcode.com/problems/maximum-number-of-removable-characters/ Medium
- * https://leetcode.com/problems/number-of-wonderful-substrings/ Medium
+ * Related:
+ * https://leetcode.com/problems/smallest-missing-integer-greater-than-sequential-prefix-sum/ Easy
+ * https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/ Medium
+ * https://leetcode.com/problems/longest-common-suffix-queries/ Hard
+ * https://leetcode.com/problems/longest-common-prefix-after-at-most-one-removal/ Medium Locked
  * Other method: Using simple character compare is also done and maximize length
  * Write a function to find the longest common prefix string amongst an array of strings.
 
@@ -107,14 +109,14 @@ Time Complexity: O(N * M)
         }
 
         private void insert(String word) {
-            TrieNode node = root;
+            TrieNode current = root;
             for (char c : word.toCharArray()) {
                 int index = c - 'a';
-                if (node.children[index] == null) {
-                    node.children[index] = new TrieNode();
+                if (current.children[index] == null) {
+                    current.children[index] = new TrieNode();
                 }
-                node = node.children[index];
-                node.count++;
+                current = current.children[index];
+                current.count++;
             }
         }
 

@@ -2,6 +2,7 @@ package com.interview.tree.PartATreeTraversal;
 
 import com.interview.tree.TreeNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -9,6 +10,14 @@ import java.util.List;
  * Category: Easy
  */
 public class NaryTreePreorderTraversal {
+    private static class TreeNode {
+        int val;
+        List<TreeNode> children;
+        TreeNode(int val) {
+            this.val = val;
+            children = new ArrayList<>();
+        }
+    }
     List<Integer> result = new ArrayList<>();
     void preorderUtil(TreeNode root) {
         if (root == null) return;

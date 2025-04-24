@@ -104,7 +104,7 @@ public class A_BS_18_AllocateMinimumNumberofPages {
     private static class BruitForce {
         public static int countStudents(ArrayList<Integer> arr, int pages) {
             int n = arr.size(); // size of array
-            int students = 1;
+            int students = 0;
             long pagesStudent = 0;
             for (int i = 0; i < n; i++) {
                 if (pagesStudent + arr.get(i) <= pages) {
@@ -115,6 +115,9 @@ public class A_BS_18_AllocateMinimumNumberofPages {
                     students++;
                     pagesStudent = arr.get(i);
                 }
+            }
+            if (pagesStudent > 0) {
+                students++;
             }
             return students;
         }
@@ -157,7 +160,7 @@ public class A_BS_18_AllocateMinimumNumberofPages {
     private static class Optimized {
         public static int countStudents(ArrayList<Integer> arr, int pages) {
             int n = arr.size(); // size of array
-            int students = 1;
+            int students = 0;
             long pagesStudent = 0;
             for (int i = 0; i < n; i++) {
                 if (pagesStudent + arr.get(i) <= pages) {
@@ -168,6 +171,9 @@ public class A_BS_18_AllocateMinimumNumberofPages {
                     students++;
                     pagesStudent = arr.get(i);
                 }
+            }
+            if (pagesStudent > 0) {
+                students++;
             }
             return students;
         }

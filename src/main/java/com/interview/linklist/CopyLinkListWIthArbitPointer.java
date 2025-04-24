@@ -1,5 +1,8 @@
 package com.interview.linklist;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * Date 03/24/2017
  * @author Mukesh Kumar Gupta
@@ -66,7 +69,17 @@ Submissions
 1,454,972
  */
 public class CopyLinkListWIthArbitPointer {
+    class Node {
+        int val;
+        Node next;
+        Node random;
 
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
     static class RandomListNode {
         int label;
         RandomListNode next, random;
@@ -160,6 +173,6 @@ Memory Usage: 39 MB, less than 58.96% of Java online submissions for Copy List w
         randomListNode.random = randomListNode1;
         randomListNode2.random = randomListNode3;
         randomListNode1.random = randomListNode;
-        cll.copyRandomList(randomListNode);
+        //cll.copyRandomList(randomListNode);
     }
 }

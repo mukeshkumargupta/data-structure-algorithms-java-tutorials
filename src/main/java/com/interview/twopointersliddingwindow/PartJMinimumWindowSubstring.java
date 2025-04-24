@@ -7,7 +7,7 @@ Problem Breakdown:
 Given two strings s and t, find the smallest substring in s that contains all the characters from t (including duplicates). If no such substring exists, return an empty string.
 https://www.youtube.com/watch?v=WJaij9ffOIY&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=12
 https://leetcode.com/problems/minimum-window-substring/submissions/1423080303/
-Category: Hard
+Category: Hard, Must Do
 Related:
 https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/ Hard
 https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/ Hard

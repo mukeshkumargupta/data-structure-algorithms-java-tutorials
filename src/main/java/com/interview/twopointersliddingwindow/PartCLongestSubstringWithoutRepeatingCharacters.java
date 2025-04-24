@@ -8,7 +8,7 @@ import java.util.Set;
 https://www.youtube.com/watch?v=-zSxTJkcdAo&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=4
 /*
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
- * Category: Medium, Tricky, Amazon, Top150, VVImp
+ * Category: Medium, Tricky, Amazon, Top150, VVImp, Must Do
  * https://www.youtube.com/watch?v=qtVh-XEpsJo&t=1090s
  * Related:
  * https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/ Medium

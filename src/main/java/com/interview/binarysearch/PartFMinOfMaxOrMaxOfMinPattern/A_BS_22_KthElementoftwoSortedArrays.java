@@ -10,22 +10,26 @@ package com.interview.binarysearch.PartFMinOfMaxOrMaxOfMinPattern;
  * https://www.codingninjas.com/codestudio/problems/k-th-element-of-2-sorted-array_1164159
  */
 public class A_BS_22_KthElementoftwoSortedArrays {
+    /*
+   TC:  O(log(min(n,m))) approach
+     */
     public long kthElement(int arr1[], int arr2[], int n, int m, int k) {
         /*
          * Runtime: 2 ms, faster than 99.90% of Java online submissions for Median of
          * Two Sorted Arrays. Memory Usage: 40.3 MB, less than 67.80% of Java online
          * submissions for Median of Two Sorted Arrays. TC: log(min(l1, l2)
          */
-        if (arr2.length < arr1.length)
-            return kthElement(arr2, arr1, m, n, k);
+
+        if (arr1.length > arr2.length) return kthElement(arr2, arr1, m, n, k); // Ensure nums1 is smaller
         
         int l1 = arr1.length;
         int l2 = arr2.length;
-        int start = Math.max(0, k - l2), end = Math.min(l1, k);//start u can make 0 as well, should work
-        
-        while (start <= end) {
+        int low = Math.max(0, k - l2); //suppose k=4 and l2=2  then low=2 have to choices
+        int high = Math.min(l1, k);// suppose k=4 and l1=3 then high=3 //start u can make 0 as well, should work see video
+        //Maintaing k element is such a way that kth largest element is at k-1 index means all left part will be smaller and all right part will be greater
+        while (low <= high) {
             // int cut1 = (start+end) >> 1;
-            int cut1 = start + (end - start) / 2;
+            int cut1 = low + (high - low) / 2;
             int cut2 = k - cut1;
             
             int left1 = cut1 == 0 ? Integer.MIN_VALUE : arr1[cut1 - 1];
@@ -37,9 +41,9 @@ public class A_BS_22_KthElementoftwoSortedArrays {
             if (left1 <= right2 && left2 <= right1) {
                 return Math.max(left1, left2);
             } else if (left1 > right2) {
-                end = cut1 - 1;
+                high = cut1 - 1;
             } else {
-                start = cut1 + 1;
+                low = cut1 + 1;
             }
         }
         return -1;

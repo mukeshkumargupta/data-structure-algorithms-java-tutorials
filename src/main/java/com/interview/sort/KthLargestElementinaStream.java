@@ -7,60 +7,51 @@ import java.util.*;
  */
 
 public class KthLargestElementinaStream {
-    Queue<Integer> pq = new PriorityQueue<>((a, b) -> {
+    /*
+        ✅ Time and Space Complexity:
+        Time Complexity:
+
+        add() runs in O(log k) due to heap insertion/removal.
+
+        Constructor processes n elements → O(n log k)
+
+        Space Complexity: O(k) — the heap stores only k elements.
+     */
+    Queue<Integer> minHeap = new PriorityQueue<>((a, b) -> {
         return a - b;
     });
     int kthLargest;
     
     public KthLargestElementinaStream(int k, int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            if (pq.size() < k) {
-                // System.out.println(nums[i]);
-                pq.add(nums[i]);
-                
-            } else {
-                if (pq.peek() < nums[i]) {
-                    pq.remove();
-                    // System.out.println("Greater");
-                    // System.out.println(nums[i]);
-                    pq.add(nums[i]);
-                    
-                }
-                
-            }
-            
+        this.kthLargest = k;
+        minHeap = new PriorityQueue<>();
+
+        // Initialize the min heap with up to k elements
+        for (int num : nums) {
+            add(num);
         }
-        kthLargest = k;
-        // Print
-        /*
-         * for (int val : pq) { System.out.println(val);
-         * 
-         * }
-         */
         
     }
-    
+
     public int add(int val) {
-        if (pq.size() < kthLargest) {
-            System.out.println(val);
-            pq.add(val);
-            
-        } else {
-            if (pq.size() > 0 && pq.peek() < val) {
-                pq.remove();
-                System.out.println("Greater");
-                System.out.println(val);
-                pq.add(val);
-                
-            }
-            
+        minHeap.offer(val);
+
+        // Maintain only k largest elements in the heap
+        if (minHeap.size() > kthLargest) {
+            minHeap.poll();
         }
-        if (pq.size() > 0) {
-            return pq.peek();
-            
-        } else {
-            return 0;
-        }
-        
+
+        // Top of the heap is the kth largest element
+        return minHeap.peek();
     }
+    public static void main(String[] args) {
+        int[] nums = {4, 5, 8, 2};
+        KthLargestElementinaStream kthLargest = new KthLargestElementinaStream(3, nums);
+        System.out.println(kthLargest.add(3));   // returns 4
+        System.out.println(kthLargest.add(5));   // returns 5
+        System.out.println(kthLargest.add(10));  // returns 5
+        System.out.println(kthLargest.add(9));   // returns 8
+        System.out.println(kthLargest.add(4));   // returns 8
+    }
+
 }

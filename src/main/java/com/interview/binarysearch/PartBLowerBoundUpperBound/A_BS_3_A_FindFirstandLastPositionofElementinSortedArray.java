@@ -118,7 +118,7 @@ public class A_BS_3_A_FindFirstandLastPositionofElementinSortedArray {
 
         public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int k) {
             int lb = lowerBound(arr, n, k);
-            if (lb == n || arr.get(lb) != k) return new int[] { -1, -1};
+            if (lb == n || arr.get(lb) != k) return new int[] { -1, -1};//Tricky there could be changes u got lowerbound index but not matched just lower so u need to ensure it by checking target not found
             int ub = upperBound(arr, n, k);
             return new int[] {lb, ub - 1};
         }

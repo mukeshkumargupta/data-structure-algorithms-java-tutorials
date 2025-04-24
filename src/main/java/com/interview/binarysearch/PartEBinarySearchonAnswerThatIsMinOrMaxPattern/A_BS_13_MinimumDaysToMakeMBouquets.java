@@ -4,7 +4,7 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
     https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/
     https://www.youtube.com/watch?v=TXAuxeYBTdg&list=PLgUwDviBIf0pMFMWuuvDNMAkoQFi-h0ZF&index=14
 
-    Category: Medium
+    Category: Medium, Must Do
     Related:
     https://leetcode.com/problems/maximize-the-confusion-of-an-exam/ Medium
     https://leetcode.com/problems/earliest-possible-day-of-full-bloom/ Hard

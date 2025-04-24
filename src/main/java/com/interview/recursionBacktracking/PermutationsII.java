@@ -31,6 +31,20 @@ Constraints:
 -10 <= nums[i] <= 10
  */
 public class PermutationsII {
+    /*
+    Final Summary of Complexity:
+    Time Complexity: O(n * n!)
+
+    n! for generating permutations.
+
+    For each permutation, we perform an O(n) operation to copy it to the result.
+
+    Space Complexity:
+
+    Auxiliary Space: O(n) for recursion stack and Set<Integer>.
+
+    Output Space: O(n * n!) for storing the result.
+     */
     List<List<Integer>> result = new ArrayList<>();
 Set<String> set = new HashSet<>();
 private void swap(int[] nums, int i, int j) {

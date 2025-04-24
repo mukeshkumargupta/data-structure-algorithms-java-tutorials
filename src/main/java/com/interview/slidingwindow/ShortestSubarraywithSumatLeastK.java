@@ -1,51 +1,52 @@
 package com.interview.slidingwindow;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /*
- * 
+ * ----------------------------------------------------------------------------------
  * https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
  * https://www.youtube.com/watch?v=K0NgGYEAkA4
  * Category: Hard, Tricky
- * Derived, Find all list which sum is atleast k sum
- * Related:
- * https://leetcode.com/problems/find-k-pairs-with-smallest-sums/ Medium, VVImp
- * https://leetcode.com/problems/remove-comments/ Medium, Bad
- * https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/ Medium VImp
- * 
- * 862. Shortest Subarray with Sum at Least K
-Hard
-
-2797
-
-73
-
-Add to List
-
-Share
-Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. If there is no such subarray, return -1.
-
-A subarray is a contiguous part of an array.
-
- 
-
-Example 1:
-
-Input: nums = [1], k = 1
-Output: 1
-Example 2:
-
-Input: nums = [1,2], k = 4
-Output: -1
-Example 3:
-
-Input: nums = [2,-1,2], k = 3
-Output: 3
- 
-
-Constraints:
-
-1 <= nums.length <= 105
--105 <= nums[i] <= 105
-1 <= k <= 109
+ *
+ * 💡 Concept: Prefix Sum + Monotonic Queue (Deque)
+ * Derived Idea: Find all subarrays whose sum is at least K and return the shortest.
+ *
+ * 🔍 Problem Statement:
+ * Given an integer array `nums` and an integer `k`, return the length of the shortest
+ * non-empty subarray of `nums` with a sum of at least `k`. If there is no such subarray,
+ * return -1.
+ *
+ * Note: A subarray is a contiguous part of an array.
+ *
+ * ✅ Related Problems:
+ * - https://leetcode.com/problems/find-k-pairs-with-smallest-sums/       [Medium, VVImp]
+ * - https://leetcode.com/problems/remove-comments/                       [Medium, Bad]
+ * - https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/ [Medium, VImp]
+ *
+ * ----------------------------------------------------------------------------------
+ *
+ * 🔸 Examples:
+ *
+ * Example 1:
+ * Input: nums = [1], k = 1
+ * Output: 1
+ *
+ * Example 2:
+ * Input: nums = [1, 2], k = 4
+ * Output: -1
+ *
+ * Example 3:
+ * Input: nums = [2, -1, 2], k = 3
+ * Output: 3
+ *
+ * ----------------------------------------------------------------------------------
+ *
+ * 🔒 Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - -10^5 <= nums[i] <= 10^5
+ * - 1 <= k <= 10^9
+ *
  */
 public class ShortestSubarraywithSumatLeastK {
     public int shortestSubarray(int[] nums, int k) {

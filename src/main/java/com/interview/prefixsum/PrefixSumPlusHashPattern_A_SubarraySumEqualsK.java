@@ -2,7 +2,7 @@ package com.interview.prefixsum;
 import java.util.*;
 /*
  * Reference: https://leetcode.com/problems/subarray-sum-equals-k/
- * Category: Medium, Tricky, VVImp, SubarraySumEqualsK, Must Do, prefix sum + hash map
+ * Category: Medium, Tricky, Must Do, VVImp, SubarraySumEqualsK, Must Do, prefix sum + hash map
  * Related:
  * https://leetcode.com/problems/path-sum-iii/ same pattern
  * https://www.youtube.com/watch?v=frf7qxiN2qU&list=PLgUwDviBIf0rENwdL0nEH0uGom9no0nyB&index=4
@@ -31,6 +31,15 @@ import java.util.*;
  */
 public class PrefixSumPlusHashPattern_A_SubarraySumEqualsK {
 
+    /*
+    ⏱️ Time Complexity:
+    O(n²) — Two nested loops.
+
+    📦 Space Complexity:
+    O(1) — No extra space used apart from variables.
+
+
+     */
    private static class Bruitforce {
         public int subarraySumBruteForce(int[] nums, int k) {
             int count = 0;
@@ -48,21 +57,28 @@ public class PrefixSumPlusHashPattern_A_SubarraySumEqualsK {
         }
     }
 
+    /*
+    ⏱️ Time Complexity:
+    O(n) — Single pass through the array.
+
+    📦 Space Complexity:
+    O(n) — In the worst case, all prefix sums are different and stored in the HashMap.
+     */
     private static class optimalSolution {
         public int subarraySum(int[] nums, int k) {
 
-            int count = 0, s = 0;
+            int count = 0, prefixSum = 0;
             HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
 
             for(int i = 0; i < nums.length; i++) {
                 //Commulative sum
-                s += nums[i];
-                if(map.containsKey(s-k))
-                    count += map.get(s-k);
-                if(s==k)
+                prefixSum += nums[i];
+                if(map.containsKey(prefixSum-k))
+                    count += map.get(prefixSum-k);
+                if(prefixSum==k)
                     count++;
 
-                map.put(s, map.getOrDefault(s, 0) + 1);
+                map.put(prefixSum, map.getOrDefault(prefixSum, 0) + 1);
             }
             return count;
 

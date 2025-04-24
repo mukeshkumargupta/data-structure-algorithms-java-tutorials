@@ -5,6 +5,7 @@ import java.util.Arrays;
 /*
 
 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/description/?envType=study-plan-v2&envId=leetcode-75
+Category: top75, Medium, Facebook, Must Do
 Related:
 https://leetcode.com/problems/most-profit-assigning-work/description/ Medium
 https://leetcode.com/problems/longest-subsequence-with-limited-sum/ Easy

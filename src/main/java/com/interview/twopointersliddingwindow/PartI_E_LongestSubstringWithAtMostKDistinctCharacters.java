@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
+/*
  https://www.youtube.com/watch?v=teM9ZsVRQyc&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=6
  https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/ (Medium)
- Category: Medium
+ Category: Medium, Must Do
  https://www.naukri.com/code360/problems/distinct-characters_2221410?leftPanelTabValue=SUBMISSION
  */
 

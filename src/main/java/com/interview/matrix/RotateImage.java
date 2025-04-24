@@ -40,11 +40,24 @@ matrix[i].length == n
 -1000 <= matrix[i][j] <= 1000
  */
 public class RotateImage {
+    /*
+    ✅ Time and Space Complexity:
+    ⏱ Time Complexity: O(n²)
+    Transposing the matrix takes O(n²).
 
+    Reversing each row (n rows of length n) also takes O(n²) in total.
+
+    So, total time: O(n²).
+
+    💾 Space Complexity: O(1)
+    All operations are done in-place, using a few extra variables.
+
+    No extra space proportional to the input size.
+     */
     public void rotate(int[][] matrix) {
         int n = matrix.length;
 
-        // Transpose the matrix
+        // Step 1: Transpose the matrix
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
                 int temp = matrix[i][j];
@@ -53,20 +66,36 @@ public class RotateImage {
             }
         }
 
-        // Reverse each row
+        // Step 2: Reverse each row using two pointers
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n / 2; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][n - j - 1];
-                matrix[i][n - j - 1] = temp;
+            int left = 0;
+            int right = n - 1;
+            while (left < right) {
+                int temp = matrix[i][left];
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
+                left++;
+                right--;
             }
         }
     }
 
+    /*
+    ⏱ Time and Space Complexity
+    Time Complexity: O(n^2)
+
+    Transpose: O(n^2)
+
+    Reversing columns: O(n^2)
+
+    Space Complexity: O(1)
+
+    In-place swap, no extra space used.
+     */
     public void rotateCounterclockwise(int[][] matrix) {
         int n = matrix.length;
 
-        // Transpose the matrix
+        // Step 1: Transpose the matrix
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
                 int temp = matrix[i][j];
@@ -75,12 +104,15 @@ public class RotateImage {
             }
         }
 
-        // Reverse each column
+        // Step 2: Reverse each column (top to bottom using two-pointer approach)
         for (int j = 0; j < n; j++) {
-            for (int i = 0; i < n / 2; i++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[n - i - 1][j];
-                matrix[n - i - 1][j] = temp;
+            int top = 0, bottom = n - 1;
+            while (top < bottom) {
+                int temp = matrix[top][j];
+                matrix[top][j] = matrix[bottom][j];
+                matrix[bottom][j] = temp;
+                top++;
+                bottom--;
             }
         }
     }

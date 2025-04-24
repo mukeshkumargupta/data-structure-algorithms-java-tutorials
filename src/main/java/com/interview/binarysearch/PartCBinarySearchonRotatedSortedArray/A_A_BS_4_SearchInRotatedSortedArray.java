@@ -106,7 +106,7 @@ public class A_A_BS_4_SearchInRotatedSortedArray {
             // Check if the left side is sorted
             if (nums[left] <= nums[mid]) {
                 // Target is in the left sorted part
-                if (nums[left] <= target && target < nums[mid]) {
+                if (nums[left] <= target && target < nums[mid]) {//Tricky
                     right = mid - 1;
                 } else { // Otherwise, search in the right part
                     left = mid + 1;

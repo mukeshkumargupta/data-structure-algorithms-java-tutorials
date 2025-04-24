@@ -6,7 +6,7 @@ package com.interview.bits;
  *
  * LeetCode Problem: https://leetcode.com/problems/single-number-ii/
  *
- * Category: Medium, Facebook, Tricky
+ * Category: Medium, Facebook, Tricky, Must Do
  *
  * Related Problem:
  * - https://leetcode.com/problems/single-number-iii/ (Medium)

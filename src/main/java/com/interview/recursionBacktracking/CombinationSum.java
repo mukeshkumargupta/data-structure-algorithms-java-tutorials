@@ -98,7 +98,8 @@ public class CombinationSum {
             }
 
             for (int i = ind; i < candidates.length; i++) {
-                if (candidates[i] > target) continue; // Skip if the number exceeds target
+                if (candidates[i] > target) continue; // Skip if the number exceeds target, here it could not be break , because may be next element
+                // can give target  but part two of it since it is sorted so next element cant give target so it was break in part 2 of it
 
                 // Choose the element
                 current.add(candidates[i]);

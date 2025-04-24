@@ -5,7 +5,7 @@ import java.util.Collections;
 
 /*
     https://leetcode.com/problems/split-array-largest-sum/description/
-    Category: Hard, Facebook, FAANG, Trcky
+    Category: Hard, Facebook, FAANG, Tricky
     Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized.
 
     Return the minimized largest sum of the split.
@@ -45,7 +45,7 @@ public class A_BS_19_SplitArrayLargestSum {//Same as painter, book proble all ar
 
     public static int countPainters(ArrayList<Integer> boards, int time) {
         int n = boards.size(); // size of array.
-        int painters = 1;
+        int painters = 0;
         long boardsPainter = 0;
         for (int i = 0; i < n; i++) {
             if (boardsPainter + boards.get(i) <= time) {
@@ -57,8 +57,12 @@ public class A_BS_19_SplitArrayLargestSum {//Same as painter, book proble all ar
                 boardsPainter = boards.get(i);
             }
         }
+        if (boardsPainter > 0) {
+            painters++;
+        }
         return painters;
     }
+
 
     public static int findLargestMinDistance(ArrayList<Integer> boards, int k) {
         int low = Collections.max(boards);
@@ -78,5 +82,49 @@ public class A_BS_19_SplitArrayLargestSum {//Same as painter, book proble all ar
         }
         //return low;
         return ans;
+    }
+
+    private static class Solution {
+        int subarrayCount(int[] nums, int subArraySum) {
+            int count = 0;  // at least one subarray
+            int sum = 0;
+
+            for (int num : nums) {
+                if (sum + num <= subArraySum) {
+                    sum += num;
+                } else {
+                    count++;
+                    sum = num;
+                }
+            }
+            if (sum > 0) {
+                count++;
+            }
+
+            return count;
+        }
+
+        public int splitArray(int[] nums, int k) {
+            int low = Integer.MIN_VALUE;
+            int high = 0;
+            for (int num : nums) {
+                low = Math.max(low, num);  // min possible max sum
+                high += num;              // max possible max sum
+            }
+
+            int ans = high;
+            while (low <= high) {
+                int mid = low + (high - low) / 2;
+                int count = subarrayCount(nums, mid);
+                if (count <= k) {
+                    ans = mid;
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            return ans;
+        }
     }
 }

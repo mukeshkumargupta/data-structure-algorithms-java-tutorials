@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /*
 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/submissions/
-Category: Medium
+Category: Medium, Tricky
 https://www.youtube.com/watch?v=jKu4LbGV4lU
 Related: https://leetcode.com/problems/remove-invalid-parentheses/ Hard
 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/ Medium

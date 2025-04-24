@@ -1,5 +1,8 @@
 package com.interview.hash;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * https://leetcode.com/problems/contains-duplicate-ii/
  * category: Easy

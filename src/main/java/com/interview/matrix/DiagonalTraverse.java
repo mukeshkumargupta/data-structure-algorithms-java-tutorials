@@ -69,7 +69,7 @@ Space Complexity: O(NM).
 
             // Step 2: Construct result
             List<Integer> result = new ArrayList<>();
-            for (int key = 0; key <= n + m - 2; key++) {
+            for (int key = 0; key < n + m - 1; key++) {
                 List<Integer> diagonal = map.get(key);
                 if (key % 2 == 0) Collections.reverse(diagonal);
                 result.addAll(diagonal);
@@ -95,7 +95,7 @@ Space Complexity: O(1).
 
 
      */
-    private static class Optimal {
+    private static class Optimal {//Tricky
         public int[] findDiagonalOrder(int[][] mat) {//runtime 97% here right taken then dowon
             int R = mat.length;
             int C = mat[0].length;

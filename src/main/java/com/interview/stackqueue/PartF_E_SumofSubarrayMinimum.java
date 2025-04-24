@@ -3,13 +3,33 @@ package com.interview.stackqueue;
 import java.util.Stack;
 
 /*
-https://www.youtube.com/watch?v=v0e8p9JCgRc&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=9
-https://leetcode.com/problems/sum-of-subarray-minimums/description/
-Category: Medium, monotonic stack
-Related:
-https://leetcode.com/problems/sum-of-subarray-ranges/description/ Medium
-https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/ Hard
- */
+ 🔗 Problem:
+ https://leetcode.com/problems/sum-of-subarray-minimums/
+ 🧠 Category: Medium, Monotonic Stack
+ 🎥 Reference:
+ https://www.youtube.com/watch?v=v0e8p9JCgRc&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=9
+
+ Related Problems:
+ - https://leetcode.com/problems/sum-of-subarray-ranges/ (Medium)
+ - https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (Hard)
+
+ ✅ Description:
+ Given an array of integers arr, find the sum of min(b),
+ where b ranges over every (contiguous) subarray of arr.
+ Return the answer modulo 10^9 + 7.
+
+ 🧪 Example 1:
+ Input: arr = [3,1,2,4]
+ Output: 17
+
+ 🧪 Example 2:
+ Input: arr = [11,81,94,43,3]
+ Output: 444
+
+ ✅ Constraints:
+ 1 <= arr.length <= 3 * 10^4
+ 1 <= arr[i] <= 3 * 10^4
+*/
 public class PartF_E_SumofSubarrayMinimum {
 
     public static class SubarrayMinimumBruitforce {

@@ -50,7 +50,7 @@ public class CombinationSumII {
         
         
         for (int i = start; i < candidates.length; i++) {
-            if (i > start && candidates[i] == candidates[i-1]) {
+            if (i > start && candidates[i] == candidates[i-1]) {//additional line from combination sum 1
                 continue;
             }
             if (candidates[i] > target ) {

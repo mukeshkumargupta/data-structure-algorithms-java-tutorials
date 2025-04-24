@@ -2,7 +2,7 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
 
 /*
     https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
-    Category: Medium, Facebook, Tricky, FAANG
+    Category: Medium, Facebook, Tricky, FAANG, Must Do
     Related:
     https://leetcode.com/problems/split-array-largest-sum/ Hard
     https://leetcode.com/problems/divide-chocolate/ Hard
@@ -12,7 +12,9 @@ package com.interview.binarysearch.PartEBinarySearchonAnswerThatIsMinOrMaxPatter
     https://leetcode.com/problems/minimum-total-distance-traveled/ Medium
     A conveyor belt has packages that must be shipped from one port to another within days.
 
-    The ith package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship.
+    The ith package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt
+     (in the order given by weights).
+     We may not load more weight than the maximum weight capacity of the ship.
 
     Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days.
 
@@ -66,18 +68,23 @@ public class A_BS_15_CapacityToShipPackagesWithinDDays {
      */
     private static class BruitForce {
         public static int findDays(int[] weights, int cap) {
-            int days = 1; //First day.
+            int days = 0;
             int load = 0;
             int n = weights.length; //size of array.
             for (int i = 0; i < n; i++) {
-                if (load + weights[i] > cap) {
-                    days += 1; //move to next day
-                    load = weights[i]; //load the weight.
-                } else {
+                if (load + weights[i] <= cap) {
                     //load the weight on the same day.
                     load += weights[i];
+                } else {
+                    days += 1; //move to next day
+                    load = weights[i]; //load the weight.
+
                 }
             }
+            if (load > 0) {
+                days += 1;
+            }
+
             return days;
         }
 
@@ -115,18 +122,23 @@ public class A_BS_15_CapacityToShipPackagesWithinDDays {
      */
     private static class Optimized {
         public static int findDays(int[] weights, int cap) {
-            int days = 1; //First day.
+            int days = 0;
             int load = 0;
             int n = weights.length; //size of array.
             for (int i = 0; i < n; i++) {
-                if (load + weights[i] > cap) {
-                    days += 1; //move to next day
-                    load = weights[i]; //load the weight.
-                } else {
+                if (load + weights[i] <= cap) {
                     //load the weight on the same day.
                     load += weights[i];
+                } else {
+                    days += 1; //move to next day
+                    load = weights[i]; //load the weight.
+
                 }
             }
+            if (load > 0) {
+                days += 1;
+            }
+
             return days;
         }
 
@@ -152,6 +164,10 @@ public class A_BS_15_CapacityToShipPackagesWithinDDays {
             }
             //return low;
             return ans;
+        }
+
+        int shipWithinDays(int[] weights, int d) {
+            return leastWeightCapacity(weights, d);
         }
         public static void main(String[] args) {
             int[] weights = {5, 4, 5, 2, 3, 4, 5, 6};
