@@ -31,33 +31,30 @@ s and t consist only of lowercase English letters.
 Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 109, and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?
  */
 public class IsSubsequence {
+
     public boolean isSubsequence(String s, String t) {
         int l1 = s.length();
         int l2 = t.length();
-        int p1 = 0; 
-        int p2 = 0;
+        int p1 = 0, p2 = 0;
+
         if (l2 < l1) {
             return false;
         }
+
         while (p1 < l1 && p2 < l2) {
             if (s.charAt(p1) == t.charAt(p2)) {
                 p1++;
-                p2++;
-            } else {
-                p2++;
             }
+            p2++;
         }
-        if (p1 == l1) {
-            return true;
-        } else {
-            return false;
-        }
-        
 
+        return p1 == l1;
     }
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
+        IsSubsequence solution = new IsSubsequence();
+
+        System.out.println(solution.isSubsequence("abc", "ahbgdc")); // true
+        System.out.println(solution.isSubsequence("axc", "ahbgdc")); // false
     }
-    
 }

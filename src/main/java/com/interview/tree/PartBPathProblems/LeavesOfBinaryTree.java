@@ -10,15 +10,18 @@ import java.util.List;
  * Date 10/08/2017
  * @author Mukesh Kumar Gupta
  *
+ * Category: Must Do
  * Given a binary tree, collect a tree's TreeNodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
  *
  * Time complexity O(n^2) for unbalanced tree.
  *
- * https://leetcode.com/problems/find-leaves-of-binary-tree/
- * Derived question all all leaf TreeNode count in given tree, Find sum of all leaf TreeNode, find maximum in all leaf TreeNode
+ * https://leetcode.com/problems/find-leaves-of-binary-tree/ Locked
+ * Derived question all all leaf TreeNode count in given tree,
+ * Find sum of all leaf TreeNode,
+ * find maximum in all leaf TreeNode
  * find longest distance between leaf TreeNodes(Good Question Must Try), find shortest distance between leaf TreeNodes. find distance in between given two TreeNodes(Good Question Must Try)
  * 
- * Must Do
+ *
  */
 public class LeavesOfBinaryTree {
     public List<List<Integer>> findLeaves(TreeNode root) {

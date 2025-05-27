@@ -1,5 +1,6 @@
 package com.interview.dynamic;
 
+import com.interview.dynamic.PartC_DecodeWaysPattern.PartC_B_A_DecodeWays;
 import org.junit.Test;
 
 public class PartCBDecodeWaysTest {

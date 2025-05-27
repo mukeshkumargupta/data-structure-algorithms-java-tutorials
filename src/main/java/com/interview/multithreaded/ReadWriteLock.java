@@ -20,7 +20,11 @@ public class ReadWriteLock {
         
         readingThreads.put(callingThread, (getAccessCount(callingThread) + 1));
     }
-    
+
+    private Integer getAccessCount(Thread callingThread) {
+        return 0;//default
+    }
+
     public synchronized void unlockRead() {
         Thread callingThread = Thread.currentThread();
         int accessCount = getAccessCount(callingThread);
@@ -33,8 +37,9 @@ public class ReadWriteLock {
     }
     
     private boolean canGrantReadAccess(Thread callingThread){
-            if(writers > 0)            return false;
-            if(isReader(callingThread) return true;
+        int writers = 0;
+        if(writers > 0)            return false;
+            if(isReader(callingThread) && getReadAccessCount(callingThread) == 1)   return true;
             if(writeRequests > 0)      return false;
             return true;
           }

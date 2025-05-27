@@ -1,7 +1,7 @@
 package com.interview.tree;
 
 import com.interview.tree.PartFTreeConstruction.ConstructTreeFromInOrderPreOrder;
-import com.interview.tree.PartATreeTraversal.BinaryTreeLevelOrderTraversal;
+import com.interview.tree.PartATreeTraversal.A_B_A_BinaryTreeLevelOrderTraversal;
 import com.interview.tree.PartATreeTraversal.TreeTraversals;
 
 /**
@@ -54,7 +54,7 @@ public class SinkNegativeToBottom {
         TreeNode root = ctf.createTree(inorder, preorder);
         SinkNegativeToBottom szb = new SinkNegativeToBottom();
         szb.sinkZero(root);
-        BinaryTreeLevelOrderTraversal lot = new BinaryTreeLevelOrderTraversal();
+        A_B_A_BinaryTreeLevelOrderTraversal lot = new A_B_A_BinaryTreeLevelOrderTraversal();
         TreeTraversals tt = new TreeTraversals();
         tt.inOrder(root);
         lot.levelOrder(root);

@@ -4,7 +4,7 @@ import java.util.Stack;
 /*
 https://www.youtube.com/watch?v=_eYGqw_VDR4&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=11
 https://leetcode.com/problems/asteroid-collision/submissions/1424233342/
-Category: Medium
+Category: Medium, Tricky
 https://leetcode.com/problems/can-place-flowers/description/ Easy
 https://leetcode.com/problems/destroying-asteroids/description/ Medium
 https://leetcode.com/problems/count-collisions-on-a-road/description/ Medium

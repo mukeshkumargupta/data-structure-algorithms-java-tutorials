@@ -1,10 +1,5 @@
 package com.interview.tree.PartFTreeConstruction;
 
-import com.interview.tree.PartATreeTraversal.BinaryTreeLevelOrderTraversal;
-import com.interview.tree.TreeNode;
-import com.interview.tree.PartATreeTraversal.TreeTraversals;
-import com.sun.source.tree.Tree;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

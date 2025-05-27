@@ -233,7 +233,7 @@ class BookIssue {
 }
 
 // Test the system
-public class PartCOnlineLibrarySystem {
+public class PartC_1_OnlineLibrarySystem {
     public static void main(String[] args) {
         Library library = new Library();
         Admin admin = new Admin("John", "A001");

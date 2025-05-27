@@ -1,6 +1,6 @@
 package com.interview.misc;
 
-import com.interview.graph.BinaryMinHeap;
+import com.interview.heap.BinaryMinHeap;
 
 /**
  * Kth largest in rowwise and column wise sorted array

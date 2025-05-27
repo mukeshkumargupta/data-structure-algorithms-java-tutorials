@@ -199,7 +199,7 @@ class ParkingLot {
 }
 
 // Example usage
-public class ParkingLotSystem {
+public class PartB_1_ParkingLotSystem {
     public static void main(String[] args) {
         ParkingLot parkingLot = new ParkingLot(3, 10); // 3 levels, 10 spaces per level
 

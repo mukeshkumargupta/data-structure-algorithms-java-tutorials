@@ -8,7 +8,7 @@ import java.util.Map;
 /*
     🔗 Problem: https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/
     https://www.youtube.com/watch?v=taYRJf-M25I
-    📂 Category: Hard, Top 150, Tricky
+    📂 Category: Hard, Top150, Tricky
     Related:
     https://leetcode.com/problems/minimum-window-substring/ Hard
 

@@ -3,31 +3,35 @@ package com.interview.prefixsum;
 import java.util.*;
 /*
  * https://leetcode.com/problems/contiguous-array/
- * https://www.youtube.com/watch?v=9ZyLjjk536U&list=PLIA-9QRQ0RqGP4zrm09iyiVSXU-3e6CfP&index=59
+ * Video Explanation: https://www.youtube.com/watch?v=9ZyLjjk536U&list=PLIA-9QRQ0RqGP4zrm09iyiVSXU-3e6CfP&index=59
  * Category: Medium, Tricky
- * Related: https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/ Medium
- * Derived Question: Minimum and max length both asked, try with sliding window technics (Not tried yet for this question)
- * Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
-
- 
-
-Example 1:
-
-Input: nums = [0,1]
-Output: 2
-Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
-Example 2:
-
-Input: nums = [0,1,0]
-Output: 2
-Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
- 
-
-Constraints:
-
-1 <= nums.length <= 105
-nums[i] is either 0 or 1.
+ *
+ * Related:
+ * - https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/ (Medium)
+ *
+ * Notes:
+ * - This problem can be derived further: questions may ask for both minimum and maximum subarray lengths.
+ * - Try exploring with sliding window techniques as well (not yet applied here).
+ *
+ * Problem:
+ * Given a binary array `nums`, return the maximum length of a contiguous subarray
+ * with an equal number of 0 and 1.
+ *
+ * Example 1:
+ * Input: nums = [0,1]
+ * Output: 2
+ * Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
+ *
+ * Example 2:
+ * Input: nums = [0,1,0]
+ * Output: 2
+ * Explanation: [0, 1] or [1, 0] is a longest contiguous subarray with equal number of 0 and 1.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - nums[i] is either 0 or 1.
  */
+
 public class PrefixSumPlusHashPattern_E_ContiguousArray {
     /*
         🔹 Approach 1: Brute Force (Nested Loops)

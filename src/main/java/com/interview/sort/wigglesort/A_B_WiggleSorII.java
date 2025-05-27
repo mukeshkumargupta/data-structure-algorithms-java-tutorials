@@ -5,7 +5,7 @@ import java.util.*;
  * LeetCode Problem: Wiggle Sort II
  * URL: https://leetcode.com/problems/wiggle-sort-ii/
  *
- * Category: Medium, Tricky, Top 150
+ * Category: Medium, Tricky, Top150
  * Related Problems:
  * - Wiggle Sort: https://leetcode.com/problems/wiggle-sort/ (Medium)
  * - Array With Elements Not Equal to Average of Neighbors:

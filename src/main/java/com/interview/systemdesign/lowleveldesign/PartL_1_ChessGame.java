@@ -387,4 +387,4 @@ public class PartLChessGame {
         // Example move: Move a piece from (1, 0) to (2, 0)
         game.makeMove(new Position(1, 0), new Position(2, 0));
     }
-}
+}x

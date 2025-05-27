@@ -3,8 +3,6 @@ package com.interview.array;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.interview.greedy.PartHMinimumMeetingRoomsPatterns;
-
 public class PartHMinimumMeetingRoomsPatternsTest {
 
     @Test

@@ -1,5 +1,8 @@
 package com.interview.hash;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
  * https://leetcode.com/problems/check-if-the-sentence-is-pangram/
  * Category: Easy

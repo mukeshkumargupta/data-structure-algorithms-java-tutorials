@@ -151,7 +151,7 @@ class Restaurant {
 }
 
 // Main class to test the functionality
-public class PartERestaurantReservationSystem {
+public class PartE_1_RestaurantReservationSystem {
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant();
 

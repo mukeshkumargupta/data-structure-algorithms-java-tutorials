@@ -2,8 +2,8 @@ package com.interview.dynamic;
 
 /**
  * Paint House
- * https://leetcode.com/problems/paint-house/
- * https://leetcode.com/problems/paint-house-ii/
+ * https://leetcode.com/problems/paint-house/ Locked
+ * https://leetcode.com/problems/paint-house-ii/ Locked
  */
 public class PaintHouse {
 

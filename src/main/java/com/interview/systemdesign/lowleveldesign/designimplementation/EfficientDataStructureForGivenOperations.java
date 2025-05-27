@@ -10,7 +10,7 @@ package com.interview.systemdesign.lowleveldesign.designimplementation;
  * Status: Not Done
  */
 
-public class EfficientvalStructureForGivenOperations {
+public class EfficientDataStructureForGivenOperations {
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub

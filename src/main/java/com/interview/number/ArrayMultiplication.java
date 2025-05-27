@@ -1,7 +1,5 @@
 package com.interview.number;
 
-import com.interview.array.ArrayAddition;
-
 public class ArrayMultiplication {
 
     public int[] multiplyDivideAndConquer(int arr1[],int arr2[],int low1,int high1,int low2,int high2){

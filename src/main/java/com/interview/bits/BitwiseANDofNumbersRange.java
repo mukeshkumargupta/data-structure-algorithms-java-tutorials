@@ -2,6 +2,7 @@ package com.interview.bits;
 
 /*
 https://leetcode.com/problems/bitwise-and-of-numbers-range/description/?envType=study-plan-v2&envId=top-interview-150
+https://www.youtube.com/watch?v=-qrpJykY2gE
 Category: Medium, top150, Tricky
 Related:
 https://leetcode.com/problems/longest-nice-subarray/ Medium
@@ -40,7 +41,7 @@ public class BitwiseANDofNumbersRange {
             right = right >>1;
             shift += 1;
         }
-        return left<<shift;
+        return left<<shift; //u can take here left or right because it will be same now
 
 
     }

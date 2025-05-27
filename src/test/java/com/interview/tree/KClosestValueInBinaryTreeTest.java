@@ -1,7 +1,7 @@
 package com.interview.tree;
 
 import com.interview.TestUtil;
-import com.interview.tree.PartBPathProblems.KClosestValueInBinaryTree;
+import com.interview.bst.PartDSuccessorPredecessor.C_KClosestValueInBinaryTree;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class KClosestValueInBinaryTreeTest {
         root = bt.addTreeNode(16, root);
         root = bt.addTreeNode(19, root);
 
-        KClosestValueInBinaryTree kClosestValueInBinaryTree = new KClosestValueInBinaryTree();
+        C_KClosestValueInBinaryTree kClosestValueInBinaryTree = new C_KClosestValueInBinaryTree();
         List<Integer> result = kClosestValueInBinaryTree.closestKValues(root, 18, 2);
         TestUtil testUtil = new TestUtil();
         testUtil.compareList(Arrays.asList(19, 20), result);

@@ -3,7 +3,7 @@ package com.interview.systemdesign.lowleveldesign;
 import java.util.*;
 
 
-/**
+/*
  * Date 05/08/2020
  * 
  * @author Mukesh Kumar Gupta
@@ -30,6 +30,35 @@ We will focus on the following set of requirements while designing the parking l
 12. The system should support a per-hour parking fee model. For example, customers have to pay $4 for the first hour, $3.5 for the second and third hours, and $2.5 for all the remaining hours.
 
  */
+
+/*
+🔍 Abstract Class vs Interface – Key Differences
+
+Feature                | Abstract Class                              | Interface
+----------------------|----------------------------------------------|-----------------------------------------------
+Purpose                | To share common base functionality           | To define a contract (what needs to be done)
+Keyword                | abstract                                     | interface
+Methods                | Can have both abstract and concrete methods | Can have abstract methods, default & static methods
+Fields/State           | Can have instance variables                  | Only static final constants (no instance vars)
+Constructor            | Yes                                          | No
+Multiple Inheritance   | Not supported (only one abstract class)      | Supported (can implement multiple interfaces)
+Access Modifiers       | Methods/fields can have any access modifier | Methods are public by default
+Use-case               | Code reuse with base implementation         | Polymorphism, contracts, plug-and-play behavior
+
+✅ When to Use What
+
+✔️ Use Interface when:
+- You only need to define behavior (what needs to be done), not how.
+- You want to achieve multiple inheritance.
+- You're designing APIs or plugins that others will implement.
+- Example: Comparable, Runnable, AutoCloseable.
+
+✔️ Use Abstract Class when:
+- You want to share common code across related classes.
+- You need non-static fields or constructors.
+- You want to provide a default implementation of some methods.
+- Example: HttpServlet, AbstractList.
+*/
 
 public class PartB_2_ParkingLotDesign {
     /*
@@ -104,7 +133,7 @@ public class PartB_2_ParkingLotDesign {
         public bool addParkingDisplayBoard(String floorName, ParkingDisplayBoard displayBoard);
         
         public bool addCustomerInfoPanel(String floorName, CustomerInfoPanel infoPanel);
-        
+
         public bool addEntrancePanel(EntrancePanel entrancePanel);
         
         public bool addExitPanel(ExitPanel exitPanel);

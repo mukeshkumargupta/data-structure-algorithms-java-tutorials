@@ -5,49 +5,93 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /*
-    https://www.youtube.com/watch?v=thUd_WJn6wk&list=PLgUwDviBIf0pMFMWuuvDNMAkoQFi-h0ZF&index=20
-    https://leetcode.com/problems/split-array-largest-sum/submissions/
-
-    https://www.naukri.com/code360/problems/split-the-given-array-into-k-sub-arrays_1215015
-    https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557 on similar pattern
-    Category: Hard
-    Related:
-    https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/ Medium
-    https://leetcode.com/problems/divide-chocolate/ Hard
-    https://leetcode.com/problems/fair-distribution-of-cookies/ Medium
-    https://leetcode.com/problems/subsequence-of-size-k-with-the-largest-even-sum/ Medium
-    https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/ Hard
-    https://leetcode.com/problems/number-of-ways-to-split-array/ Medium
-    https://leetcode.com/problems/minimum-cost-to-split-an-array/ Hard
-    https://leetcode.com/problems/distribute-elements-into-two-arrays-i/ Easy
-    https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/ Hard
-    Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized.
-
-    Return the minimized largest sum of the split.
-
-    A subarray is a contiguous part of the array.
-
-
-
-    Example 1:
-
-    Input: nums = [7,2,5,10,8], k = 2
-    Output: 18
-    Explanation: There are four ways to split nums into two subarrays.
-    The best way is to split it into [7,2,5] and [10,8], where the largest sum among the two subarrays is only 18.
-    Example 2:
-
-    Input: nums = [1,2,3,4,5], k = 2
-    Output: 9
-    Explanation: There are four ways to split nums into two subarrays.
-    The best way is to split it into [1,2,3] and [4,5], where the largest sum among the two subarrays is only 9.
-
-
-    Constraints:
-
-    1 <= nums.length <= 1000
-    0 <= nums[i] <= 106
-    1 <= k <= min(50, nums.length)
+ * Problem: Painter's Partition Problem
+ *
+ * Links:
+ * - Video: https://www.youtube.com/watch?v=thUd_WJn6wk&list=PLgUwDviBIf0pMFMWuuvDNMAkoQFi-h0ZF&index=20
+ * - Leetcode: https://leetcode.com/problems/split-array-largest-sum/
+ * - CodeStudio: https://www.naukri.com/code360/problems/split-the-given-array-into-k-sub-arrays_1215015
+ * - Similar: https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557
+ *
+ * Category: Hard
+ *
+ * Related Problems:
+ * - https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/ (Medium)
+ * - https://leetcode.com/problems/divide-chocolate/ (Hard)
+ * - https://leetcode.com/problems/fair-distribution-of-cookies/ (Medium)
+ * - https://leetcode.com/problems/subsequence-of-size-k-with-the-largest-even-sum/ (Medium)
+ * - https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/ (Hard)
+ * - https://leetcode.com/problems/number-of-ways-to-split-array/ (Medium)
+ * - https://leetcode.com/problems/minimum-cost-to-split-an-array/ (Hard)
+ * - https://leetcode.com/problems/distribute-elements-into-two-arrays-i/ (Easy)
+ * - https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/ (Hard)
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Problem Statement:
+ *
+ * Given an array/list of length ‘n’, where the array/list represents the boards and
+ * each element of the given array/list represents the length of each board.
+ * Some ‘k’ number of painters are available to paint these boards.
+ * Each unit of a board takes 1 unit of time to paint.
+ *
+ * You are supposed to return the minimum time required to paint all the boards
+ * under the constraint that any painter will only paint a contiguous section of boards.
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Example:
+ * Input: arr = [2, 1, 5, 6, 2, 3], k = 2
+ * Output: 11
+ * Explanation:
+ *   - Painter 1 paints boards [2, 1, 5] -> 8 units
+ *   - Painter 2 paints boards [6, 2, 3] -> 11 units
+ *   => max(8, 11) = 11
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Sample Input 1:
+ *   n = 4, k = 2
+ *   arr = [10, 20, 30, 40]
+ *
+ * Sample Output 1:
+ *   60
+ *
+ * Explanation:
+ *   - Painter 1 paints [10, 20, 30] => 60 units
+ *   - Painter 2 paints [40] => 40 units
+ *   => max(60, 40) = 60
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Sample Input 2:
+ *   n = 2, k = 2
+ *   arr = [48, 90]
+ *
+ * Sample Output 2:
+ *   90
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Expected Time Complexity:
+ *   O(n * log(sum(arr)))
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Constraints:
+ *   1 <= n <= 10^5
+ *   1 <= k <= n
+ *   1 <= arr[i] <= 10^9
+ *   Time Limit: 1 second
+ *
+ * -------------------------------------------------------------------------------------
+ *
+ * Insight:
+ * This is a classic Binary Search on Answer problem.
+ *   - Minimum possible time = max(arr)
+ *   - Maximum possible time = sum(arr)
+ * Use binary search to find the smallest possible maximum time such that we can
+ * divide the boards into ≤ k subarrays where each subarray represents one painter's work.
  */
 public class A_BS_19_PaintersPartitionandSplitArrayLargestSum {
 

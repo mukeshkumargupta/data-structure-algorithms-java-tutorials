@@ -158,7 +158,7 @@ public class A_BS_13_MinimumDaysToMakeMBouquets {
             int ans = high;
             while (low <= high) {
                 int mid = (low + high) / 2;
-                if (possible(arr, mid, m, k)) {
+                if (possible(arr, mid, m, k)) {//if high more then possible then try with less high
                     ans = mid;
                     high = mid - 1;
                 } else {

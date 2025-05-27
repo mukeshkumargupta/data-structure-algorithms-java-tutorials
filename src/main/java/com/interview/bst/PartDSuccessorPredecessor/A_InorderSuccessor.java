@@ -7,6 +7,7 @@ import java.util.List;
  * Date 03/27/2017
  * @author Mukesh Kumar Gupta
  *
+ *  Catyegory: Medium, Fundamental, Must Do, Tricky
  *https://www.youtube.com/watch?v=SXKAD2svfmI
  *
  * https://leetcode.com/problems/inorder-successor-in-bst/
@@ -298,16 +299,17 @@ Space Complexity: O(1) as no additional data structure or memory allocation is d
             while (root != null) {
                 // If the value of p is greater or equal
                 // to the current root's value
-                if (p.val >= root.val) {
-                    // Move to the right subtree
-                    root = root.right;
-                } else {
+                if (p.val < root.val) {
                     // If the value of p is smaller,
                     // move to the left subtree
                     // Update the successor to the
                     // current root and traverse left
                     successor = root;
                     root = root.left;
+
+                } else {
+                    // Move to the right subtree
+                    root = root.right;
                 }
             }
 
